@@ -5,15 +5,15 @@
 				<div class="row">
 					<div class="col-md-3 col-sm-6 column-one md-margin-bottom-50">
 						<a href="index.html"><img class="footer-logo" src="assets/img/icons/logo-light.png" alt=""></a>
-						<p class="margin-bottom-20">Tu periódico online de Madrid</p>
+						<p class="margin-bottom-20">Tu peri&oacute;dico online de Madrid</p>
 						<span>Sede:</span>
-						<p>Paseo de la Castellana, 713 Madrid ESPAÑA CP:28046</p>
+						<p>Paseo de la Castellana, 713 Madrid ESPA&ntilde;A CP:28046</p>
 						<hr>
-						<span>Teléfono:</span>
+						<span>Tel&eacute;fono:</span>
 						<p>(+34) 91 655 34 89</p>
 						<p>(+34) 91 356 55 22</p>
 						<hr>
-						<span>Correo electrónico:</span>
+						<span>Correo electr&oacute;nico:</span>
 						<a href="#">themadridnews@tmn.es</a>
 					</div>
 
@@ -26,26 +26,26 @@
 							<li><a class="rounded-4x" href="national.html">Nacional</a></li>
 							<li><a class="rounded-4x" href="international.html">Internacional</a></li>
 							<li><a class="rounded-4x" href="sports.html">Deportes</a></li>
-							<li><a class="rounded-4x" href="tecnology.html">Tecnología</a></li>
+							<li><a class="rounded-4x" href="tecnology.html">Tecnolog&iacute;a</a></li>
 							<li><a class="rounded-4x" href="culture.html">Cultura</a></li>
-							<li><a class="rounded-4x" href="gastronomy.html">Gastronomía</a></li>
+							<li><a class="rounded-4x" href="gastronomy.html">Gastronom&iacute;a</a></li>
 						</ul>
 						<!-- End Tag Links v4 -->
 
-						<h2>Otros periódicos:</h2>
+						<h2>Otros peri&oacute;dicos:</h2>
 						<!-- Footer Lists -->
 						<ul class="footer-lists">
 							<li><i class="fa fa-angle-right"></i><a href="http://www.elmundo.es/">El Mundo</a></li>
-							<li><i class="fa fa-angle-right"></i><a href="http://www.elpais.com/">El País</a></li>
+							<li><i class="fa fa-angle-right"></i><a href="http://www.elpais.com/">El Pa&iacute;s</a></li>
 							<li><i class="fa fa-angle-right"></i><a href="http://www.lavanguardia.com/">La Vanguardia</a></li>
 							<li><i class="fa fa-angle-right"></i><a href="www.abc.es">ABC</a></li>
-							<li><i class="fa fa-angle-right"></i><a href="www.larazon.es">La Razón</a></li>
+							<li><i class="fa fa-angle-right"></i><a href="www.larazon.es">La Raz&oacute;n</a></li>
 						</ul>
 						<!-- End Footer Lists -->
 					</div>
 
 					<div class="col-md-3 col-sm-6 md-margin-bottom-50">
-						<h2>Últimas noticias</h2>
+						<h2>&uacute;ltimas noticias</h2>
 						<!-- Latest News -->
 						<div class="latest-news margin-bottom-20">
 							<img src="assets/img/thumb/img-thumb1.jpg" alt="">
@@ -72,8 +72,8 @@
 					</div>
 
 					<div class="col-md-3 col-sm-6">
-						<h2>Boletín</h2>
-						<p><strong>¡Subscríbete</strong> a nuestro boletín de noticias y entérate de todo en el momento!</p><br>
+						<h2>Bolet&iacute;n</h2>
+						<p><strong>¡Subscr&iacute;bete</strong> a nuestro bolet&iacute;n de noticias y ent&eacute;rate de todo en el momento!</p><br>
 
 						<!-- Form Group -->
 						<div class="input-group margin-bottom-50">
@@ -85,7 +85,7 @@
 						<!-- End Form Group -->
 
 						<h2>Redes sociales</h2>
-						<p><strong>¡Síguenos!</strong> Si quieres enterarte de las noticias más recientes, síguenos y podrás leernos en el momento.</p><br>
+						<p><strong>¡S&iacute;guenos!</strong> Si quieres enterarte de las noticias m&aacute;s recientes, s&iacute;guenos y podr&aacute;s leernos en el momento.</p><br>
 
 						<!-- Social Icons -->
 						<ul class="social-icon-list margin-bottom-20">
@@ -105,8 +105,8 @@
 			<div class="container">
 				<ul class="list-inline terms-menu">
 					<li>2017 &copy; Todos los Derechos Reservados.</li>
-					<li class="home"><a href="#">Términos de Uso</a></li>
-					<li><a href="#">Política y Privacidad</a></li>
+					<li class="home"><a href="#">T&eacute;rminos de Uso</a></li>
+					<li><a href="#">Pol&iacute;tica y Privacidad</a></li>
 				</ul>
 			</div><!--/end container-->
 		</footer>

@@ -56,7 +56,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">La plaza de Santo Domingo volverá a tener aparcamiento</a></h3>
+																<h3><a href="blog_single.html">La plaza de Santo Domingo volver&aacute; a tener aparcamiento</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -89,7 +89,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -105,7 +105,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -121,7 +121,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -138,7 +138,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -154,7 +154,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -170,7 +170,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -221,7 +221,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">La plaza de Santo Domingo volverá a tener aparcamiento</a></h3>
+																<h3><a href="blog_single.html">La plaza de Santo Domingo volver&aacute; a tener aparcamiento</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -254,7 +254,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -270,7 +270,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -286,7 +286,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -303,7 +303,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -319,7 +319,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -335,7 +335,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -386,7 +386,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">La plaza de Santo Domingo volverá a tener aparcamiento</a></h3>
+																<h3><a href="blog_single.html">La plaza de Santo Domingo volver&aacute; a tener aparcamiento</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -419,7 +419,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -435,7 +435,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -451,7 +451,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -468,7 +468,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -484,7 +484,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -500,7 +500,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -551,7 +551,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">La plaza de Santo Domingo volverá a tener aparcamiento</a></h3>
+																<h3><a href="blog_single.html">La plaza de Santo Domingo volver&aacute; a tener aparcamiento</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -584,7 +584,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -600,7 +600,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -616,7 +616,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -633,7 +633,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -649,7 +649,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -665,7 +665,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -685,7 +685,7 @@
 							<!-- Tecnology -->
 							<li class="dropdown mega-menu-fullwidth">
 								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-									Tecnología
+									Tecnolog&iacute;a
 								</a>
 								<ul class="dropdown-menu">
 									<li>
@@ -716,7 +716,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">La plaza de Santo Domingo volverá a tener aparcamiento</a></h3>
+																<h3><a href="blog_single.html">La plaza de Santo Domingo volver&aacute; a tener aparcamiento</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -749,7 +749,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -765,7 +765,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -781,7 +781,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -798,7 +798,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -814,7 +814,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -830,7 +830,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -881,7 +881,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">La plaza de Santo Domingo volverá a tener aparcamiento</a></h3>
+																<h3><a href="blog_single.html">La plaza de Santo Domingo volver&aacute; a tener aparcamiento</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -914,7 +914,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -930,7 +930,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -946,7 +946,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -963,7 +963,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -979,7 +979,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -995,7 +995,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -1015,7 +1015,7 @@
 							<!-- Gastronomy -->
 							<li class="dropdown mega-menu-fullwidth">
 								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-									Gastronomía
+									Gastronom&iacute;a
 								</a>
 								<ul class="dropdown-menu">
 									<li>
@@ -1046,7 +1046,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">La plaza de Santo Domingo volverá a tener aparcamiento</a></h3>
+																<h3><a href="blog_single.html">La plaza de Santo Domingo volver&aacute; a tener aparcamiento</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -1079,7 +1079,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -1095,7 +1095,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -1111,7 +1111,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -1128,7 +1128,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El teatro de títeres del Retiro programará obras para adultos</a></h3>
+																<h3><a href="blog_single.html">El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -1144,7 +1144,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco González</a></h3>
+																<h3><a href="blog_single.html">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -1160,7 +1160,7 @@
 																<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
-																<h3><a href="blog_single.html">Madrid acogerá más de 130 carreras populares en 2017</a></h3>
+																<h3><a href="blog_single.html">Madrid acoger&aacute; m&aacute;s de 130 carreras populares en 2017</a></h3>
 																<ul class="blog-thumb-info">
 																	<li>Mar 6, 2015</li>
 																	<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
