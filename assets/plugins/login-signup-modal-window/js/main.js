@@ -52,7 +52,7 @@ jQuery(document).ready(function($) {
       $password_field = $this.prev('input');
 
     ('password' == $password_field.attr('type')) ? $password_field.attr('type', 'text') : $password_field.attr('type', 'password');
-    ('Hide' == $this.text()) ? $this.text('Show') : $this.text('Hide');
+    ('Ocultar' == $this.text()) ? $this.text('Mostrar') : $this.text('Ocultar');
     //focus and move cursor to the end of input field
     $password_field.putCursorAtEnd();
   });

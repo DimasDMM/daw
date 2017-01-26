@@ -648,6 +648,10 @@
 		<!-- End Navbar -->
 	</div>
 	<!--=== End Header v8 ===-->
+    
+    <!-------------------------------------------------------------------------->
+    <!--ESTA PARTE ESTÁ SIENDO MODIFICADA PARA AMPLIAR LOS CAMPOS DEL REGISTRO-->
+    <!-------------------------------------------------------------------------->
 
 	<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
 		<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
@@ -656,7 +660,7 @@
 				<li><a href="javascript:void(0);">Registro</a></li>
 			</ul>
 
-			<div id="cd-login"> <!-- log in form -->
+			<div id="cd-login"> <!-- log en el formulario -->
 				<form class="cd-form">
 					<p class="social-login">
 						<span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>
@@ -664,24 +668,24 @@
 						<span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>
 					</p>
 
-					<div class="lined-text"><span>Or use your account on Blog</span><hr></div>
+					<div class="lined-text"><span>O usa tu cuenta del Blog</span><hr></div>
 
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signin-email">E-mail</label>
 						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
-						<span class="cd-error-message">Error message here!</span>
+						<span class="cd-error-message">¡Dato erroneo!</span>
 					</p>
 
 					<p class="fieldset">
-						<label class="image-replace cd-password" for="signin-password">Password</label>
-						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+						<label class="image-replace cd-password" for="signin-password">Contraseña</label>
+						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Contraseña">
 						<a href="javascript:void(0);" class="hide-password">Hide</a>
-						<span class="cd-error-message">Error message here!</span>
+						<span class="cd-error-message">¡Dato erroneo!</span>
 					</p>
 
 					<p class="fieldset">
 						<input type="checkbox" id="remember-me" checked>
-						<label for="remember-me">Remember me</label>
+						<label for="remember-me">Recuerdame</label>
 					</p>
 
 					<p class="fieldset">
@@ -689,7 +693,7 @@
 					</p>
 				</form>
 
-				<p class="cd-form-bottom-message"><a href="javascript:void(0);">Forgot your password?</a></p>
+				<p class="cd-form-bottom-message"><a href="javascript:void(0);">¿Olvidaste tu contraseña?</a></p>
 				<!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
 			</div> <!-- cd-login -->
             
@@ -718,6 +722,13 @@
 						<input class="full-width has-padding has-border" id="signup-surnames" type="text" placeholder="Apellidos">
 						<span class="cd-error-message">¡Dato erroneo!</span>
 					</p>
+                    
+                    <!--HAY QUE AÑADIR IMAGEN AL CALENDARIO-->
+                    <p class="fieldset">
+						<label class="image-replace" for="signup-date">Fecha de Nacimiento</label>
+						<input class="full-width has-padding has-border" id="signup-date" type="date" placeholder="Fecha de Nacimiento">
+						<span class="cd-error-message">¡Dato erroneo!</span>
+					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signup-email">E-mail</label>
@@ -732,44 +743,47 @@
 						<span class="cd-error-message">¡Dato erroneo!</span>
 					</p>
                     
-                    <p class="fieldset">
+                    <div class="lined-text"><span>Elige los temas de interes</span><hr></div>
+                    
+                    <div class="container-fluid">                        
+                        <div class="row">
+                            
+                    <p class="fieldset col-md-4">
 						<input type="checkbox" id="sports">
 						<label for="sports">Deportes</label>
 					</p>
                     
-                    <p class="fieldset">
+                    <p class="fieldset col-md-4">
 						<input type="checkbox" id="politics">
 						<label for="politics">Política</label>
 					</p>
                     
-                    <p class="fieldset">
+                    <p class="fieldset col-md-4">
 						<input type="checkbox" id="national">
 						<label for="national">Nacional</label>
 					</p>
                     
-                    <p class="fieldset">
+                    <p class="fieldset col-md-4">
 						<input type="checkbox" id="international">
 						<label for="international">Internacional</label>
 					</p>
                     
-                    <p class="fieldset">
+                    <p class="fieldset col-md-4">
 						<input type="checkbox" id="technology">
 						<label for="technology">Tecnología</label>
 					</p>
                     
-                    <p class="fieldset">
-						<input type="checkbox" id="gastronomy">
-						<label for="gastronomy">Gastronomía</label>
-					</p>
-                    
-                    <p class="fieldset">
+                    <p class="fieldset col-md-4">
 						<input type="checkbox" id="culture">
 						<label for="culture">Cultura</label>
 					</p>
-
+                            
+                        </div>                            
+                    </div>
+                    
 					<p class="fieldset">
 						<input type="checkbox" id="accept-terms">
-						<label for="accept-terms">I agree to the <a href="javascript:void(0);">Terms</a></label>
+						<label for="accept-terms">Acepto los términos del <a href="javascript:void(0);">Contraro</a></label>
 					</p>
 
 					<p class="fieldset">
