@@ -6,7 +6,7 @@
 <!--[if !IE]><!-->
 <html lang="es"> <!--<![endif]-->
 <head>
-	<title>The Madrid Times | Redactar artículo</title>
+	<title>The Madrid Times | Listado de art&iacute;culos</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -33,8 +33,6 @@
 	<link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
 	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/plugins/login-signup-modal-window/css/style.css">
-	<link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
-	<link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
 	<link rel="stylesheet" href="assets/css/blocks.css">
 
 	<!-- CSS Theme -->
@@ -1295,11 +1293,11 @@
 	<!--=== Breadcrumbs ===-->
 	<div class="breadcrumbs breadcrumbs-light margin-bottom-50">
 		<div class="container">
-			<h1 class="pull-left">Artículos</h1>
+			<h1 class="pull-left">Art&iacute;culos</h1>
 			<ul class="pull-right breadcrumb">
 				<li><a href="#">Redactor</a></li>
-				<li><a href="#">Artículo</a></li>
-				<li class="active">Redactar</li>
+				<li><a href="#">Art&iacute;culo</a></li>
+				<li class="active">Listado</li>
 			</ul>
 		</div>
 	</div><!--/breadcrumbs-->
@@ -1315,18 +1313,24 @@
 
 					<h3>Usuario</h3>
 					<ul class="list-group sidebar-nav-v1">
-						<li class="list-group-item list-toggle"><a href="#">Mi perfil</a></li>
-						<li class="list-group-item list-toggle"><a href="#">Preferencias</a></li>
+						<li class="list-group-item"><a href="#">Mi perfil</a></li>
+						<li class="list-group-item"><a href="#">Preferencias</a></li>
 					</ul>
 
-					<h3>Artículos</h3>
+					<h3>Art&iacute;culos</h3>
 					<ul class="list-group sidebar-nav-v1">
-						<li class="list-group-item list-toggle"><a href="#">Publicados</a></li>
-						<li class="list-group-item list-toggle"><a href="#">Redactar</a></li>
+						<li class="list-group-item active"><a href="#">Publicados</a></li>
+						<li class="list-group-item"><a href="#">Redactar</a></li>
+					</ul>
+
+					<h3>Anuncios</h3>
+					<ul class="list-group sidebar-nav-v1">
+						<li class="list-group-item"><a href="#">Listado</a></li>
+						<li class="list-group-item"><a href="#">Nuevo</a></li>
 					</ul>
 
 					<ul class="list-group sidebar-nav-v1">
-						<li class="list-group-item list-toggle"><a href="#">Cerrar sesión</a></li>
+						<li class="list-group-item"><a href="#">Cerrar sesi&oacute;n</a></li>
 					</ul>
 				</div>
 				<!-- End Options Menu -->
@@ -1334,30 +1338,61 @@
 
 			<div class="col-md-9">
 
-				<form action="#" method="post" class="margin-bottom-20 sky-form">
-					<header>Redacción de artículos</header>
+				<h2 class="blog-grid-title-lg">Listado de art&iacute;culos</h2>
 
-					<fieldset>
-						<div class="row">
-							<section class="col col-12 full-width">
-								<label for="inp_article">Artículo</label>
-								<textarea class="form-control" name="article" id="inp_article" rows="20"></textarea>
-							</section>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>T&iacute;tiulo</th>
+							<th>Redactor</th>
+							<th>Categor&iacute;a</th>
+							<th>Visualizaciones</th>
+							<th>Fecha publicaci&oacute;n</th>
+							<th>Estado</th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>La CocaCola mata</td>
+							<td>Juan Ram&oacute;n</td>
+							<td>Cultura</td>
+							<td>1500</td>
+							<td>25-01-2017</td>
+							<td><span class="label label-success">Activo</span></td>
+							<td><button class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></button></td>
+						</tr>
+						<tr>
+							<td>Un alicatador se parte un dedo</td>
+							<td>Hector Mazapanes</td>
+							<td>Madrid</td>
+							<td>2300</td>
+							<td>19-01-2017</td>
+							<td><span class="label label-success">Activo</span></td>
+							<td><button class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></button></td>
+						</tr>
+						<tr>
+							<td>La cerveza Spar sigue [...]</td>
+							<td>Hector Mazapanes</td>
+							<td>Cultura</td>
+							<td>200</td>
+							<td>13-01-2017</td>
+							<td><span class="label label-danger">Oculto</span></td>
+							<td><button class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></button></td>
+						</tr>
+					</tbody>
+				</table>
 
-							<section class="col col-12 full-width">
-								<label for="inp_file" class="input input-file">
-									<div class="button"><input type="file" name="file" id="inp_file" multiple onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen principal" readonly>
-								</label>
-							</section>
-						</div>
-					</fieldset>
-
-					<footer>
-						<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-eye"></i> Previsualizar
-						</button>
-					</footer>
-
-				</form>
+				<div class="text-right">
+					<ul class="pagination">
+						<li><a href="#">&laquo;</a></li>
+						<li><a href="#">1</a></li>
+						<li class="active"><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">&raquo;</a></li>
+					</ul>
+				</div>
 
 			</div>
 		</div>
