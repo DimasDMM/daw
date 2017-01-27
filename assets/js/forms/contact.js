@@ -35,21 +35,21 @@ var ContactForm = function () {
 	            {
 	                name:
 	                {
-	                    required: 'Please enter your name',
+	                    required: 'Por favor, introduce tu nombre'
 	                },
 	                email:
 	                {
-	                    required: 'Please enter your email address',
-	                    email: 'Please enter a VALID email address'
+	                    required: 'Por favor, introduce tu correo electronico',
+	                    email: 'Por favor, introduce un correo electronico valido'
 	                },
 	                message:
 	                {
-	                    required: 'Please enter your message'
+	                    required: 'Por favor, escribe tu comentario'
 	                },
 	                captcha:
 	                {
-	                    required: 'Please enter characters',
-	                    remote: 'Correct captcha is required'
+	                    required: 'Por favor, introduce los caracteres',
+	                    remote: 'Es necesario que los caracteres coincidan con el Captcha'
 	                }
 	            },
 	                                

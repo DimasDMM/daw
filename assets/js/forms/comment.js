@@ -38,25 +38,25 @@ var CommentForm = function () {
 	            {
 	                name:
 	                {
-	                    required: 'Enter your name',
+	                    required: 'Introduce tu nombre'
 	                },
 	                email:
 	                {
-	                    required: 'Enter your email address',
-	                    email: 'Enter a VALID email'
+	                    required: 'Introduce tu correo electronico',
+	                    email: 'Introduce un correo electronico valido'
 	                },
 	                url:
 	                {
-	                    email: 'Enter a VALID url'
+	                    email: 'Introduce una URL valida'
 	                },
 	                comment:
 	                {
-	                    required: 'Please enter your comment'
+	                    required: 'Por favor, escribe tu comentario'
 	                },
 	                captcha:
 	                {
-	                    required: 'Please enter characters',
-	                    remote: 'Correct captcha is required'
+	                    required: 'Por favor, introduce los caracteres',
+	                    remote: 'Es necesario que los caracteres coincidan con el Captcha'
 	                }
 	            },
 	                                
