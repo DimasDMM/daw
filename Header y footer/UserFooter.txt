@@ -4,7 +4,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3 col-sm-6 column-one md-margin-bottom-50">
-						<a href="index.html"><img class="footer-logo" src="assets/img/icons/logo-light.png" alt=""></a>
+						<a href="user-index.html"><img class="footer-logo" src="assets/img/icons/logo-light.png" alt=""></a>
 						<p class="margin-bottom-20">Tu peri&oacute;dico online de Madrid</p>
 						<span>Sede:</span>
 						<p>Paseo de la Castellana, 713 Madrid ESPA&ntilde;A CP:28046</p>
@@ -21,13 +21,13 @@
 						<h2>Tags</h2>
 						<!-- Tag Links v4 -->
 						<ul class="tags-v4 margin-bottom-40">
-                            <li><a class="rounded-4x" href="index.html">The Madrid News</a></li>
-							<li><a class="rounded-4x" href="madrid.html">Madrid</a></li>
-							<li><a class="rounded-4x" href="spain.html">Espa&ntilde;a</a></li>
-							<li><a class="rounded-4x" href="world.html">Mundo</a></li>
-							<li><a class="rounded-4x" href="sports.html">Deportes</a></li>
-							<li><a class="rounded-4x" href="tecnology.html">Tecnolog&iacute;a</a></li>
-							<li><a class="rounded-4x" href="culture.html">Cultura</a></li>
+                            <li><a class="rounded-4x" href="user-index.html">The Madrid News</a></li>
+							<li><a class="rounded-4x" href="user-madrid.html">Madrid</a></li>
+							<li><a class="rounded-4x" href="user-spain.html">Espa&ntilde;a</a></li>
+							<li><a class="rounded-4x" href="user-world.html">Mundo</a></li>
+							<li><a class="rounded-4x" href="user-sports.html">Deportes</a></li>
+							<li><a class="rounded-4x" href="user-tecnology.html">Tecnolog&iacute;a</a></li>
+							<li><a class="rounded-4x" href="user-culture.html">Cultura</a></li>
 						</ul>
 						<!-- End Tag Links v4 -->
 
@@ -72,7 +72,7 @@
 
 					<div class="col-md-3 col-sm-6">
 						<h2>Bolet&iacute;n</h2>
-						<p><strong>&iexcl;Subscr&iacute;bete</strong> a nuestro bolet&iacute;n de noticias y ent&eacute;rate de todo en el momento!</p><br>
+						<p><strong>¡Subscr&iacute;bete</strong> a nuestro bolet&iacute;n de noticias y ent&eacute;rate de todo en el momento!</p><br>
 
 						<!-- Form Group -->
 						<div class="input-group margin-bottom-50">
@@ -84,7 +84,7 @@
 						<!-- End Form Group -->
 
 						<h2>Redes sociales</h2>
-						<p><strong>&iexcl;S&iacute;guenos!</strong> Si quieres enterarte de las noticias m&aacute;s recientes, s&iacute;guenos y podr&aacute;s leernos en el momento.</p><br>
+						<p><strong>¡S&iacute;guenos!</strong> Si quieres enterarte de las noticias m&aacute;s recientes, s&iacute;guenos y podr&aacute;s leernos en el momento.</p><br>
 
 						<!-- Social Icons -->
 						<ul class="social-icon-list margin-bottom-20">

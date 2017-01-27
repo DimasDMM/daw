@@ -9,7 +9,7 @@
 	margin: 0;
 	outline: none;
 	box-shadow: 0 0 20px rgba(0,0,0,.3);
-	font: 13px/1.55 'Open Sans', Helvetica, Arial, sans-serif;
+	font: 13px/1.55 'Roboto Slab', sans-serif;
 	color: #666;
 }
 .sky-form header {
@@ -88,7 +88,7 @@
 	border-style: solid;
 	border-radius: 0;
 	background: #fff;
-	font: 15px/23px 'Open Sans', Helvetica, Arial, sans-serif;
+	font: 15px/23px 'Roboto Slab', sans-serif;
 	color: #404040;
 	appearance: normal;
 	-moz-appearance: none;
@@ -391,7 +391,7 @@
 	padding: 0 25px;
 	outline: none;
 	border: 0;
-	font: 300 15px/39px 'Open Sans', Helvetica, Arial, sans-serif;
+	font: 300 15px/39px 'Roboto Slab', sans-serif;;
 	text-decoration: none;
 	color: #fff;
 	cursor: pointer;
