@@ -1033,3 +1033,20 @@
 .sky-form .checkbox + .checkbox {
   margin-top: 0;
 }
+.image_profile {
+    height: 15em !important;
+    width: 15em !important;
+    vertical-align:baseline;
+}
+
+#name {
+    clear:both !important;
+}
+
+.image_profile_text {
+    height: 15em !important;
+    width: 15em !important;
+    vertical-align: baseline;
+}
+
+
