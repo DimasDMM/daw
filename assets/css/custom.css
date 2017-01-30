@@ -163,3 +163,12 @@
 .list-group li.list-group-item:hover {
 	background-color: #ebebeb !important;
 }
+
+.topbar-log_reg li:first-child:before {
+	display: none !important;
+}
+
+/* Misc */
+.no-border {
+	border: 0 !important;
+}

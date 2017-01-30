@@ -71,6 +71,18 @@
   padding: 8px 30px;
 }
 
+.sky-form section {
+  padding: 15px 30px;
+}
+
+.sky-form section > div {
+  margin-bottom: 20px;
+}
+
+.sky-form section h1 {
+	font-size: 2em;
+}
+
 .sky-form fieldset.no-padding {
   padding: 0;
 }
