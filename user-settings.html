@@ -14,9 +14,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="assets/img/icons/favicon.ico">
     <!-- Web Fonts -->
-	<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700'>
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700'>
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -35,812 +35,667 @@
     <link rel="stylesheet" href="assets/css/theme-skins/dark-form.css">
     <link rel="stylesheet" href="assets/css/theme-skins/dark.css">
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="assets/css/custom.css"> 
-</head>
+    <link rel="stylesheet" href="assets/css/custom.css"> </head>
 
 <body>
     <div class="wrapper">
         <!--=== Header ===-->
-	<div class="header-v8 header-sticky">
-		<!-- Topbar blog -->
-		<div class="blog-topbar">
-            <!-- Search bar -->
-			<div class="topbar-search-block">
-				<div class="container">
-					<form action="">
-						<input type="text" class="form-control" placeholder="Buscar">
-						<div class="search-close"><i class="icon-close"></i></div>
-					</form>
-				</div>
-			</div>
-			<div class="container">
-				<div class="row">
-                    <!-- Date & Contact -->
-					<div class="col-sm-8 col-xs-8">
-						<div class="topbar-time">Martes, 24 Enero 2016</div>
-						<div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
-						<ul class="topbar-list topbar-menu">
-							<li><a href="contact">Contactar</a></li>
-						</ul>
-					</div>
-                    <!-- User options -->
-					<div class="col-sm-4 col-xs-4 clearfix">
-						<i class="fa fa-search search-btn pull-right"></i>
-						<ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
-                            <li>
-								<a href="javascript:void(0);">Usuario</a>
-								<ul class="topbar-dropdown">
-									<li class="topbar-submenu">
-										<a href="javascript:void(0);">Art&iacute;culo</a>
-										<ul class="topbar-submenu-in">
-											<li><a href="article_list.html">Lista</a></li>
-											<li><a href="article_new.html">Redactar</a></li>
-										</ul>
-									</li>
-									<li class="topbar-submenu">
-										<a href="javascript:void(0);">Publicidad</a>
-										<ul class="topbar-submenu-in">
-											<li><a href="ads_list.html">Lista</a></li>
-											<li><a href="ads_create.html">Añadir</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="user.html">Ajustes</a></li>
-						</ul>
-					</div>
-				</div><!--/end row-->
-			</div><!--/end container-->
-		</div>
-		<!-- End Topbar blog -->
-        
-        <!--=== Content Part ===-->
-        <div class="container content">
-            <div class="row">
-                <!-- Begin Content -->
-                <div class="col-md-9">
-                    <!-- Tabs -->
-                    <div class="tab-v1">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#home-1" data-toggle="tab">Datos personales</a></li>
-                            <li><a href="#profile-1" data-toggle="tab">Email y contraseña</a></li>
-                            <li><a href="#messages-1" data-toggle="tab">Mis noticias</a></li>
-                            <li><a href="#messages-2" data-toggle="tab">Mis comentarios</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <!-- Success Forms -->
-                            <div class="tab-pane fade in active" id="home-1">
-                                <form action="#" class="sky-form">
-                                    
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Foto de perfil</label>
-                                            <label for="file" class="input input-file state-success image_profile">
-                                                <div class="button">
-                                                    <input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value">Browse
-                                                </div>
-                                                <input type="text" class= "image_profile_text" readonly> </label>
-                                        </section>
-                                        <section>
-                                            <label id="name" class="label">Nombre</label>
-                                            <label class="input state-success">
-                                                <input type="text"> </label>
-                                            <div class="note note-success-compulsory">Campo obligatorio</div>
-                                        </section>
-                                        <section>
-                                            <label class="label">Apellidos</label>
-                                            <label class="input state-success">
-                                                <input type="text"> </label>
-                                            <div class="note note-success-compulsory">Campo obligatorio</div>
-                                        </section>
-                                        <section>
-                                            <label class="label">Alias</label>
-                                            <label class="input state-success">
-                                                <input type="text"> </label>
-                                            <div class="note note-success">Este se mostrar&aacute; en lugar de tu nombre.</div>
-                                        </section>
-                                        <section>
-                                            <label class="label">Ciudad</label>
-                                            <label class="input state-success">
-                                                <input type="text"> </label>
-                                        </section>
-                                        <section>
-                                            <label class="label">Tel&eacute;fono</label>
-                                            <label class="input state-success">
-                                                <input type="text"> </label>
-                                        </section>
-
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Pa&iacute;s de residencia</label>
-                                            <label class="select state-success">
-                                                <select name="Country" class="">
-                                                    <option value="53" selected="selected">España</option>
-                                                    <option value="8">Afganistán</option>
-                                                    <option value="9">Albania</option>
-                                                    <option value="10">Alemania</option>
-                                                    <option value="11">Andorra</option>
-                                                    <option value="12">Angola</option>
-                                                    <option value="9653">Antigua y Barbuda</option>
-                                                    <option value="13">Arabia Saudí</option>
-                                                    <option value="14">Argelia</option>
-                                                    <option value="15">Argentina</option>
-                                                    <option value="9864">Armenia</option>
-                                                    <option value="18">Australia</option>
-                                                    <option value="19">Austria</option>
-                                                    <option value="9867">Azerbaiyán</option>
-                                                    <option value="20">Bahamas</option>
-                                                    <option value="9870">Bahrein</option>
-                                                    <option value="21">Bangladesh</option>
-                                                    <option value="22">Barbados</option>
-                                                    <option value="23">Bélgica</option>
-                                                    <option value="9684">Belice</option>
-                                                    <option value="24">Benin</option>
-                                                    <option value="25">Bielorrusia</option>
-                                                    <option value="26">Bolivia</option>
-                                                    <option value="9985">Bosnia-Herzegovina</option>
-                                                    <option value="28">Botswana</option>
-                                                    <option value="29">Brasil</option>
-                                                    <option value="9836">Brunei</option>
-                                                    <option value="30">Bulgaria</option>
-                                                    <option value="9613">Burkina Faso</option>
-                                                    <option value="9503">Burundi</option>
-                                                    <option value="9815">Bután</option>
-                                                    <option value="31">Cabo Verde</option>
-                                                    <option value="32">Camboya</option>
-                                                    <option value="33">Camerún</option>
-                                                    <option value="9769">Canadá</option>
-                                                    <option value="9898">Catar</option>
-                                                    <option value="9547">Chad</option>
-                                                    <option value="34">Chile</option>
-                                                    <option value="35">China</option>
-                                                    <option value="36">Chipre</option>
-                                                    <option value="37">Ciudad del Vaticano</option>
-                                                    <option value="38">Colombia</option>
-                                                    <option value="9506">Comoras</option>
-                                                    <option value="39">Corea del Norte</option>
-                                                    <option value="40">Corea del Sur</option>
-                                                    <option value="41">Costa de Marfil</option>
-                                                    <option value="42">Costa Rica</option>
-                                                    <option value="43">Croacia</option>
-                                                    <option value="44">Cuba</option>
-                                                    <option value="29016">Curaçao</option>
-                                                    <option value="45">Dinamarca</option>
-                                                    <option value="9663">Dominica</option>
-                                                    <option value="46">Ecuador</option>
-                                                    <option value="48">Egipto</option>
-                                                    <option value="49">El Salvador</option>
-                                                    <option value="50">Emiratos Árabes Unidos</option>
-                                                    <option value="9512">Eritrea</option>
-                                                    <option value="51">Eslovaquia</option>
-                                                    <option value="52">Eslovenia</option>
-                                                    <option value="47">Estados Unidos</option>
-                                                    <option value="8143">Estonia</option>
-                                                    <option value="8144">Etiopía</option>
-                                                    <option value="8147">Filipinas</option>
-                                                    <option value="8148">Finlandia</option>
-                                                    <option value="8149">Francia</option>
-                                                    <option value="9556">Gabón</option>
-                                                    <option value="9622">Gambia</option>
-                                                    <option value="9877">Georgia</option>
-                                                    <option value="8150">Ghana</option>
-                                                    <option value="9664">Granada</option>
-                                                    <option value="8151">Grecia</option>
-                                                    <option value="8153">Guatemala</option>
-                                                    <option value="9747">Guayana Francesa</option>
-                                                    <option value="8154">Guinea</option>
-                                                    <option value="9559">Guinea Ecuatorial</option>
-                                                    <option value="9629">Guinea-Bissau</option>
-                                                    <option value="9748">Guyana</option>
-                                                    <option value="8155">Haití</option>
-                                                    <option value="8156">Honduras</option>
-                                                    <option value="8158">Hungría</option>
-                                                    <option value="8159">India</option>
-                                                    <option value="8160">Indonesia</option>
-                                                    <option value="8162">Irak</option>
-                                                    <option value="8161">Irán</option>
-                                                    <option value="8163">Irlanda</option>
-                                                    <option value="8164">Islandia</option>
-                                                    <option value="10154">Islas Marshall</option>
-                                                    <option value="10145">Islas Salomón</option>
-                                                    <option value="8166">Israel</option>
-                                                    <option value="8167">Italia</option>
-                                                    <option value="8168">Jamaica</option>
-                                                    <option value="8169">Japón</option>
-                                                    <option value="9887">Jordania</option>
-                                                    <option value="9778">Kazajistán</option>
-                                                    <option value="8170">Kenia</option>
-                                                    <option value="9781">Kirguizistán</option>
-                                                    <option value="10157">Kiribati</option>
-                                                    <option value="10179">Kosovo</option>
-                                                    <option value="8171">Kuwait</option>
-                                                    <option value="9846">Laos</option>
-                                                    <option value="9598">Lesoto</option>
-                                                    <option value="8172">Letonia</option>
-                                                    <option value="9892">Líbano</option>
-                                                    <option value="9632">Liberia</option>
-                                                    <option value="8173">Libia</option>
-                                                    <option value="8174">Liechtenstein</option>
-                                                    <option value="8175">Lituania</option>
-                                                    <option value="8176">Luxemburgo</option>
-                                                    <option value="17">Macedonia</option>
-                                                    <option value="8177">Madagascar</option>
-                                                    <option value="8178">Malasia</option>
-                                                    <option value="8179">Malawi</option>
-                                                    <option value="9826">Maldivas</option>
-                                                    <option value="8180">Malí</option>
-                                                    <option value="8181">Malta</option>
-                                                    <option value="8182">Marruecos</option>
-                                                    <option value="8183">Mauricio</option>
-                                                    <option value="8184">Mauritania</option>
-                                                    <option value="8185">México</option>
-                                                    <option value="8186">Micronesia</option>
-                                                    <option value="8187">Moldavia</option>
-                                                    <option value="8188">Mónaco</option>
-                                                    <option value="9807">Mongolia</option>
-                                                    <option value="8189">Mozambique</option>
-                                                    <option value="9851">Myanmar</option>
-                                                    <option value="8190">Namibia</option>
-                                                    <option value="8145">Nauru</option>
-                                                    <option value="9829">Nepal</option>
-                                                    <option value="8191">Nicaragua</option>
-                                                    <option value="8192">Níger</option>
-                                                    <option value="8193">Nigeria</option>
-                                                    <option value="8194">Noruega</option>
-                                                    <option value="8196">Nueva Zelanda</option>
-                                                    <option value="9895">Omán</option>
-                                                    <option value="8201">Países Bajos</option>
-                                                    <option value="8202">Pakistán</option>
-                                                    <option value="10163">Palaos</option>
-                                                    <option value="9903">Palestina (ANP)</option>
-                                                    <option value="8203">Panamá</option>
-                                                    <option value="8204">Papúa Nueva Guinea</option>
-                                                    <option value="8205">Paraguay</option>
-                                                    <option value="8206">Perú</option>
-                                                    <option value="8208">Polonia</option>
-                                                    <option value="8209">Portugal</option>
-                                                    <option value="29043">Puerto Rico Estado</option>
-                                                    <option value="8211">Reino Unido</option>
-                                                    <option value="8212">República Centroafricana</option>
-                                                    <option value="8213">República Checa</option>
-                                                    <option value="9550">República del Congo</option>
-                                                    <option value="8214">República Democrática del Congo</option>
-                                                    <option value="8215">República Dominicana</option>
-                                                    <option value="9531">Reunión</option>
-                                                    <option value="8216">Ruanda</option>
-                                                    <option value="8217">Rumania</option>
-                                                    <option value="8218">Rusia</option>
-                                                    <option value="9590">Sáhara occidental</option>
-                                                    <option value="8219">Samoa</option>
-                                                    <option value="10166">Samoa Americana</option>
-                                                    <option value="10184">San Bartolomé</option>
-                                                    <option value="9678">San Cristóbal y Nieves</option>
-                                                    <option value="8220">San Marino</option>
-                                                    <option value="10185">San Martín</option>
-                                                    <option value="9679">San Vicente y las Granadinas</option>
-                                                    <option value="9680">Santa Lucía</option>
-                                                    <option value="9564">Santo Tomé y Príncipe</option>
-                                                    <option value="8221">Senegal</option>
-                                                    <option value="10046">Serbia</option>
-                                                    <option value="8224">Sierra Leona</option>
-                                                    <option value="9854">Singapur</option>
-                                                    <option value="8225">Siria</option>
-                                                    <option value="8226">Somalia</option>
-                                                    <option value="9834">Sri Lanka</option>
-                                                    <option value="9603">Suazilandia</option>
-                                                    <option value="8227">Sudáfrica</option>
-                                                    <option value="8228">Sudán</option>
-                                                    <option value="29034">Sudán del Sur</option>
-                                                    <option value="8229">Suecia</option>
-                                                    <option value="8230">Suiza</option>
-                                                    <option value="9762">Surinam</option>
-                                                    <option value="8231">Tailandia</option>
-                                                    <option value="10187">Taiwán</option>
-                                                    <option value="8232">Tanzania</option>
-                                                    <option value="9784">Tayikistán</option>
-                                                    <option value="9857">Timor Oriental</option>
-                                                    <option value="8233">Togo</option>
-                                                    <option value="10167">Tonga</option>
-                                                    <option value="9681">Trinidad y Tobago</option>
-                                                    <option value="8234">Túnez</option>
-                                                    <option value="9787">Turkmenistán</option>
-                                                    <option value="8236">Turquía</option>
-                                                    <option value="10168">Tuvalu</option>
-                                                    <option value="8237">Ucrania</option>
-                                                    <option value="8238">Uganda</option>
-                                                    <option value="8240">Uruguay</option>
-                                                    <option value="9788">Uzbekistán</option>
-                                                    <option value="10150">Vanuatu</option>
-                                                    <option value="8241">Venezuela</option>
-                                                    <option value="8242">Vietnam</option>
-                                                    <option value="9908">Yemen</option>
-                                                    <option value="9509">Yibuti</option>
-                                                    <option value="8243">Zambia</option>
-                                                    <option value="8244">Zimbabue</option>
-                                                </select> <i></i> </label>
-                                        </section>
-                                    </fieldset>
-                                    
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Descripci&oacute;n personal</label>
-                                            <label class="textarea state-success">
-                                                <textarea rows="3"></textarea>
-                                            </label>
-                                        </section>
-                                    </fieldset>
-                                    
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Sexo</label>
-                                            <div class="row">
-                                                <div class="col col-4">
-                                                    <label class="radio state-success">
-                                                        <input type="radio" name="radio"><i class="rounded-x"></i>Hombre</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="radio state-success">
-                                                        <input type="radio" name="radio"><i class="rounded-x"></i>Mujer</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="radio state-success">
-                                                        <input type="radio" name="radio"><i class="rounded-x"></i>Otro</label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">URL blog o p&aacute;gina personal</label>
-                                            <label class="input state-success">
-                                                <input type="text"> </label>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Checkboxes</label>
-                                            <div class="row">
-                                                <div class="col col-4">
-                                                    <label class="checkbox state-success">
-                                                        <input type="checkbox" name="checkbox"><i></i>Alexandra</label>
-                                                    <label class="checkbox state-success">
-                                                        <input type="checkbox" name="checkbox" checked><i></i>Alice</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="checkbox state-success">
-                                                        <input type="checkbox" name="checkbox"><i></i>Avelina</label>
-                                                    <label class="checkbox state-success">
-                                                        <input type="checkbox" name="checkbox"><i></i>Basilia</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="checkbox state-success">
-                                                        <input type="checkbox" name="checkbox" checked><i></i>Cassandra</label>
-                                                    <label class="checkbox state-success">
-                                                        <input type="checkbox" name="checkbox"><i></i>Clemencia</label>
-                                                </div>
-                                            </div>
-                                            <div class="note note-success">Thanks for your selection.</div>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <div class="row">
-                                            <section class="col col-5">
-                                                <label class="label">Toggles based on radios</label>
-                                                <label class="toggle state-success">
-                                                    <input type="radio" name="radio-toggle" checked><i class="rounded-4x"></i>Alexandra</label>
-                                                <label class="toggle state-success">
-                                                    <input type="radio" name="radio-toggle"><i class="rounded-4x"></i>Anastasia</label>
-                                                <label class="toggle state-success">
-                                                    <input type="radio" name="radio-toggle"><i class="rounded-4x"></i>Avelina</label>
-                                                <div class="note note-success">Thanks for your selection.</div>
-                                            </section>
-                                            <div class="col col-2"></div>
-                                            <section class="col col-5">
-                                                <label class="label">Toggles based on checkboxes</label>
-                                                <label class="toggle state-success">
-                                                    <input type="checkbox" name="checkbox-toggle" checked><i class="rounded-4x"></i>Cassandra</label>
-                                                <label class="toggle state-success">
-                                                    <input type="checkbox" name="checkbox-toggle"><i class="rounded-4x"></i>Clemencia</label>
-                                                <label class="toggle state-success">
-                                                    <input type="checkbox" name="checkbox-toggle"><i class="rounded-4x"></i>Desiderata</label>
-                                                <div class="note note-success">Thanks for your selection.</div>
-                                            </section>
-                                        </div>
-                                    </fieldset>
-                                    <footer>
-                                        <button type="submit" class="btn-u btn-u-default">Submit</button>
-                                        <button type="button" class="btn-u" onclick="window.history.back();">Back</button>
-                                    </footer>
-                                </form>
-                                <!--/ Success states for elements -->
-                            </div>
-                            <!-- End Success Forms -->
-                            <!-- Error Forms -->
-                            <div class="tab-pane fade" id="profile-1">
-                                <form action="#" class="sky-form">
-                                    <fieldset>
-                                        <div class="ug_info"><p>Tu email actual es <strong>ejemplo@mail.com</strong>. Introduce el nuevo email y te enviaremos un correo para confirmar el cambio.</p></div>
-                                        <section>
-                                            <label class="label">Nuevo correo electrónico</label>
-                                            <label class="input state-error">
-                                                <input type="text"> </label> </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Contraseña actual</label>
-                                            <label class="input state-error">
-                                                <input type="text"> </label>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Nueva contraseña</label>
-                                            <label class="input state-error">
-                                                <input type="text"> </label>
-                                        </section>                                    
-                                        <section>
-                                            <label class="label">Repetir contraseña</label>
-                                            <label class="input state-error">
-                                                <input type="text"> </label>
-                                        </section>
-                                    </fieldset>
-                                    
-                                </form>
-                                <!--/ Error states for elements -->
-                            </div>
-                            <!-- End Error Forms -->
-                            <!-- Disabled Forms -->
-                            <div class="tab-pane fade" id="messages-1">
-                                <form action="#" class="sky-form">
-                                    <header>Seleccione sus preferencias para las noticias2</header>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Text input</label>
-                                            <label class="input state-disabled">
-                                                <input type="text" disabled> </label>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Select</label>
-                                            <label class="select state-disabled">
-                                                <select name="" disabled id="">
-                                                    <option value="0"></option>
-                                                    <option value="1">Alexandra</option>
-                                                    <option value="2">Alice</option>
-                                                    <option value="3">Anastasia</option>
-                                                    <option value="4">Avelina</option>
-                                                </select> <i></i> </label>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Textarea</label>
-                                            <label class="textarea state-disabled">
-                                                <textarea rows="3" disabled></textarea>
-                                            </label>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Radios</label>
-                                            <div class="row">
-                                                <div class="col col-4">
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Alexandra</label>
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Alice</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Avelina</label>
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Basilia</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Cassandra</label>
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Clemencia</label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Checkboxes</label>
-                                            <div class="row">
-                                                <div class="col col-4">
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Alexandra</label>
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Alice</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Avelina</label>
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Basilia</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Cassandra</label>
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Clemencia</label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <div class="row">
-                                            <section class="col col-5">
-                                                <label class="label">Toggles based on radios</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Alexandra</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Anastasia</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Avelina</label>
-                                            </section>
-                                            <div class="col col-2"></div>
-                                            <section class="col col-5">
-                                                <label class="label">Toggles based on checkboxes</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Cassandra</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Clemencia</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Desiderata</label>
-                                            </section>
-                                        </div>
-                                    </fieldset>
-                                    <footer>
-                                        <button type="submit" disabled class="button state-disabled">Submit</button>
-                                        <button type="button" class="button state-disabled button-secondary" onclick="window.history.back();">Back</button>
-                                    </footer>
-                                </form>
-                                <!--/ Disabled states for elements -->
-                                <div class="tab-pane fade" id="messages-2">
-                                <form action="#" class="sky-form">
-                                    <header>Seleccione sus preferencias para los comentarios</header>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Text input</label>
-                                            <label class="input state-disabled">
-                                                <input type="text" disabled> </label>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Select</label>
-                                            <label class="select state-disabled">
-                                                <select name="" disabled id="">
-                                                    <option value="0"></option>
-                                                    <option value="1">Alexandra</option>
-                                                    <option value="2">Alice</option>
-                                                    <option value="3">Anastasia</option>
-                                                    <option value="4">Avelina</option>
-                                                </select> <i></i> </label>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Textarea</label>
-                                            <label class="textarea state-disabled">
-                                                <textarea rows="3" disabled></textarea>
-                                            </label>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Radios</label>
-                                            <div class="row">
-                                                <div class="col col-4">
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Alexandra</label>
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Alice</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Avelina</label>
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Basilia</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Cassandra</label>
-                                                    <label class="radio state-disabled">
-                                                        <input type="radio" name="radio" disabled><i class="rounded-x"></i>Clemencia</label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <section>
-                                            <label class="label">Checkboxes</label>
-                                            <div class="row">
-                                                <div class="col col-4">
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Alexandra</label>
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Alice</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Avelina</label>
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Basilia</label>
-                                                </div>
-                                                <div class="col col-4">
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Cassandra</label>
-                                                    <label class="checkbox state-disabled">
-                                                        <input type="checkbox" name="checkbox" disabled><i></i>Clemencia</label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </fieldset>
-                                    <fieldset>
-                                        <div class="row">
-                                            <section class="col col-5">
-                                                <label class="label">Toggles based on radios</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Alexandra</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Anastasia</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Avelina</label>
-                                            </section>
-                                            <div class="col col-2"></div>
-                                            <section class="col col-5">
-                                                <label class="label">Toggles based on checkboxes</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Cassandra</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Clemencia</label>
-                                                <label class="toggle state-disabled">
-                                                    <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Desiderata</label>
-                                            </section>
-                                        </div>
-                                    </fieldset>
-                                    <footer>
-                                        <button type="submit" disabled class="button state-disabled">Submit</button>
-                                        <button type="button" class="button state-disabled button-secondary" onclick="window.history.back();">Back</button>
-                                    </footer>
-                                </form>
-                                <!--/ Disabled states for elements -->
-                            </div>
-                            </div>
-                            <!-- End Disabled Forms -->
-                        </div>
+        <div class="header-v8 header-sticky">
+            <!-- Topbar blog -->
+            <div class="blog-topbar">
+                <!-- Search bar -->
+                <div class="topbar-search-block">
+                    <div class="container">
+                        <form action="">
+                            <input type="text" class="form-control" placeholder="Buscar">
+                            <div class="search-close"><i class="icon-close"></i></div>
+                        </form>
                     </div>
-                    <!-- End Tabs-->
                 </div>
-                <!-- End Content -->
-            </div>
-        </div>
-        <!--/container-->
-        <!--=== End Content Part ===-->
-
-        <!--=== Footer v8 ===-->
-        <div class="footer-v8">
-            <footer class="footer">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3 col-sm-6 column-one md-margin-bottom-50">
-                            <a href="user-index.html"><img class="footer-logo" src="assets/img/icons/logo-light.png" alt=""></a>
-                            <p class="margin-bottom-20">Tu peri&oacute;dico online de Madrid</p>
-                            <span>Sede:</span>
-                            <p>Paseo de la Castellana, 713 Madrid ESPA&ntilde;A CP:28046</p>
-                            <hr>
-                            <span>Tel&eacute;fono:</span>
-                            <p>(+34) 91 655 34 89</p>
-                            <p>(+34) 91 356 55 22</p>
-                            <hr>
-                            <span>Correo electr&oacute;nico:</span>
-                            <a href="#">themadridnews@tmn.es</a>
-                        </div>
-
-                        <div class="col-md-3 col-sm-6 md-margin-bottom-50">
-                            <h2>Tags</h2>
-                            <!-- Tag Links v4 -->
-                            <ul class="tags-v4 margin-bottom-40">
-                                <li><a class="rounded-4x" href="user-index.html">The Madrid News</a></li>
-                                <li><a class="rounded-4x" href="user-madrid.html">Madrid</a></li>
-                                <li><a class="rounded-4x" href="user-spain.html">Espa&ntilde;a</a></li>
-                                <li><a class="rounded-4x" href="user-world.html">Mundo</a></li>
-                                <li><a class="rounded-4x" href="user-sports.html">Deportes</a></li>
-                                <li><a class="rounded-4x" href="user-tecnology.html">Tecnolog&iacute;a</a></li>
-                                <li><a class="rounded-4x" href="user-culture.html">Cultura</a></li>
+                        <!-- Date & Contact -->
+                        <div class="col-sm-8 col-xs-8">
+                            <div class="topbar-time">Martes, 24 Enero 2016</div>
+                            <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
+                            <ul class="topbar-list topbar-menu">
+                                <li><a href="contact">Contactar</a></li>
                             </ul>
-                            <!-- End Tag Links v4 -->
-
-                            <h2>Otros peri&oacute;dicos:</h2>
-                            <!-- Footer Lists -->
-                            <ul class="footer-lists">
-                                <li><i class="fa fa-angle-right"></i><a href="http://www.elmundo.es/">El Mundo</a></li>
-                                <li><i class="fa fa-angle-right"></i><a href="http://www.elpais.com/">El Pa&iacute;s</a></li>
-                                <li><i class="fa fa-angle-right"></i><a href="http://www.lavanguardia.com/">La Vanguardia</a></li>
-                                <li><i class="fa fa-angle-right"></i><a href="www.abc.es">ABC</a></li>
-                                <li><i class="fa fa-angle-right"></i><a href="www.larazon.es">La Raz&oacute;n</a></li>
+                        </div>
+                        <!-- User options -->
+                        <div class="col-sm-4 col-xs-4 clearfix"> <i class="fa fa-search search-btn pull-right"></i>
+                            <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
+                                <li> <a href="javascript:void(0);">Usuario</a>
+                                    <ul class="topbar-dropdown">
+                                        <li class="topbar-submenu"> <a href="javascript:void(0);">Art&iacute;culo</a>
+                                            <ul class="topbar-submenu-in">
+                                                <li><a href="article_list.html">Lista</a></li>
+                                                <li><a href="article_new.html">Redactar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="topbar-submenu"> <a href="javascript:void(0);">Publicidad</a>
+                                            <ul class="topbar-submenu-in">
+                                                <li><a href="ads_list.html">Lista</a></li>
+                                                <li><a href="ads_create.html">Añadir</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="user.html">Ajustes</a></li>
                             </ul>
-                            <!-- End Footer Lists -->
                         </div>
-
-                        <div class="col-md-3 col-sm-6 md-margin-bottom-50">
-                            <h2>&uacute;ltimas noticias</h2>
-                            <!-- Latest News -->
-                            <div class="latest-news margin-bottom-20">
-                                <img src="assets/img/thumb/img-thumb1.jpg" alt="">
-                                <h3><a href="#">Standard post with video.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-
-                            <hr>
-
-                            <div class="latest-news margin-bottom-20">
-                                <img src="assets/img/thumb/img-thumb2.jpg" alt="">
-                                <h3><a href="#">Standard post with video.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-
-                            <hr>
-
-                            <div class="latest-news">
-                                <img src="assets/img/thumb/img-thumb3.jpg" alt="">
-                                <h3><a href="#">Standard post with video.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <!-- End Latest News -->
-                        </div>
-
-                        <div class="col-md-3 col-sm-6">
-                            <h2>Bolet&iacute;n</h2>
-                            <p><strong>¡Subscr&iacute;bete</strong> a nuestro bolet&iacute;n de noticias y ent&eacute;rate de todo en el momento!</p><br>
-
-                            <!-- Form Group -->
-                            <div class="input-group margin-bottom-50">
-                                <input class="form-control" type="email" placeholder="Introduzca su correo">
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn-u input-btn">Subscribirse</button>
+                    </div>
+                    <!--/end row-->
+                </div>
+                <!--/end container-->
+            </div>
+            <!-- End Topbar blog -->
+            <!--=== Content Part ===-->
+            <div class="container content">
+                <div class="row">
+                    <!-- Begin Content -->
+                    <div class="col-md-9">
+                        <!-- Tabs -->
+                        <div class="tab-v1">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#home-1" data-toggle="tab">Datos personales</a></li>
+                                <li><a href="#profile-1" data-toggle="tab">Email y contraseña</a></li>
+                                <li><a href="#messages-1" data-toggle="tab">Mis noticias</a></li>
+                                <li><a href="#messages-2" data-toggle="tab">Mis comentarios</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Personal Data Forms -->
+                                <div class="tab-pane fade in active" id="home-1">
+                                    <form action="#" class="sky-form">
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Foto de perfil</label>
+                                                <label for="file" class="input input-file state-success image_profile">
+                                                    <div class="button">
+                                                        <input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value">Browse </div>
+                                                    <input type="text" class="image_profile_text" readonly> </label>
+                                            </section>
+                                            <section>
+                                                <label id="name" class="label">Nombre</label>
+                                                <label class="input state-success">
+                                                    <input type="text"> </label>
+                                                <div class="note note-success-compulsory">Campo obligatorio</div>
+                                            </section>
+                                            <section>
+                                                <label class="label">Apellidos</label>
+                                                <label class="input state-success">
+                                                    <input type="text"> </label>
+                                                <div class="note note-success-compulsory">Campo obligatorio</div>
+                                            </section>
+                                            <section>
+                                                <label class="label">Alias</label>
+                                                <label class="input state-success">
+                                                    <input type="text"> </label>
+                                                <div class="note note-success">Este se mostrar&aacute; en lugar de tu nombre.</div>
+                                            </section>
+                                            <section>
+                                                <label class="label">Ciudad</label>
+                                                <label class="input state-success">
+                                                    <input type="text"> </label>
+                                            </section>
+                                            <section>
+                                                <label class="label">Tel&eacute;fono</label>
+                                                <label class="input state-success">
+                                                    <input type="text"> </label>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Pa&iacute;s de residencia</label>
+                                                <label class="select state-success">
+                                                    <select name="Country" class="">
+                                                        <option value="53" selected="selected">España</option>
+                                                        <option value="8">Afganistán</option>
+                                                        <option value="9">Albania</option>
+                                                        <option value="10">Alemania</option>
+                                                        <option value="11">Andorra</option>
+                                                        <option value="12">Angola</option>
+                                                        <option value="9653">Antigua y Barbuda</option>
+                                                        <option value="13">Arabia Saudí</option>
+                                                        <option value="14">Argelia</option>
+                                                        <option value="15">Argentina</option>
+                                                        <option value="9864">Armenia</option>
+                                                        <option value="18">Australia</option>
+                                                        <option value="19">Austria</option>
+                                                        <option value="9867">Azerbaiyán</option>
+                                                        <option value="20">Bahamas</option>
+                                                        <option value="9870">Bahrein</option>
+                                                        <option value="21">Bangladesh</option>
+                                                        <option value="22">Barbados</option>
+                                                        <option value="23">Bélgica</option>
+                                                        <option value="9684">Belice</option>
+                                                        <option value="24">Benin</option>
+                                                        <option value="25">Bielorrusia</option>
+                                                        <option value="26">Bolivia</option>
+                                                        <option value="9985">Bosnia-Herzegovina</option>
+                                                        <option value="28">Botswana</option>
+                                                        <option value="29">Brasil</option>
+                                                        <option value="9836">Brunei</option>
+                                                        <option value="30">Bulgaria</option>
+                                                        <option value="9613">Burkina Faso</option>
+                                                        <option value="9503">Burundi</option>
+                                                        <option value="9815">Bután</option>
+                                                        <option value="31">Cabo Verde</option>
+                                                        <option value="32">Camboya</option>
+                                                        <option value="33">Camerún</option>
+                                                        <option value="9769">Canadá</option>
+                                                        <option value="9898">Catar</option>
+                                                        <option value="9547">Chad</option>
+                                                        <option value="34">Chile</option>
+                                                        <option value="35">China</option>
+                                                        <option value="36">Chipre</option>
+                                                        <option value="37">Ciudad del Vaticano</option>
+                                                        <option value="38">Colombia</option>
+                                                        <option value="9506">Comoras</option>
+                                                        <option value="39">Corea del Norte</option>
+                                                        <option value="40">Corea del Sur</option>
+                                                        <option value="41">Costa de Marfil</option>
+                                                        <option value="42">Costa Rica</option>
+                                                        <option value="43">Croacia</option>
+                                                        <option value="44">Cuba</option>
+                                                        <option value="29016">Curaçao</option>
+                                                        <option value="45">Dinamarca</option>
+                                                        <option value="9663">Dominica</option>
+                                                        <option value="46">Ecuador</option>
+                                                        <option value="48">Egipto</option>
+                                                        <option value="49">El Salvador</option>
+                                                        <option value="50">Emiratos Árabes Unidos</option>
+                                                        <option value="9512">Eritrea</option>
+                                                        <option value="51">Eslovaquia</option>
+                                                        <option value="52">Eslovenia</option>
+                                                        <option value="47">Estados Unidos</option>
+                                                        <option value="8143">Estonia</option>
+                                                        <option value="8144">Etiopía</option>
+                                                        <option value="8147">Filipinas</option>
+                                                        <option value="8148">Finlandia</option>
+                                                        <option value="8149">Francia</option>
+                                                        <option value="9556">Gabón</option>
+                                                        <option value="9622">Gambia</option>
+                                                        <option value="9877">Georgia</option>
+                                                        <option value="8150">Ghana</option>
+                                                        <option value="9664">Granada</option>
+                                                        <option value="8151">Grecia</option>
+                                                        <option value="8153">Guatemala</option>
+                                                        <option value="9747">Guayana Francesa</option>
+                                                        <option value="8154">Guinea</option>
+                                                        <option value="9559">Guinea Ecuatorial</option>
+                                                        <option value="9629">Guinea-Bissau</option>
+                                                        <option value="9748">Guyana</option>
+                                                        <option value="8155">Haití</option>
+                                                        <option value="8156">Honduras</option>
+                                                        <option value="8158">Hungría</option>
+                                                        <option value="8159">India</option>
+                                                        <option value="8160">Indonesia</option>
+                                                        <option value="8162">Irak</option>
+                                                        <option value="8161">Irán</option>
+                                                        <option value="8163">Irlanda</option>
+                                                        <option value="8164">Islandia</option>
+                                                        <option value="10154">Islas Marshall</option>
+                                                        <option value="10145">Islas Salomón</option>
+                                                        <option value="8166">Israel</option>
+                                                        <option value="8167">Italia</option>
+                                                        <option value="8168">Jamaica</option>
+                                                        <option value="8169">Japón</option>
+                                                        <option value="9887">Jordania</option>
+                                                        <option value="9778">Kazajistán</option>
+                                                        <option value="8170">Kenia</option>
+                                                        <option value="9781">Kirguizistán</option>
+                                                        <option value="10157">Kiribati</option>
+                                                        <option value="10179">Kosovo</option>
+                                                        <option value="8171">Kuwait</option>
+                                                        <option value="9846">Laos</option>
+                                                        <option value="9598">Lesoto</option>
+                                                        <option value="8172">Letonia</option>
+                                                        <option value="9892">Líbano</option>
+                                                        <option value="9632">Liberia</option>
+                                                        <option value="8173">Libia</option>
+                                                        <option value="8174">Liechtenstein</option>
+                                                        <option value="8175">Lituania</option>
+                                                        <option value="8176">Luxemburgo</option>
+                                                        <option value="17">Macedonia</option>
+                                                        <option value="8177">Madagascar</option>
+                                                        <option value="8178">Malasia</option>
+                                                        <option value="8179">Malawi</option>
+                                                        <option value="9826">Maldivas</option>
+                                                        <option value="8180">Malí</option>
+                                                        <option value="8181">Malta</option>
+                                                        <option value="8182">Marruecos</option>
+                                                        <option value="8183">Mauricio</option>
+                                                        <option value="8184">Mauritania</option>
+                                                        <option value="8185">México</option>
+                                                        <option value="8186">Micronesia</option>
+                                                        <option value="8187">Moldavia</option>
+                                                        <option value="8188">Mónaco</option>
+                                                        <option value="9807">Mongolia</option>
+                                                        <option value="8189">Mozambique</option>
+                                                        <option value="9851">Myanmar</option>
+                                                        <option value="8190">Namibia</option>
+                                                        <option value="8145">Nauru</option>
+                                                        <option value="9829">Nepal</option>
+                                                        <option value="8191">Nicaragua</option>
+                                                        <option value="8192">Níger</option>
+                                                        <option value="8193">Nigeria</option>
+                                                        <option value="8194">Noruega</option>
+                                                        <option value="8196">Nueva Zelanda</option>
+                                                        <option value="9895">Omán</option>
+                                                        <option value="8201">Países Bajos</option>
+                                                        <option value="8202">Pakistán</option>
+                                                        <option value="10163">Palaos</option>
+                                                        <option value="9903">Palestina (ANP)</option>
+                                                        <option value="8203">Panamá</option>
+                                                        <option value="8204">Papúa Nueva Guinea</option>
+                                                        <option value="8205">Paraguay</option>
+                                                        <option value="8206">Perú</option>
+                                                        <option value="8208">Polonia</option>
+                                                        <option value="8209">Portugal</option>
+                                                        <option value="29043">Puerto Rico Estado</option>
+                                                        <option value="8211">Reino Unido</option>
+                                                        <option value="8212">República Centroafricana</option>
+                                                        <option value="8213">República Checa</option>
+                                                        <option value="9550">República del Congo</option>
+                                                        <option value="8214">República Democrática del Congo</option>
+                                                        <option value="8215">República Dominicana</option>
+                                                        <option value="9531">Reunión</option>
+                                                        <option value="8216">Ruanda</option>
+                                                        <option value="8217">Rumania</option>
+                                                        <option value="8218">Rusia</option>
+                                                        <option value="9590">Sáhara occidental</option>
+                                                        <option value="8219">Samoa</option>
+                                                        <option value="10166">Samoa Americana</option>
+                                                        <option value="10184">San Bartolomé</option>
+                                                        <option value="9678">San Cristóbal y Nieves</option>
+                                                        <option value="8220">San Marino</option>
+                                                        <option value="10185">San Martín</option>
+                                                        <option value="9679">San Vicente y las Granadinas</option>
+                                                        <option value="9680">Santa Lucía</option>
+                                                        <option value="9564">Santo Tomé y Príncipe</option>
+                                                        <option value="8221">Senegal</option>
+                                                        <option value="10046">Serbia</option>
+                                                        <option value="8224">Sierra Leona</option>
+                                                        <option value="9854">Singapur</option>
+                                                        <option value="8225">Siria</option>
+                                                        <option value="8226">Somalia</option>
+                                                        <option value="9834">Sri Lanka</option>
+                                                        <option value="9603">Suazilandia</option>
+                                                        <option value="8227">Sudáfrica</option>
+                                                        <option value="8228">Sudán</option>
+                                                        <option value="29034">Sudán del Sur</option>
+                                                        <option value="8229">Suecia</option>
+                                                        <option value="8230">Suiza</option>
+                                                        <option value="9762">Surinam</option>
+                                                        <option value="8231">Tailandia</option>
+                                                        <option value="10187">Taiwán</option>
+                                                        <option value="8232">Tanzania</option>
+                                                        <option value="9784">Tayikistán</option>
+                                                        <option value="9857">Timor Oriental</option>
+                                                        <option value="8233">Togo</option>
+                                                        <option value="10167">Tonga</option>
+                                                        <option value="9681">Trinidad y Tobago</option>
+                                                        <option value="8234">Túnez</option>
+                                                        <option value="9787">Turkmenistán</option>
+                                                        <option value="8236">Turquía</option>
+                                                        <option value="10168">Tuvalu</option>
+                                                        <option value="8237">Ucrania</option>
+                                                        <option value="8238">Uganda</option>
+                                                        <option value="8240">Uruguay</option>
+                                                        <option value="9788">Uzbekistán</option>
+                                                        <option value="10150">Vanuatu</option>
+                                                        <option value="8241">Venezuela</option>
+                                                        <option value="8242">Vietnam</option>
+                                                        <option value="9908">Yemen</option>
+                                                        <option value="9509">Yibuti</option>
+                                                        <option value="8243">Zambia</option>
+                                                        <option value="8244">Zimbabue</option>
+                                                    </select> <i></i> </label>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Descripci&oacute;n personal</label>
+                                                <label class="textarea state-success">
+                                                    <textarea rows="3"></textarea>
+                                                </label>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Sexo</label>
+                                                <div class="row">
+                                                    <div class="col col-4">
+                                                        <label class="radio state-success">
+                                                            <input type="radio" name="radio"><i class="rounded-x"></i>Hombre</label>
+                                                    </div>
+                                                    <div class="col col-4">
+                                                        <label class="radio state-success">
+                                                            <input type="radio" name="radio"><i class="rounded-x"></i>Mujer</label>
+                                                    </div>
+                                                    <div class="col col-4">
+                                                        <label class="radio state-success">
+                                                            <input type="radio" name="radio"><i class="rounded-x"></i>Otro</label>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">URL blog o p&aacute;gina personal</label>
+                                                <label class="input state-success">
+                                                    <input type="text"> </label>
+                                            </section>
+                                        </fieldset>                                        
+                                        
+                                        <footer>
+                                            <button type="submit" class="btn-u btn-u-default">Submit</button>
+                                            <button type="button" class="btn-u" onclick="window.history.back();">Back</button>
+                                        </footer>
+                                    </form>
+                                    <!--/ Success states for elements -->
                                 </div>
+                                <!-- End Personal Data Forms -->
+                                <!-- Email and password Forms -->
+                                <div class="tab-pane fade" id="profile-1">
+                                    <form action="#" class="sky-form">
+                                        <header>Aquí podrá modificar su correo electr&oacute;nico y su contraseña</header>
+                                        <fieldset>
+                                            <div class="ug_info">
+                                                <p>Tu email actual es <strong>ejemplo@mail.com</strong>. Introduce el nuevo email y te enviaremos un correo para confirmar el cambio.</p>
+                                            </div>
+                                            <section>
+                                                <label class="label">Nuevo correo electrónico</label>
+                                                <label class="input state-error">
+                                                    <input type="text"> </label>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Contraseña actual</label>
+                                                <label class="input state-error">
+                                                    <input type="text"> </label>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Nueva contraseña</label>
+                                                <label class="input state-error">
+                                                    <input type="text"> </label>
+                                            </section>
+                                            <section>
+                                                <label class="label">Repetir contraseña</label>
+                                                <label class="input state-error">
+                                                    <input type="text"> </label>
+                                            </section>
+                                        </fieldset>
+                                    </form>
+                                    <!--/ Error states for elements -->
+                                </div>
+                                <!-- End email and password Forms -->
+                                <!-- My news Forms -->
+                                <div class="tab-pane fade" id="messages-1">
+                                    <form action="#" class="sky-form">
+                                        <header>Seleccione sus preferencias para las noticias</header>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Checkboxes</label>
+                                                <div class="row">
+                                                    <div class="col col-4">
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" name="checkbox"><i></i>Mundo</label>
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" name="checkbox"><i></i>Madrid</label>
+                                                    </div>
+                                                    <div class="col col-4">
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" name="checkbox"><i></i>España</label>
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" name="checkbox"><i></i>Deportes</label>
+                                                    </div>
+                                                    <div class="col col-4">
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" name="checkbox"><i></i>Cultura</label>
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" name="checkbox"><i></i>Tecnolog&iacute;a</label>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="row">
+                                                <section class="col col-5">
+                                                    <label class="toggle">
+                                                        <input type="checkbox" name="checkbox-toggle"><i class="rounded-4x"></i>Recibir notificaciones por email</label>
+                                                </section>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <!-- End My news Forms -->
+                                <!-- My comments Forms -->
+                                <div class="tab-pane fade" id="messages-2">
+                                    <form action="#" class="sky-form">
+                                        <header>Aquí puede ver su historial de comentarios</header>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Text input</label>
+                                                <label class="input state-disabled">
+                                                    <input type="text" disabled> </label>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Select</label>
+                                                <label class="select state-disabled">
+                                                    <select name="" disabled id="">
+                                                        <option value="0"></option>
+                                                        <option value="1">Alexandra</option>
+                                                        <option value="2">Alice</option>
+                                                        <option value="3">Anastasia</option>
+                                                        <option value="4">Avelina</option>
+                                                    </select> <i></i> </label>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Textarea</label>
+                                                <label class="textarea state-disabled">
+                                                    <textarea rows="3" disabled></textarea>
+                                                </label>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Radios</label>
+                                                <div class="row">
+                                                    <div class="col col-4">
+                                                        <label class="radio state-disabled">
+                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Alexandra</label>
+                                                        <label class="radio state-disabled">
+                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Alice</label>
+                                                    </div>
+                                                    <div class="col col-4">
+                                                        <label class="radio state-disabled">
+                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Avelina</label>
+                                                        <label class="radio state-disabled">
+                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Basilia</label>
+                                                    </div>
+                                                    <div class="col col-4">
+                                                        <label class="radio state-disabled">
+                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Cassandra</label>
+                                                        <label class="radio state-disabled">
+                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Clemencia</label>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">Checkboxes</label>
+                                                <div class="row">
+                                                    <div class="col col-4">
+                                                        <label class="checkbox state-disabled">
+                                                            <input type="checkbox" name="checkbox" disabled><i></i>Alexandra</label>
+                                                        <label class="checkbox state-disabled">
+                                                            <input type="checkbox" name="checkbox" disabled><i></i>Alice</label>
+                                                    </div>
+                                                    <div class="col col-4">
+                                                        <label class="checkbox state-disabled">
+                                                            <input type="checkbox" name="checkbox" disabled><i></i>Avelina</label>
+                                                        <label class="checkbox state-disabled">
+                                                            <input type="checkbox" name="checkbox" disabled><i></i>Basilia</label>
+                                                    </div>
+                                                    <div class="col col-4">
+                                                        <label class="checkbox state-disabled">
+                                                            <input type="checkbox" name="checkbox" disabled><i></i>Cassandra</label>
+                                                        <label class="checkbox state-disabled">
+                                                            <input type="checkbox" name="checkbox" disabled><i></i>Clemencia</label>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="row">
+                                                <section class="col col-5">
+                                                    <label class="label">Toggles based on radios</label>
+                                                    <label class="toggle state-disabled">
+                                                        <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Alexandra</label>
+                                                    <label class="toggle state-disabled">
+                                                        <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Anastasia</label>
+                                                    <label class="toggle state-disabled">
+                                                        <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Avelina</label>
+                                                </section>
+                                                <div class="col col-2"></div>
+                                                <section class="col col-5">
+                                                    <label class="label">Toggles based on checkboxes</label>
+                                                    <label class="toggle state-disabled">
+                                                        <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Cassandra</label>
+                                                    <label class="toggle state-disabled">
+                                                        <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Clemencia</label>
+                                                    <label class="toggle state-disabled">
+                                                        <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Desiderata</label>
+                                                </section>
+                                            </div>
+                                        </fieldset>
+                                        <footer>
+                                            <button type="submit" disabled class="button state-disabled">Submit</button>
+                                            <button type="button" class="button state-disabled button-secondary" onclick="window.history.back();">Back</button>
+                                        </footer>
+                                    </form>
+                                </div>
+                                <!-- End My comments Forms -->
                             </div>
-                            <!-- End Form Group -->
-
-                            <h2>Redes sociales</h2>
-                            <p><strong>¡S&iacute;guenos!</strong> Si quieres enterarte de las noticias m&aacute;s recientes, s&iacute;guenos y podr&aacute;s leernos en el momento.</p><br>
-
-                            <!-- Social Icons -->
-                            <ul class="social-icon-list margin-bottom-20">
-                                <li><a href="#"><i class="rounded-x fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="rounded-x fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="rounded-x fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="rounded-x fa fa-dribbble"></i></a></li>
-                            </ul>
-                            <!-- End Social Icons -->
                         </div>
-                    </div><!--/end row-->
-                </div><!--/end container-->
-            </footer>
-
-            <footer class="copyright">
-                <div class="container">
-                    <ul class="list-inline terms-menu">
-                        <li>2017 &copy; Todos los Derechos Reservados.</li>
-                        <li class="home"><a href="#">T&eacute;rminos de Uso</a></li>
-                        <li><a href="#">Pol&iacute;tica y Privacidad</a></li>
-                    </ul>
-                </div><!--/end container-->
-            </footer>
+                        <!-- End Tabs-->
+                    </div>
+                    <!-- End Content -->
+                </div>
+            </div>
+            <!--/container-->
+            <!--=== End Content Part ===-->
+            <!--=== Footer v8 ===-->
+            <div class="footer-v8">
+                <footer class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 column-one md-margin-bottom-50">
+                                <a href="user-index.html"><img class="footer-logo" src="assets/img/icons/logo-light.png" alt=""></a>
+                                <p class="margin-bottom-20">Tu peri&oacute;dico online de Madrid</p> <span>Sede:</span>
+                                <p>Paseo de la Castellana, 713 Madrid ESPA&ntilde;A CP:28046</p>
+                                <hr> <span>Tel&eacute;fono:</span>
+                                <p>(+34) 91 655 34 89</p>
+                                <p>(+34) 91 356 55 22</p>
+                                <hr> <span>Correo electr&oacute;nico:</span> <a href="#">themadridnews@tmn.es</a> </div>
+                            <div class="col-md-3 col-sm-6 md-margin-bottom-50">
+                                <h2>Tags</h2>
+                                <!-- Tag Links v4 -->
+                                <ul class="tags-v4 margin-bottom-40">
+                                    <li><a class="rounded-4x" href="user-index.html">The Madrid News</a></li>
+                                    <li><a class="rounded-4x" href="user-madrid.html">Madrid</a></li>
+                                    <li><a class="rounded-4x" href="user-spain.html">Espa&ntilde;a</a></li>
+                                    <li><a class="rounded-4x" href="user-world.html">Mundo</a></li>
+                                    <li><a class="rounded-4x" href="user-sports.html">Deportes</a></li>
+                                    <li><a class="rounded-4x" href="user-tecnology.html">Tecnolog&iacute;a</a></li>
+                                    <li><a class="rounded-4x" href="user-culture.html">Cultura</a></li>
+                                </ul>
+                                <!-- End Tag Links v4 -->
+                                <h2>Otros peri&oacute;dicos:</h2>
+                                <!-- Footer Lists -->
+                                <ul class="footer-lists">
+                                    <li><i class="fa fa-angle-right"></i><a href="http://www.elmundo.es/">El Mundo</a></li>
+                                    <li><i class="fa fa-angle-right"></i><a href="http://www.elpais.com/">El Pa&iacute;s</a></li>
+                                    <li><i class="fa fa-angle-right"></i><a href="http://www.lavanguardia.com/">La Vanguardia</a></li>
+                                    <li><i class="fa fa-angle-right"></i><a href="www.abc.es">ABC</a></li>
+                                    <li><i class="fa fa-angle-right"></i><a href="www.larazon.es">La Raz&oacute;n</a></li>
+                                </ul>
+                                <!-- End Footer Lists -->
+                            </div>
+                            <div class="col-md-3 col-sm-6 md-margin-bottom-50">
+                                <h2>&uacute;ltimas noticias</h2>
+                                <!-- Latest News -->
+                                <div class="latest-news margin-bottom-20"> <img src="assets/img/thumb/img-thumb1.jpg" alt="">
+                                    <h3><a href="#">Standard post with video.</a></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </div>
+                                <hr>
+                                <div class="latest-news margin-bottom-20"> <img src="assets/img/thumb/img-thumb2.jpg" alt="">
+                                    <h3><a href="#">Standard post with video.</a></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </div>
+                                <hr>
+                                <div class="latest-news"> <img src="assets/img/thumb/img-thumb3.jpg" alt="">
+                                    <h3><a href="#">Standard post with video.</a></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </div>
+                                <!-- End Latest News -->
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <h2>Bolet&iacute;n</h2>
+                                <p><strong>¡Subscr&iacute;bete</strong> a nuestro bolet&iacute;n de noticias y ent&eacute;rate de todo en el momento!</p>
+                                <br>
+                                <!-- Form Group -->
+                                <div class="input-group margin-bottom-50">
+                                    <input class="form-control" type="email" placeholder="Introduzca su correo">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn-u input-btn">Subscribirse</button>
+                                    </div>
+                                </div>
+                                <!-- End Form Group -->
+                                <h2>Redes sociales</h2>
+                                <p><strong>¡S&iacute;guenos!</strong> Si quieres enterarte de las noticias m&aacute;s recientes, s&iacute;guenos y podr&aacute;s leernos en el momento.</p>
+                                <br>
+                                <!-- Social Icons -->
+                                <ul class="social-icon-list margin-bottom-20">
+                                    <li><a href="#"><i class="rounded-x fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="rounded-x fa fa-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="rounded-x fa fa-google-plus"></i></a></li>
+                                    <li><a href="#"><i class="rounded-x fa fa-dribbble"></i></a></li>
+                                </ul>
+                                <!-- End Social Icons -->
+                            </div>
+                        </div>
+                        <!--/end row-->
+                    </div>
+                    <!--/end container-->
+                </footer>
+                <footer class="copyright">
+                    <div class="container">
+                        <ul class="list-inline terms-menu">
+                            <li>2017 &copy; Todos los Derechos Reservados.</li>
+                            <li class="home"><a href="#">T&eacute;rminos de Uso</a></li>
+                            <li><a href="#">Pol&iacute;tica y Privacidad</a></li>
+                        </ul>
+                    </div>
+                    <!--/end container-->
+                </footer>
+            </div>
+            <!--=== End Footer v8 ===-->
         </div>
-        <!--=== End Footer v8 ===-->
-    </div>
     </div>
     <!--/End Wrapepr-->
-        
     <!-- JS Global Compulsory -->
     <script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
