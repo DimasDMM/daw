@@ -15,7 +15,7 @@
 	<meta name="author" content="">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="assets/img/favicon.ico">
+	<link rel="shortcut icon" href="assets/img/icons/favicon.ico">
 
 	<!-- Web Fonts -->
 	<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700'>
@@ -67,33 +67,18 @@
 						<div class="topbar-time">Martes, 24 Enero 2016</div>
 						<div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
 						<ul class="topbar-list topbar-menu">
-							<li><a href="contact">Contactar</a></li>
+							<li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a>
+                            </li>
+                            <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Entrar</a></strong></li>
+							<li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Registrarse</a></strong></li>
 						</ul>
 					</div>
-                    <!-- User options -->
+                    <!-- Login & Register -->
 					<div class="col-sm-4 col-xs-4 clearfix">
 						<i class="fa fa-search search-btn pull-right"></i>
 						<ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
-                            <li>
-								<a href="javascript:void(0);">Usuario</a>
-								<ul class="topbar-dropdown">
-									<li class="topbar-submenu">
-										<a href="javascript:void(0);">Art&iacute;culo</a>
-										<ul class="topbar-submenu-in">
-											<li><a href="article_list.html">Lista</a></li>
-											<li><a href="article_new.html">Redactar</a></li>
-										</ul>
-									</li>
-									<li class="topbar-submenu">
-										<a href="javascript:void(0);">Publicidad</a>
-										<ul class="topbar-submenu-in">
-											<li><a href="ads_list.html">Lista</a></li>
-											<li><a href="ads_create.html">Añadir</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="user-settings.html">Ajustes</a></li>
+							<li class="cd-log_reg home"><a class="cd-signin" href="javascript:void(0);">Entrar</a></li>
+							<li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Registrarse</a></li>
 						</ul>
 					</div>
 				</div><!--/end row-->
@@ -1140,7 +1125,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<form action="#" method="post" class="margin-bottom-20 sky-form">
+				<form action="user-index.html" method="get" class="margin-bottom-20 sky-form">
 					<header>Alta de nuevo usuario</header>
 
 					<fieldset>
@@ -1190,7 +1175,20 @@
                         </div>
                         
                         <div class="row">
+                            <section class="col col-12 full-width">
+                                <label class="label">Imagen principal (Opcional)</label>
+                                <label for="inp_file" class="input input-file">
+				                    <div class="button">
+                                        <input type="file" name="file" id="inp_file" multiple onchange="this.parentNode.nextSibling.value=this.value">Buscar...
+                                    </div>
+                                    <input type="text" readonly>
+				                </label>
+                            </section>
+                        </div>
+                        
+                        <div class="row">
                             <label class="label">Temas de inter&eacute;s</label>
+                            <hr>
                             <section class="col col-4">
                                 <label class="checkbox"><input type="checkbox" name="sports" id="sports"><i></i>Deportes</label>
                             </section>
@@ -1208,27 +1206,23 @@
                             </section>
                             <section class="col col-4">
                                 <label class="checkbox"><input type="checkbox" name="culture" id="culture"><i></i>Cultura</label>
-                            </section>                                
+                            </section>
                         </div>
                         
-                        <div class="row">                            
+
+                        
+                        <div class="row">
+                            <hr>
                             <section class="col col-6">
 								<label class="checkbox"><input type="checkbox" name="subscription" id="subscription" checked><i></i>Quiero recibir noticias y ofertas especiales</label>
 								<label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>Estoy de acuerdo con los t&eacute;rminos y condiciones</label>
 				            </section>
-
-							<section class="col col-12 full-width">
-								<label for="inp_file" class="input input-file">
-									<div class="button"><input type="file" name="file" id="inp_file" multiple onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen principal" readonly>
-								</label>
-							</section>
 						</div>
 					</fieldset>
 
-					<footer>
-						<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-eye"></i> Previsualizar
-						</button>
-					</footer>
+				    <footer>
+				        <button type="submit" class="btn-u">Submit</button>
+				    </footer>
 
 				</form>
 
