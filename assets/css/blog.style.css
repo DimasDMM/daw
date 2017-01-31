@@ -610,7 +610,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-thumb .blog-thumb-hover img {
 	width: 120px;
-	height: auto;
+	height: 75px;
 }
 
 .blog-thumb .blog-thumb-hover img.video-play-btn {
