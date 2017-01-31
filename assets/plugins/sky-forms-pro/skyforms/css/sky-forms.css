@@ -1050,3 +1050,14 @@
 }
 
 
+
+#error_container {
+    margin: 2em 0;
+    font-size: 1.1em;
+}
+
+.messages {
+    border: 0.1em dashed #847f7f;
+    display: block;
+    text-align: center;
+}
