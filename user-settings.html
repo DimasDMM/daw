@@ -7,7 +7,6 @@
 
 <head>
     <title>The Madrid News | Ajustes</title>
-    
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -388,11 +387,6 @@
                                                     <input type="text"> </label>
                                             </section>
                                         </fieldset>                                        
-                                        
-                                        <footer>
-                                            <button type="submit" class="btn-u btn-u-default">Submit</button>
-                                            <button type="button" class="btn-u" onclick="window.history.back();">Back</button>
-                                        </footer>
                                     </form>
                                     <!--/ Success states for elements -->
                                 </div>
@@ -430,6 +424,9 @@
                                                     <input type="text"> </label>
                                             </section>
                                         </fieldset>
+                                        <footer>
+                                            <button type="button" class="btn-u" onclick="window.history.back();">Guardar</button>
+                                        </footer>
                                     </form>
                                     <!--/ Error states for elements -->
                                 </div>
@@ -478,112 +475,9 @@
                                 <div class="tab-pane fade" id="messages-2">
                                     <form action="#" class="sky-form">
                                         <header>Aquí puede ver su historial de comentarios</header>
-                                        <fieldset>
-                                            <section>
-                                                <label class="label">Text input</label>
-                                                <label class="input state-disabled">
-                                                    <input type="text" disabled> </label>
-                                            </section>
-                                        </fieldset>
-                                        <fieldset>
-                                            <section>
-                                                <label class="label">Select</label>
-                                                <label class="select state-disabled">
-                                                    <select name="" disabled id="">
-                                                        <option value="0"></option>
-                                                        <option value="1">Alexandra</option>
-                                                        <option value="2">Alice</option>
-                                                        <option value="3">Anastasia</option>
-                                                        <option value="4">Avelina</option>
-                                                    </select> <i></i> </label>
-                                            </section>
-                                        </fieldset>
-                                        <fieldset>
-                                            <section>
-                                                <label class="label">Textarea</label>
-                                                <label class="textarea state-disabled">
-                                                    <textarea rows="3" disabled></textarea>
-                                                </label>
-                                            </section>
-                                        </fieldset>
-                                        <fieldset>
-                                            <section>
-                                                <label class="label">Radios</label>
-                                                <div class="row">
-                                                    <div class="col col-4">
-                                                        <label class="radio state-disabled">
-                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Alexandra</label>
-                                                        <label class="radio state-disabled">
-                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Alice</label>
-                                                    </div>
-                                                    <div class="col col-4">
-                                                        <label class="radio state-disabled">
-                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Avelina</label>
-                                                        <label class="radio state-disabled">
-                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Basilia</label>
-                                                    </div>
-                                                    <div class="col col-4">
-                                                        <label class="radio state-disabled">
-                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Cassandra</label>
-                                                        <label class="radio state-disabled">
-                                                            <input type="radio" name="radio" disabled><i class="rounded-x"></i>Clemencia</label>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                        </fieldset>
-                                        <fieldset>
-                                            <section>
-                                                <label class="label">Checkboxes</label>
-                                                <div class="row">
-                                                    <div class="col col-4">
-                                                        <label class="checkbox state-disabled">
-                                                            <input type="checkbox" name="checkbox" disabled><i></i>Alexandra</label>
-                                                        <label class="checkbox state-disabled">
-                                                            <input type="checkbox" name="checkbox" disabled><i></i>Alice</label>
-                                                    </div>
-                                                    <div class="col col-4">
-                                                        <label class="checkbox state-disabled">
-                                                            <input type="checkbox" name="checkbox" disabled><i></i>Avelina</label>
-                                                        <label class="checkbox state-disabled">
-                                                            <input type="checkbox" name="checkbox" disabled><i></i>Basilia</label>
-                                                    </div>
-                                                    <div class="col col-4">
-                                                        <label class="checkbox state-disabled">
-                                                            <input type="checkbox" name="checkbox" disabled><i></i>Cassandra</label>
-                                                        <label class="checkbox state-disabled">
-                                                            <input type="checkbox" name="checkbox" disabled><i></i>Clemencia</label>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                        </fieldset>
-                                        <fieldset>
-                                            <div class="row">
-                                                <section class="col col-5">
-                                                    <label class="label">Toggles based on radios</label>
-                                                    <label class="toggle state-disabled">
-                                                        <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Alexandra</label>
-                                                    <label class="toggle state-disabled">
-                                                        <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Anastasia</label>
-                                                    <label class="toggle state-disabled">
-                                                        <input type="radio" name="radio-toggle" disabled><i class="rounded-4x"></i>Avelina</label>
-                                                </section>
-                                                <div class="col col-2"></div>
-                                                <section class="col col-5">
-                                                    <label class="label">Toggles based on checkboxes</label>
-                                                    <label class="toggle state-disabled">
-                                                        <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Cassandra</label>
-                                                    <label class="toggle state-disabled">
-                                                        <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Clemencia</label>
-                                                    <label class="toggle state-disabled">
-                                                        <input type="checkbox" name="checkbox-toggle" disabled><i class="rounded-4x"></i>Desiderata</label>
-                                                </section>
-                                            </div>
-                                        </fieldset>
-                                        <footer>
-                                            <button type="submit" disabled class="button state-disabled">Submit</button>
-                                            <button type="button" class="button state-disabled button-secondary" onclick="window.history.back();">Back</button>
-                                        </footer>
                                     </form>
+                                    <div>
+                                    </div>
                                 </div>
                                 <!-- End My comments Forms -->
                             </div>
