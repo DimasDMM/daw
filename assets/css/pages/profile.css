@@ -488,7 +488,7 @@
 	position: absolute;
 }
 
-.profile .profile-bio h2 {
+.profile .profile-bio h1 {
 	margin-top: 0;
 	font-weight: 200;
 }
@@ -557,7 +557,7 @@
 	border-color: inherit;
 }
 
-.profile .timeline-v2.timeline-me > li .cbp_tmlabel h2 {
+.profile .timeline-v2.timeline-me > li .cbp_tmlabel h1 {
 	margin: 0 auto;
 	font-size: 17px;
 	line-height: 20px;

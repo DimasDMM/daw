@@ -168,3 +168,7 @@
 .timeline-v2 > li .cbp_tmlabel.equal-height-column {
     height: auto !important;
 }
+
+.cbp_tmlabel p {
+	color: #232323 !important;
+}
