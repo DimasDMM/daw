@@ -1,0 +1,157 @@
+<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+		<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+			<ul class="cd-switcher">
+				<li><a href="javascript:void(0);">Entrar</a></li>
+				<li><a href="javascript:void(0);">Registrarse</a></li>
+			</ul>
+
+			<div id="cd-login"> <!-- log en el formulario -->
+				<form class="cd-form" action="user-index.html" method="post">
+					<p class="social-login">
+						<span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>
+						<span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>
+						<span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>
+					</p>
+
+					<div class="lined-text"><span>Usa tu cuenta del Blog</span><hr></div>
+
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="signin-email">Correo electr&oacute;nico</label>
+						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="Correo electr&oacute;nico">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace cd-password" for="signin-password">Contrase&ntilde;a</label>
+						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Contrase&ntilde;a">
+						<a href="javascript:void(0);" class="hide-password">Ocultar</a>
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+
+					<p class="fieldset">
+						<input type="checkbox" id="remember-me" checked>
+						<label for="remember-me">Recordar</label>
+					</p>
+
+					<p class="fieldset">
+                        <input class="full-width" type="submit" value="Entrar">
+					</p>
+				</form>
+
+				<p class="cd-form-bottom-message"><a href="javascript:void(0);">¿Olvidaste tu contrase&ntilde;a?</a></p>
+                <a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
+			</div> <!-- cd-login -->
+            
+			<div id="cd-signup"> <!-- Formulario de registro -->
+				<form class="cd-form" action="user-index.html" method="post">
+					<p class="social-login">
+						<span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>
+						<span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>
+						<span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>
+					</p>
+
+					<div class="lined-text"><span>O registra tu nueva cuenta en The Madrid Times</span><hr></div>
+
+					<p class="fieldset">
+						<label class="image-replace cd-username" for="signup-username">Nombre</label>
+						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Nombre">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+                    
+                    <p class="fieldset">
+						<label class="image-replace cd-username" for="signup-surnames">Apellidos</label>
+						<input class="full-width has-padding has-border" id="signup-surnames" type="text" placeholder="Apellidos">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+                    
+                    <!--HAY QUE AÑADIR IMAGEN AL CALENDARIO-->
+                    <p class="fieldset">
+						<label class="image-replace" for="signup-date">Fecha de Nacimiento</label>
+						<input class="full-width has-padding has-border" id="signup-date" type="date" placeholder="Fecha de Nacimiento">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="signup-email">Correo electr&oacute;nico</label>
+						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="Correo electr&oacute;nico">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace cd-password" for="signup-password">Contrase&ntilde;a</label>
+						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Contrase&ntilde;a">
+						<a href="javascript:void(0);" class="hide-password">Ocultar</a>
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+                    
+                    <div class="lined-text"><span>Elige tus temas de inter&eacute;s</span><hr></div>
+                    
+                    <div class="container-fluid">                        
+                        <div class="row">
+                            
+                    <p class="fieldset col-md-4">
+						<input type="checkbox" id="sports">
+						<label for="sports">Deportes</label>
+					</p>
+                    
+                    <p class="fieldset col-md-4">
+						<input type="checkbox" id="politics">
+						<label for="politics">Madrid</label>
+					</p>
+                    
+                    <p class="fieldset col-md-4">
+						<input type="checkbox" id="national">
+						<label for="national">Mundo</label>
+					</p>
+                    
+                    <p class="fieldset col-md-4">
+						<input type="checkbox" id="international">
+						<label for="international">Espa&ntilde;a</label>
+					</p>
+                    
+                    <p class="fieldset col-md-4">
+						<input type="checkbox" id="technology">
+						<label for="technology">Tecnolog&iacute;a</label>
+					</p>
+                    
+                    <p class="fieldset col-md-4">
+						<input type="checkbox" id="culture">
+						<label for="culture">Cultura</label>
+					</p>
+                            
+                        </div>                            
+                    </div>
+                    
+					<p class="fieldset">
+						<input type="checkbox" id="accept-terms">
+						<label for="accept-terms">Acepto los t&eacute;rminos del <a href="javascript:void(0);">Contrato</a></label>
+					</p>
+
+					<p class="fieldset">
+                        <a href="user-index.html"><input class="full-width has-padding" type="submit" value="Crear cuenta"></a>
+					</p>
+				</form>
+
+				<a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
+			</div> <!-- cd-signup -->
+            
+            <div id="cd-reset-password"> <!-- reset password form -->
+				<p class="cd-form-message">&iquest;Olvidaste tu contraseña? Por favor, introduce tu dirección de correo electr&oacute;nico. Recibir&aacute;s un link en el que podr&aacute;s cambiar tu contrase&ntilde;a.</p>
+
+				<form class="cd-form">
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="reset-email">Correo electr&oacute;nico</label>
+						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="Correo electr&oacute;nico">
+						<span class="cd-error-message">Error de mensaje</span>
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width has-padding" type="submit" value="Recibir mensaje">
+					</p>
+				</form>
+
+				<p class="cd-form-bottom-message"><a href="javascript:void(0);">Volver a entrar</a></p>
+			</div> <!-- cd-reset-password -->
+			<a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
+		</div><!-- cd-user-modal-container -->
+	</div> <!-- cd-user-modal -->

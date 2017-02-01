@@ -18,7 +18,7 @@
 						<div class="topbar-time">Martes, 24 Enero 2016</div>
 						<div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
 						<ul class="topbar-list topbar-menu">
-							<li><a href="contact">Contactar</a></li>
+							<li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a></li>
 						</ul>
 					</div>
                     <!-- User options -->
@@ -45,6 +45,7 @@
 								</ul>
 							</li>
 							<li><a href="user-settings.html">Ajustes</a></li>
+                            <li><a href="index.html">Cerrar sesi&oacute;n</a></li>
 						</ul>
 					</div>
 				</div><!--/end row-->

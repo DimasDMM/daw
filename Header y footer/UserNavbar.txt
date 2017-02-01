@@ -24,7 +24,7 @@
 						<ul class="nav navbar-nav">
 							<!-- Madrid -->
 							<li class="dropdown mega-menu-fullwidth">
-								<a href="madrid.html" class="dropdown-toggle">
+								<a href="user-madrid.html" class="dropdown-toggle">
                                     Madrid
 								</a>
 								<ul class="dropdown-menu">
@@ -189,7 +189,7 @@
 
 							<!-- Spain -->
 							<li class="dropdown mega-menu-fullwidth">
-								<a href="spain.html" class="dropdown-toggle">
+								<a href="user-spain.html" class="dropdown-toggle">
 									Espa&Ntilde;a
 								</a>
 								<ul class="dropdown-menu">
@@ -354,7 +354,7 @@
 
 							<!-- World -->
 							<li class="dropdown mega-menu-fullwidth">
-								<a href="world.html" class="dropdown-toggle">
+								<a href="user-world.html" class="dropdown-toggle">
 									Mundo
 								</a>
 								<ul class="dropdown-menu">
@@ -519,7 +519,7 @@
 
 							<!-- Sports -->
 							<li class="dropdown mega-menu-fullwidth">
-								<a href="sports.html" class="dropdown-toggle">
+								<a href="user-sports.html" class="dropdown-toggle">
 									Deportes
 								</a>
 								<ul class="dropdown-menu">
@@ -684,7 +684,7 @@
 
 							<!-- Tecnology -->
 							<li class="dropdown mega-menu-fullwidth">
-								<a href="tecnology.html" class="dropdown-toggle">
+								<a href="user-tecnology.html" class="dropdown-toggle">
 									Tecnolog&iacute;a
 								</a>
 								<ul class="dropdown-menu">
@@ -849,7 +849,7 @@
 
 							<!-- Culture -->
 							<li class="dropdown mega-menu-fullwidth">
-								<a href="culture.html" class="dropdown-toggle">
+								<a href="user-culture.html" class="dropdown-toggle">
 									Cultura
 								</a>
 								<ul class="dropdown-menu">
