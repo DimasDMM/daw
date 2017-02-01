@@ -2585,3 +2585,11 @@ img.img-center,
     margin-bottom: 35px;
     padding-bottom: 10px;
 }
+
+.index-titles {
+    color: #e74c3c !important;
+    margin: 0;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+}
