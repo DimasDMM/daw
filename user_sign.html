@@ -1349,112 +1349,99 @@
 	<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
 		<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
 			<ul class="cd-switcher">
-				<li><a href="javascript:void(0);">Login</a></li>
-				<li><a href="javascript:void(0);">Register</a></li>
+				<li><a href="javascript:void(0);">Entrar</a></li>
+				<li><a href="javascript:void(0);">Registrarse</a></li>
 			</ul>
 
-			<div id="cd-login"> <!-- log in form -->
-				<form class="cd-form">
-					<p class="social-login">
-						<span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i>
-							Facebook</a></span>
-						<span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>
-						<span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>
-					</p>
-
-					<div class="lined-text"><span>Or use your account on Blog</span>
-						<hr>
-					</div>
+			<div id="cd-login"> <!-- log en el formulario -->
+				<form class="cd-form" action="user-index.html" method="post">
+					<div class="lined-text"><span>Usa tu cuenta del Blog</span><hr></div>
 
 					<p class="fieldset">
-						<label class="image-replace cd-email" for="signin-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
-						<span class="cd-error-message">Error message here!</span>
+						<label class="image-replace cd-email" for="signin-email">Correo electr&oacute;nico</label>
+						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="Correo electr&oacute;nico">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
 
 					<p class="fieldset">
-						<label class="image-replace cd-password" for="signin-password">Password</label>
-						<input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="Password">
-						<a href="javascript:void(0);" class="hide-password">Hide</a>
-						<span class="cd-error-message">Error message here!</span>
+						<label class="image-replace cd-password" for="signin-password">Contrase&ntilde;a</label>
+						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Contrase&ntilde;a">
+						<a href="javascript:void(0);" class="hide-password">Ocultar</a>
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
 
 					<p class="fieldset">
 						<input type="checkbox" id="remember-me" checked>
-						<label for="remember-me">Remember me</label>
+						<label for="remember-me">Recordar</label>
 					</p>
 
 					<p class="fieldset">
-						<input class="full-width" type="submit" value="Login">
+                        <input class="full-width" type="submit" value="Entrar">
 					</p>
 				</form>
 
-				<p class="cd-form-bottom-message"><a href="javascript:void(0);">Forgot your password?</a></p>
-				<!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
+				<p class="cd-form-bottom-message"><a href="javascript:void(0);">¿Olvidaste tu contrase&ntilde;a?</a></p>
+                <a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
 			</div> <!-- cd-login -->
 
-			<div id="cd-signup"> <!-- sign up form -->
-				<form class="cd-form">
-					<p class="social-login">
-						<span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i>
-							Facebook</a></span>
-						<span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>
-						<span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>
-					</p>
-
-					<div class="lined-text"><span>Or register your new account on Blog</span>
-						<hr>
-					</div>
+			<div id="cd-signup"> <!-- Formulario de registro -->
+				<form class="cd-form" action="user_sign.html" method="get">
+					<div class="lined-text"><span>Registra tu nueva cuenta en The Madrid Times</span><hr></div>
 
 					<p class="fieldset">
-						<label class="image-replace cd-username" for="signup-username">Username</label>
-						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-						<span class="cd-error-message">Error message here!</span>
+						<label class="image-replace cd-username" for="signup-username">Nombre</label>
+						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Nombre">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+                    
+                    <p class="fieldset">
+						<label class="image-replace cd-username" for="signup-surnames">Apellidos</label>
+						<input class="full-width has-padding has-border" id="signup-surnames" type="text" placeholder="Apellidos">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
 
 					<p class="fieldset">
-						<label class="image-replace cd-email" for="signup-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
-						<span class="cd-error-message">Error message here!</span>
+						<label class="image-replace cd-email" for="signup-email">Correo electr&oacute;nico</label>
+						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="Correo electr&oacute;nico">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
 
 					<p class="fieldset">
-						<label class="image-replace cd-password" for="signup-password">Password</label>
-						<input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password">
-						<a href="javascript:void(0);" class="hide-password">Hide</a>
-						<span class="cd-error-message">Error message here!</span>
+						<label class="image-replace cd-password" for="signup-password">Contrase&ntilde;a</label>
+						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Contrase&ntilde;a">
+						<a href="javascript:void(0);" class="hide-password">Ocultar</a>
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
-
+ 
 					<p class="fieldset">
 						<input type="checkbox" id="accept-terms">
-						<label for="accept-terms">I agree to the <a href="javascript:void(0);">Terms</a></label>
+						<label for="accept-terms">Acepto los t&eacute;rminos del <a href="javascript:void(0);">Contrato</a></label>
 					</p>
 
 					<p class="fieldset">
-						<input class="full-width has-padding" type="submit" value="Create account">
+                        <input class="full-width has-padding" type="submit" value="Crear cuenta">
 					</p>
 				</form>
 
-				<!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
+				<a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
 			</div> <!-- cd-signup -->
 
 			<div id="cd-reset-password"> <!-- reset password form -->
-				<p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link
-					to create a new password.</p>
+				<p class="cd-form-message">&iquest;Olvidaste tu contraseña? Por favor, introduce tu dirección de correo electr&oacute;nico. Recibir&aacute;s un link en el que podr&aacute;s cambiar tu contrase&ntilde;a.</p>
 
 				<form class="cd-form">
 					<p class="fieldset">
-						<label class="image-replace cd-email" for="reset-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
-						<span class="cd-error-message">Error message here!</span>
+						<label class="image-replace cd-email" for="reset-email">Correo electr&oacute;nico</label>
+						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="Correo electr&oacute;nico">
+						<span class="cd-error-message">Error de mensaje</span>
 					</p>
 
 					<p class="fieldset">
-						<input class="full-width has-padding" type="submit" value="Reset password">
+						<input class="full-width has-padding" type="submit" value="Recibir mensaje">
 					</p>
 				</form>
 
-				<p class="cd-form-bottom-message"><a href="javascript:void(0);">Back to log-in</a></p>
+				<p class="cd-form-bottom-message"><a href="javascript:void(0);">Volver a entrar</a></p>
 			</div> <!-- cd-reset-password -->
 			<a href="javascript:void(0);" class="cd-close-form">Close</a>
 		</div> <!-- cd-user-modal-container -->
