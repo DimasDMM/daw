@@ -36,6 +36,7 @@
 	<link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
 	<link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
 	<link rel="stylesheet" href="assets/css/blocks.css">
+	<link rel="stylesheet" href="assets/css/simplemde.css">
 
 	<!-- CSS Theme -->
 	<link rel="stylesheet" href="assets/css/theme-colors/default.css">
@@ -1166,7 +1167,7 @@
 
 						<div class="col col-12 full-width">
 							<label for="inp_article">Art&iacute;culo</label>
-							<textarea class="form-control" name="article" id="inp_article" rows="20"></textarea>
+							<textarea class="form-control" name="article" id="inp_article" rows="30"></textarea>
 						</div>
 
 						<div class="col col-12 full-width">
@@ -1437,11 +1438,19 @@
 <script src="assets/plugins/masonry/imagesloaded.pkgd.min.js"></script>
 <script src="assets/plugins/modernizr.js"></script>
 <script src="assets/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
+<script src="assets/js/simplemde.js"></script>
 <!-- JS Page Level -->
 <script src="assets/js/app.js"></script>
 <script>
 	jQuery(document).ready(function () {
 		App.init();
+	});
+
+	var simplemde = new SimpleMDE({
+		spellChecker: false,
+		status: false,
+		hideIcons: ["guide", "heading", "fullscreen"],
+		element: document.getElementById("inp_article")
 	});
 </script>
 <!--[if lt IE 9]>
