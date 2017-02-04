@@ -47,25 +47,25 @@
 						<h2>&uacute;ltimas noticias</h2>
 						<!-- Latest News -->
 						<div class="latest-news margin-bottom-20">
-							<img src="assets/img/thumb/img-thumb1.jpg" alt="">
-							<h3><a href="#">Standard post with video.</a></h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+							<img src="assets/img/blog/guardiacivilagents.jpg" alt="">
+							<h3><a href="#">La Guardia Civil detiene en Pinto a una mujer mexicana por alentar a la yihad femenina</a></h3>
+							<p>Contrajo matrimonio con un arrestado en 2016 que actualmente se encuentra en prisi&oacute;n por difundir propaganda terrorista</p>
 						</div>
 
 						<hr>
 
 						<div class="latest-news margin-bottom-20">
-							<img src="assets/img/thumb/img-thumb2.jpg" alt="">
-							<h3><a href="#">Standard post with video.</a></h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+							<img src="assets/img/blog/trump.jpg" alt="">
+							<h3><a href="#">El jefe del Consejo Europeo define a Trump como una amenaza exterior</a></h3>
+							<p>Los Veintiocho discuten este viernes c&oacute;mo afrontar la nueva relaci&oacute;n transatl&aacute;ntica</p>
 						</div>
 
 						<hr>
 
 						<div class="latest-news">
-							<img src="assets/img/thumb/img-thumb3.jpg" alt="">
-							<h3><a href="#">Standard post with video.</a></h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+							<img src="assets/img/blog/federernadal.jpg" alt="">
+							<h3><a href="#">Federer se toma la revancha contra Nadal y gana su quinto Open de Australia</a></h3>
+							<p>Venci&oacute; a Nadal por 6-4, 3-6, 6-1, 3-6 y 6-3 y se hizo con su quinto t&iacute;tulo en Melbourne, el decimoctavo del Grand Slam</p>
 						</div>
 						<!-- End Latest News -->
 					</div>
