@@ -87,11 +87,33 @@
                     <!--/end row-->
                 </div>
                 <!--/end container-->
-            </div>
+            </div>            
             <!-- End Topbar blog -->
             <!--=== Content Part ===-->
             <div class="container content">
                 <div class="row">
+                    <aside class="col-md-3 md-margin-bottom-50">
+				<!-- Options Menu -->
+				<div class="margin-bottom-50">
+                    <h3>Foto de perfil</h3>
+                                                <label for="file" class="input input-file state-success image_profile">
+                                                    <div class="button">
+                                                        <input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value">Browse </div>
+                                                    <input type="text" class="image_profile_text" readonly> </label>
+                    
+					<h1 class="title-v4">Opciones</h1>
+                    
+
+					<h3>Usuario</h3>
+                    
+					<ul class="list-group sidebar-nav-v1">
+						<li class="list-group-item"><a href="user-settings.html">Preferencias</a></li>
+						<li class="list-group-item"><a href="index.html">Cerrar sesi&oacute;n</a></li>
+					</ul>
+                                                
+				</div>
+				<!-- End Options Menu -->
+			</aside>
                     <!-- Begin Content -->
                     <div class="col-md-9">
                         <!-- Tabs -->
@@ -474,7 +496,7 @@
                                 <!-- My comments Forms -->
                                 <div class="tab-pane fade" id="messages-2">
                                     <form action="#" class="sky-form">
-                                        <header>Aquí puede ver su historial de comentarios</header>
+                                        <header>Historial de comentarios</header>
                                     </form>
                                     <div>
                                     </div>

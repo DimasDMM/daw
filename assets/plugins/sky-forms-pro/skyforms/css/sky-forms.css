@@ -1034,8 +1034,8 @@
   margin-top: 0;
 }
 .image_profile {
-    height: 15em !important;
-    width: 15em !important;
+    height: 13em !important;
+    width: 13em !important;
     vertical-align:baseline;
 }
 
@@ -1044,8 +1044,8 @@
 }
 
 .image_profile_text {
-    height: 15em !important;
-    width: 15em !important;
+    height: 12em !important;
+    width: 12em !important;
     vertical-align: baseline;
 }
 
@@ -1060,4 +1060,14 @@
     border: 0.1em dashed #847f7f;
     display: block;
     text-align: center;
+}
+
+#file {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0;
 }
