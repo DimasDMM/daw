@@ -104,8 +104,8 @@
 		<div class="container">
 			<ul class="list-inline terms-menu">
 				<li>2017 &copy; Todos los Derechos Reservados.</li>
-				<li class="home"><a href="terms_and_conditions.html">T&eacute;rminos de Uso</a></li>
-				<li><a href="privacy_and_policy.html">Pol&iacute;tica y Privacidad</a></li>
+				<li class="home"><a href="user-terms_and_conditions.html">T&eacute;rminos de Uso</a></li>
+				<li><a href="user-privacy_and_policy.html">Pol&iacute;tica y Privacidad</a></li>
 			</ul>
 		</div><!--/end container-->
 	</div>
