@@ -64,4 +64,4 @@ https://trello.com/b/r6rN8FrO/the-madrid-times
  - Redactor
 
 ## Diagrama de navegación
-![alt tag](https://github.com/DimasDMM/daw/tree/master/screenshots/user-terms_and_conditions.png)
+![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/user-terms_and_conditions.png)
