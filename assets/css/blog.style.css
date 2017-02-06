@@ -13,9 +13,6 @@
 @import url(app.css);
 @import url(blocks.css);
 
-/*Import CSS Plugins*/
-@import url(plugins/style-switcher.css);
-
 @media (min-width: 768px) {
 	.g-blur { overflow: hidden; }
 	.g-blur .wrapper,
