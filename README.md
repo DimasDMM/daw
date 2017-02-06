@@ -113,3 +113,61 @@ Página donde los usuarios administradores pueden confeccionar los anuncios y ge
 Formulario para que los nuevos usuarios se den de alta en el sitio.
 
 ![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/registro.jpg)
+
+## Cambios respecto a la plantilla
+
+ - index.html
+ Hemos añadido el título de portada
+ Cambiado el topbar
+ Añadido y cambiado nuevas pestañas en el navbar al igual que el formato en que aparece el desplegable al pasar el ratón.
+ Borrado Tags y Monthly news
+ Añadido contactar con mailto
+ Cuando se pinche en la categoría te lleve a una página de categoría, que no estaba implementado.
+ Al hacerse más pequeño el navbar, si se clickea en una categoría te mande a la página de categoría correspondiente y no despliegue las noticias.
+ En el navbar hemos cambiado en el CSS correspondiente el tamñano de las fotos.
+ Hemos cambiado en CSS el estilo del título de portada.
+ Hemos añadido noticias e imágenes de ejemplo.
+ 
+ - madrid.html
+ En la plantilla no existe esta página como la hemos insertado nosotros.
+ Hemos borrado el breadcrums.
+ Hemos aadido el fondo.
+ Cambiado el estilo del título de cada categoría en CSS.
+  
+ - user_sign.html
+ Las modificaciones que se han hecho ha sido eliminar toda la parte central de la página y añadir los distintos elementos de un formulario para que el usuario pueda terminar de registrarse. 
+ Igualmente se han traducido tanto el pie de página como la cabecera.
+  
+ - ads_list.html y article_list.html:
+ Añadido menu lateral procedente de otra plantilla con la navegación básica por la "zona de usuario/redactor/administrador". 
+ También se ha añadido una tabla con el listado de anuncios/articulos publicados y sus correspondientes características. 
+ Los iconos usados proceden de fontawesome.
+  
+ - Login
+ Traducción, y eliminación de loggearse a través de las redes sociales.
+ 
+ - Register 
+ Traducción, y eliminación de registrarse a través de las redes sociales
+
+ - user-settings.html 
+ Se aprovechó la implementación de las pestañas y el formato de los forms con sus apartados (los text input). 
+ También se hizo uso de las checkbox. Se eliminaron las barras laterales y top, y se sustituyeron por una nueva y el navbar respectivamente. 
+ El estilo fue adaptado para ser consistente con el del resto de la página (fuentes, colores, footer, etc.)
+ 
+ - article_new.html:
+ Menú lateral idéntico a user-settings.html y otros HTML de la zona privada. 
+ Se ha creado un formulario, el cual entre otros elementos tiene un textarea que usa Markdown, para poder escribir artículos, dándoles un mínimo de estilo.
+ 
+ - ads_create.html:
+ El formulario es similar al de article_new: al igual que en article_new se han modificado bordes y márgenes de los "div" que agrupan los inputs.
+ 
+ - article_new_preview:
+ Página muy similar a article.html. 
+ Se ha añadido en la parte superior e inferior del artículo un bloque azul para confirmar la publicación del artículo.
+ 
+ - article.html
+ Se ha modificado el menú lateral: noticias recientes, últimos comentarios, etc. 
+ Además, se ha traducido el JS que realiza la verificación del formulario.
+ 
+ -Análogo para las páginas adaptadas al inicio de sesión.
+ En estos html's hemos cambiado el topbar añadiendo las cosas necesarias para la redacción de artículos y ajustes del usuario.
