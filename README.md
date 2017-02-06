@@ -168,6 +168,8 @@ Formulario para que los nuevos usuarios se den de alta en el sitio.
  - article.html
  Se ha modificado el menú lateral: noticias recientes, últimos comentarios, etc. 
  Además, se ha traducido el JS que realiza la verificación del formulario.
+ Se ha borrado el breadcrums.
+ Añadido el fondo para que tenga bordes.
  
  -Análogo para las páginas adaptadas al inicio de sesión.
  En estos html's hemos cambiado el topbar añadiendo las cosas necesarias para la redacción de artículos y ajustes del usuario.
