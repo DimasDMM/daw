@@ -2593,3 +2593,8 @@ img.img-center,
     font-size: 18px;
     font-weight: bold;
 }
+
+.validated{
+    color: chocolate !important;
+    font-size: 108px !important;
+}
