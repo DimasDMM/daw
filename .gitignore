@@ -1,3 +1,9 @@
 /.idea/
 /web/target/
 /web/.settings/
+/pruebaIgnorar
+/.settings/
+/.project
+/.classpath
+/web/.classpath
+/web/.project
