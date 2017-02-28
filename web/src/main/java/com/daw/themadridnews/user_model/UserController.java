@@ -1,4 +1,4 @@
-package com.daw.themadridnews.User_model;
+package com.daw.themadridnews.user_model;
 
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +15,12 @@ public class UserController {
 	
 	@PostConstruct
 	public void init(){
-		repository.save(new User("Paco", "Pérez","pape","paco@gamil.com"));
-		repository.save(new User("Pepe", "Jiménez","peji","peji@gamil.com"));
+		repository.save(new UserEntity("Paco", "Pérez","pape","paco@gamil.com"));
+		repository.save(new UserEntity("Pepe", "Jiménez","peji","peji@gamil.com"));
 	}
 	@RequestMapping("/user-settings")
-	public String getUsers(Model model,@RequestParam(required=false) String user1) {		
-		model.addAttribute("user1","fisher");
+	public String getUsers(Model model,@RequestParam(required=false) String user) {		
+		model.addAttribute("userLogin","rafael07");
 		return "user-settings";
 	}
 }

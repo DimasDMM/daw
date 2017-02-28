@@ -70,23 +70,32 @@
                         <!-- User options -->
                         <div class="col-sm-4 col-xs-4 clearfix"> <i class="fa fa-search search-btn pull-right"></i>
                             <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
-                                <li> <a href="javascript:void(0);">Usuario</a>
-                                    <ul class="topbar-dropdown">
+                                
+                                <li> <a href="javascript:void(0);">{{userLogin}}</a>                               
+                                	
+                                	{{#redactorLogin}}
+                                    <ul class="topbar-dropdown">                                    	
                                         <li class="topbar-submenu"> <a href="javascript:void(0);">Art&iacute;culos</a>
                                             <ul class="topbar-submenu-in">
                                                 <li><a href="article_list.html">Lista</a></li>
                                                 <li><a href="article_new.html">Redactar</a></li>
                                             </ul>
-                                        </li>
+                                        </li>                                        
+                                        {{#adminLogin}}
                                         <li class="topbar-submenu"> <a href="javascript:void(0);">Publicidad</a>
                                             <ul class="topbar-submenu-in">
                                                 <li><a href="ads_list.html">Lista</a></li>
                                                 <li><a href="ads_create.html">A&ntilde;adir</a></li>
                                             </ul>
                                         </li>
+                                        {{/adminLogin}}
                                     </ul>
+                                    {{/redactorLogin}}
+                                    
                                 </li>
+                                {{#redactorLogin}}
                                 <li><a href="user-settings.html">Ajustes</a></li>
+                                {{/redactorLogin}}
                                 <li><a href="index.html">Cerrar sesi&oacute;n</a></li>
                             </ul>
                         </div>
@@ -909,9 +918,9 @@
                     <!-- Options Menu -->
                     <div class="margin-bottom-50"> <img class="img-responsive profile-img margin-bottom-20" src="img/team/img32-md.jpg" alt="">
                         <h1 class="title-v4">Opciones</h1>
-                        {{#user1}}
-                        <h3>{{user}}</h3>
-                        {{/user1}}
+                        {{#userLogin}}
+                        <h3>{{userLogin}}</h3>
+                        {{/userLogin}}
                         <ul class="list-group sidebar-nav-v1">
                             <li class="list-group-item active"><a href="user-settings.html">Preferencias</a></li>
                             <li class="list-group-item"><a href="index.html">Cerrar sesi&oacute;n</a></li>

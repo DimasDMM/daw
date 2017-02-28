@@ -1,4 +1,4 @@
-package com.daw.themadridnews.User_model;
+package com.daw.themadridnews.user_model;
 
 import java.util.ArrayList;
 import javax.persistence.CascadeType;
@@ -7,22 +7,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class User {
+@Table(name="Users")
+public class UserEntity {
+	
+	@Id
+    private String email;
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id;
     @NotNull
     private String name;
     @NotNull
     private String lastName;
     @NotNull
     private String alias;
-    @NotNull
-    private String email;
+    
     //@OneToMany(cascade = CascadeType.ALL)
 	//private List<Comment> comments = new ArrayList<>();
     
@@ -34,10 +35,10 @@ public class User {
     private String personalWeb;
     
 
-    public User(){}
+    public UserEntity(){}
 
 
-	public User(String name, String lastName, String alias, String email) {
+	public UserEntity(String name, String lastName, String alias, String email) {
 		this.name = name;
 		this.lastName = lastName;
 		this.alias = alias;
@@ -46,20 +47,11 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", lastName=" + lastName + ", alias=" + alias + "]";
+		return "User [name=" + name + ", lastName=" + lastName + ", alias=" + alias + "]";
 	}
 
 
-	//getters and setters
-	public long getId() {
-		return id;
-	}
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	//getters and setters	
 
 	public String getName() {
 		return name;
