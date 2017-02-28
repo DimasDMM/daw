@@ -1,4 +1,4 @@
-package comment_model;
+package com.daw.themadridnews.comment_model;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +10,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="Comments")
-public class CommentEntity {
+public class Comment {
 
 }

@@ -15,8 +15,8 @@ public class UserController {
 	
 	@PostConstruct
 	public void init(){
-		repository.save(new UserEntity("Paco", "Pérez","pape","paco@gamil.com"));
-		repository.save(new UserEntity("Pepe", "Jiménez","peji","peji@gamil.com"));
+		repository.save(new User("Paco", "Pérez","pape","paco@gamil.com"));
+		repository.save(new User("Pepe", "Jiménez","peji","peji@gamil.com"));
 	}
 	@RequestMapping("/user-settings")
 	public String getUsers(Model model,@RequestParam(required=false) String user) {		

@@ -1,31 +1,32 @@
 package com.daw.themadridnews.user_model;
 
+import com.daw.themadridnews.comment_model.Comment;
+
 import java.util.ArrayList;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import java.util.List;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="Users")
-public class UserEntity {
+public class User {
 	
 	@Id
     private String email;
-
     @NotNull
     private String name;
     @NotNull
     private String lastName;
     @NotNull
     private String alias;
+	@NotNull
+	private String passwordHash;
     
-    //@OneToMany(cascade = CascadeType.ALL)
-	//private List<Comment> comments = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+	private List<Comment> comments = new ArrayList<>();
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
     
     char sex;
     private String city;
@@ -34,15 +35,17 @@ public class UserEntity {
     private String description;
     private String personalWeb;
     
+	//Constructors
+    public User(){}
 
-    public UserEntity(){}
 
-
-	public UserEntity(String name, String lastName, String alias, String email) {
+	public User(String name, String lastName, String alias, String email, String pass, List<String> rol) {
 		this.name = name;
 		this.lastName = lastName;
 		this.alias = alias;
 		this.email = email;
+		this.passwordHash=pass;
+		this.roles=rol;
 	}	
 	
 	@Override
@@ -51,7 +54,23 @@ public class UserEntity {
 	}
 
 
-	//getters and setters	
+	//getters and setters
+
+	public String getPasswordHash() {
+		return passwordHash;
+	}
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
 
 	public String getName() {
 		return name;

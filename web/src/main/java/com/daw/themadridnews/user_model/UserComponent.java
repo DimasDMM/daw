@@ -1,4 +1,4 @@
-package com.daw.themadridnews.User_model;
+package com.daw.themadridnews.user_model;
 
 import org.springframework.stereotype.Component;
 
@@ -8,7 +8,7 @@ public class UserComponent {
     private String name;
     private String last_name;
     private String email;
-    private String password;
+    private String passwordHash;
     
     //Constructor
     public UserComponent(){        
