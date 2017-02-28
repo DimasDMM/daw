@@ -1,10 +1,12 @@
 package com.daw.themadridnews.User_model;
 
-
+import java.util.ArrayList;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -21,6 +23,8 @@ public class User {
     private String alias;
     @NotNull
     private String email;
+    //@OneToMany(cascade = CascadeType.ALL)
+	//private List<Comment> comments = new ArrayList<>();
     
     char sex;
     private String city;
@@ -38,9 +42,7 @@ public class User {
 		this.lastName = lastName;
 		this.alias = alias;
 		this.email = email;
-	}
-	
-	
+	}	
 	
 	@Override
 	public String toString() {
