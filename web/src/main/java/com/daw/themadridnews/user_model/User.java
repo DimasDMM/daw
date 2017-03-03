@@ -1,6 +1,6 @@
 package com.daw.themadridnews.user_model;
 
-import com.daw.themadridnews.comment_model.Comment;
+//import com.daw.themadridnews.comment_model.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ public class User {
 	@NotNull
 	private String passwordHash;
     
-    @OneToMany(cascade = CascadeType.ALL)
-	private List<Comment> comments = new ArrayList<>();
+    //@OneToMany(cascade = CascadeType.ALL)
+	//private List<Comment> comments = new ArrayList<>();
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;

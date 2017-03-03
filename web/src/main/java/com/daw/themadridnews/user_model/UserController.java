@@ -13,8 +13,8 @@ import java.util.List;
 @Controller
 public class UserController {
 	
-	@Autowired
-	private UserRepository repository;
+	/*@Autowired
+	private UserRepository repository;*/
 	
 	/*@PostConstruct
 	public void init(){

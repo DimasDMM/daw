@@ -11,5 +11,13 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="Comments")
 public class Comment {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	long Id;
+	@NotNull
+	long charactersLength;
+	
+	//Constructors
+    public Comment(){}
 
 }
