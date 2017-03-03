@@ -38,7 +38,6 @@ public class User {
 	//Constructors
     public User(){}
 
-
 	public User(String name, String lastName, String alias, String email, String pass, List<String> rol) {
 		this.name = name;
 		this.lastName = lastName;
