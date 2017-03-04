@@ -91,7 +91,7 @@ var App = function () {
 
 	// Please Wait
 	function handleSubscribe() {
-		var is_box_visible = true;
+		var is_box_visible = false;
 		$(document).mouseleave(function (e) {
 			if ((e.clientY < 0) && (is_box_visible === true)) {
 				$('.g-popup-wrapper').show();

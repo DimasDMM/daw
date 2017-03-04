@@ -1,7 +1,5 @@
 package com.daw.themadridnews.article;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +17,8 @@ public class ArticleController {
 		Article article = articleRepository.findOne(id);
 		
 		model.addAttribute("article_title", article.getTitle());
-		model.addAttribute("article_content", article.getContent());
+		model.addAttribute("article_content", article.getFormatedContent());
+		model.addAttribute("article_tags", article.getTags());
 		
 		return "article";
 	}

@@ -1,7 +1,12 @@
 package com.daw.themadridnews.article;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import com.daw.themadridnews.user_model.User;
 
 @Entity
@@ -22,16 +27,24 @@ public class Article {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected long id;
 	
+	@NotNull
 	protected String category;
+	@NotNull
 	protected String title;
+	@NotNull
+	@Column(columnDefinition="TEXT")
 	protected String content;
 	
 	@ManyToOne
+	@NotNull
 	protected User author;
 	
 	protected String source;
-	@ElementCollection(fetch = FetchType.EAGER)
+	
+	@ElementCollection(fetch = FetchType.LAZY)
+	@NotNull
 	private List<String> tags;
+	
 	
 	public Article() {}
 	
@@ -70,6 +83,23 @@ public class Article {
 
 	public String getContent() {
 		return content;
+	}
+	
+	public String getFormatedContent() {
+		StringBuilder cb = new StringBuilder( content );
+		
+		Pattern p = Pattern.compile("\\*\\*([^*]*)(\\*(?!\\*)[^*]*)*\\*\\*");
+		Matcher m = p.matcher(cb);
+		
+		int start = 0;
+		while (m.find(start)) {
+			String replacement = "<b>"+m.group(1)+"</b>";
+			
+			cb.replace(m.start(), m.end(), replacement);
+			start = m.start() + replacement.length();
+		}
+		
+		return cb.toString();
 	}
 
 	public void setContent(String content) {
