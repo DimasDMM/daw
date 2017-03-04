@@ -23,7 +23,7 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 
-		User user = userRepository.findByName(auth.getName());
+		User user = userRepository.findByEmail(auth.getName());
 
 		if (user == null) {
 			throw new BadCredentialsException("User not found");

@@ -1,11 +1,18 @@
 package com.daw.themadridnews;
+import com.daw.themadridnews.user_model.UserRepositoryAuthenticationProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    public UserRepositoryAuthenticationProvider authenticationProvider;
 
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -35,11 +42,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
         // Login form
-        http.formLogin().loginPage("/");
-        http.formLogin().usernameParameter("username");
+        http.formLogin().loginPage("/index");
+        http.formLogin().usernameParameter("email");
         http.formLogin().passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/home");
-        http.formLogin().failureUrl("/loginerror");
+        http.formLogin().defaultSuccessUrl("/hola_template");
+        http.formLogin().failureUrl("/hola_template");
 
         // Logout
         http.logout().logoutUrl("/logout");
@@ -49,13 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
-    	
-        // Users
-        auth.inMemoryAuthentication().withUser("user").password("pass")
-                .roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password("adminpass")
-                .roles("USER", "EDITOR");
-        auth.inMemoryAuthentication().withUser("admin").password("adminpass")
-                .roles("USER", "EDITOR", "ADMIN");
+        // Database authentication provider
+        auth.authenticationProvider(authenticationProvider);
     }
 }

@@ -28,4 +28,9 @@ public class UserController {
 		model.addAttribute("userLogin","rafael07");
 		return "user-settings";
 	}
+
+	@RequestMapping("/user_sign")
+	public String user_sign(Model model) {
+		return "user_sign";
+	}
 }
