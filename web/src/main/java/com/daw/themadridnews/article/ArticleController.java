@@ -18,7 +18,8 @@ public class ArticleController {
 	public String showArticle(Model model, @PathVariable long id) {
 		Article article = articleRepository.findOne(id);
 		
-		// Aqui habra que hacer cosas
+		model.addAttribute("article_title", article.getTitle());
+		model.addAttribute("article_content", article.getContent());
 		
 		return "article";
 	}

@@ -8,11 +8,21 @@ import com.daw.themadridnews.user_model.User;
 @Table(name="articles")
 public class Article {
 	
+	/*
+	 * Lista de posibles categorias:
+	 * - madrid
+	 * - spain
+	 * - world
+	 * - sport
+	 * - technology
+	 * - culture
+	 */
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected long id;
 	
-	protected int category;
+	protected String category;
 	protected String title;
 	protected String content;
 	
@@ -20,19 +30,18 @@ public class Article {
 	protected User author;
 	
 	protected String source;
-	protected String tags;
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> tags;
 	
 	public Article() {}
 	
-	public Article(long id, int category, String title, String content, User author, String source, String[] tags) {
-		this.id = id;
+	public Article(String category, String title, String content, User author, String source, List<String> tags) {
 		this.category = category;
 		this.title = title;
 		this.content = content;
 		this.author = author;
 		this.source = source;
-		
-		this.setTags(tags);
+		this.tags = tags;
 	}
 
 	public long getId() {
@@ -43,11 +52,11 @@ public class Article {
 		this.id = id;
 	}
 
-	public int getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(int category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
@@ -83,17 +92,12 @@ public class Article {
 		this.source = source;
 	}
 
-	public String[] getTags() {
-		return tags.split(",");
+	public List<String> getTags() {
+		return tags;
 	}
 
-	public void setTags(String[] tags) {
-		StringBuffer tagsBuff = new StringBuffer();
-		for (int i = 0; i < tags.length; i++) {
-			tagsBuff.append( tags[i] );
-			tagsBuff.append(",");
-		}
-		this.tags = tagsBuff.toString();
+	public void setTags(List<String> tags) {
+		this.tags = tags;
 	}
 
 	@Override
