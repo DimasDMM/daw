@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="Comments")
+@Table(name="comments")
 public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

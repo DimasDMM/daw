@@ -2,13 +2,16 @@ package com.daw.themadridnews.user_model;
 
 //import com.daw.themadridnews.comment_model.Comment;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="Users")
+@Table(name="users")
 public class User {
 	
 	@Id
@@ -17,17 +20,17 @@ public class User {
     private String name;
     @NotNull
     private String lastName;
-    @NotNull
-    private String alias;
 	@NotNull
 	private String passwordHash;
     
     //@OneToMany(cascade = CascadeType.ALL)
 	//private List<Comment> comments = new ArrayList<>();
-
+	@NotNull
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
-    
+
+
+	private String alias;
     char sex;
     private String city;
     private String country;
@@ -38,15 +41,16 @@ public class User {
 	//Constructors
     public User(){}
 
-	public User(String name, String lastName, String alias, String email, String pass, List<String> rol) {
+	public User(String name, String lastName, String email, String pass, String... roles) {
 		this.name = name;
 		this.lastName = lastName;
-		this.alias = alias;
 		this.email = email;
-		this.passwordHash=pass;
-		this.roles=rol;
-	}	
-	
+		this.passwordHash = new BCryptPasswordEncoder().encode(pass);
+		this.roles = new ArrayList<>(Arrays.asList(roles));
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", lastName=" + lastName + ", alias=" + alias + "]";
