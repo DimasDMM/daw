@@ -1118,31 +1118,30 @@
 						<h1 class="blog-grid-title-lg">{{ article_title }}</h1>
 						<div class="overflow-h margin-bottom-10">
 							<ul class="blog-grid-info pull-left">
-								<li>Jorge Injusto</li>
-								<li>5, Febrero, 2017</li>
+								<li>{{editor_name}} {{editor_lastname}}</li>
+								<li>{{article_date_insert}}</li>
 							</ul>
 							<div class="pull-right">
 								<div class="addthis_sharing_toolbox"></div>
 							</div>
 						</div>
-						<img class="img-responsive" src="/articles/main.jpg" alt="">
+						<img class="img-responsive" src="/articles/{{id}}/main.jpg" alt="Imagen portada del articulo">
 					</div>
 					<!-- End Article Header -->
 					
 					{{{article_content}}}
 	
 					<ul class="source-list">
-						<li><strong>Fuente:</strong> <a href="http://www.elmundotoday.com/">http://www.elmundotoday.com/</a></li>
-						<li><strong>Autor:</strong> <a href="user-profile-editor.html">Jorge Injusto</a></li>
+						<li><strong>Fuente:</strong> <a href="{{article_source}}">{{article_source}}</a></li>
+						<li><strong>Autor:</strong> <a>{{editor_name}} {{editor_lastname}}</a></li>
 					</ul>
 	
 					<!-- Blog Grid Tags -->
 					<ul class="blog-grid-tags">
 					   <li class="head">Tags</li>
-					   <li><a href="#">Madrid</a></li>
-					   <li><a href="#">Sucesos</a></li>
-					   <li><a href="#">Contaminaci&oacute;n</a></li>
-					   <li><a href="#">Coches</a></li>
+					   {{#article_tags}}
+					       <li><a href="#">{{.}}</a></li>
+					   {{/article_tags}}
 					</ul>
 					<!-- End Blog Grid Tagds -->
 				</article>
