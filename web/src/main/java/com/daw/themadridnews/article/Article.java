@@ -1,5 +1,7 @@
 package com.daw.themadridnews.article;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -87,17 +89,25 @@ public class Article {
 	
 	public String getFormatedContent() {
 		StringBuilder cb = new StringBuilder( content );
+		Pattern p;
+		ArrayList<String> replace = new ArrayList<String>();
 		
-		Pattern p = Pattern.compile("\\*\\*([^*]*)(\\*(?!\\*)[^*]*)*\\*\\*");
-		Matcher m = p.matcher(cb);
-		
-		int start = 0;
-		while (m.find(start)) {
-			String replacement = "<b>"+m.group(1)+"</b>";
-			
-			cb.replace(m.start(), m.end(), replacement);
-			start = m.start() + replacement.length();
-		}
+		p = Pattern.compile("\\*\\*([^*]*)(\\*(?!\\*)[^*]*)*\\*\\*");
+		replace.add("<b>");
+		replace.add("</b>");
+		cb = replaceRegex(cb, p, replace);
+
+		p = Pattern.compile("\\[\\[([^|]+)\\|right\\|([^\\]]+)\\]\\]");
+		replace.add("<img class=\"blog-grid-img-v1\" src=\"");
+		replace.add("\" alt=\"");
+		replace.add("\">");
+		cb = replaceRegex(cb, p, replace);
+
+		p = Pattern.compile("\\[\\[([^|]+)\\|full\\|([^\\]]+)\\]\\]");
+		replace.add("<img class=\"img-responsive margin-bottom-30\" src=\"");
+		replace.add("\" alt=\"");
+		replace.add("\">");
+		cb = replaceRegex(cb, p, replace);
 		
 		return cb.toString();
 	}
@@ -134,5 +144,37 @@ public class Article {
 	public String toString() {
 		return "Article [id=" + id + ", category=" + category + ", title=" + title + ", content=" + content
 				+ ", author=" + author + ", source=" + source + ", tags=" + tags + "]";
+	}
+	
+	
+	private static StringBuilder replaceRegex(StringBuilder cb, Pattern p, ArrayList<String> replace) {
+		Matcher m = p.matcher(cb);
+		
+		int start = 0;
+		while (m.find(start)) {
+			String replacement = replaceRegexAux(m, replace);
+			
+			cb.replace(m.start(), m.end(), replacement);
+			start = m.start() + replacement.length();
+		}
+		
+		return cb;
+	}
+	
+	private static String replaceRegexAux(Matcher m, ArrayList<String> replace) {
+		StringBuilder rb = new StringBuilder();
+		int i = 1;
+		
+		Iterator<String> it = replace.iterator();
+		while(it.hasNext()) {
+			rb.append( it.next() );
+			
+			if(it.hasNext()) {
+				rb.append( m.group(i) );
+				i++;
+			}
+		}
+		
+		return rb.toString();
 	}
 }
