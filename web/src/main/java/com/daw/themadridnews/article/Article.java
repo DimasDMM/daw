@@ -1,6 +1,8 @@
 package com.daw.themadridnews.article;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -45,18 +47,22 @@ public class Article {
 	
 	@ElementCollection(fetch = FetchType.LAZY)
 	@NotNull
-	private List<String> tags;
+	protected List<String> tags;
+	
+	@NotNull
+	protected Date dateInsert;
 	
 	
 	public Article() {}
 	
-	public Article(String category, String title, String content, User author, String source, List<String> tags) {
+	public Article(String category, String title, String content, User author, String source, List<String> tags, Date dateInsert) {
 		this.category = category;
 		this.title = title;
 		this.content = content;
 		this.author = author;
 		this.source = source;
 		this.tags = tags;
+		this.dateInsert = dateInsert;
 	}
 
 	public long getId() {
@@ -88,37 +94,7 @@ public class Article {
 	}
 	
 	public String getFormatedContent() {
-		StringBuilder cb = new StringBuilder( content );
-		Pattern p;
-		ArrayList<String> replace = new ArrayList<String>();
-		
-		// Parafos
-		p = Pattern.compile("(?:([*_`\"]|\\*\\*|\\[)?[a-zA-Z]+)(.*)");
-		replace.add("<p>");
-		replace.add("</p>");
-		cb = replaceRegex(cb, p, replace);
-		
-		// Letra negrita
-		p = Pattern.compile("\\*\\*([^*]*)(\\*(?!\\*)[^*]*)*\\*\\*");
-		replace.add("<b>");
-		replace.add("</b>");
-		cb = replaceRegex(cb, p, replace);
-
-		// Imagenes laterales
-		p = Pattern.compile("\\[\\[([^|]+)\\|right\\|([^\\]]+)\\]\\]");
-		replace.add("<img class=\"blog-grid-img-v1\" src=\"");
-		replace.add("\" alt=\"");
-		replace.add("\">");
-		cb = replaceRegex(cb, p, replace);
-
-		// Imagen ancho completo
-		p = Pattern.compile("\\[\\[([^|]+)\\|full\\|([^\\]]+)\\]\\]");
-		replace.add("<img class=\"img-responsive margin-bottom-30\" src=\"");
-		replace.add("\" alt=\"");
-		replace.add("\">");
-		cb = replaceRegex(cb, p, replace);
-		
-		return cb.toString();
+		return MarkdownConverter.getFormatedHtml(content);
 	}
 
 	public void setContent(String content) {
@@ -148,42 +124,23 @@ public class Article {
 	public void setTags(List<String> tags) {
 		this.tags = tags;
 	}
+	
+	public Date getDateInsert() {
+		return dateInsert;
+	}
+	
+	public String getStrDateInsert() {
+		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm");
+		return ft.format(dateInsert);
+	}
+	
+	public void setDateInsert(Date dateInsert) {
+		this.dateInsert = dateInsert;
+	}
 
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", category=" + category + ", title=" + title + ", content=" + content
 				+ ", author=" + author + ", source=" + source + ", tags=" + tags + "]";
-	}
-	
-	
-	private static StringBuilder replaceRegex(StringBuilder cb, Pattern p, ArrayList<String> replace) {
-		Matcher m = p.matcher(cb);
-		
-		int start = 0;
-		while (m.find(start)) {
-			String replacement = replaceRegexAux(m, replace);
-			
-			cb.replace(m.start(), m.end(), replacement);
-			start = m.start() + replacement.length();
-		}
-		
-		return cb;
-	}
-	
-	private static String replaceRegexAux(Matcher m, ArrayList<String> replace) {
-		StringBuilder rb = new StringBuilder();
-		int i = 1;
-		
-		Iterator<String> it = replace.iterator();
-		while(it.hasNext()) {
-			rb.append( it.next() );
-			
-			if(it.hasNext()) {
-				rb.append( m.group(i) );
-				i++;
-			}
-		}
-		
-		return rb.toString();
 	}
 }
