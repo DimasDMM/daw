@@ -92,17 +92,26 @@ public class Article {
 		Pattern p;
 		ArrayList<String> replace = new ArrayList<String>();
 		
+		// Parafos
+		p = Pattern.compile("(?:([*_`\"]|\\*\\*|\\[)?[a-zA-Z]+)(.*)");
+		replace.add("<p>");
+		replace.add("</p>");
+		cb = replaceRegex(cb, p, replace);
+		
+		// Letra negrita
 		p = Pattern.compile("\\*\\*([^*]*)(\\*(?!\\*)[^*]*)*\\*\\*");
 		replace.add("<b>");
 		replace.add("</b>");
 		cb = replaceRegex(cb, p, replace);
 
+		// Imagenes laterales
 		p = Pattern.compile("\\[\\[([^|]+)\\|right\\|([^\\]]+)\\]\\]");
 		replace.add("<img class=\"blog-grid-img-v1\" src=\"");
 		replace.add("\" alt=\"");
 		replace.add("\">");
 		cb = replaceRegex(cb, p, replace);
 
+		// Imagen ancho completo
 		p = Pattern.compile("\\[\\[([^|]+)\\|full\\|([^\\]]+)\\]\\]");
 		replace.add("<img class=\"img-responsive margin-bottom-30\" src=\"");
 		replace.add("\" alt=\"");
