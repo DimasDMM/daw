@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HolaController {
 	
-	@RequestMapping("/hola")
+	@RequestMapping("/hola_template")
 	public String Hola(Model model) {
 		model.addAttribute("name","Mundo");
 		return "hola_template";
