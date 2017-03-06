@@ -1128,54 +1128,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<form action="user-index.html" method="get" class="margin-bottom-20 sky-form">
-					<header>Alta de nuevo usuario</header>
+					<header>Ajustes iniciales</header>
 
-					<fieldset>
-						<div class="row">
-                            <section class="col col-6">
-								<label class="label">Nombre</label>
-								<label class="input">
-								    <i class="icon-append fa fa-user"></i>
-								    <input type="text" name="name" id="name">
-								</label>
-				            </section>
-                            
-                            <section class="col col-6">
-								<label class="label">Apellidos</label>
-								<label class="input">
-								    <i class="icon-append fa fa-user"></i>
-								    <input type="text" name="surname" id="surname">
-								</label>
-				            </section>
-                            
-                            <section class="col col-12 full-width">
-                                <label class="label">Correo Electr&oacute;nico</label>
-				                <label class="input">
-								    <i class="icon-append fa fa-envelope"></i>
-				                    <input type="email" name="email" id="email">
-								    <b class="tooltip tooltip-bottom-right">Necesario para verificar tu cuenta</b>
-								</label>
-				            </section>
-                            
-                            <section class="col col-6">
-                                <label class="label">Contrase&ntilde;a</label>
-								<label class="input">
-								    <i class="icon-append fa fa-lock"></i>
-								    <input type="password" name="password" id="password">
-								    <b class="tooltip tooltip-bottom-right">No olvides introducir tu contrase&ntilde;a</b>
-								</label>
-				            </section>
-                            
-                            <section class="col col-6">
-                                <label class="label">Confirmar contrase&ntilde;a</label>
-								<label class="input">
-								    <i class="icon-append fa fa-lock"></i>
-								    <input type="password" name="passwordConfirm" id="passwordConfirm">
-								    <b class="tooltip tooltip-bottom-right">No olvides introducir tu contrase&ntilde;a</b>
-								</label>
-				            </section>
-                        </div>
-                        
+					<fieldset>                        
                         <div class="row">
                             <section class="col col-12 full-width">
                                 <label class="label">Imagen principal (Opcional)</label>
@@ -1217,13 +1172,13 @@
                             <hr>
                             <section class="col col-6">
 								<label class="checkbox"><input type="checkbox" name="subscription" id="subscription" checked><i></i>Quiero recibir noticias y ofertas especiales</label>
-								<label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>Estoy de acuerdo con los t&eacute;rminos y condiciones</label>
 				            </section>
 						</div>
 					</fieldset>
 
 				    <footer>
-				        <button type="submit" class="btn-u">Registrar</button>
+				        <button type="submit" class="btn-u" name="Accept">Aceptar</button>
+                        <button type="submit" class="btn-u" name="Cancel">Omitir</button>
 				    </footer>
 
 				</form>
@@ -1410,6 +1365,13 @@
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signup-password">Contrase&ntilde;a</label>
 						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Contrase&ntilde;a">
+						<a href="javascript:void(0);" class="hide-password">Ocultar</a>
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+                    
+                    <p class="fieldset">
+						<label class="image-replace cd-password" for="confirm-signup-password">Contrase&ntilde;a</label>
+						<input class="full-width has-padding has-border" id="confirm-signup-password" type="text"  placeholder="Confirmar Contrase&ntilde;a">
 						<a href="javascript:void(0);" class="hide-password">Ocultar</a>
 						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
