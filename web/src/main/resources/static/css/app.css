@@ -2598,3 +2598,30 @@ img.img-center,
     color: chocolate !important;
     font-size: 108px !important;
 }
+.login-error {
+	font-weight: bold;
+	position: relative;
+	text-transform: uppercase;
+	border-bottom: 3px solid #333;
+    color: #e74c3c;
+    font-size: 35px;
+    margin-bottom: 35px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.error {
+    font-family: 'Roboto Slab', sans-serif;
+    text-shadow: none;
+    font-weight: normal;
+    color: #555;
+    font-size: 22px;
+    margin: 0 0 10px;
+    line-height: 1.4;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.error-img {
+    padding: 10px 10px 10px 10px;
+}
