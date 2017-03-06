@@ -12,9 +12,9 @@ import java.util.List;
 
 @Controller
 public class UserController {
-	
-	/*@Autowired
-	private UserRepository repository;*/
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@RequestMapping("/user-settings")
 	public String getUsers(Model model,@RequestParam(required=false) String user) {		
@@ -23,7 +23,13 @@ public class UserController {
 	}
 
 	@RequestMapping("/user_sign")
-	public String user_sign(Model model) {
+	public String user_sign(Model model, User user){
+                
+                userRepository.save(user);
+                User user1 = userRepository.findByName("Pepe");
+                
+                System.out.println(user.getName());
+                
 		return "user_sign";
 	}
 }

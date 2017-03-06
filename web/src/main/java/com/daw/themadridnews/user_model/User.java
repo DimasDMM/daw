@@ -14,14 +14,14 @@ import javax.validation.constraints.NotNull;
 @Table(name="users")
 public class User {
 	
-	@Id
+    @Id
     private String email;
     @NotNull
     private String name;
     @NotNull
     private String lastName;
-	@NotNull
-	private String passwordHash;
+    @NotNull
+    private String passwordHash;
     
     //@OneToMany(cascade = CascadeType.ALL)
 	//private List<Comment> comments = new ArrayList<>();
@@ -48,6 +48,13 @@ public class User {
 		this.passwordHash = new BCryptPasswordEncoder().encode(pass);
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
+        
+        public User(String name, String lastName, String email, String passwordHash){
+            this.name = name;
+            this.lastName = lastName;
+            this.email = email;
+            this.passwordHash = passwordHash;
+        }
 
 
 
