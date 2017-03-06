@@ -61,18 +61,44 @@
 					<div class="topbar-time">Martes, 24 Enero 2016</div>
 					<div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
 					<ul class="topbar-list topbar-menu">
-						<li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a>
-						</li>
+						<li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a></li>
+						{{^user1}}
 						<li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Entrar</a></strong></li>
 						<li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Registrarse</a></strong></li>
+						{{/user1}}
 					</ul>
 				</div>
-				<!-- Login & Register -->
+				<!-- User options -->
 				<div class="col-sm-4 col-xs-4 clearfix">
 					<i class="fa fa-search search-btn pull-right"></i>
 					<ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
+						{{^user1}}
 						<li class="cd-log_reg home"><a class="cd-signin" href="javascript:void(0);">Entrar</a></li>
 						<li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Registrarse</a></li>
+						{{/user1}}
+						{{#user1}}
+						<li>
+							<a href="javascript:void(0);">Usuario</a>
+							<ul class="topbar-dropdown">
+								<li class="topbar-submenu">
+									<a href="javascript:void(0);">Art&iacute;culos</a>
+									<ul class="topbar-submenu-in">
+										<li><a href="article_list.html">Lista</a></li>
+										<li><a href="article_new.html">Redactar</a></li>
+									</ul>
+								</li>
+								<li class="topbar-submenu">
+									<a href="javascript:void(0);">Publicidad</a>
+									<ul class="topbar-submenu-in">
+										<li><a href="ads_list.html">Lista</a></li>
+										<li><a href="ads_create.html">A&ntilde;adir</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li><a href="user-settings.html">Ajustes</a></li>
+						<li><a href="/logout">Cerrar sesi&oacute;n</a></li>
+						{{/user1}}
 					</ul>
 				</div>
 			</div><!--/end row-->
@@ -1505,18 +1531,18 @@
 			</ul>
 
 			<div id="cd-login"> <!-- log en el formulario -->
-				<form class="cd-form" action="user-index.html" method="get">
+				<form class="cd-form" action="/spain" method="post">
 					<div class="lined-text"><span>Usa tu cuenta del Blog</span><hr></div>
 
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signin-email">Correo electr&oacute;nico</label>
-						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="Correo electr&oacute;nico">
+						<input class="full-width has-padding has-border" id="signin-email" name="email" type="email" placeholder="Correo electr&oacute;nico">
 						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signin-password">Contrase&ntilde;a</label>
-						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Contrase&ntilde;a">
+						<input class="full-width has-padding has-border" id="signin-password" name="password" type="password"  placeholder="Contrase&ntilde;a">
 						<a href="javascript:void(0);" class="hide-password">Ocultar</a>
 						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
@@ -1527,12 +1553,13 @@
 					</p>
 
 					<p class="fieldset">
-                        <input class="full-width" type="submit" value="Entrar">
+						<input class="full-width" type="submit" value="Entrar">
+						<input type="hidden" name="_csrf" value="{{token}}"/>
 					</p>
 				</form>
 
 				<p class="cd-form-bottom-message"><a href="javascript:void(0);">¿Olvidaste tu contrase&ntilde;a?</a></p>
-                <a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
+				<a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
 			</div> <!-- cd-login -->
             
 			<div id="cd-signup"> <!-- Formulario de registro -->

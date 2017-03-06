@@ -5,13 +5,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class WebController {
     
     @RequestMapping(value= {"/","/index"})
-    public String index(){
+    public String index(Model model, HttpServletRequest request){
+        if(request.isUserInRole("USER"))
+            model.addAttribute("user1", request.isUserInRole("USER"));
+        return "index";
+    }
+
+    @RequestMapping(value= {"/logout"})
+    public String logout(HttpServletRequest request) throws ServletException {
+        request.logout();
         return "index";
     }
 
@@ -21,6 +30,13 @@ public class WebController {
         model.addAttribute("editor", request.isUserInRole("EDITOR"));
         model.addAttribute("user1", request.isUserInRole("USER"));
         return "index";
+    }
+
+    @RequestMapping(value= {"/spain"})
+    public String spain(Model model, HttpServletRequest request){
+        if(request.isUserInRole("USER"))
+            model.addAttribute("user1", request.isUserInRole("USER"));
+        return "spain";
     }
     
 }
