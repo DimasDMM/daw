@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.daw.themadridnews.user_model.User;
+import com.daw.themadridnews.user.User;
 
 @Controller
 public class ArticleController {

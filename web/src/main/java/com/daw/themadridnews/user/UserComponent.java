@@ -1,4 +1,4 @@
-package com.daw.themadridnews.user_model;
+package com.daw.themadridnews.user;
 
 import org.springframework.stereotype.Component;
 

@@ -1,17 +1,13 @@
 package com.daw.themadridnews.article;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.daw.themadridnews.user_model.User;
+import com.daw.themadridnews.user.User;
 
 @Entity
 @Table(name="articles")

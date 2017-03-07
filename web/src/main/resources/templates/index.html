@@ -86,6 +86,8 @@
                             <li>
                                 <a href="javascript:void(0);">Usuario</a>
                                 <ul class="topbar-dropdown">
+                                    <li class="topbar-submenu"><a href="user-settings.html">Ajustes</a></li>
+                                    {{#editor}}
                                     <li class="topbar-submenu">
                                         <a href="javascript:void(0);">Art&iacute;culos</a>
                                         <ul class="topbar-submenu-in">
@@ -93,6 +95,8 @@
                                             <li><a href="article_new.html">Redactar</a></li>
                                         </ul>
                                     </li>
+                                    {{/editor}}
+                                    {{#advert}}
                                     <li class="topbar-submenu">
                                         <a href="javascript:void(0);">Publicidad</a>
                                         <ul class="topbar-submenu-in">
@@ -100,9 +104,9 @@
                                             <li><a href="ads_create.html">A&ntilde;adir</a></li>
                                         </ul>
                                     </li>
+                                    {{/advert}}
                                 </ul>
                             </li>
-                            <li><a href="user-settings.html">Ajustes</a></li>
                             <li><a href="/logout">Cerrar sesi&oacute;n</a></li>
                             {{/user1}}
                         </ul>

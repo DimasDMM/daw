@@ -1,5 +1,5 @@
 package com.daw.themadridnews;
-import com.daw.themadridnews.user_model.UserRepositoryAuthenticationProvider;
+import com.daw.themadridnews.user.UserRepositoryAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -34,8 +34,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/terms_and_conditions").permitAll();
         // Private pages (all other pages)
         http.authorizeRequests().antMatchers("/user-settings").hasAnyRole("USER", "EDITOR", "ADMIN");
-        http.authorizeRequests().antMatchers("/ads_create").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/ads_list").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/ads_create").hasAnyRole("ADMIN", "ADVERTISING");
+        http.authorizeRequests().antMatchers("/ads_list").hasAnyRole("ADMIN", "ADVERTISING");
         http.authorizeRequests().antMatchers("/article_list").hasAnyRole( "EDITOR", "ADMIN");
         http.authorizeRequests().antMatchers("/article_new").hasAnyRole( "EDITOR", "ADMIN");
         http.authorizeRequests().antMatchers("/article_new_preview").hasAnyRole( "EDITOR", "ADMIN");
@@ -51,7 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         // Logout
         http.logout().logoutUrl("/logout");
-        http.logout().logoutSuccessUrl("/");
+        http.logout().logoutSuccessUrl("/index");
     }
 
     @Override

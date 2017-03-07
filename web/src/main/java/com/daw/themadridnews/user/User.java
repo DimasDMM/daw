@@ -1,6 +1,6 @@
-package com.daw.themadridnews.user_model;
+package com.daw.themadridnews.user;
 
-//import com.daw.themadridnews.comment_model.Comment;
+//import com.daw.themadridnews.comment.Comment;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -13,8 +13,12 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="users")
 public class User {
-	
-    @Id
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	long id;
+	@Column(unique=true)
+    @NotNull
     private String email;
     @NotNull
     private String name;
@@ -29,7 +33,7 @@ public class User {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 
-
+	@Column(unique=true)
 	private String alias;
     char sex;
     private String city;
@@ -49,20 +53,17 @@ public class User {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
         
-        public User(String name, String lastName, String email, String passwordHash){
-            this.name = name;
-            this.lastName = lastName;
-            this.email = email;
-            this.passwordHash = passwordHash;
-        }
-
-
+	public User(String name, String lastName, String email, String passwordHash){
+		this.name = name;
+		this.lastName = lastName;
+		this.email = email;
+		this.passwordHash = passwordHash;
+	}
 
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", lastName=" + lastName + ", alias=" + alias + "]";
 	}
-
 
 	//getters and setters
 

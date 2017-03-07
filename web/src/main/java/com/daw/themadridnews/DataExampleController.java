@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleRepository;
-import com.daw.themadridnews.user_model.User;
-import com.daw.themadridnews.user_model.UserRepository;
+import com.daw.themadridnews.user.User;
+import com.daw.themadridnews.user.UserRepository;
 
 @Controller
 public class DataExampleController implements CommandLineRunner {
@@ -26,7 +26,7 @@ public class DataExampleController implements CommandLineRunner {
 		// Usuarios
         userRepository.save(new User("pepe", "jiménez", "pepji@mail.com", "pass", "ROLE_USER"));
         userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_EDITOR", "ROLE_USER"));
-        userRepository.save(new User("admin", "1", "admin@mail.com", "adminpass", "ROLE_ADMIN", "ROLE_EDITOR", "ROLE_USER"));
+        userRepository.save(new User("admin", "1", "admin@mail.com", "adminpass", "ROLE_ADMIN", "ROLE_ADVERTISING","ROLE_EDITOR", "ROLE_USER"));
         
         // Articulo
         

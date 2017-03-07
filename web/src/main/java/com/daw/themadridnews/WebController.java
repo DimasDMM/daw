@@ -1,20 +1,29 @@
 package com.daw.themadridnews;
 
+import com.daw.themadridnews.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 @Controller
 public class WebController {
+
+    @Autowired
+    private UserRepository userRepository;
     
     @RequestMapping(value= {"/","/index"})
     public String index(Model model, HttpServletRequest request){
         if(request.isUserInRole("USER"))
             model.addAttribute("user1", request.isUserInRole("USER"));
+        if(request.isUserInRole("EDITOR"))
+            model.addAttribute("editor", request.isUserInRole("EDITOR"));
+        if(request.isUserInRole("ADVERTISING"))
+            model.addAttribute("advert", request.isUserInRole("ADVERTISING"));
         return "index";
     }
 
