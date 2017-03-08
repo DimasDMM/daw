@@ -1,37 +1,57 @@
-package com.daw.themadridnews;
+package com.daw.themadridnews.article;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+
 @Configuration
 @PropertySource("classpath:config.properties")
-public class Config {
+public class ArticleCategoryList {
 
-	@Value("#{'${article.categories.id}'.split(',')}") 
+    @Value("#{'${article.categories.id}'.split(',')}") 
     private List<String> articleCategoriesId;
 
     @Value("#{'${article.categories.name}'.split(',')}") 
     private List<String> articleCategoriesName;
 
-    
     private List<ArticleCategoryItem> articleCategories;
 
     
-    public List<ArticleCategoryItem> getArticleCategories() {
+    public String getCategoryStr(String id) {
     	// Inicializacion de la lista de categorias si es null
     	if(articleCategories == null)
-    		initArticleCategories();
+    		init();
+    	
+		Iterator<ArticleCategoryItem> it = articleCategories.iterator();
+		
+		while(it.hasNext()) {
+			ArticleCategoryItem item = it.next();
+
+			if(item.id.equals(id))
+				return item.name;
+		}
+		
+		return "Desconocido";
+    }
+    
+    public List<ArticleCategoryItem> getCategories() {
+    	// Inicializacion de la lista de categorias si es null
+    	if(articleCategories == null)
+    		init();
     	
     	return articleCategories;
     }
     
     // Devuelve lista de categorias con una marcada como activa
-    public List<ArticleCategoryItem> getArticleCategories(String idActive) {
+    public List<ArticleCategoryItem> getCategories(String idActive) {
+    	// Inicializacion de la lista de categorias si es null
+    	if(articleCategories == null)
+    		init();
+    	
     	List<ArticleCategoryItem> articleCategories = new ArrayList<ArticleCategoryItem>();
 		Iterator<String> it_id = articleCategoriesId.iterator();
 		Iterator<String> it_name = articleCategoriesName.iterator();
@@ -50,7 +70,7 @@ public class Config {
 		return articleCategories;
     }
     
-    private void initArticleCategories() {
+    private void init() {
     	articleCategories = new ArrayList<ArticleCategoryItem>();
 		Iterator<String> it_id = articleCategoriesId.iterator();
 		Iterator<String> it_name = articleCategoriesName.iterator();
@@ -62,11 +82,5 @@ public class Config {
 			
 			articleCategories.add( item );
 		}
-    }
-    
-    public class ArticleCategoryItem {
-    	public String id;
-    	public String name;
-    	public boolean isActive = false; // Atributo para usos varios: marcar un input select, pagina que se esta visualizando, etc
     }
 }
