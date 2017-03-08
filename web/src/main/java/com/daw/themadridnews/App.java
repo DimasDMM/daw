@@ -3,6 +3,7 @@ package com.daw.themadridnews;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.context.annotation.Bean;
+import com.daw.themadridnews.article.*;
 
 @SpringBootApplication
 public class App {
@@ -12,7 +13,7 @@ public class App {
 	}
 	
 	@Bean
-	public Config configProperties() {
-	    return new Config();
+	public ArticleCategoryList ArticleCategoryList() {
+		return new ArticleCategoryList();
 	}
 }

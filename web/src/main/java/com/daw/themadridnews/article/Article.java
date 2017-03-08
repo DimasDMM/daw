@@ -32,8 +32,10 @@ public class Article {
 	
 	@NotNull
 	protected String category;
+	
 	@NotNull
 	protected String title;
+	
 	@NotNull
 	@Column(columnDefinition="TEXT")
 	protected String content;
