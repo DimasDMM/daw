@@ -1139,8 +1139,8 @@
 
 					<h3>Art&iacute;culos</h3>
 					<ul class="list-group sidebar-nav-v1">
-						<li class="list-group-item"><a href="/article_list.html">Publicados</a></li>
-						<li class="list-group-item active"><a href="//articulo/nuevo">Redactar</a></li>
+						<li class="list-group-item"><a href="/editor/articulo/listado">Publicados</a></li>
+						<li class="list-group-item active"><a href="/editor/articulo/nuevo">Redactar</a></li>
 					</ul>
 
 					<h3>Anuncios</h3>
@@ -1151,7 +1151,6 @@
 
 					<h3>Usuario</h3>
 					<ul class="list-group sidebar-nav-v1">
-						<li class="list-group-item"><a href="/user-profile.html">Ir a mi perfil</a></li>
 						<li class="list-group-item"><a href="/user-settings.html">Preferencias</a></li>
 						<li class="list-group-item"><a href="/index.html">Cerrar sesi&oacute;n</a></li>
 					</ul>
@@ -1160,19 +1159,95 @@
 			</aside>
 
 			<section class="col-md-9">
-				<h1>Redacci&oacute;n de art&iacute;culos</h1>
+				
+				{{#is_preview}}
 
-				<form action="/article/new/preview" method="post" class="margin-bottom-20 sky-form no-border">
+				<div class="alert alert-warning fade in text-center">
+					<h4>Previsualizaci&oacute;n</h4>
+					<p>
+						En la parte inferior de la noticia est&aacute; el bot&oacute;n
+						{{#article_visible}}"Ocultar"{{/article_visible}}
+						{{^article_visible}}"Publicar"{{/article_visible}}
+						y el formulario para modificar los detalles de la noticia.
+					</p>
+					<p>
+						<a class="btn btn-danger">Eliminar</a>
+					</p>
+				</div>
+
+				<article>
+					<!-- Article Header -->
+					<div class="blog-grid margin-bottom-30">
+						<h1 class="blog-grid-title-lg">{{article_title}}</h1>
+						<div class="overflow-h margin-bottom-10">
+							<ul class="blog-grid-info pull-left">
+								<li>{{editor_name}} {{editor_lastname}}</li>
+								<li>{{article_date_insert}}</li>
+							</ul>
+							<div class="pull-right">
+								<div class="addthis_sharing_toolbox"></div>
+							</div>
+						</div>
+						<img class="img-responsive" src="/articles/{{article_id}}/main.jpg" alt="Imagen portada del articulo">
+					</div>
+					<!-- End Article Header -->
+					
+					{{{article_content}}}
+	
+					<ul class="source-list">
+						<li><strong>Fuente:</strong> <a href="{{article_source}}">{{article_source}}</a></li>
+						<li><strong>Autor:</strong> <a>{{editor_name}} {{editor_lastname}}</a></li>
+					</ul>
+	
+					<!-- Blog Grid Tags -->
+					<ul class="blog-grid-tags">
+					   <li class="head">Tags</li>
+					   {{#article_tags}}
+					       <li><a href="#">{{.}}</a></li>
+					   {{/article_tags}}
+					</ul>
+					<!-- End Blog Grid Tagds -->
+				</article>
+
+				<div class="alert alert-warning fade in text-center">
+					<h4>Previsualizaci&oacute;n</h4>
+					{{#article_visible}}
+					<p>Si quieres ocultar temporalmente la noticia haz click en el bot&oacute;n "Ocultar"</p>
+					<p>
+						<a class="btn btn-warning" href="/editor/articulo/{{article_id}}/ocultar">Ocultar</a>
+					</p>
+					{{/article_visible}}
+					
+					{{^article_visible}}
+					<p>Cuando la noticia este lista haz click en el bot&oacute;n "Publicar"</p>
+					<p>
+						<a class="btn btn-primary" href="/editor/articulo/{{article_id}}/publicar">Publicar</a>
+					</p>
+					{{/article_visible}}
+				</div>
+				{{/is_preview}}
+
+				{{#is_modification}}
+				<form action="/editor/articulo/{{id}}" method="post" class="margin-bottom-20 sky-form no-border">
+				{{/is_modification}}
+				{{^is_modification}}
+				<form action="/editor/articulo/nuevo" method="post" class="margin-bottom-20 sky-form no-border">
+				{{/is_modification}}
+				
 					<input type="hidden" name="_csrf" value="{{token}}" />
+					
+					{{#is_preview}}
+					<input type="hidden" name="id" value="{{article_id}}" />
+					{{/is_preview}}
 				
 					<section class="row">
 						<div class="col col-12 full-width">
 							<label for="inp_title">Categoría</label>
 							<label class="select">
-								<select>
-									{{#categories}}
-										<option value="{{id}}">{{name}}</option>
-									{{/categories}}
+								<select name="category">
+									{{#article_categories}}
+										<option value="{{id}}" {{#isActive}}selected="selected"{{/isActive}}>{{name}}</option>
+									{{/article_categories}}
 								</select>
 								<i></i>
 							</label>
@@ -1180,12 +1255,12 @@
 						
 						<div class="col col-12 full-width">
 							<label for="inp_title">Título</label>
-							<input type="text" name="title" id="inp_title" class="form-control">
+							<input type="text" name="title" id="inp_title" class="form-control" value="{{article_title}}">
 						</div>
 
 						<div class="col col-12 full-width">
 							<label for="inp_article">Art&iacute;culo</label>
-							<textarea class="form-control" name="article" id="inp_article" rows="30">{{article_content_example}}</textarea>
+							<textarea class="form-control" name="content" id="inp_article" rows="30">{{article_content_raw}}</textarea>
 						</div>
 
 						<div class="col col-12 full-width">
@@ -1199,18 +1274,23 @@
 
 						<div class="col col-12 full-width">
 							<label for="inp_source">Fuente</label>
-							<input type="text" name="source" id="inp_source" placeholder="http://..." class="form-control">
+							<input type="text" name="source" id="inp_source" placeholder="http://..." value="{{article_source}}" class="form-control">
 						</div>
 
 						<div class="col col-12 full-width">
 							<label for="inp_source">Etiquetas</label>
-							<input type="text" name="tags" id="inp_source" placeholder="Ej.: Sucesos,Accidente,..." class="form-control">
+							<input type="text" name="tags" id="inp_source" placeholder="Ej.: Sucesos,Accidente,..." value="{{article_tags_str}}" class="form-control">
 							<small>Las etiquetas deberán ir separadas por comas</small>
 						</div>
 					</section>
 
 					<footer>
+						{{#is_modification}}
+						<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-floppy-o"></i> Guardar y previsualizar</button>
+						{{/is_modification}}
+						{{^is_modification}}
 						<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-eye"></i> Previsualizar</button>
+						{{/is_modification}}
 					</footer>
 
 				</form>
@@ -1236,7 +1316,7 @@
 					<p>(+34) 91 356 55 22</p>
 					<hr>
 					<span>Correo electr&oacute;nico:</span>
-					<a href="mailto:themadridnews@tmn.es">themadridnews@tmn.es</a>
+					<a href="/mailto:themadridnews@tmn.es">themadridnews@tmn.es</a>
 				</div>
 
 				<div class="col-md-3 col-sm-6 md-margin-bottom-50">
@@ -1348,7 +1428,6 @@
 <script src="/plugins/masonry/imagesloaded.pkgd.min.js"></script>
 <script src="/plugins/modernizr.js"></script>
 <script src="/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
-<script src="/js/simplemde.js"></script>
 <!-- JS Page Level -->
 <script src="/js/app.js"></script>
 <script>

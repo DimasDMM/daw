@@ -1137,8 +1137,8 @@
 
 					<h3>Art&iacute;culos</h3>
 					<ul class="list-group sidebar-nav-v1">
-						<li class="list-group-item active"><a href="/article_list.html">Publicados</a></li>
-						<li class="list-group-item"><a href="/article_new.html">Redactar</a></li>
+						<li class="list-group-item active"><a href="/editor/articulo/listado">Publicados</a></li>
+						<li class="list-group-item"><a href="/editor/articulo/nuevo">Redactar</a></li>
 					</ul>
 
 					<h3>Anuncios</h3>
@@ -1180,7 +1180,12 @@
 							<td>{{category}}</td>
 							<td>{{views}}</td>
 							<td>{{dateInsert}}</td>
-							<td><span class="label label-success">Activo</span></td>
+							{{#visible}}
+								<td><span class="label label-success">Activo</span></td>
+							{{/visible}}
+							{{^visible}}
+								<td><span class="label label-danger">Oculto</span></td>
+							{{/visible}}
 							<td><a href="/editor/articulo/{{id}}" class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></a></td>
 						</tr>
 						{{/article_list}}
@@ -1189,14 +1194,6 @@
 
 				<div class="text-right">
 					<ul class="pagination">
-						<!--
-						<li><a href="/#">&laquo;</a></li>
-						<li><a href="/#">1</a></li>
-						<li class="active"><a href="/#">2</a></li>
-						<li><a href="/#">3</a></li>
-						<li><a href="/#">4</a></li>
-						<li><a href="/#">&raquo;</a></li>
-						-->
 						{{#page_list}}
 							<li{{#isActive}} class="active"{{/isActive}}><a href="{{url}}">{{{text}}}</a></li>
 						{{/page_list}}

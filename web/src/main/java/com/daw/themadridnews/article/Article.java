@@ -2,11 +2,10 @@ package com.daw.themadridnews.article;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
 import com.daw.themadridnews.user.User;
 
 @Entity
@@ -50,7 +49,7 @@ public class Article {
 	protected List<String> tags;
 	
 	@NotNull
-	protected int status;
+	protected boolean visible;
 	
 	@NotNull
 	protected int views;
@@ -61,16 +60,16 @@ public class Article {
 	
 	public Article() {}
 	
-	public Article(String category, String title, String content, User author, String source, List<String> tags, int status, Date dateInsert) {
+	public Article(String category, String title, String content, User author, String source, List<String> tags, boolean visible) {
 		this.category = category;
 		this.title = title;
 		this.content = content;
 		this.author = author;
 		this.source = source;
 		this.tags = tags;
-		this.status = status;
+		this.visible = visible;
 		this.views = 0;
-		this.dateInsert = dateInsert;
+		this.dateInsert = new Date();
 	}
 
 	public long getId() {
@@ -124,6 +123,20 @@ public class Article {
 	public void setSource(String source) {
 		this.source = source;
 	}
+	
+	public String getTagsStr() {
+		StringBuilder sb = new StringBuilder();
+		Iterator<String> it = tags.iterator();
+		
+		while(it.hasNext()) {
+			sb.append( it.next() );
+			
+			if(it.hasNext())
+				sb.append(",");
+		}
+		
+		return sb.toString();
+	}
 
 	public List<String> getTags() {
 		return tags;
@@ -133,12 +146,12 @@ public class Article {
 		this.tags = tags;
 	}
 	
-	public int getStatus() {
-		return status;
+	public boolean isVisible() {
+		return visible;
 	}
 	
-	public void setStatus(int status) {
-		this.status = status;
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 	
 	public int getViews() {
