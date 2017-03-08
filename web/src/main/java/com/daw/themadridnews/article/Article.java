@@ -21,6 +21,10 @@ public class Article {
 	 * - sport
 	 * - technology
 	 * - culture
+	 * 
+	 * Lista de estados (status):
+	 * - 0: oculto
+	 * - 1: activo/visible
 	 */
 	
 	@Id
@@ -46,18 +50,26 @@ public class Article {
 	protected List<String> tags;
 	
 	@NotNull
+	protected int status;
+	
+	@NotNull
+	protected int views;
+	
+	@NotNull
 	protected Date dateInsert;
 	
 	
 	public Article() {}
 	
-	public Article(String category, String title, String content, User author, String source, List<String> tags, Date dateInsert) {
+	public Article(String category, String title, String content, User author, String source, List<String> tags, int status, Date dateInsert) {
 		this.category = category;
 		this.title = title;
 		this.content = content;
 		this.author = author;
 		this.source = source;
 		this.tags = tags;
+		this.status = status;
+		this.views = 0;
 		this.dateInsert = dateInsert;
 	}
 
@@ -119,6 +131,22 @@ public class Article {
 
 	public void setTags(List<String> tags) {
 		this.tags = tags;
+	}
+	
+	public int getStatus() {
+		return status;
+	}
+	
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
+	public int getViews() {
+		return views;
+	}
+	
+	public void addView() {
+		this.views += 1;
 	}
 	
 	public Date getDateInsert() {

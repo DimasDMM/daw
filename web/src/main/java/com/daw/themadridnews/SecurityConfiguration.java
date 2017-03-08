@@ -39,12 +39,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/ads_create.html").hasAnyRole("ADMIN", "ADVERTISING");
         http.authorizeRequests().antMatchers("/ads_list").hasAnyRole("ADMIN", "ADVERTISING");
         http.authorizeRequests().antMatchers("/ads_list.html").hasAnyRole("ADMIN", "ADVERTISING");
-        http.authorizeRequests().antMatchers("/article_list").hasAnyRole( "EDITOR", "ADMIN");
-        http.authorizeRequests().antMatchers("/article_list.html").hasAnyRole( "EDITOR", "ADMIN");
-        http.authorizeRequests().antMatchers("/article_new").hasAnyRole( "EDITOR", "ADMIN");
-        http.authorizeRequests().antMatchers("/article_new.html").hasAnyRole( "EDITOR", "ADMIN");
-        http.authorizeRequests().antMatchers("/article_new_preview").hasAnyRole( "EDITOR", "ADMIN");
-        http.authorizeRequests().antMatchers("/article_new_preview.html").hasAnyRole( "EDITOR", "ADMIN");
+        
+        /*
+        http.authorizeRequests().antMatchers("/editor/articulo/nuevo").hasAnyRole( "EDITOR", "ADMIN");
+        http.authorizeRequests().antMatchers("/editor/articulo/listado").hasAnyRole( "EDITOR", "ADMIN");
+        http.authorizeRequests().antMatchers("/editor/articulo/listado/{page}").hasAnyRole( "EDITOR", "ADMIN");
+        http.authorizeRequests().antMatchers("/editor/articulo/{id}").hasAnyRole( "EDITOR", "ADMIN");
+        */
 
 
         // Login form
