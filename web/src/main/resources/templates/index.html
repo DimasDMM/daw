@@ -84,7 +84,7 @@
                             {{/user1}}
                             {{#user1}}
                             <li>
-                                <a href="javascript:void(0);">Usuario</a>
+                                <a href="javascript:void(0);">{{user1}}</a>
                                 <ul class="topbar-dropdown">
                                     <li class="topbar-submenu"><a href="user-settings.html">Ajustes</a></li>
                                     {{#editor}}
@@ -2641,6 +2641,7 @@
 
 					<p class="fieldset">
                         <input class="full-width has-padding" type="submit" value="Crear cuenta">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
 					</p>
 				</form>
 
@@ -2659,6 +2660,7 @@
 
 					<p class="fieldset">
 						<input class="full-width has-padding" type="submit" value="Recibir mensaje">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
 					</p>
 				</form>
 
