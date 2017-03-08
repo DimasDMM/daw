@@ -1,9 +1,6 @@
 package com.daw.themadridnews.editor;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,9 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.daw.themadridnews.Config;
 import com.daw.themadridnews.article.Article;
+import com.daw.themadridnews.article.ArticleCategoryList;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.requests.FormModifyArticle;
 import com.daw.themadridnews.article.requests.FormNewArticle;
@@ -31,9 +27,9 @@ public class EditorController {
 
 	@Autowired
 	protected UserRepository userRepository;
-	
+
 	@Autowired
-	protected Config configProperties;
+	protected ArticleCategoryList articleCategoryList;
 	
 	protected static final int nItemsList = 5; // Numero de articulos por pagina
 
@@ -46,7 +42,7 @@ public class EditorController {
 		model.addAttribute("article_id", 0);
 		model.addAttribute("article_title", "");
 		model.addAttribute("article_content_raw", article_content);
-		model.addAttribute("article_categories", configProperties.getArticleCategories());
+		model.addAttribute("article_categories", articleCategoryList.getCategories());
 		model.addAttribute("article_tags_str", "");
 		model.addAttribute("article_source", "");
 
@@ -105,7 +101,7 @@ public class EditorController {
 		model.addAttribute("article_title", article.getTitle());
 		model.addAttribute("article_content", article.getFormatedContent());
 		model.addAttribute("article_content_raw", article.getContent());
-		model.addAttribute("article_categories", configProperties.getArticleCategories( article.getCategory() ));
+		model.addAttribute("article_categories", articleCategoryList.getCategories( article.getCategory() ));
 		model.addAttribute("article_tags", article.getTags());
 		model.addAttribute("article_tags_str", article.getTagsStr());
 		model.addAttribute("article_source", article.getSource());
@@ -114,7 +110,7 @@ public class EditorController {
 
 		model.addAttribute("editor_name", article.getAuthor().getName());
 		model.addAttribute("editor_lastname", article.getAuthor().getLastName());
-
+		
 		model.addAttribute("is_modification", isModification);
 		model.addAttribute("is_preview", true);
 		

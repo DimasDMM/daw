@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
 import com.daw.themadridnews.article.Article;
+import com.daw.themadridnews.article.ArticleCategoryList;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserRepository;
