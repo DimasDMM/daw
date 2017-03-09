@@ -72,11 +72,10 @@ public class EditorController {
 	
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.GET)
 	public String showFormModify(Model model, @PathVariable long id) {
-		Message message;
 		Article article = articleRepository.findOne(id);
 		
 		if(article == null) {
-			message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
+			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
 			return showList(model);
 		}
@@ -84,11 +83,42 @@ public class EditorController {
 		return showPreviewAux(model, article, true);
 	}
 	
+	@RequestMapping(value="/editor/articulo/{id}/publicar", method=RequestMethod.GET)
+	public String publishArticle(Model model, @PathVariable long id) {
+		Article article = articleRepository.findOne(id);
+		
+		if(article == null) {
+			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
+			model.addAttribute("message", message);
+			return showList(model);
+		}
+		
+		article.setVisible(true);
+		articleRepository.save(article);
+		
+		return "redirect:/editor/articulo/lista/publicado";
+	}
+	
+	@RequestMapping(value="/editor/articulo/{id}/ocultar", method=RequestMethod.GET)
+	public String hideArticle(Model model, @PathVariable long id) {
+		Article article = articleRepository.findOne(id);
+		
+		if(article == null) {
+			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
+			model.addAttribute("message", message);
+			return showList(model);
+		}
+		
+		article.setVisible(false);
+		articleRepository.save(article);
+		
+		return "redirect:/editor/articulo/lista/ocultado";
+	}
+	
 	@RequestMapping(value="/editor/articulo/{id}/eliminar", method=RequestMethod.GET)
 	public String deleteArticle(Model model, @PathVariable long id) {
 		articleRepository.delete(id);
-		
-		return "redirect:/editor/articulo/listado";
+		return "redirect:/editor/articulo/lista/eliminado";
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.POST)
@@ -121,12 +151,33 @@ public class EditorController {
 		return showPreviewAux(model, article, true);
 	}
 	
-	@RequestMapping(value="/editor/articulo/listado", method=RequestMethod.GET)
+	@RequestMapping(value="/editor/articulo/lista", method=RequestMethod.GET)
 	public String showList(Model model) {
 		return showListAux(model, 0);
 	}
 	
-	@RequestMapping(value="/editor/articulo/listado/{nPage}", method=RequestMethod.GET)
+	@RequestMapping(value="/editor/articulo/lista/publicado", method=RequestMethod.GET)
+	public String showListPublished(Model model) {
+		Message message = new Message(0, "El articulo ha sido publicado correctamente", "success");
+		model.addAttribute("message", message);
+		return showListAux(model, 0);
+	}
+	
+	@RequestMapping(value="/editor/articulo/lista/ocultado", method=RequestMethod.GET)
+	public String showListHidden(Model model) {
+		Message message = new Message(0, "El articulo ha sido ocultado correctamente", "success");
+		model.addAttribute("message", message);
+		return showListAux(model, 0);
+	}
+	
+	@RequestMapping(value="/editor/articulo/lista/eliminado", method=RequestMethod.GET)
+	public String showListDeleted(Model model) {
+		Message message = new Message(0, "El articulo ha sido eliminado correctamente", "success");
+		model.addAttribute("message", message);
+		return showListAux(model, 0);
+	}
+	
+	@RequestMapping(value="/editor/articulo/lista/{nPage}", method=RequestMethod.GET)
 	public String showList(Model model, @PathVariable int nPage) {
 		return showListAux(model, nPage-1);
 	}
@@ -163,7 +214,7 @@ public class EditorController {
 		model.addAttribute("article_list", articleList);
 		
 		ModPagination modPagination = new ModPagination();
-		List<ModPageItem> pageList = modPagination.getModPageList(page, "/editor/articulo/listado/");
+		List<ModPageItem> pageList = modPagination.getModPageList(page, "/editor/articulo/lista/");
 		model.addAttribute("page_list", pageList);
 		
 		return "article_list";
