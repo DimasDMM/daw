@@ -1159,9 +1159,16 @@
 			</aside>
 
 			<section class="col-md-9">
-				
-				{{#is_preview}}
+			
+				{{#message}}
+				<div class="alert alert-{{message.type}} fade in text-center">
+					<p>
+						{{message.message}}
+					</p>
+				</div>
+				{{/message}}
 
+				{{#is_preview}}
 				<div class="alert alert-warning fade in text-center">
 					<h4>Previsualizaci&oacute;n</h4>
 					<p>
@@ -1171,7 +1178,7 @@
 						y el formulario para modificar los detalles de la noticia.
 					</p>
 					<p>
-						<a class="btn btn-danger">Eliminar</a>
+						<a class="btn btn-danger btn-delete">Eliminar</a>
 					</p>
 				</div>
 
@@ -1235,10 +1242,6 @@
 				{{/is_modification}}
 				
 					<input type="hidden" name="_csrf" value="{{token}}" />
-					
-					{{#is_preview}}
-					<input type="hidden" name="id" value="{{article_id}}" />
-					{{/is_preview}}
 				
 					<section class="row">
 						<div class="col col-12 full-width">
@@ -1255,7 +1258,7 @@
 						
 						<div class="col col-12 full-width">
 							<label for="inp_title">Título</label>
-							<input type="text" name="title" id="inp_title" class="form-control" value="{{article_title}}">
+							<input type="text" name="titlea" id="inp_title" class="form-control" value="{{article_title}}">
 						</div>
 
 						<div class="col col-12 full-width">
@@ -1415,6 +1418,25 @@
 <!--=== End Footer v8 ===-->
 </div><!--/wrapper-->
 
+<!-- ModalDeleteArticle -->
+<div class="modal fade" id="modalDeleteArticle" tabindex="-1" role="dialog" aria-labelledby="modalDeleteArticleLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				<h4 class="modal-title">Confirmaci&oacute;n</h4>
+			</div>
+			<div class="modal-body">
+				<p><b>Importante: </b> Esta acci&oacute;n es irreversible, la noticia ser&aacute; eliminada sin posibilidad de ser recuperada.</p>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-danger" href="/editor/articulo/{{id}}/eliminar"><i class="fa fa-trash"></i> Eliminar</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /ModalDeleteArticle -->
+
 <!-- JS Global Compulsory -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <script src="/plugins/jquery/jquery-migrate.min.js"></script>
@@ -1424,8 +1446,7 @@
 <script src="/plugins/smoothScroll.js"></script>
 <!-- JS Customization -->
 <script src="/js/custom.js"></script>
-<script src="/plugins/masonry/masonry.pkgd.min.js"></script>
-<script src="/plugins/masonry/imagesloaded.pkgd.min.js"></script>
+<script src="/js/page.editor.js"></script>
 <script src="/plugins/modernizr.js"></script>
 <script src="/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
 <!-- JS Page Level -->

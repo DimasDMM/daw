@@ -57,16 +57,5 @@ public class DataExampleController implements CommandLineRunner {
 
         articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
         articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
-        articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
-        articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
-        articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
-        articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
-        articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
-        articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
-        articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
-        articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
-        articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
-        articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
-        articleRepository.save(new Article(article_category, "El alicatador sigue fugado", article_content, editor, "http://www.mifuente.com", tags, false));
 	}
 }

@@ -2,6 +2,7 @@ package com.daw.themadridnews.editor;
 
 import java.util.Iterator;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleCategory;
 import com.daw.themadridnews.article.ArticleCategoryRepository;
@@ -18,6 +20,7 @@ import com.daw.themadridnews.article.requests.FormModifyArticle;
 import com.daw.themadridnews.article.requests.FormNewArticle;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserRepository;
+import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.utils.ModPagination;
 import com.daw.themadridnews.utils.ModPagination.ModPageItem;
 
@@ -59,7 +62,7 @@ public class EditorController {
 
 		User editor = userRepository.findByName("Jorge"); // < Obtener usuario actual
 		
-		ArticleCategory category = articleCategoryRepository.findOne(r.getCategoryId());
+		ArticleCategory category = articleCategoryRepository.findOne(r.getCategory());
 		
 		Article article = new Article( category, r.getTitle(), r.getContent(), editor, r.getSource(), r.getTags(), false );
 		article = articleRepository.save(article);
@@ -69,15 +72,43 @@ public class EditorController {
 	
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.GET)
 	public String showFormModify(Model model, @PathVariable long id) {
+		Message message;
 		Article article = articleRepository.findOne(id);
+		
+		if(article == null) {
+			message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
+			model.addAttribute("message", message);
+			return showList(model);
+		}
+		
 		return showPreviewAux(model, article, true);
+	}
+	
+	@RequestMapping(value="/editor/articulo/{id}/eliminar", method=RequestMethod.GET)
+	public String deleteArticle(Model model, @PathVariable long id) {
+		articleRepository.delete(id);
+		
+		return "redirect:/editor/articulo/listado";
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.POST)
 	public String showFormModifyPreview(Model model, FormModifyArticle r, @PathVariable long id) {
-		
+		Message message;
 		Article article = articleRepository.findOne(id);
-		ArticleCategory category = articleCategoryRepository.findOne(r.getCategoryId());
+		
+		if(article == null) {
+			message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
+			model.addAttribute("message", message);
+			return showList(model);
+		}
+		
+		message = r.validation();
+		if(message.getCode() == 0) {
+			model.addAttribute("message", message);
+			return showPreviewAux(model, article, true);
+		}
+		
+		ArticleCategory category = articleCategoryRepository.findOne(r.getCategory());
 		
 		article.setCategory(category);
 		article.setTitle(r.getTitle());

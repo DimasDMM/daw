@@ -1159,6 +1159,14 @@
 			<section class="col-md-9">
 
 				<h1 class="blog-grid-title-lg">Listado de art&iacute;culos</h1>
+			
+				{{#message}}
+				<div class="alert alert-{{type}} fade in text-center">
+					<p>
+						{{{message}}}
+					</p>
+				</div>
+				{{/message}}
 
 				<table class="table">
 					<thead>
@@ -1335,6 +1343,7 @@
 <script src="/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
 <!-- JS Page Level -->
 <script src="/js/app.js"></script>
+<script src="/js/page.editor.js"></script>
 <script>
 	jQuery(document).ready(function () {
 		App.init();
