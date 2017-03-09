@@ -1,13 +1,11 @@
 package com.daw.themadridnews.article.requests;
 
-import java.util.ArrayList;
 import java.util.List;
 import com.daw.themadridnews.extensions.RequestBase;
-import com.daw.themadridnews.user.User;
 
 public class FormNewArticle extends RequestBase {
 	
-	protected String category;
+	protected String categoryId;
 	protected String title;
 	protected String content;
 	protected String source;
@@ -16,21 +14,21 @@ public class FormNewArticle extends RequestBase {
 	
 	public FormNewArticle() {}
 	
-	public FormNewArticle(String category, String title, String content, String source, List<String> tags) {
+	public FormNewArticle(String categoryId, String title, String content, String source, List<String> tags) {
 		super();
-		this.category = category;
+		this.categoryId = categoryId;
 		this.title = title;
 		this.content = content;
 		this.source = source;
 		this.tags = tags;
 	}
 
-	public String getCategory() {
-		return category;
+	public String getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getTitle() {
@@ -67,7 +65,7 @@ public class FormNewArticle extends RequestBase {
 
 	@Override
 	public String toString() {
-		return "FormNewArticle [category=" + category + ", title=" + title + ", content=" + content
+		return "FormNewArticle [category=" + categoryId + ", title=" + title + ", content=" + content
 				+ ", source=" + source + ", tags=" + tags + "]";
 	}
 }

@@ -1,17 +1,10 @@
 package com.daw.themadridnews.article.requests;
 
 import java.util.List;
-import com.daw.themadridnews.extensions.RequestBase;
-import com.daw.themadridnews.user.User;
 
 public class FormModifyArticle extends FormNewArticle {
 	
 	protected long id;
-	protected String category;
-	protected String title;
-	protected String content;
-	protected String source;
-	protected List<String> tags;
 	
 	
 	public FormModifyArticle() {}
@@ -31,7 +24,7 @@ public class FormModifyArticle extends FormNewArticle {
 
 	@Override
 	public String toString() {
-		return "FormNewArticle [id=" + id + ", category=" + category + ", title=" + title + ", content=" + content
+		return "FormNewArticle [id=" + id + ", category=" + categoryId + ", title=" + title + ", content=" + content
 				+ ", source=" + source + ", tags=" + tags + "]";
 	}
 }

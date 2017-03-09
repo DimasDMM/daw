@@ -31,7 +31,8 @@ public class Article {
 	protected long id;
 	
 	@NotNull
-	protected String category;
+	@OneToOne
+	protected ArticleCategory category;
 	
 	@NotNull
 	protected String title;
@@ -62,7 +63,7 @@ public class Article {
 	
 	public Article() {}
 	
-	public Article(String category, String title, String content, User author, String source, List<String> tags, boolean visible) {
+	public Article(ArticleCategory category, String title, String content, User author, String source, List<String> tags, boolean visible) {
 		this.category = category;
 		this.title = title;
 		this.content = content;
@@ -82,11 +83,11 @@ public class Article {
 		this.id = id;
 	}
 
-	public String getCategory() {
+	public ArticleCategory getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(ArticleCategory category) {
 		this.category = category;
 	}
 
