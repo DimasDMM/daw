@@ -24,7 +24,7 @@ public class WebController {
 
     @RequestMapping(value= {"/","/index"})
     public String index(Model model, HttpServletRequest request){
-        checkRolesAndName(model, request);
+        userComponent.checkRolesAndName(model, request);
         return "index";
     }
 
@@ -36,28 +36,14 @@ public class WebController {
 
     @RequestMapping(value="/login")
     public String login(Model model, HttpServletRequest request){
-        checkRolesAndName(model, request);
+        userComponent.checkRolesAndName(model, request);
         return "index";
     }
 
     @RequestMapping(value= {"/spain"})
     public String spain(Model model, HttpServletRequest request){
-        checkRolesAndName(model, request);
+        userComponent.checkRolesAndName(model, request);
         return "spain";
-    }
-
-    //metodo auxiliar para cambiar la vista según los roles para cada pagina y mostrar el alias/nombre de usuario
-    private void checkRolesAndName(Model model, HttpServletRequest request) {
-        model.addAttribute("user1", request.isUserInRole("USER"));
-        model.addAttribute("editor", request.isUserInRole("EDITOR"));
-        model.addAttribute("advert", request.isUserInRole("ADVERTISING"));
-        User user = userComponent.getLoggedUser();
-        if(user!=null) {
-            if(user.getAlias()!=null)
-                model.addAttribute("user1", user.getAlias());
-            else
-                model.addAttribute("user1", user.getName());
-        }
     }
     
 }

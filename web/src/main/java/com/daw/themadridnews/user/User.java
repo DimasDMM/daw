@@ -1,6 +1,5 @@
 package com.daw.themadridnews.user;
 
-//import com.daw.themadridnews.comment.Comment;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

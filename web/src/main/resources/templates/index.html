@@ -68,23 +68,23 @@
                         <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
                         <ul class="topbar-list topbar-menu">
                             <li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a></li>
-                            {{^user1}}
+                            {{^user_logged}}
                             <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Entrar</a></strong></li>
                             <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Registrarse</a></strong></li>
-                            {{/user1}}
+                            {{/user_logged}}
                         </ul>
                     </div>
                     <!-- User options -->
                     <div class="col-sm-4 col-xs-4 clearfix">
                         <i class="fa fa-search search-btn pull-right"></i>
                         <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
-                            {{^user1}}
+                            {{^user_logged}}
                             <li class="cd-log_reg home"><a class="cd-signin" href="javascript:void(0);">Entrar</a></li>
                             <li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Registrarse</a></li>
-                            {{/user1}}
-                            {{#user1}}
+                            {{/user_logged}}
+                            {{#user_logged}}
                             <li>
-                                <a href="javascript:void(0);">{{user1}}</a>
+                                <a href="javascript:void(0);">{{user_logged}}</a>
                                 <ul class="topbar-dropdown">
                                     <li class="topbar-submenu"><a href="user-settings.html">Ajustes</a></li>
                                     {{#editor}}
@@ -108,7 +108,7 @@
                                 </ul>
                             </li>
                             <li><a href="/logout">Cerrar sesi&oacute;n</a></li>
-                            {{/user1}}
+                            {{/user_logged}}
                         </ul>
                     </div>
                 </div><!--/end row-->

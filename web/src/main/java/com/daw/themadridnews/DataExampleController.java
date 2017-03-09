@@ -31,7 +31,6 @@ public class DataExampleController implements CommandLineRunner {
         userRepository.save(new User("pepe", "jiménez", "pepji@mail.com", "pass", "ROLE_USER"));
         userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_EDITOR", "ROLE_USER"));
         userRepository.save(new User("admin", "1", "admin@mail.com", "adminpass", "ROLE_ADMIN", "ROLE_ADVERTISING","ROLE_EDITOR", "ROLE_USER"));
-        
         // Categorias de articulos
         articleCategoryRepository.save( new ArticleCategory("madrid", "Madrid") );
         articleCategoryRepository.save( new ArticleCategory("spain", "España") );

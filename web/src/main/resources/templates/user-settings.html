@@ -40,7 +40,6 @@
     <link rel="stylesheet" href="css/custom.css"> </head>
     <!-- JS and JQuery -->
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-    <script src="js/form_validation.js"></script>
 
 <body class="header-fixed header-fixed-space-v2 boxed-layout container">
     <div class="wrapper">
@@ -72,7 +71,7 @@
                             <i class="fa fa-search search-btn pull-right"></i>
                             <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
                                 <li>
-                                    <a href="javascript:void(0);">Usuario</a>
+                                    <a href="javascript:void(0);">{{user_logged}}</a>
                                     <ul class="topbar-dropdown">
                                         <li class="topbar-submenu"><a href="user-settings.html">Ajustes</a></li>
                                         {{#editor}}
@@ -917,9 +916,9 @@
                     <!-- Options Menu -->
                     <div class="margin-bottom-50"> <img class="img-responsive profile-img margin-bottom-20" src="img/team/img32-md.jpg" alt="">
                         <h1 class="title-v4">Opciones</h1>
-                        {{#userLogin}}
-                        <h3>{{userLogin}}</h3>
-                        {{/userLogin}}
+                        {{#user_logged}}
+                        <h3>{{user_logged}}</h3>
+                        {{/user_logged}}
                         <ul class="list-group sidebar-nav-v1">
                             <li class="list-group-item active"><a href="settings.html">Preferencias</a></li>
                             <li class="list-group-item"><a href="/logout">Cerrar sesi&oacute;n</a></li>
@@ -943,17 +942,17 @@
                                     <section class="row">
                                         <div class="col col-12 full-width">
                                             <label for="inp_name">Nombre</label>
-                                            <input type="text" name="name" id="inp_name" class="form-control">
+                                            <input type="text" name="name" id="inp_name" class="form-control" placeholder="{{user_name}}">
                                             <div class="note note-success-compulsory">Campo obligatorio</div>
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_surname">Apellidos</label>
-                                            <input type="text" name="surname" id="inp_surname" class="form-control">
+                                            <input type="text" name="surname" id="inp_surname" class="form-control" placeholder="{{user_lastName}}">
                                             <div class="note note-success-compulsory">Campo obligatorio</div>
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_alias">Alias</label>
-                                            <input type="text" name="alias" id="inp_alias" class="form-control">
+                                            <input type="text" name="alias" id="inp_alias" class="form-control" {{#user_alias}} placeholder="{{user_alias}}" {{/user_alias}}>
                                             <div class="note note-success-compulsory">Se mostrar&aacute; en lugar de tu nombre</div>
                                         </div>
                                         <div class="col col-12 full-width">
@@ -985,7 +984,7 @@
                                     <section class="row">
                                         <div class="col col-12 full-width">
                                             <label for="inp_city">Ciudad</label>
-                                            <input type="text" name="city" id="inp_city" class="form-control"> </div>
+                                            <input type="text" name="city" id="inp_city" class="form-control" {{#user_city}} placeholder="{{user_city}}" {{/user_city}}> </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_country">Pa&iacute;s de residencia</label>
                                             <div class="select">
@@ -1196,15 +1195,15 @@
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_phone">Tel&eacute;fono</label>
-                                            <input type="text" name="phone" id="inp_phone" class="form-control"> </div>
+                                            <input type="text" name="phone" id="inp_phone" class="form-control" {{#user_phone}} placeholder="{{user_phone}}" {{/user_phone}}> </div>
                                         <hr>
                                         <div class="col col-12 full-width">
                                             <label for="inp_description">Descripci&oacute;n personal</label>
-                                            <textarea class="form-control" name="description" id="inp_description" rows="10"></textarea>
+                                            <textarea class="form-control" name="description" id="inp_description" rows="10" >{{#user_description}} placeholder="{{user_description}}" {{/user_description}}</textarea>
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_url">URL blog o p&aacute;gina personal</label>
-                                            <input type="text" name="url" id="inp_url" class="form-control" placeholder="http://..."> </div>
+                                            <input type="text" name="url" id="inp_url" class="form-control" {{#user_url}} placeholder="{{user_url}}" {{/user_url}} {{^user_url}}placeholder="http://..." {{/user_url}}> </div>
                                     </section>
                                     <footer>
                                         <button type="submit" class="btn btn-primary pull-right">Guardar</button>
