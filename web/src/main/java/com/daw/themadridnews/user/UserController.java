@@ -41,10 +41,8 @@ public class UserController {
 
 	@RequestMapping("/user_sign")
 	public String user_sign(Model model, User user){
+                user.getRoles().add("USER");
                 userRepository.save(user);
-                User user1 = userRepository.findByName("Pepe");
-
-                System.out.println(user.getName());
 
 		return "user_sign";
 	}
