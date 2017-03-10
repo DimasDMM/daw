@@ -15,23 +15,6 @@ import com.daw.themadridnews.article.*;
 @Controller
 public class CategoryController {
 	
-	@Autowired
-	ArticleCategoryRepository categoryRepository;
-	
-	@Autowired
-	ArticleRepository articleRepository;
-	
-	@RequestMapping("/category/{cat}")
-	public String categories(Model model, @PathVariable String cat, Pageable pag){
-		
-		model.addAttribute("category",cat);
-		
-		Page<ArticleCategory> articles = categoryRepository.findAll(pag);
-				
-		return cat;
-		
-	}
-	
 	
 	
 }

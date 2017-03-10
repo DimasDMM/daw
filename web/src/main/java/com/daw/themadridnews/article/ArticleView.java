@@ -1,6 +1,7 @@
 package com.daw.themadridnews.article;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -9,77 +10,41 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 import com.daw.themadridnews.comment.Comment;
+import com.daw.themadridnews.comment.CommentView;
 import com.daw.themadridnews.user.User;
 
-@Entity
-@Table(name="articles")
-public class Article {
+
+public class ArticleView {
 	
-	/*
-	 * Lista de posibles categorias:
-	 * - madrid
-	 * - spain
-	 * - world
-	 * - sport
-	 * - technology
-	 * - culture
-	 * 
-	 * Lista de estados (status):
-	 * - 0: oculto
-	 * - 1: activo/visible
-	 */
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected long id;
-	
-	@NotNull
-	protected String category;
-	
-	@NotNull
+	protected Category category;
 	protected String title;
-	
-	@NotNull
-	@Column(columnDefinition="TEXT")
 	protected String content;
-	
-	@ManyToOne
-	@NotNull
 	protected User author;
-	
 	protected String source;
-	
-	@ElementCollection(fetch = FetchType.LAZY)
-	@NotNull
 	protected List<String> tags;
-	
-	@NotNull
 	protected boolean visible;
-	
-	@NotNull
 	protected int views;
-	
-	@OneToMany(mappedBy="article", cascade=CascadeType.ALL)
-	@Null
 	protected List<Comment> comments;
-	
-	@NotNull
 	protected Date dateInsert;
 	
 	
-	public Article() {}
+	public ArticleView() {}
 	
-	public Article(String category, String title, String content, User author, String source, List<String> tags, List<Comment> comments, boolean visible) {
+	public ArticleView(Article article) {
+		String categoryId = article.getCategory();
+		Category category = new Category(categoryId, CategoryService.getName(categoryId));
 		this.category = category;
-		this.title = title;
-		this.content = content;
-		this.author = author;
-		this.source = source;
-		this.tags = tags;
-		this.visible = visible;
-		this.views = 0;
-		this.comments = comments;
-		this.dateInsert = new Date();
+		
+		this.title = article.getTitle();
+		this.content = article.getContent();
+		this.author = article.getAuthor();
+		this.source = article.getSource();
+		this.tags = article.getTags();
+		this.visible = article.isVisible();
+		this.views = article.getViews();
+		this.comments = article.getComments();
+		this.dateInsert = article.getDateInsert();
 	}
 
 	public long getId() {
@@ -90,11 +55,11 @@ public class Article {
 		this.id = id;
 	}
 
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -197,5 +162,15 @@ public class Article {
 	public String toString() {
 		return "Article [id=" + id + ", category=" + category + ", title=" + title + ", content=" + content
 				+ ", author=" + author + ", source=" + source + ", tags=" + tags + "]";
+	}
+	
+	public static List<ArticleView> castList(List<Article> l) {
+		List<ArticleView> c = new ArrayList<ArticleView>();
+		Iterator<Article> it = l.iterator();
+		
+		while(it.hasNext())
+			c.add( new ArticleView(it.next()) );
+		
+		return c;
 	}
 }

@@ -45,6 +45,9 @@ public class ArticleController {
 		
 		List<CommentView> comments = CommentView.castList( commentRepository.findByArticle(article) );
 		long nComments = commentRepository.countByArticle(article);
+		
+		List<Category> categories = CategoryService.getCategoryList();
+		List<Article> lastArticles = articleRepository.findFirst5ByVisible(true);
 
 		model.addAttribute("article_id", article.getId());
 		model.addAttribute("article_title", article.getTitle());
@@ -55,6 +58,9 @@ public class ArticleController {
 
 		model.addAttribute("n_comments", nComments);
 		model.addAttribute("comments", comments);
+		
+		model.addAttribute("categories", categories);
+		model.addAttribute("last_articles", lastArticles);
 
 		model.addAttribute("editor_name", editor.getName());
 		model.addAttribute("editor_lastname", editor.getLastName());
