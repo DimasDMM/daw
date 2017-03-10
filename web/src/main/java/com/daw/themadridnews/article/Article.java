@@ -6,6 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+
+import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.user.User;
 
 @Entity
@@ -31,7 +34,7 @@ public class Article {
 	protected long id;
 	
 	@NotNull
-	@OneToOne
+	@ManyToOne
 	protected ArticleCategory category;
 	
 	@NotNull
@@ -57,13 +60,17 @@ public class Article {
 	@NotNull
 	protected int views;
 	
+	@OneToMany(mappedBy="article", cascade=CascadeType.ALL)
+	@Null
+	protected List<Comment> comments;
+	
 	@NotNull
 	protected Date dateInsert;
 	
 	
 	public Article() {}
 	
-	public Article(ArticleCategory category, String title, String content, User author, String source, List<String> tags, boolean visible) {
+	public Article(ArticleCategory category, String title, String content, User author, String source, List<String> tags, List<Comment> comments, boolean visible) {
 		this.category = category;
 		this.title = title;
 		this.content = content;
@@ -72,6 +79,7 @@ public class Article {
 		this.tags = tags;
 		this.visible = visible;
 		this.views = 0;
+		this.comments = comments;
 		this.dateInsert = new Date();
 	}
 
@@ -163,6 +171,14 @@ public class Article {
 	
 	public void addView() {
 		this.views += 1;
+	}
+	
+	public List<Comment> getComments() {
+		return comments;
+	}
+	
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	
 	public Date getDateInsert() {

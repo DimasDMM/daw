@@ -19,7 +19,7 @@ import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.requests.FormModifyArticle;
 import com.daw.themadridnews.article.requests.FormNewArticle;
 import com.daw.themadridnews.user.User;
-import com.daw.themadridnews.user.UserRepository;
+import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.utils.ModPagination;
 import com.daw.themadridnews.utils.ModPagination.ModPageItem;
@@ -29,9 +29,9 @@ public class EditorController {
 
 	@Autowired
 	protected ArticleRepository articleRepository;
-
+	
 	@Autowired
-	protected UserRepository userRepository;
+	protected UserComponent userComponent;
 
 	@Autowired
 	protected ArticleCategoryRepository articleCategoryRepository;
@@ -60,11 +60,11 @@ public class EditorController {
 	@RequestMapping(value="/editor/articulo/nuevo", method=RequestMethod.POST)
 	public String showFormNewPreview(Model model, FormNewArticle r) {
 
-		User editor = userRepository.findByName("Jorge"); // < Obtener usuario actual
+		User editor = userComponent.getLoggedUser();
 		
 		ArticleCategory category = articleCategoryRepository.findOne(r.getCategory());
 		
-		Article article = new Article( category, r.getTitle(), r.getContent(), editor, r.getSource(), r.getTags(), false );
+		Article article = new Article( category, r.getTitle(), r.getContent(), editor, r.getSource(), r.getTags(), null, false );
 		article = articleRepository.save(article);
 
 		return showPreviewAux(model, article, false);

@@ -40,7 +40,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/ads_list").hasAnyRole("ADMIN", "ADVERTISING");
         http.authorizeRequests().antMatchers("/ads_list.html").hasAnyRole("ADMIN", "ADVERTISING");
         
-        /*
         http.authorizeRequests().antMatchers("/editor/articulo/{id}").hasAnyRole( "EDITOR", "ADMIN");
         http.authorizeRequests().antMatchers("/editor/articulo/{id}/publicar").hasAnyRole( "EDITOR", "ADMIN");
         http.authorizeRequests().antMatchers("/editor/articulo/{id}/ocultar").hasAnyRole( "EDITOR", "ADMIN");
@@ -48,8 +47,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/editor/articulo/nuevo").hasAnyRole( "EDITOR", "ADMIN");
         http.authorizeRequests().antMatchers("/editor/articulo/listado").hasAnyRole( "EDITOR", "ADMIN");
         http.authorizeRequests().antMatchers("/editor/articulo/listado/{page}").hasAnyRole( "EDITOR", "ADMIN");
-        */
-
+        http.authorizeRequests().antMatchers("/editor/articulo/listado/publicado").hasAnyRole( "EDITOR", "ADMIN");
+        http.authorizeRequests().antMatchers("/editor/articulo/listado/ocultado").hasAnyRole( "EDITOR", "ADMIN");
+        http.authorizeRequests().antMatchers("/editor/articulo/listado/eliminado").hasAnyRole( "EDITOR", "ADMIN");
 
         // Login form
         http.formLogin().loginPage("/index");

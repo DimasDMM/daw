@@ -11,7 +11,7 @@ public class Validator {
 	 * Comprueba si la longitud de un string es valida. Poner -1 si nos da igual un parametro
 	 */
 	public static boolean strValidLength(String str, int min, int max) {
-		return ( str.length() < min && min >= 0 ) || ( str.length() > max && max >= 1 );
+		return ( str.length() > min && min >= 0 || min < 0 ) || ( str.length() < max && max >= 1 || max < 0 );
 	}
 	
 	/*

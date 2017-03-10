@@ -1,53 +1,47 @@
 package com.daw.themadridnews.comment;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import java.util.Iterator;
+import java.util.List;
 
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.user.User;
 
-@Entity
-@Table(name="comments")
-public class Comment {
+public class CommentView {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected long id;
-	
-	@NotNull
-	@ManyToOne
 	protected Article article;
-	
-	@NotNull
-	@OneToOne
 	protected User author;
-	
-	@NotNull
-	protected long number; // Posicion del comentario en un articulo
-	
-	@Column(nullable = false, length = 500)
+	protected long number;
 	protected String comment;
-	
-	@NotNull
 	protected Date dateInsert;
+	protected String dateInsertStr;
 	
 	
-	public Comment() {}
+	public CommentView() {}
 
-	public Comment(Article article, User author, long number, String comment) {
+	public CommentView(Comment comment) {
+		this.article = comment.getArticle();
+		this.author = comment.getAuthor();
+		this.number = comment.getNumber();
+		this.comment = comment.getComment();
+		this.dateInsert = comment.getDateInsert();
+
+		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm");
+		this.dateInsertStr = ft.format(comment.getDateInsert());
+	}
+
+	public CommentView(Article article, User author, long number, String comment) {
 		this.article = article;
 		this.author = author;
 		this.number = number;
 		this.comment = comment;
 		this.dateInsert = new Date();
+
+		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm");
+		this.dateInsertStr = ft.format(new Date());
 	}
 
 	public long getId() {
@@ -90,16 +84,29 @@ public class Comment {
 		this.comment = comment;
 	}
 
-	public Date getDateInsert() {
-		return dateInsert;
+	public String getDateInsertStr() {
+		return dateInsertStr;
 	}
 
 	public void setDateInsert(Date dateInsert) {
 		this.dateInsert = dateInsert;
+		
+		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm");
+		this.dateInsertStr = ft.format(dateInsert);
 	}
 
 	@Override
 	public String toString() {
 		return "Comment [id=" + id + ", author=" + author + ", number="+ number +", comment=" + comment + ", dateInsert=" + dateInsert + "]";
+	}
+	
+	public static List<CommentView> castList(List<Comment> l) {
+		List<CommentView> c = new ArrayList<CommentView>();
+		Iterator<Comment> it = l.iterator();
+		
+		while(it.hasNext())
+			c.add( new CommentView(it.next()) );
+		
+		return c;
 	}
 }
