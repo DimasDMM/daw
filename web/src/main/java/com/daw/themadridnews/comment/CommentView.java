@@ -16,6 +16,7 @@ public class CommentView {
 	protected User author;
 	protected long number;
 	protected String comment;
+	protected String commentShort;
 	protected Date dateInsert;
 	protected String dateInsertStr;
 	
@@ -29,19 +30,11 @@ public class CommentView {
 		this.comment = comment.getComment();
 		this.dateInsert = comment.getDateInsert();
 
-		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm");
+		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm'h'");
 		this.dateInsertStr = ft.format(comment.getDateInsert());
-	}
 
-	public CommentView(Article article, User author, long number, String comment) {
-		this.article = article;
-		this.author = author;
-		this.number = number;
-		this.comment = comment;
-		this.dateInsert = new Date();
-
-		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm");
-		this.dateInsertStr = ft.format(new Date());
+		if(this.comment.length() > 100)
+			commentShort = this.comment.substring(0,100) + "...";
 	}
 
 	public long getId() {
@@ -80,8 +73,15 @@ public class CommentView {
 		return comment;
 	}
 
+	public String getCommentShort() {
+		return commentShort;
+	}
+
 	public void setComment(String comment) {
 		this.comment = comment;
+
+		if(this.comment.length() > 100)
+			commentShort = this.comment.substring(0,100) + "...";
 	}
 
 	public String getDateInsertStr() {
