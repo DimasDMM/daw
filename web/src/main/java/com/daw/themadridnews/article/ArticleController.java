@@ -38,8 +38,9 @@ public class ArticleController {
 		
 		if(article == null)
 			return "redirect:/error/404";
-		
-		User editor = article.getAuthor();
+
+		article.addView();
+		articleRepository.save(article);
 
 		userComponent.checkRolesAndName(model, request);
 		
@@ -48,6 +49,7 @@ public class ArticleController {
 		
 		List<Category> categories = CategoryService.getCategoryList();
 		List<Article> lastArticles = articleRepository.findFirst5ByVisible(true);
+		List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );
 
 		model.addAttribute("article_id", article.getId());
 		model.addAttribute("article_title", article.getTitle());
@@ -61,9 +63,10 @@ public class ArticleController {
 		
 		model.addAttribute("categories", categories);
 		model.addAttribute("last_articles", lastArticles);
+		model.addAttribute("last_comments", lastComments);
 
-		model.addAttribute("editor_name", editor.getName());
-		model.addAttribute("editor_lastname", editor.getLastName());
+		model.addAttribute("editor_name", article.getAuthor().getName());
+		model.addAttribute("editor_lastname", article.getAuthor().getLastName());
 		
 		return "article";
 	}

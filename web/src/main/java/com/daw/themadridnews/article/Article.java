@@ -60,7 +60,6 @@ public class Article {
 	protected int views;
 	
 	@OneToMany(mappedBy="article", cascade=CascadeType.ALL)
-	@Null
 	protected List<Comment> comments;
 	
 	@NotNull

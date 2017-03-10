@@ -11,4 +11,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
 	public List<Comment> findByArticle(Article article);
 
+	public List<Comment> findFirst5ByOrderByDateInsertDesc();
+
 }

@@ -5,12 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-
 import com.daw.themadridnews.comment.Comment;
-import com.daw.themadridnews.comment.CommentView;
 import com.daw.themadridnews.user.User;
 
 
@@ -19,6 +14,7 @@ public class ArticleView {
 	protected long id;
 	protected Category category;
 	protected String title;
+	protected String titleShort;
 	protected String content;
 	protected User author;
 	protected String source;
@@ -45,6 +41,9 @@ public class ArticleView {
 		this.views = article.getViews();
 		this.comments = article.getComments();
 		this.dateInsert = article.getDateInsert();
+		
+		if(title.length() > 20)
+			titleShort = title.substring(0,20) + "...";
 	}
 
 	public long getId() {
@@ -67,8 +66,15 @@ public class ArticleView {
 		return title;
 	}
 
+	public String getTitleShort() {
+		return titleShort;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
+
+		if(title.length() > 20)
+			titleShort = title.substring(0,20) + "...";
 	}
 
 	public String getContent() {

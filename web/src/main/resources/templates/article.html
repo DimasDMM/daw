@@ -1339,64 +1339,18 @@
 				<!-- Last Comments -->
 				<div class="margin-bottom-50">
 					<h2 class="title-v4">&Uacute;ltimos comentarios</h2>
-
+					
+					{{#last_comments}}
 					<div class="blog-thumb-v3">
-						<small><a href="#">Evan Bartlett</a></small>
-						<h3><a href="#">Cameron's silence on defence is shameful</a></h3>
+						<small><a href="/articulo/{{article.id}}">{{article.title}}</a></small>
+						<h3><a href="/articulo/{{article.id}}">{{comment}}</a></h3>
 					</div>
 
 					<hr class="hr-xs">
+					{{/last_comments}}
 
-					<div class="blog-thumb-v3">
-						<small><a href="#">Jonathan Owen</a></small>
-						<h3><a href="#">Architects plan to stop skyscrapers from blocking out sunlight</a></h3>
-					</div>
-
-					<hr class="hr-xs">
-
-					<div class="blog-thumb-v3">
-						<small><a href="#">Susie Lau</a></small>
-						<h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend for style blogging</a></h3>
-					</div>
-
-					<hr class="hr-xs">
-
-					<div class="blog-thumb-v3">
-						<small><a href="#">John Rentoul</a></small>
-						<h3><a href="#">How to run a country: A 10 point manifesto for leaders who stand – and want to deliver</a></h3>
-					</div>
-
-					<hr class="hr-xs">
-
-					<div class="blog-thumb-v3">
-						<small><a href="#">Richard Garner</a></small>
-						<h3><a href="#">Controversial plan to test new primary school pupils infuriates teachers</a></h3>
-					</div>
 				</div>
 				<!-- End Last Comments -->
-
-				<!-- Social Shares -->
-				<div class="margin-bottom-50">
-					<h2 class="title-v4">Social</h2>
-					<ul class="blog-social-shares">
-						<li>
-							<i class="rounded-x fb fa fa-facebook"></i>
-							<a class="rounded-3x" href="#">Me gusta</a>
-							<span class="counter">31,702</span>
-						</li>
-						<li>
-							<i class="rounded-x tw fa fa-twitter"></i>
-							<a class="rounded-3x" href="#">Seguidores</a>
-							<span class="counter">164,290</span>
-						</li>
-						<li>
-							<i class="rounded-x gp fa fa-google-plus"></i>
-							<a class="rounded-3x" href="#">C&iacute;rculos</a>
-							<span class="counter">5,425,764</span>
-						</li>
-					</ul>
-				</div>
-				<!-- End Social Shares -->
 
 				<!-- Tags -->
 				<div class="margin-bottom-50">
@@ -1415,46 +1369,8 @@
 					<h2 class="title-v4">Twitter</h2>
 
 					<ul class="twitter-posts">
-						<li>
-							<img class="rounded-x" src="/img/thumb/img-thumb5.jpg" alt="">
-							<div class="twitter-posts-in">
-								<strong>Dr.Cafee</strong>
-								<span><a href="#">@DrCafee</a></span>
-								<span>4h</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-								<a class="link" href="#">http://link.com/1c0UN3Y</a>
-							</div>
-						</li>
-						<li>
-							<img class="rounded-x" src="/img/thumb/img-thumb4.jpg" alt="">
-							<div class="twitter-posts-in">
-								<strong>Jessi</strong>
-								<span><a href="#">@Jessi</a></span>
-								<span>5m</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-								<a class="link" href="#">http://link.com/1c0UN3Y</a>
-							</div>
-						</li>
-						<li>
-							<img class="rounded-x" src="/img/thumb/img-thumb6.jpg" alt="">
-							<div class="twitter-posts-in">
-								<strong>PhotoStudio</strong>
-								<span><a href="#">@PS</a></span>
-								<span>7h</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-								<a class="link" href="#">http://link.com/1c0UN3Y</a>
-							</div>
-						</li>
-						<li>
-							<img class="rounded-x" src="/img/thumb/img-thumb7.jpg" alt="">
-							<div class="twitter-posts-in">
-								<strong>Wrapbootstrap</strong>
-								<span><a href="#">@Wrapbootstrap</a></span>
-								<span>25m</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-								<a class="link" href="#">http://link.com/1c0UN3Y</a>
-							</div>
-						</li>
+						<a class="twitter-timeline" href="https://twitter.com/themadridnews_">Tweets by themadridnews_</a>
+						<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 					</ul>
 				</div>
 				<!-- End Twitter Posts -->
