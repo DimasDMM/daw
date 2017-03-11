@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-
-import com.daw.themadridnews.article.Article;
+import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.user.User;
 
 public class CommentView {
 	
 	protected long id;
-	protected Article article;
+	protected ArticleView article;
 	protected User author;
 	protected long number;
 	protected String comment;
+	protected String commentShort;
 	protected Date dateInsert;
 	protected String dateInsertStr;
 	
@@ -23,25 +23,18 @@ public class CommentView {
 	public CommentView() {}
 
 	public CommentView(Comment comment) {
-		this.article = comment.getArticle();
+		this.article = new ArticleView( comment.getArticle() );
 		this.author = comment.getAuthor();
 		this.number = comment.getNumber();
 		this.comment = comment.getComment();
 		this.dateInsert = comment.getDateInsert();
 
-		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm");
+		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm'h'");
 		this.dateInsertStr = ft.format(comment.getDateInsert());
-	}
-
-	public CommentView(Article article, User author, long number, String comment) {
-		this.article = article;
-		this.author = author;
-		this.number = number;
-		this.comment = comment;
-		this.dateInsert = new Date();
-
-		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm");
-		this.dateInsertStr = ft.format(new Date());
+		
+		commentShort = this.comment;
+		if(this.comment.length() > 100)
+			commentShort = this.comment.substring(0,100) + "...";
 	}
 
 	public long getId() {
@@ -52,11 +45,11 @@ public class CommentView {
 		this.id = id;
 	}
 
-	public Article getArticle() {
+	public ArticleView getArticle() {
 		return article;
 	}
 
-	public void setArticle(Article article) {
+	public void setArticle(ArticleView article) {
 		this.article = article;
 	}
 
@@ -80,8 +73,16 @@ public class CommentView {
 		return comment;
 	}
 
+	public String getCommentShort() {
+		return commentShort;
+	}
+
 	public void setComment(String comment) {
 		this.comment = comment;
+
+		commentShort = this.comment;
+		if(this.comment.length() > 100)
+			commentShort = this.comment.substring(0,100) + "...";
 	}
 
 	public String getDateInsertStr() {

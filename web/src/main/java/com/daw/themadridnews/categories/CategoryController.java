@@ -14,7 +14,7 @@ import com.daw.themadridnews.article.*;
 
 @Controller
 public class CategoryController {
-	
+	/*
 	@Autowired
 	ArticleCategoryRepository categoryRepository;
 	
@@ -32,7 +32,5 @@ public class CategoryController {
 		return cat;
 		
 	}
-	
-	
-	
+	*/
 }

@@ -1,8 +1,6 @@
 package com.daw.themadridnews.editor;
 
-import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,11 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.daw.themadridnews.article.Article;
-import com.daw.themadridnews.article.ArticleCategory;
-import com.daw.themadridnews.article.ArticleCategoryRepository;
 import com.daw.themadridnews.article.ArticleRepository;
+import com.daw.themadridnews.article.ArticleView;
+import com.daw.themadridnews.article.CategoryService;
+import com.daw.themadridnews.article.CategoryView;
 import com.daw.themadridnews.article.requests.FormModifyArticle;
 import com.daw.themadridnews.article.requests.FormNewArticle;
 import com.daw.themadridnews.user.User;
@@ -32,9 +30,6 @@ public class EditorController {
 	
 	@Autowired
 	protected UserComponent userComponent;
-
-	@Autowired
-	protected ArticleCategoryRepository articleCategoryRepository;
 	
 	protected static final int nItemsList = 5; // Numero de articulos por pagina
 
@@ -44,10 +39,12 @@ public class EditorController {
 		String newline = System.lineSeparator();
 		String article_content = "Este es un texto de ejemplo con letra *cursiva* y **negrita**."+newline+newline+"~~"+newline+"Este será un"+newline+"texto lateral."+newline+"~~"+newline+newline+"[[http://url/imagen.jpg|right|Imagen lateral]]"+newline+newline+"[[http://url/imagen.jpg|full|Imagen final]]";
 		
+		List<CategoryView> article_categories = CategoryView.castList( CategoryService.getCategoryList() );
+		
 		model.addAttribute("article_id", 0);
 		model.addAttribute("article_title", "");
 		model.addAttribute("article_content_raw", article_content);
-		model.addAttribute("article_categories", articleCategoryRepository.findAll());
+		model.addAttribute("article_categories", article_categories);
 		model.addAttribute("article_tags_str", "");
 		model.addAttribute("article_source", "");
 
@@ -62,7 +59,7 @@ public class EditorController {
 
 		User editor = userComponent.getLoggedUser();
 		
-		ArticleCategory category = articleCategoryRepository.findOne(r.getCategory());
+		String category = r.getCategory();
 		
 		Article article = new Article( category, r.getTitle(), r.getContent(), editor, r.getSource(), r.getTags(), null, false );
 		article = articleRepository.save(article);
@@ -138,7 +135,7 @@ public class EditorController {
 			return showPreviewAux(model, article, true);
 		}
 		
-		ArticleCategory category = articleCategoryRepository.findOne(r.getCategory());
+		String category = r.getCategory();
 		
 		article.setCategory(category);
 		article.setTitle(r.getTitle());
@@ -184,8 +181,8 @@ public class EditorController {
 	
 	
 	private String showPreviewAux(Model model, Article article, boolean isModification) {
-		List<ArticleCategory> articleCategories = articleCategoryRepository.findAll();
-		setArticleCategoryActive( articleCategories, article.getCategory() );
+		List<CategoryView> articleCategories = CategoryView.castList( CategoryService.getCategoryList() );
+		CategoryView.setActiveInList( articleCategories, article.getCategory() );
 		
 		model.addAttribute("article_id", article.getId());
 		model.addAttribute("article_title", article.getTitle());
@@ -211,7 +208,7 @@ public class EditorController {
 		Page<Article> page = articleRepository.findAll( new PageRequest(nPage, nItemsList) );
 		
 		List<Article> articleList = page.getContent();
-		model.addAttribute("article_list", articleList);
+		model.addAttribute("article_list", ArticleView.castList(articleList) );
 		
 		ModPagination modPagination = new ModPagination();
 		List<ModPageItem> pageList = modPagination.getModPageList(page, "/editor/articulo/lista/");
@@ -219,18 +216,5 @@ public class EditorController {
 		
 		return "article_list";
 	}
-	
-	private void setArticleCategoryActive(List<ArticleCategory> list, ArticleCategory category) {
-		String id = category.getId();
-		
-		Iterator<ArticleCategory> it = list.iterator();
-		while(it.hasNext()) {
-			ArticleCategory c = it.next();
-			if(c.getId().equals( id )) {
-				c.setActive(true);
-				break;
-			}
-		}
-		
-	}
+
 }
