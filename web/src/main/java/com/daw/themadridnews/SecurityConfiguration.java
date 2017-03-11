@@ -50,6 +50,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/editor/articulo/listado/publicado").hasAnyRole( "EDITOR", "ADMIN");
         http.authorizeRequests().antMatchers("/editor/articulo/listado/ocultado").hasAnyRole( "EDITOR", "ADMIN");
         http.authorizeRequests().antMatchers("/editor/articulo/listado/eliminado").hasAnyRole( "EDITOR", "ADMIN");
+        
+        http.authorizeRequests().antMatchers("/publicista/anuncio/{id}").hasAnyRole( "ADVERTISING", "ADMIN");
+        http.authorizeRequests().antMatchers("/publicista/anuncio/{id}/publicar").hasAnyRole( "ADVERTISING", "ADMIN");
+        http.authorizeRequests().antMatchers("/publicista/anuncio/{id}/ocultar").hasAnyRole( "ADVERTISING", "ADMIN");
+        http.authorizeRequests().antMatchers("/publicista/anuncio/{id}/eliminar").hasAnyRole( "ADVERTISING", "ADMIN");
+        http.authorizeRequests().antMatchers("/publicista/anuncio/nuevo").hasAnyRole( "ADVERTISING", "ADMIN");
+        http.authorizeRequests().antMatchers("/publicista/anuncio/listado").hasAnyRole( "ADVERTISING", "ADMIN");
+        http.authorizeRequests().antMatchers("/publicista/anuncio/listado/{page}").hasAnyRole( "ADVERTISING", "ADMIN");
+        http.authorizeRequests().antMatchers("/publicista/anuncio/listado/publicado").hasAnyRole( "ADVERTISING", "ADMIN");
+        http.authorizeRequests().antMatchers("/publicista/anuncio/listado/ocultado").hasAnyRole( "ADVERTISING", "ADMIN");
+        http.authorizeRequests().antMatchers("/publicista/anuncio/listado/eliminado").hasAnyRole( "ADVERTISING", "ADMIN");
 
         // Login form
         http.formLogin().loginPage("/index");

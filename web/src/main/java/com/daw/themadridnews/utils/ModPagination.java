@@ -12,6 +12,10 @@ public class ModPagination {
 		
 		ArrayList<ModPageItem> paginationList = new ArrayList<ModPageItem>();
 		
+		// Si no hay paginacion disponible
+		if(page.isFirst() && page.isLast())
+			return paginationList;
+		
 		// Flechas iniciales
 		if(!page.isFirst()) {
 			paginationList.add( new ModPageItem( baseUrl+String.valueOf( page.getNumber()-1 ), "&laquo;", false ) );

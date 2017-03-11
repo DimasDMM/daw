@@ -52,16 +52,8 @@ public class ArticleView {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public Category getCategory() {
 		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
 	}
 
 	public String getTitle() {
@@ -72,14 +64,6 @@ public class ArticleView {
 		return titleShort;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-
-		titleShort = title;
-		if(title.length() > 20)
-			titleShort = title.substring(0,20) + "...";
-	}
-
 	public String getContent() {
 		return content;
 	}
@@ -88,24 +72,12 @@ public class ArticleView {
 		return MarkdownConverter.getFormatedHtml(content);
 	}
 
-	public void setContent(String content) {
-		this.content = content;
-	}
-
 	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-
 	public String getSource() {
 		return source;
-	}
-
-	public void setSource(String source) {
-		this.source = source;
 	}
 	
 	public String getTagsStr() {
@@ -125,33 +97,17 @@ public class ArticleView {
 	public List<String> getTags() {
 		return tags;
 	}
-
-	public void setTags(List<String> tags) {
-		this.tags = tags;
-	}
 	
 	public boolean isVisible() {
 		return visible;
-	}
-	
-	public void setVisible(boolean visible) {
-		this.visible = visible;
 	}
 	
 	public int getViews() {
 		return views;
 	}
 	
-	public void addView() {
-		this.views += 1;
-	}
-	
 	public List<Comment> getComments() {
 		return comments;
-	}
-	
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
 	}
 	
 	public Date getDateInsert() {
@@ -161,10 +117,6 @@ public class ArticleView {
 	public String getStrDateInsert() {
 		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm'h'");
 		return ft.format(dateInsert);
-	}
-	
-	public void setDateInsert(Date dateInsert) {
-		this.dateInsert = dateInsert;
 	}
 
 	@Override
