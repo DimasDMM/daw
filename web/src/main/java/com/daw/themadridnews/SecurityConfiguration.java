@@ -24,12 +24,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/loginerror").permitAll();
         http.authorizeRequests().antMatchers("/logout").permitAll();
 
-        http.authorizeRequests().antMatchers("/categoria/madrid").permitAll();
-        http.authorizeRequests().antMatchers("/categoria/cultura").permitAll();
-        http.authorizeRequests().antMatchers("/categoria/espana").permitAll();
-        http.authorizeRequests().antMatchers("/categoria/tecnologia").permitAll();
-        http.authorizeRequests().antMatchers("/categoria/deportes").permitAll();
-        http.authorizeRequests().antMatchers("/categoria/mundo").permitAll();
+        http.authorizeRequests().antMatchers("/categoria/{cat}").permitAll();
+        http.authorizeRequests().antMatchers("/categoria/{cat}/{npage}").permitAll();
+        http.authorizeRequests().antMatchers("/anuncio/{id}").permitAll();
         http.authorizeRequests().antMatchers("/privacidad").permitAll();
         http.authorizeRequests().antMatchers("/terminos-de-uso").permitAll();
 
@@ -59,7 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.formLogin().usernameParameter("email");
         http.formLogin().passwordParameter("password");
         http.formLogin().defaultSuccessUrl("/portada");
-        http.formLogin().failureUrl("/portada");
+        http.formLogin().failureUrl("/error");
 
         // Logout
         http.logout().logoutUrl("/logout");
