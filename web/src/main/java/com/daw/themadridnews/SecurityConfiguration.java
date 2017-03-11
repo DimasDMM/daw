@@ -19,26 +19,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     	// Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
+        http.authorizeRequests().antMatchers("/portada").permitAll();
+        
         http.authorizeRequests().antMatchers("/loginerror").permitAll();
         http.authorizeRequests().antMatchers("/logout").permitAll();
 
-        http.authorizeRequests().antMatchers("/article").permitAll();
-        http.authorizeRequests().antMatchers("/index").permitAll();
-        http.authorizeRequests().antMatchers("/madrid").permitAll();
-        http.authorizeRequests().antMatchers("/culture").permitAll();
-        http.authorizeRequests().antMatchers("/spain").permitAll();
-        http.authorizeRequests().antMatchers("/tecnology").permitAll();
-        http.authorizeRequests().antMatchers("/sports").permitAll();
-        http.authorizeRequests().antMatchers("/world").permitAll();
-        http.authorizeRequests().antMatchers("/privacy_and_policy").permitAll();
-        http.authorizeRequests().antMatchers("/terms_and_conditions").permitAll();
-        // Private pages (all other pages)
-        http.authorizeRequests().antMatchers("/user-settings").hasAnyRole("USER", "EDITOR", "ADMIN");
-        http.authorizeRequests().antMatchers("/user-settings.html").hasAnyRole("USER", "EDITOR", "ADMIN");
-        http.authorizeRequests().antMatchers("/ads_create").hasAnyRole("ADMIN", "ADVERTISING");
-        http.authorizeRequests().antMatchers("/ads_create.html").hasAnyRole("ADMIN", "ADVERTISING");
-        http.authorizeRequests().antMatchers("/ads_list").hasAnyRole("ADMIN", "ADVERTISING");
-        http.authorizeRequests().antMatchers("/ads_list.html").hasAnyRole("ADMIN", "ADVERTISING");
+        http.authorizeRequests().antMatchers("/categoria/madrid").permitAll();
+        http.authorizeRequests().antMatchers("/categoria/cultura").permitAll();
+        http.authorizeRequests().antMatchers("/categoria/espana").permitAll();
+        http.authorizeRequests().antMatchers("/categoria/tecnologia").permitAll();
+        http.authorizeRequests().antMatchers("/categoria/deportes").permitAll();
+        http.authorizeRequests().antMatchers("/categoria/mundo").permitAll();
+        http.authorizeRequests().antMatchers("/privacidad").permitAll();
+        http.authorizeRequests().antMatchers("/terminos-de-uso").permitAll();
+
+        http.authorizeRequests().antMatchers("/ajustes").hasAnyRole("USER");
         
         http.authorizeRequests().antMatchers("/editor/articulo/{id}").hasAnyRole( "EDITOR", "ADMIN");
         http.authorizeRequests().antMatchers("/editor/articulo/{id}/publicar").hasAnyRole( "EDITOR", "ADMIN");
@@ -60,16 +55,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/publicista/anuncio/lista/eliminado").hasAnyRole( "ADVERTISING", "ADMIN");
 
         // Login form
-        http.formLogin().loginPage("/index");
-        http.formLogin().loginPage("/spain");
+        http.formLogin().loginPage("/portada");
         http.formLogin().usernameParameter("email");
         http.formLogin().passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/index");
-        http.formLogin().failureUrl("/hola_template");
+        http.formLogin().defaultSuccessUrl("/portada");
+        http.formLogin().failureUrl("/portada");
 
         // Logout
         http.logout().logoutUrl("/logout");
-        http.logout().logoutSuccessUrl("/index");
+        http.logout().logoutSuccessUrl("/portada");
     }
 
     @Override

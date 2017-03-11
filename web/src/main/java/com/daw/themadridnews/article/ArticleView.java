@@ -64,8 +64,8 @@ public class ArticleView {
 			titleShort = title.substring(0,20) + "...";
 		
 		contentShort = content.replaceAll("\\<.*?>","");
-		if(contentShort.length() > 100)
-			contentShort = contentShort.substring(0,100) + "...";
+		if(contentShort.length() > 60)
+			contentShort = contentShort.substring(0,60) + "...";
 	}
 
 	public long getId() {

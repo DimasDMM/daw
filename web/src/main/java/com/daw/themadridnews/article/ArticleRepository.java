@@ -10,10 +10,10 @@ import org.springframework.data.jpa.repository.Query;
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
 	public List<Article> findFirst5ByVisible(boolean visible);
+	public List<Article> findFirst9ByCategoryAndVisible(String category, boolean visible);
 	
 	public Page<Article> findLast10ByCategory(String category, Pageable page);
 	
 	@Query(nativeQuery=true, value="SELECT * FROM articles ORDER BY RAND() LIMIT 4")
 	public List<Article> findRandom4();
-
 }

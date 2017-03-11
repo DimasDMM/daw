@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.daw.themadridnews.Config;
 import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.comment.CommentView;
@@ -30,6 +31,9 @@ public class ArticleController {
 	
 	@Autowired
 	protected UserComponent userComponent;
+	
+	@Autowired
+	protected Config config;
 	
 
 	@RequestMapping(value="/articulo/{id}", method=RequestMethod.GET)
@@ -71,6 +75,8 @@ public class ArticleController {
 
 		model.addAttribute("editor_name", av.getAuthor().getName());
 		model.addAttribute("editor_lastname", av.getAuthor().getLastName());
+		
+		model.addAttribute("page_header", config.getMenuList());
 		
 		return "article";
 	}
