@@ -76,7 +76,8 @@ public class ArticleController {
 		model.addAttribute("editor_name", av.getAuthor().getName());
 		model.addAttribute("editor_lastname", av.getAuthor().getLastName());
 		
-		model.addAttribute("page_header", config.getMenuList());
+		model.addAttribute("page_header_date", config.getHeaderDate());
+		model.addAttribute("page_header_menu", config.getMenuList());
 		
 		return "article";
 	}
