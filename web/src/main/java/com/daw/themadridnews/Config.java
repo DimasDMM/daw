@@ -1,6 +1,7 @@
 package com.daw.themadridnews;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,6 +19,9 @@ import com.daw.themadridnews.comment.CommentRepository;
 @Configuration
 @PropertySource("classpath:config.properties")
 public class Config {
+
+	private String[] weekDays = {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
+	private String[] months = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
 
     @Value("${path.img.articles}") 
     private String pathImgArticles;
@@ -45,6 +49,21 @@ public class Config {
 	
 	public String getPathImgAds() {
 		return pathImgAds;
+	}
+	
+	public String getHeaderDate() {
+		StringBuilder date = new StringBuilder();
+		Calendar calendar = Calendar.getInstance();
+		
+		date.append( weekDays[ calendar.get(Calendar.DAY_OF_WEEK)-1 ] );
+		date.append(", ");
+		date.append( calendar.get(Calendar.DAY_OF_MONTH) );
+		date.append(" ");
+		date.append( months[ calendar.get(Calendar.MONTH) ] );
+		date.append(" ");
+		date.append( calendar.get(Calendar.YEAR) );
+		
+		return date.toString();
 	}
 	
 	public List<CategoryItem> getMenuList() {
@@ -83,6 +102,8 @@ public class Config {
 		return list;
 	}
 	
+	
+	/*************************/
 	
 	public class CategoryItem {
 		public Category category;

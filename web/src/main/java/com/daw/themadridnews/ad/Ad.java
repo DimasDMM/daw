@@ -57,9 +57,6 @@ public class Ad {
 	@NotNull protected int nViews;
 	
 	@NotNull
-	protected int status;
-	
-	@NotNull
 	protected Date dateInsert;
 	
 	
@@ -86,8 +83,6 @@ public class Ad {
 		this.limDateEnd = limDateEnd;
 		this.limClicks = (isLimClicks ? limClicks : -1);
 		this.limViews = (isLimViews ? limViews : -1);
-
-		this.status = AdService.getStatus(this);
 	}
 
 	public long getId() {
@@ -130,7 +125,6 @@ public class Ad {
 	public boolean isLimDateEnd() { return isLimDateEnd; }
 	public boolean isLimClicks() { return isLimClicks; }
 	public boolean isLimViews() { return isLimViews; }
-	public int getStatus() { return status; }
 
 	public Date getLimDateStart() { return limDateStart; }
 	public Date getLimDateEnd() { return limDateEnd; }
@@ -140,32 +134,36 @@ public class Ad {
 	public void setLimDateStart(Date limDateStart) {
 		this.isLimDateStart = (limDateStart != null);
 		this.limDateStart = limDateStart;
-		this.status = AdService.getStatus(this);
 	}
 	public void setLimDateEnd(Date limDateEnd) {
 		this.isLimDateEnd = (limDateEnd != null);
 		this.limDateEnd = limDateEnd;
-		this.status = AdService.getStatus(this);
 	}
 
 	public void setLimClicks(int limClicks) {
 		this.isLimClicks = (limClicks > 0);
 		this.limClicks = (isLimClicks ? limClicks : -1);
-		this.status = AdService.getStatus(this);
 	}
 
 	public void setLimViews(int limViews) {
 		this.isLimViews = (limClicks > 0);
 		this.limViews = (isLimViews ? limViews : -1);
-		this.status = AdService.getStatus(this);
 	}
 
 	public int getClicks() {
 		return nClicks;
 	}
+	
+	public void addClick() {
+		this.nClicks++;
+	}
 
 	public int getViews() {
 		return nViews;
+	}
+	
+	public void addView() {
+		this.nViews++;
 	}
 
 	public Date getDateInsert() {

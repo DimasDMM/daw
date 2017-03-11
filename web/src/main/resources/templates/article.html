@@ -61,7 +61,7 @@
 				<div class="row">
                     <!-- Date & Contact -->
                     <div class="col-sm-8 col-xs-8">
-                        <div class="topbar-time">Martes, 24 Enero 2016</div>
+                        <div class="topbar-time">{{page_header_date}}</div>
                         <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
                         <ul class="topbar-list topbar-menu">
                             <li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a></li>
@@ -138,7 +138,7 @@
 					<div class="res-container">
 						<ul class="nav navbar-nav">
 							
-							{{#page_header}}
+							{{#page_header_menu}}
 							<li class="dropdown mega-menu-fullwidth">
 								<a href="/categoria/{{category.id}}" class="dropdown-toggle">
 									{{category.name}}
@@ -211,7 +211,7 @@
 									</li>
 								</ul>
 							</li>		
-							{{/page_header}}
+							{{/page_header_menu}}
 						</ul>
 					</div><!--/responsive container-->
 				</div><!--/navbar-collapse-->
