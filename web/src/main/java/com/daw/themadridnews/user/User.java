@@ -1,6 +1,5 @@
 package com.daw.themadridnews.user;
 
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
@@ -12,173 +11,161 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="users")
 public class User {
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	long id;
-	@Column(unique=true)
-    @NotNull
-    private String email;
+    //Attributes
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
+    
     @NotNull
     private String name;
+    
     @NotNull
     private String lastName;
+    
+    @Column(unique=true)
+    @NotNull
+    private String email;
+    
     @NotNull
     private String passwordHash;
-    
-    //@OneToMany(cascade = CascadeType.ALL)
-	//private List<Comment> comments = new ArrayList<>();
-	@NotNull
-	@ElementCollection(fetch = FetchType.EAGER)
-	private List<String> roles;
 
-	@Column(unique=true)
-	private String alias;
-    char sex;
+    @ElementCollection(fetch=FetchType.EAGER)
+    @NotNull
+    private List<String> roles;
+
+    @Column(unique=true)
+    private String alias;
+    
+    private char sex;
     private String city;
     private String country;
     private String phoneNumber;
     private String description;
     private String personalWeb;
     
-	//Constructors
-    public User(){}
+    //Constructors
+    public User(){
+        this.roles = new ArrayList();
+    }
 
-	public User(String name, String lastName, String email, String pass, String... roles) {
-		this.name = name;
-		this.lastName = lastName;
-		this.email = email;
-		this.passwordHash = new BCryptPasswordEncoder().encode(pass);
-		this.roles = new ArrayList<>(Arrays.asList(roles));
-	}
-        
-	public User(String name, String lastName, String email, String passwordHash){
-		this.name = name;
-		this.lastName = lastName;
-		this.email = email;
-		this.passwordHash = passwordHash;
-	}
+    public User(String name, String lastName, String email, String pass, String... roles) {
+	this.name = name;
+	this.lastName = lastName;
+	this.email = email;
+	this.passwordHash = new BCryptPasswordEncoder().encode(pass);
+	this.roles = new ArrayList<>(Arrays.asList(roles));
+    }
+    
+    //Method toString
+    @Override
+    public String toString() {
+	return "User [name=" + name + ", lastName=" + lastName + ", alias=" + alias + "]";
+    }
 
-	@Override
-	public String toString() {
-		return "User [name=" + name + ", lastName=" + lastName + ", alias=" + alias + "]";
-	}
+    //Methods Getters & Setters
+    public long getId(){
+        return this.id;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getLastName() {
+	return lastName;
+    }
+    
+    public String getEmail() {
+	return email;
+    }
 
-	//getters and setters
+    public String getPasswordHash() {
+	return passwordHash;
+    }
+    
+    public List<String> getRoles() {
+	return roles;
+    }
+    
+    public String getAlias() {
+	return alias;
+    }
+    
+    public char getSex() {
+	return sex;
+    }
+    
+    public String getCity() {
+	return city;
+    }
+    
+    public String getCountry() {
+	return country;
+    }
+    
+    public String getPhoneNumber() {
+	return phoneNumber;
+    }
+    
+    public String getDescription() {
+	return description;
+    }
+    
+    public String getPersonalWeb() {
+	return personalWeb;
+    }
+    
+    
+    public void setId(long id){
+        this.id = id;
+    }
+    
+    public void setName(String name) {
+	this.name = name;
+    }
+    
+    public void setLastName(String lastName) {
+	this.lastName = lastName;
+    }
+    
+    public void setEmail(String email) {
+	this.email = email;
+    }
+    
+    public void setPasswordHash(String passwordHash) {
+	this.passwordHash = new BCryptPasswordEncoder().encode(passwordHash);
+    }
 
-	public String getPasswordHash() {
-		return passwordHash;
-	}
+    public void setRoles(List<String> roles) {
+	this.roles = roles;
+    }
 
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
-	}
+    public void setAlias(String alias) {
+	this.alias = alias;
+    }
+	
+    public void setSex(char sex) {
+	this.sex = sex;
+    }
 
-	public List<String> getRoles() {
-		return roles;
-	}
+    public void setCity(String city) {
+	this.city = city;
+    }
 
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
+    public void setCountry(String country) {
+	this.country = country;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+	this.phoneNumber = phoneNumber;
+    }
+    
+    public void setDescription(String description) {
+	this.description = description;
+    }
 
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public String getLastName() {
-		return lastName;
-	}
-
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-
-	public String getAlias() {
-		return alias;
-	}
-
-
-	public void setAlias(String alias) {
-		this.alias = alias;
-	}
-
-
-	public String getEmail() {
-		return email;
-	}
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-	public char getSex() {
-		return sex;
-	}
-
-
-	public void setSex(char sex) {
-		this.sex = sex;
-	}
-
-
-	public String getCity() {
-		return city;
-	}
-
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-
-	public String getCountry() {
-		return country;
-	}
-
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-
-	public String getDescription() {
-		return description;
-	}
-
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-
-	public String getPersonalWeb() {
-		return personalWeb;
-	}
-
-
-	public void setPersonalWeb(String personalWeb) {
-		this.personalWeb = personalWeb;
-	}
+    public void setPersonalWeb(String personalWeb) {
+	this.personalWeb = personalWeb;
+    }
 
 }
