@@ -17,6 +17,7 @@ public class ArticleView {
 	protected String title;
 	protected String titleShort;
 	protected String content;
+	protected String contentShort;
 	protected User author;
 	protected String source;
 	protected List<String> tags;
@@ -61,6 +62,10 @@ public class ArticleView {
 		titleShort = title;
 		if(title.length() > 20)
 			titleShort = title.substring(0,20) + "...";
+		
+		contentShort = content.replaceAll("\\<.*?>","");
+		if(contentShort.length() > 100)
+			contentShort = contentShort.substring(0,100) + "...";
 	}
 
 	public long getId() {

@@ -50,6 +50,7 @@ public class ArticleController {
 		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );
 		List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst5ByVisible(true), commentRepository );
 		List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );
+		List<ArticleView> otherArticles = ArticleView.castList( articleRepository.findRandom4() );
 
 		ArticleView av = new ArticleView(a);
 
@@ -66,6 +67,7 @@ public class ArticleController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("last_articles", lastArticles);
 		model.addAttribute("last_comments", lastComments);
+		model.addAttribute("other_articles", otherArticles);
 
 		model.addAttribute("editor_name", av.getAuthor().getName());
 		model.addAttribute("editor_lastname", av.getAuthor().getLastName());
