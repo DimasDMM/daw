@@ -52,9 +52,11 @@ public class UserController {
     }
     
     @RequestMapping(value = "/registerend", method = POST)
-    public String registerEnd(Theme theme){
+    public String registerEnd(Theme theme, Model model, HttpServletRequest request){
         userComponent.getLoggedUser().setThemes(theme);
         userRepository.save(userComponent.getLoggedUser());
+        
+        userComponent.checkRolesAndName(model, request);
         
         return "index";
     }
