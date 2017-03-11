@@ -22,6 +22,16 @@ public class Validator {
         return isMatch(str,regex);
 	}
 	
+	private static boolean isMatch(String s, String pattern) {
+        try {
+            Pattern patt = Pattern.compile(pattern);
+            Matcher matcher = patt.matcher(s);
+            return matcher.matches();
+        } catch (RuntimeException e) {
+	        return false;
+	    }       
+	}
+	
 	/*
 	 * Comprueba si hay strings vacios en una lista
 	 */
@@ -35,14 +45,17 @@ public class Validator {
 		return true;
 	}
 	
+	/*
+	 * Comprueba si un numero es valido
+	 */
+	public static boolean intValidMin(int n, int min) {
+		return ( n >= min );
+	}
 	
-	private static boolean isMatch(String s, String pattern) {
-        try {
-            Pattern patt = Pattern.compile(pattern);
-            Matcher matcher = patt.matcher(s);
-            return matcher.matches();
-        } catch (RuntimeException e) {
-	        return false;
-	    }       
-	}   
+	public static boolean intValidMax(int n, int max) {
+		return ( n <= max );
+	}
+	public static boolean intValidMinMax(int n, int min, int max) {
+		return intValidMin(n,min) && intValidMax(n,max);
+	}
 }

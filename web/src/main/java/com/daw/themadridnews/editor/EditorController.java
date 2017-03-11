@@ -130,7 +130,7 @@ public class EditorController {
 		}
 		
 		message = r.validation();
-		if(message.getCode() == 0) {
+		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
 			return showPreviewAux(model, article, true);
 		}
