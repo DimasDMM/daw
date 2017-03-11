@@ -1111,6 +1111,7 @@
 		<div class="row">
 			<div class="col-md-9 md-margin-bottom-50">
 				<!-- Blog Grid -->
+				{{#articulos}}
 				<div class="row margin-bottom-50">
 					<div class="col-sm-4 sm-margin-bottom-20">
 						<img class="img-responsive" src="/articles/1/main.jpg" alt="">
@@ -1119,7 +1120,7 @@
 						<div class="blog-grid">
 							<h3><a href="article.html">{{title}}</a></h3>
 							<ul class="blog-grid-info">
-								<li>{{author}}</li>
+								<li>{{author.name}} {{author.lastName}}</li>
 								<li>{{dateInsert}}</li>
 								<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
 							</ul>
@@ -1128,6 +1129,7 @@
 						</div>
 					</div>
 				</div>
+				{{/articulos}}
 				<!-- End Blog Grid -->
 
 				<!-- Blog Grid -->
