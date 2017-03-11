@@ -19,12 +19,15 @@ public class CategoryController {
 	@Autowired
 	ArticleRepository articleRepository;
 	
+	@Autowired
+	CategoryService categoryService;
+	
 	@RequestMapping("/categoria/{cat}/{npage}")
 	public String categories(Model model, @PathVariable String cat, Pageable pag, @PathVariable int npage){
 		
 		Page<Article> articles = articleRepository.findByCategory(cat, new PageRequest(npage,10));
 		
-		model.addAttribute("category",cat);
+		model.addAttribute("category",CategoryService.getName(cat));
 		
 		model.addAttribute("articulos",ArticleView.castList(articles.getContent()));
 		
@@ -35,7 +38,7 @@ public class CategoryController {
 		model.addAttribute("currentPage",articles.getNumber()+1);
 		model.addAttribute("totalPages",articles.getTotalPages());
 						
-		return "categoria";
+		return "category";
 		
 	}
 	

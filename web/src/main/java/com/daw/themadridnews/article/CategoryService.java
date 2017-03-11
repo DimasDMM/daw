@@ -22,7 +22,7 @@ public class CategoryService {
 		listName.add("Madrid");
 		listName.add("España");
 		listName.add("Mundo");
-		listName.add("Deporte");
+		listName.add("Deportes");
 		listName.add("Tecnología");
 		listName.add("Cultura");
 	}
