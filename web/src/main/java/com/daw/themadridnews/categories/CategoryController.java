@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.daw.themadridnews.Config;
 import com.daw.themadridnews.article.*;
 
 
@@ -18,6 +19,9 @@ public class CategoryController {
 	@Autowired
 	ArticleRepository articleRepository;
 	
+	@Autowired
+	 protected Config config;
+	
 	@RequestMapping("/categoria/{cat}/{npage}")
 	public String categories(Model model, @PathVariable String cat, Pageable pag, @PathVariable int npage){
 		
@@ -25,6 +29,31 @@ public class CategoryController {
 		
 		model.addAttribute("categ",CategoryService.getName(cat));
 		model.addAttribute("cat",cat);
+		
+		model.addAttribute("page_header", config.getMenuList());
+		
+		model.addAttribute("articulos",ArticleView.castList(articles.getContent()));
+		
+		model.addAttribute("showNext",!articles.isLast());
+		model.addAttribute("showPrev",!articles.isFirst());
+		model.addAttribute("nextPage",articles.getNumber()+1);
+		model.addAttribute("prevPage",articles.getNumber()-1);
+		model.addAttribute("currentPage",articles.getNumber()+1);
+		model.addAttribute("totalPages",articles.getTotalPages());
+						
+		return "category";
+		
+	}
+	
+	@RequestMapping("/categoria/{cat}")
+	public String categories(Model model, @PathVariable String cat, Pageable pag){
+		
+		Page<Article> articles = articleRepository.findByCategory(cat, new PageRequest(0,10));
+		
+		model.addAttribute("categ",CategoryService.getName(cat));
+		model.addAttribute("cat",cat);
+		
+		model.addAttribute("page_header", config.getMenuList());
 		
 		model.addAttribute("articulos",ArticleView.castList(articles.getContent()));
 		
