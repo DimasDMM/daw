@@ -11,6 +11,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
 	public List<Article> findFirst5ByVisible(boolean visible);
 	
-	public Page<Article> findLast10ByCategory(String category, Pageable page);
+	public Page<Article> findByCategory(String category, Pageable page);
 
 }
