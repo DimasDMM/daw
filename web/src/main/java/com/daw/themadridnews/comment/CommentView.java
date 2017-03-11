@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-
-import com.daw.themadridnews.article.Article;
+import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.user.User;
 
 public class CommentView {
 	
 	protected long id;
-	protected Article article;
+	protected ArticleView article;
 	protected User author;
 	protected long number;
 	protected String comment;
@@ -24,7 +23,7 @@ public class CommentView {
 	public CommentView() {}
 
 	public CommentView(Comment comment) {
-		this.article = comment.getArticle();
+		this.article = new ArticleView( comment.getArticle() );
 		this.author = comment.getAuthor();
 		this.number = comment.getNumber();
 		this.comment = comment.getComment();
@@ -32,7 +31,8 @@ public class CommentView {
 
 		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm'h'");
 		this.dateInsertStr = ft.format(comment.getDateInsert());
-
+		
+		commentShort = this.comment;
 		if(this.comment.length() > 100)
 			commentShort = this.comment.substring(0,100) + "...";
 	}
@@ -45,11 +45,11 @@ public class CommentView {
 		this.id = id;
 	}
 
-	public Article getArticle() {
+	public ArticleView getArticle() {
 		return article;
 	}
 
-	public void setArticle(Article article) {
+	public void setArticle(ArticleView article) {
 		this.article = article;
 	}
 
@@ -80,6 +80,7 @@ public class CommentView {
 	public void setComment(String comment) {
 		this.comment = comment;
 
+		commentShort = this.comment;
 		if(this.comment.length() > 100)
 			commentShort = this.comment.substring(0,100) + "...";
 	}

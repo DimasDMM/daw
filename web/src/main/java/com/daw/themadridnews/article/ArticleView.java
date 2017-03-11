@@ -32,6 +32,7 @@ public class ArticleView {
 		Category category = new Category(categoryId, CategoryService.getName(categoryId));
 		this.category = category;
 		
+		this.id = article.getId();
 		this.title = article.getTitle();
 		this.content = article.getContent();
 		this.author = article.getAuthor();
@@ -42,6 +43,7 @@ public class ArticleView {
 		this.comments = article.getComments();
 		this.dateInsert = article.getDateInsert();
 		
+		titleShort = title;
 		if(title.length() > 20)
 			titleShort = title.substring(0,20) + "...";
 	}
@@ -73,6 +75,7 @@ public class ArticleView {
 	public void setTitle(String title) {
 		this.title = title;
 
+		titleShort = title;
 		if(title.length() > 20)
 			titleShort = title.substring(0,20) + "...";
 	}

@@ -20,11 +20,11 @@ public class CategoryService {
 
 		listName = new ArrayList<String>();
 		listName.add("Madrid");
-		listName.add("Spain");
-		listName.add("World");
-		listName.add("Sport");
-		listName.add("Technology");
-		listName.add("Culture");
+		listName.add("España");
+		listName.add("Mundo");
+		listName.add("Deporte");
+		listName.add("Tecnología");
+		listName.add("Cultura");
 	}
 
 	public static List<String> getListId() {
@@ -34,27 +34,24 @@ public class CategoryService {
 	}
 
 	public static List<String> getListName() {
-		if(listId == null) init();
+		if(listName == null) init();
 		
-		return listId;
+		return listName;
 	}
 
 	public static List<Category> getCategoryList() {
 		if(listId == null) init();
 		
-		List<Category> articleCategories = new ArrayList<Category>();
+		List<Category> list = new ArrayList<Category>();
 		Iterator<String> it_id = getListId().iterator();
 		Iterator<String> it_name = getListName().iterator();
 
 		while (it_id.hasNext()) {
-			Category item = new Category();
-			item.id = it_id.next();
-			item.name = it_name.next();
-
-			articleCategories.add(item);
+			Category item = new Category(it_id.next(), it_name.next());
+			list.add(item);
 		}
 
-		return articleCategories;
+		return list;
 	}
 
 	public static String getName(String id) {

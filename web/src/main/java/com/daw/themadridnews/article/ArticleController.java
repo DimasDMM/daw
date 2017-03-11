@@ -47,7 +47,7 @@ public class ArticleController {
 		List<CommentView> comments = CommentView.castList( commentRepository.findByArticle(article) );
 		long nComments = commentRepository.countByArticle(article);
 		
-		List<Category> categories = CategoryService.getCategoryList();
+		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );
 		List<Article> lastArticles = articleRepository.findFirst5ByVisible(true);
 		List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );
 

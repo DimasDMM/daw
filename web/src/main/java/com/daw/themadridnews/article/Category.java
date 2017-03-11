@@ -8,7 +8,6 @@ public class Category {
 	public Category() {}
 	
 	public Category(String id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}
