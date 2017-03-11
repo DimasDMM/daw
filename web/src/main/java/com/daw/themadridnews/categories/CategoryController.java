@@ -24,10 +24,11 @@ public class CategoryController {
 	@RequestMapping("/category/{cat}")
 	public String categories(Model model, @PathVariable String cat, Pageable pag){
 		
-		model.addAttribute("category",cat);
+		Page<Article> articles = articleRepository.findAll(pag);
 		
-		Page<ArticleCategory> articles = categoryRepository.findAll(pag);
-				
+		model.addAttribute("category",cat);
+		model.addAttribute(arg0)
+						
 		return cat;
 		
 	}
