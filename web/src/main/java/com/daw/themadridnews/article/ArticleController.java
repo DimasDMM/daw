@@ -34,29 +34,32 @@ public class ArticleController {
 
 	@RequestMapping(value="/articulo/{id}", method=RequestMethod.GET)
 	public String showArticle(Model model, HttpServletRequest request, @PathVariable long id) {
-		Article article = articleRepository.findOne(id);
+		Article a = articleRepository.findOne(id);
 		
-		if(article == null)
+		if(a == null)
 			return "redirect:/error/404";
-
-		article.addView();
-		articleRepository.save(article);
+		
+		a.addView();
+		articleRepository.save(a);
 
 		userComponent.checkRolesAndName(model, request);
 		
-		List<CommentView> comments = CommentView.castList( commentRepository.findByArticle(article) );
-		long nComments = commentRepository.countByArticle(article);
+		List<CommentView> comments = CommentView.castList( commentRepository.findByArticle(a) );
+		long nComments = commentRepository.countByArticle(a);
 		
 		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );
-		List<Article> lastArticles = articleRepository.findFirst5ByVisible(true);
+		List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst5ByVisible(true), commentRepository );
 		List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );
+		List<ArticleView> otherArticles = ArticleView.castList( articleRepository.findRandom4() );
 
-		model.addAttribute("article_id", article.getId());
-		model.addAttribute("article_title", article.getTitle());
-		model.addAttribute("article_content", article.getFormatedContent());
-		model.addAttribute("article_tags", article.getTags());
-		model.addAttribute("article_source", article.getSource());
-		model.addAttribute("article_date_insert", article.getStrDateInsert());
+		ArticleView av = new ArticleView(a);
+
+		model.addAttribute("article_id", av.getId());
+		model.addAttribute("article_title", av.getTitle());
+		model.addAttribute("article_content", av.getFormatedContent());
+		model.addAttribute("article_tags", av.getTags());
+		model.addAttribute("article_source", av.getSource());
+		model.addAttribute("article_date_insert", av.getDateInsertStrLong());
 
 		model.addAttribute("n_comments", nComments);
 		model.addAttribute("comments", comments);
@@ -64,9 +67,10 @@ public class ArticleController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("last_articles", lastArticles);
 		model.addAttribute("last_comments", lastComments);
+		model.addAttribute("other_articles", otherArticles);
 
-		model.addAttribute("editor_name", article.getAuthor().getName());
-		model.addAttribute("editor_lastname", article.getAuthor().getLastName());
+		model.addAttribute("editor_name", av.getAuthor().getName());
+		model.addAttribute("editor_lastname", av.getAuthor().getLastName());
 		
 		return "article";
 	}

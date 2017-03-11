@@ -2,6 +2,7 @@ package com.daw.themadridnews.ad;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,10 +47,10 @@ public class Ad {
 	@NotNull protected boolean isLimClicks;
 	@NotNull protected boolean isLimViews;
 	
-	protected Date limDateStart;
-	protected Date limDateEnd;
-	protected int limClicks;
-	protected int limViews;
+	@Column(nullable = true) protected Date limDateStart;
+	@Column(nullable = true) protected Date limDateEnd;
+	@NotNull protected int limClicks;
+	@NotNull protected int limViews;
 	
 	// Estadisticas actuales
 	@NotNull protected int nClicks;

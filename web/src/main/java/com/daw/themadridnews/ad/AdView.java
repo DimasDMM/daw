@@ -9,6 +9,8 @@ import java.util.List;
 
 public class AdView {
 	
+	protected Ad ad;
+	
 	protected long id;
 	protected String title;
 	protected String url;
@@ -40,6 +42,9 @@ public class AdView {
 	public AdView() {}
 
 	public AdView(Ad ad) {
+		this.ad = ad;
+		
+		this.id = ad.getId();
 		this.title = ad.getTitle();
 		this.url = ad.getUrl();
 		this.type = ad.getType();
@@ -63,6 +68,10 @@ public class AdView {
 		this.statusWaiting = (ad.getStatus() == 0);
 		this.statusActive = (ad.getStatus() == 1);
 		this.statusOver = (ad.getStatus() == 2);
+	}
+	
+	public Ad getAd() {
+		return ad;
 	}
 
 	public long getId() {
@@ -94,6 +103,17 @@ public class AdView {
 	public String getLimDateEnd() { return limDateEnd; }
 	public String getLimClicks() { return limClicks; }
 	public String getLimViews() { return limViews; }
+
+	public String getLimDateStartStr() {
+		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy");
+		return ( this.isLimDateStart ? ft.format( this.ad.getLimDateStart() ) : "" );
+	}
+	public String getLimDateEndStr() {
+		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy");
+		return ( this.isLimDateEnd ? ft.format( this.ad.getLimDateEnd() ) : "" );
+	}
+	public String getLimClicksStr() { return ( this.isLimClicks ? String.valueOf( this.ad.getLimClicks() ) : "" ); }
+	public String getLimViewsStr() { return ( this.isLimViews ? String.valueOf( this.ad.getLimViews() ) : "" ); }
 
 	public int getClicks() {
 		return nClicks;

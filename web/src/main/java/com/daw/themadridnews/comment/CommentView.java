@@ -41,34 +41,18 @@ public class CommentView {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public ArticleView getArticle() {
 		return article;
-	}
-
-	public void setArticle(ArticleView article) {
-		this.article = article;
 	}
 
 	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-	
 	public long getNumber() {
 		return number;
 	}
 	
-	public void setNumber(long number) {
-		this.number = number;
-	}
-
 	public String getComment() {
 		return comment;
 	}
@@ -77,23 +61,8 @@ public class CommentView {
 		return commentShort;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
-
-		commentShort = this.comment;
-		if(this.comment.length() > 100)
-			commentShort = this.comment.substring(0,100) + "...";
-	}
-
 	public String getDateInsertStr() {
 		return dateInsertStr;
-	}
-
-	public void setDateInsert(Date dateInsert) {
-		this.dateInsert = dateInsert;
-		
-		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm");
-		this.dateInsertStr = ft.format(dateInsert);
 	}
 
 	@Override

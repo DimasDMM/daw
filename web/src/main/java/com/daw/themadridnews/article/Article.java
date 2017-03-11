@@ -1,13 +1,9 @@
 package com.daw.themadridnews.article;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-
 import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.user.User;
 
@@ -108,10 +104,6 @@ public class Article {
 	public String getContent() {
 		return content;
 	}
-	
-	public String getFormatedContent() {
-		return MarkdownConverter.getFormatedHtml(content);
-	}
 
 	public void setContent(String content) {
 		this.content = content;
@@ -131,20 +123,6 @@ public class Article {
 
 	public void setSource(String source) {
 		this.source = source;
-	}
-	
-	public String getTagsStr() {
-		StringBuilder sb = new StringBuilder();
-		Iterator<String> it = tags.iterator();
-		
-		while(it.hasNext()) {
-			sb.append( it.next() );
-			
-			if(it.hasNext())
-				sb.append(",");
-		}
-		
-		return sb.toString();
 	}
 
 	public List<String> getTags() {
@@ -181,11 +159,6 @@ public class Article {
 	
 	public Date getDateInsert() {
 		return dateInsert;
-	}
-	
-	public String getStrDateInsert() {
-		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm'h'");
-		return ft.format(dateInsert);
 	}
 	
 	public void setDateInsert(Date dateInsert) {

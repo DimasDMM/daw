@@ -20,7 +20,7 @@ public class CategoryController {
 	ArticleRepository articleRepository;
 	
 	@RequestMapping("/categoria/{cat}")
-	public String categories(Model model, @PathVariable String cat, Pageable pag, int npag){
+	public String categories(Model model, @PathVariable String cat, Pageable pag){
 		
 		Page<Article> articles = articleRepository.findByCategory(cat, new PageRequest(0,10));
 		

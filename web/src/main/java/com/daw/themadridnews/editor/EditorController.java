@@ -14,6 +14,7 @@ import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.article.CategoryService;
 import com.daw.themadridnews.article.CategoryView;
+import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.requests.FormModifyArticle;
 import com.daw.themadridnews.requests.FormNewArticle;
 import com.daw.themadridnews.user.User;
@@ -27,6 +28,9 @@ public class EditorController {
 
 	@Autowired
 	protected ArticleRepository articleRepository;
+
+	@Autowired
+	protected CommentRepository commentRepository;
 	
 	@Autowired
 	protected UserComponent userComponent;
@@ -56,6 +60,11 @@ public class EditorController {
 	
 	@RequestMapping(value="/editor/articulo/nuevo", method=RequestMethod.POST)
 	public String showFormNewPreview(Model model, FormNewArticle r) {
+		Message message = r.validation();
+		if(message.getCode() != 0) {
+			model.addAttribute("message", message);
+			return showFormNew(model);
+		}
 
 		User editor = userComponent.getLoggedUser();
 		
@@ -130,7 +139,7 @@ public class EditorController {
 		}
 		
 		message = r.validation();
-		if(message.getCode() == 0) {
+		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
 			return showPreviewAux(model, article, true);
 		}
@@ -180,23 +189,25 @@ public class EditorController {
 	}
 	
 	
-	private String showPreviewAux(Model model, Article article, boolean isModification) {
-		List<CategoryView> articleCategories = CategoryView.castList( CategoryService.getCategoryList() );
-		CategoryView.setActiveInList( articleCategories, article.getCategory() );
+	private String showPreviewAux(Model model, Article a, boolean isModification) {
+		ArticleView av = new ArticleView(a);
 		
-		model.addAttribute("article_id", article.getId());
-		model.addAttribute("article_title", article.getTitle());
-		model.addAttribute("article_content", article.getFormatedContent());
-		model.addAttribute("article_content_raw", article.getContent());
+		List<CategoryView> articleCategories = CategoryView.castList( CategoryService.getCategoryList() );
+		CategoryView.setActiveInList( articleCategories, av.getCategory().getId() );
+		
+		model.addAttribute("article_id", av.getId());
+		model.addAttribute("article_title", av.getTitle());
+		model.addAttribute("article_content", av.getFormatedContent());
+		model.addAttribute("article_content_raw", av.getContent());
 		model.addAttribute("article_categories", articleCategories);
-		model.addAttribute("article_tags", article.getTags());
-		model.addAttribute("article_tags_str", article.getTagsStr());
-		model.addAttribute("article_source", article.getSource());
-		model.addAttribute("article_visible", article.isVisible());
-		model.addAttribute("article_date_insert", article.getStrDateInsert());
+		model.addAttribute("article_tags", av.getTags());
+		model.addAttribute("article_tags_str", av.getTagsStr());
+		model.addAttribute("article_source", av.getSource());
+		model.addAttribute("article_visible", av.isVisible());
+		model.addAttribute("article_date_insert", av.getDateInsertStrLong());
 
-		model.addAttribute("editor_name", article.getAuthor().getName());
-		model.addAttribute("editor_lastname", article.getAuthor().getLastName());
+		model.addAttribute("editor_name", av.getAuthor().getName());
+		model.addAttribute("editor_lastname", av.getAuthor().getLastName());
 		
 		model.addAttribute("is_modification", isModification);
 		model.addAttribute("is_preview", true);
@@ -208,7 +219,7 @@ public class EditorController {
 		Page<Article> page = articleRepository.findAll( new PageRequest(nPage, nItemsList) );
 		
 		List<Article> articleList = page.getContent();
-		model.addAttribute("article_list", ArticleView.castList(articleList) );
+		model.addAttribute("article_list", ArticleView.castList(articleList, commentRepository) );
 		
 		ModPagination modPagination = new ModPagination();
 		List<ModPageItem> pageList = modPagination.getModPageList(page, "/editor/articulo/lista/");

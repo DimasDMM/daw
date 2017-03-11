@@ -19,24 +19,7 @@ public class FormModifyArticle extends FormNewArticle {
 	}
 	
 	public Message validation() {
-		Message message = new Message();
-		
-		if(category.isEmpty() || title.isEmpty() || content.isEmpty() || source.isEmpty() || tags.isEmpty()) {
-			message.setCode(1);
-			message.setMessage("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
-			message.setType("danger");
-			
-		} else if(!Validator.strValidLength(title, 5, -1)) {
-			message.setCode(2);
-			message.setMessage("El titulo del articulo no es válido, es demasiado corto.");
-			message.setType("danger");
-			
-		} else if(!Validator.strValidList(tags)) {
-			message.setCode(3);
-			message.setMessage("La lista de etiquetas no es valida.");
-			message.setType("danger");
-		}
-		
+		Message message = super.validation();
 		return message;
 	}
 }

@@ -15,7 +15,7 @@
 	<meta name="author" content="">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="img/icons/favicon.ico">
+	<link rel="shortcut icon" href="/img/icons/favicon.ico">
 
 	<!-- Web Fonts -->
 	<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700'>
@@ -68,33 +68,47 @@
                         <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
                         <ul class="topbar-list topbar-menu">
                             <li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a></li>
+                            {{^user_logged}}
+                            <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Entrar</a></strong></li>
+                            <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Registrarse</a></strong></li>
+                            {{/user_logged}}
                         </ul>
                     </div>
                     <!-- User options -->
                     <div class="col-sm-4 col-xs-4 clearfix">
                         <i class="fa fa-search search-btn pull-right"></i>
                         <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
+                            {{^user_logged}}
+                            <li class="cd-log_reg home"><a class="cd-signin" href="javascript:void(0);">Entrar</a></li>
+                            <li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Registrarse</a></li>
+                            {{/user_logged}}
+                            {{#user_logged}}
                             <li>
-                                <a href="javascript:void(0);">Usuario</a>
+                                <a href="javascript:void(0);">{{user_logged}}</a>
                                 <ul class="topbar-dropdown">
+                                    <li class="topbar-submenu"><a href="/ajustes">Ajustes</a></li>
+                                    {{#editor}}
                                     <li class="topbar-submenu">
                                         <a href="javascript:void(0);">Art&iacute;culos</a>
                                         <ul class="topbar-submenu-in">
-                                            <li><a href="article_list.html">Lista</a></li>
-                                            <li><a href="article_new.html">Redactar</a></li>
+                                            <li><a href="/editor/articulo/lista">Lista</a></li>
+                                            <li><a href="/editor/articulo/nuevo">Redactar</a></li>
                                         </ul>
                                     </li>
+                                    {{/editor}}
+                                    {{#advert}}
                                     <li class="topbar-submenu">
                                         <a href="javascript:void(0);">Publicidad</a>
                                         <ul class="topbar-submenu-in">
-                                            <li><a href="ads_list.html">Lista</a></li>
-                                            <li><a href="ads_create.html">A&ntilde;adir</a></li>
+                                            <li><a href="/publicista/anuncio/lista">Lista</a></li>
+                                            <li><a href="/publicista/anuncio/nuevo">A&ntilde;adir</a></li>
                                         </ul>
                                     </li>
+                                    {{/advert}}
                                 </ul>
                             </li>
-                            <li><a href="user-settings.html">Ajustes</a></li>
-                            <li><a href="index.html">Cerrar sesi&oacute;n</a></li>
+                            <li><a href="/logout">Cerrar sesi&oacute;n</a></li>
+                            {{/user_logged}}
                         </ul>
                     </div>
                 </div><!--/end row-->
@@ -1137,49 +1151,82 @@
 
 					<h1 class="title-v4">Opciones</h1>
 
+                    {{#editor}}
 					<h3>Art&iacute;culos</h3>
 					<ul class="list-group sidebar-nav-v1">
-						<li class="list-group-item"><a href="article_list.html">Publicados</a></li>
-						<li class="list-group-item"><a href="article_new.html">Redactar</a></li>
+						<li class="list-group-item"><a href="/editor/articulo/lista">Publicados</a></li>
+						<li class="list-group-item"><a href="/editor/articulo/nuevo">Redactar</a></li>
 					</ul>
-
+                    {{/editor}}
+					{{#advert}}
 					<h3>Anuncios</h3>
 					<ul class="list-group sidebar-nav-v1">
 						<li class="list-group-item"><a href="/publicista/anuncio/lista">Listado</a></li>
-						<li class="list-group-item active"><a href="/publicista/anuncio/nuevo">Nuevo</a></li>
+						<li class="list-group-item {{^is_modification}}active{{/is_modification}}"><a href="/publicista/anuncio/nuevo">Nuevo</a></li>
 					</ul>
-
+					{{/advert}}
+					
 					<h3>Usuario</h3>
 					<ul class="list-group sidebar-nav-v1">
-						<li class="list-group-item"><a href="user-settings.html">Preferencias</a></li>
-						<li class="list-group-item"><a href="index.html">Cerrar sesi&oacute;n</a></li>
+						<li class="list-group-item"><a href="/ajustes">Preferencias</a></li>
+						<li class="list-group-item"><a href="/logout">Cerrar sesi&oacute;n</a></li>
 					</ul>
 				</div>
 				<!-- End Options Menu -->
 			</aside>
 
 			<section class="col-md-9">
+				{{#message}}
+				<div class="alert alert-{{type}} fade in text-center">
+					<p>
+						{{{message}}}
+					</p>
+				</div>
+				{{/message}}
+				
+				{{#is_modification}}
+				<div class="alert alert-warning fade in text-center">
+					<h4>Eliminar anuncio</h4>
+					<p>
+						Si quieres eliminar el anuncio haz click en el siguiente bot&oacute;n.
+						Recuerda que esta acci&oacute;n es irreversible.
+					</p>
+					<p>
+						<a class="btn btn-danger btn-delete">Eliminar</a>
+					</p>
+				</div>
+				<h1>Modificar anuncio</h1>
+				{{/is_modification}}
+				{{^is_modification}}
 				<h1>A&ntilde;adir anuncio</h1>
+				{{/is_modification}}
 
+				{{#is_modification}}
+				<form action="/publicista/anuncio/{{id}}" method="post" class="margin-bottom-20 sky-form no-border">
+				{{/is_modification}}
+				{{^is_modification}}
 				<form action="/publicista/anuncio/nuevo" method="post" class="margin-bottom-20 sky-form no-border">
+				{{/is_modification}}
+				
+					<input type="hidden" name="_csrf" value="{{token}}" />
 
 					<section class="row">
 						<div class="col col-md-12 full-width">
 							<label for="inp_title">T&iacute;tulo</label>
-							<input class="form-control" name="title" id="inp_title" placeholder="Nombre/titulo del anuncio">
+							<input class="form-control" name="title" id="inp_title" value="{{ad_title}}" placeholder="Nombre/titulo del anuncio">
 						</div>
 
 						<div class="col col-md-12 full-width">
 							<label for="inp_url">URL del anunciante</label>
-							<input class="form-control" name="url" id="inp_url" placeholder="Ejemplo: http://themadridnews.com">
+							<input class="form-control" name="url" id="inp_url" value="{{ad_url}}" placeholder="Ejemplo: http://themadridnews.com">
 						</div>
 
 						<div class="col col-md-6">
 							<label for="inp_ad_type">Tipo de anuncio</label>
 							<label class="select">
-								<select name="ad_type" id="inp_ad_type">
-									<option value="background" selected disabled>Fondo de la web</option>
-									<option value="banner">Banner</option>
+								<select name="type" id="inp_ad_type">
+									<option value="0" {{#ad_type_banner}}selected{{/ad_type_banner}}>Banner</option>
+									<option value="1" {{#ad_type_background}}selected{{/ad_type_background}}>Fondo de la web</option>
 								</select>
 								<i></i>
 							</label>
@@ -1187,14 +1234,14 @@
 
 						<div class="col col-md-6">
 							<label for="inp_weight">Ponderaci&oacute;n</label>
-							<input class="form-control" name="weight" id="inp_weight" placeholder="Frecuencia de aparici&oacute;n">
+							<input class="form-control" name="weight" id="inp_weight" value="{{ad_weight}}" placeholder="Frecuencia de aparici&oacute;n">
 							<small>Introduce un número que represente el "peso" de este anuncio frente a otros</small>
 						</div>
 
 						<div class="col col-12 full-width">
-							<label for="inp_file">Imagen (jpg, gif o png)</label>
+							<label for="inp_file">Imagen JPG</label>
 							<div class="input input-file">
-								<div class="button"><input type="file" name="file" id="inp_file" multiple onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen principal" readonly>
+								<div class="button"><input type="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
 							</div>
 						</div>
 
@@ -1204,36 +1251,36 @@
 
 					<section class="row">
 						<h1>Expiraci&oacute;n del anuncio</h1>
-						<p>Los datos de expiraci&oacute;n son totalmente opcionales</p>
+						<p>Los datos de expiraci&oacute;n son totalmente opcionales. Rellenar solo aquellos que queramos.</p>
 
 						<section class="col col-md-6">
 							<label for="inp_date_start">Fecha de inicio</label>
-							<input class="form-control" name="date_start" id="inp_date_start" placeholder="DD/MM/YYYY">
+							<input class="form-control" name="datestart" id="inp_date_start" value="{{ad_date_start}}" placeholder="DD-MM-YYYY">
 							<small>Por defecto: hoy</small>
 						</section>
 
 						<section class="col col-md-6">
 							<label for="inp_date_end">Fecha de finalizaci&oacute;n</label>
-							<input class="form-control" name="date_end" id="inp_date_end" placeholder="DD/MM/YYYY">
+							<input class="form-control" name="dateend" id="inp_date_end" value="{{ad_date_end}}" placeholder="DD-MM-YYYY">
 							<small>Por defecto: sin finalizaci&oacute;n</small>
 						</section>
 
 						<section class="col col-md-6">
 							<label for="inp_clicks">Número de clicks</label>
-							<input class="form-control" name="clicks" id="inp_clicks" placeholder="Ejemplo: 1000">
+							<input class="form-control" name="clicks" id="inp_clicks" value="{{ad_clicks}}" placeholder="Ejemplo: 1000">
 							<small>Número m&aacute;ximo de clicks de usuarios en el anuncio. Por defecto: sin l&iacute;mite</small>
 						</section>
 
 						<section class="col col-md-6">
 							<label for="inp_views">Número de visualizaciones</label>
-							<input class="form-control" name="views" id="inp_views" placeholder="Ejemplo: 50000">
+							<input class="form-control" name="views" id="inp_views" value="{{ad_views}}" placeholder="Ejemplo: 5000">
 							<small>Número m&aacute;ximo de clicks de usuarios en el anuncio. Por defecto: sin l&iacute;mite</small>
 						</section>
 
 					</section>
 
 					<footer>
-						<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-eye"></i> A&ntilde;adir</button>
+						<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-floppy-o"></i> Guardar</button>
 					</footer>
 
 				</form>
@@ -1358,6 +1405,27 @@
 <!--=== End Footer v8 ===-->
 </div><!--/wrapper-->
 
+{{#is_modification}}
+<!-- ModalDeleteAd -->
+<div class="modal fade" id="modalDeleteAd" tabindex="-1" role="dialog" aria-labelledby="modalDeleteAdLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				<h4 class="modal-title">Confirmaci&oacute;n</h4>
+			</div>
+			<div class="modal-body">
+				<p><b>Importante: </b> Esta acci&oacute;n es irreversible, el anuncio ser&aacute; eliminado sin posibilidad de ser recuperado.</p>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-danger" href="/publicista/anuncio/{{id}}/eliminar"><i class="fa fa-trash"></i> Eliminar</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /ModalDeleteAd -->
+{{/is_modification}}
+
 <!-- JS Global Compulsory -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <script src="/plugins/jquery/jquery-migrate.min.js"></script>
@@ -1367,6 +1435,7 @@
 <script src="/plugins/smoothScroll.js"></script>
 <!-- JS Customization -->
 <script src="/js/page.general.js"></script>
+<script src="/js/page.publicist.js"></script>
 <script src="/plugins/modernizr.js"></script>
 <script src="/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
 <!-- JS Page Level -->

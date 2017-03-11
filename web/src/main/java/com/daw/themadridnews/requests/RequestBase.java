@@ -9,6 +9,10 @@ public class RequestBase {
 		return _csrf;
 	}
 	
+	public void setCsrf(String _csrf) {
+		this._csrf = _csrf;
+	}
+	
 	public Message validation() {
 		return new Message();
 	}
