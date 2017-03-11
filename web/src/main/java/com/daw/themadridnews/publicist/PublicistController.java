@@ -44,9 +44,6 @@ public class PublicistController {
 	}
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.POST)
 	public String showFormNewPreview(Model model, FormNewAd r) {
-		
-		System.out.println("##### "+ r.toString());
-		
 		Message message = r.validation();
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);

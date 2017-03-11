@@ -1325,10 +1325,10 @@
 							<a class="hover-grad" href="#"><i class="fa fa-link"></i></a>
 						</div>
 						<div class="blog-thumb-desc">
-							<h3><a href="#">{{title}}</a></h3>
+							<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 							<ul class="blog-thumb-info">
 								<li>6, Marzo, 2015</li>
-								<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+								<li><a href="/articulo/{{id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
 							</ul>
 						</div>
 					</div>
@@ -1358,7 +1358,7 @@
 
 					<ul class="list-inline tags-v3">
 						{{#categories}}
-						<li><a class="rounded-3x" href="#">{{name}}</a></li>
+						<li><a class="rounded-3x" href="/categoria/{{id}}">{{name}}</a></li>
 						{{/categories}}
 					</ul>
 				</div>
@@ -1602,61 +1602,21 @@
 <div class="outside-more-articles outside-more-articles--right" data-scrollTop="400">
 	<h2 class="title-v4">Noticias recientes</h2>
 
+	{{#last_articles}}
 	<div class="blog-thumb blog-thumb-circle margin-bottom-15">
 		<div class="blog-thumb-hover">
-			<img class="rounded-x" src="/img/blog/img-default.jpg" alt="">
-			<a class="hover-grad" href="#"><i class="fa fa-link"></i></a>
+			<img class="rounded-x" src="/articles/{{article_id}}/main.jpg">
+			<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-link"></i></a>
 		</div>
 		<div class="blog-thumb-desc">
-			<h3><a href="#">Lorem ipsum dolor sit amet</a></h3>
+			<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 			<ul class="blog-thumb-info">
-				<li>6, Marzo, 2015</li>
-				<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+				<li>{{dateInsertStrShort}}</li>
+				<li><a href="/articulo/{{id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
 			</ul>
 		</div>
 	</div>
-
-	<div class="blog-thumb blog-thumb-circle margin-bottom-15">
-		<div class="blog-thumb-hover">
-			<img class="rounded-x" src="/img/blog/img-default.jpg" alt="">
-			<a class="hover-grad" href="#"><i class="fa fa-link"></i></a>
-		</div>
-		<div class="blog-thumb-desc">
-			<h3><a href="#">Sed ut perspiciatis unde omnis iste</a></h3>
-			<ul class="blog-thumb-info">
-				<li>6, Marzo, 2015</li>
-				<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="blog-thumb blog-thumb-circle margin-bottom-15">
-		<div class="blog-thumb-hover">
-			<img class="rounded-x" src="/img/blog/img-default.jpg" alt="">
-			<a class="hover-grad" href="#"><i class="fa fa-link"></i></a>
-		</div>
-		<div class="blog-thumb-desc">
-			<h3><a href="#">Lorem ipsum dolor sit amet</a></h3>
-			<ul class="blog-thumb-info">
-				<li>6, Marzo, 2015</li>
-				<li><a href="#"><i class="fa fa-comments"></i> 1</a></li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="blog-thumb blog-thumb-circle">
-		<div class="blog-thumb-hover">
-			<img class="rounded-x" src="/img/blog/img-default.jpg" alt="">
-			<a class="hover-grad" href="#"><i class="fa fa-link"></i></a>
-		</div>
-		<div class="blog-thumb-desc">
-			<h3><a href="#">Sed ut perspiciatis unde omnis iste</a></h3>
-			<ul class="blog-thumb-info">
-				<li>6, Marzo, 2015</li>
-				<li><a href="#"><i class="fa fa-comments"></i> 4</a></li>
-			</ul>
-		</div>
-	</div>
+	{{/last_articles}}
 	<a href="javascript:void(0);" class="outside-more-articles__close"><span class="icon-close" aria-hidden="true"></span></a>
 </div>
 <!-- End More Articles Box -->

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import com.daw.themadridnews.comment.Comment;
+import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.user.User;
 
 
@@ -20,12 +21,20 @@ public class ArticleView {
 	protected String source;
 	protected List<String> tags;
 	protected boolean visible;
+	protected long nComments;
 	protected int views;
 	protected List<Comment> comments;
+	protected String dateInsertStrLong;
+	protected String dateInsertStrShort;
 	protected Date dateInsert;
 	
 	
 	public ArticleView() {}
+	
+	public ArticleView(Article article, long nComments) {
+		this(article);
+		this.nComments = nComments;
+	}
 	
 	public ArticleView(Article article) {
 		String categoryId = article.getCategory();
@@ -42,6 +51,12 @@ public class ArticleView {
 		this.views = article.getViews();
 		this.comments = article.getComments();
 		this.dateInsert = article.getDateInsert();
+
+		SimpleDateFormat ftl = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm'h'");
+		dateInsertStrLong = ftl.format(dateInsert);
+
+		SimpleDateFormat fts = new SimpleDateFormat ("dd-MM-yyyy");
+		dateInsertStrShort = fts.format(dateInsert);
 		
 		titleShort = title;
 		if(title.length() > 20)
@@ -106,6 +121,10 @@ public class ArticleView {
 		return views;
 	}
 	
+	public long getNumComments() {
+		return nComments;
+	}
+	
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -114,9 +133,12 @@ public class ArticleView {
 		return dateInsert;
 	}
 	
-	public String getStrDateInsert() {
-		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm'h'");
-		return ft.format(dateInsert);
+	public String getDateInsertStrLong() {
+		return dateInsertStrLong;
+	}
+	
+	public String getDateInsertStrShort() {
+		return dateInsertStrShort;
 	}
 
 	@Override
@@ -130,7 +152,23 @@ public class ArticleView {
 		Iterator<Article> it = l.iterator();
 		
 		while(it.hasNext())
-			c.add( new ArticleView(it.next()) );
+			c.add( new ArticleView( it.next() ) );
+		
+		return c;
+	}
+	
+	public static List<ArticleView> castList(List<Article> l, CommentRepository rep) {
+		List<ArticleView> c = new ArrayList<ArticleView>();
+		Iterator<Article> it = l.iterator();
+		
+		while(it.hasNext()) {
+			Article a = it.next();
+			long nComments = rep.countByArticle(a);
+			
+			ArticleView av = new ArticleView(a, nComments);
+			
+			c.add( av );
+		}
 		
 		return c;
 	}

@@ -12,11 +12,11 @@ public class CategoryService {
 	private static void init() {
 		listId = new ArrayList<String>();
 		listId.add("madrid");
-		listId.add("spain");
-		listId.add("world");
-		listId.add("sport");
-		listId.add("technology");
-		listId.add("culture");
+		listId.add("espana");
+		listId.add("mundo");
+		listId.add("deportes");
+		listId.add("tecnologia");
+		listId.add("cultura");
 
 		listName = new ArrayList<String>();
 		listName.add("Madrid");

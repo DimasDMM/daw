@@ -48,7 +48,7 @@ public class ArticleController {
 		long nComments = commentRepository.countByArticle(a);
 		
 		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );
-		List<Article> lastArticles = articleRepository.findFirst5ByVisible(true);
+		List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst5ByVisible(true), commentRepository );
 		List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );
 
 		ArticleView av = new ArticleView(a);
@@ -58,7 +58,7 @@ public class ArticleController {
 		model.addAttribute("article_content", av.getFormatedContent());
 		model.addAttribute("article_tags", av.getTags());
 		model.addAttribute("article_source", av.getSource());
-		model.addAttribute("article_date_insert", av.getStrDateInsert());
+		model.addAttribute("article_date_insert", av.getDateInsertStrLong());
 
 		model.addAttribute("n_comments", nComments);
 		model.addAttribute("comments", comments);

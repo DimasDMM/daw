@@ -14,6 +14,7 @@ import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.article.CategoryService;
 import com.daw.themadridnews.article.CategoryView;
+import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.requests.FormModifyArticle;
 import com.daw.themadridnews.requests.FormNewArticle;
 import com.daw.themadridnews.user.User;
@@ -27,6 +28,9 @@ public class EditorController {
 
 	@Autowired
 	protected ArticleRepository articleRepository;
+
+	@Autowired
+	protected CommentRepository commentRepository;
 	
 	@Autowired
 	protected UserComponent userComponent;
@@ -200,7 +204,7 @@ public class EditorController {
 		model.addAttribute("article_tags_str", av.getTagsStr());
 		model.addAttribute("article_source", av.getSource());
 		model.addAttribute("article_visible", av.isVisible());
-		model.addAttribute("article_date_insert", av.getStrDateInsert());
+		model.addAttribute("article_date_insert", av.getDateInsertStrLong());
 
 		model.addAttribute("editor_name", av.getAuthor().getName());
 		model.addAttribute("editor_lastname", av.getAuthor().getLastName());
@@ -215,7 +219,7 @@ public class EditorController {
 		Page<Article> page = articleRepository.findAll( new PageRequest(nPage, nItemsList) );
 		
 		List<Article> articleList = page.getContent();
-		model.addAttribute("article_list", ArticleView.castList(articleList) );
+		model.addAttribute("article_list", ArticleView.castList(articleList, commentRepository) );
 		
 		ModPagination modPagination = new ModPagination();
 		List<ModPageItem> pageList = modPagination.getModPageList(page, "/editor/articulo/lista/");
