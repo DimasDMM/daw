@@ -1,5 +1,6 @@
 package com.daw.themadridnews.user;
 
+import com.daw.themadridnews.theme.Theme;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
@@ -35,6 +36,9 @@ public class User {
 
     @Column(unique=true)
     private String alias;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private Theme themes;
     
     private char sex;
     private String city;
@@ -91,6 +95,10 @@ public class User {
 	return alias;
     }
     
+    public Theme getThemes(){
+        return this.themes;
+    }
+    
     public char getSex() {
 	return sex;
     }
@@ -142,6 +150,10 @@ public class User {
 
     public void setAlias(String alias) {
 	this.alias = alias;
+    }
+    
+    public void setThemes(Theme themes){
+        this.themes = themes;
     }
 	
     public void setSex(char sex) {

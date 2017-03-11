@@ -1,5 +1,6 @@
 package com.daw.themadridnews.user;
 
+import com.daw.themadridnews.theme.Theme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,10 +43,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = POST)
-    public String user_sign(Model model, User user){
+    public String register(Model model, User user){
         user.getRoles().add("USER");
         userRepository.save(user);
+        userComponent.setLoggedUser(user);
 
 	return "user_sign";
+    }
+    
+    @RequestMapping(value = "/registerend", method = POST)
+    public String registerEnd(Theme theme){
+        userComponent.getLoggedUser().setThemes(theme);
+        userRepository.save(userComponent.getLoggedUser());
+        
+        return "index";
     }
 }
