@@ -1,10 +1,11 @@
 package com.daw.themadridnews;
 
 import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
+import com.daw.themadridnews.ad.Ad;
+import com.daw.themadridnews.ad.AdRepository;
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.comment.Comment;
@@ -23,14 +24,21 @@ public class DataExampleController implements CommandLineRunner {
     
     @Autowired
     private CommentRepository commentRepository;
+    
+    @Autowired
+    private AdRepository adRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
 		// Usuarios
         userRepository.save(new User("pepe", "jiménez", "pepji@mail.com", "pass", "ROLE_USER"));
-        userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_EDITOR", "ROLE_USER"));
+        userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_ADVERTISING","ROLE_EDITOR", "ROLE_USER"));
         userRepository.save(new User("admin", "1", "admin@mail.com", "adminpass", "ROLE_ADMIN", "ROLE_ADVERTISING","ROLE_EDITOR", "ROLE_USER"));
         
+        
+        // Anuncio de ejemplo
+        Ad ad = new Ad("Cocacola", "http://cocacola.es/", 0, 40, null, null, 1500, 700);
+        adRepository.save(ad);
         
         // Articulo de ejemplo
         ArrayList<String> tags = new ArrayList<String>();

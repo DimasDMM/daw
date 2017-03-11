@@ -938,21 +938,21 @@
                         <div class="tab-content">
                             <!-- Personal Data Forms -->
                             <div class="tab-pane fade in active" id="tab-personal-data">
-                                <form action="#" method="get" class="margin-bottom-20 sky-form no-border">
+                                <form action="/user-settings/save" method="post" class="margin-bottom-20 sky-form no-border">
                                     <section class="row">
                                         <div class="col col-12 full-width">
-                                            <label for="inp_name">Nombre</label>
-                                            <input type="text" name="name" id="inp_name" class="form-control" placeholder="{{user_name}}">
+                                            <label for="inp_name">{{#name_new}} {{name_new}} {{/name_new}} {{^name_new}}Nombre {{/name_new}}</label>
+                                            <input type="text" name="name" id="inp_name" class="form-control" value="{{user_name}}">
                                             <div class="note note-success-compulsory">Campo obligatorio</div>
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_surname">Apellidos</label>
-                                            <input type="text" name="surname" id="inp_surname" class="form-control" placeholder="{{user_lastName}}">
+                                            <input type="text" name="lastName" id="inp_surname" class="form-control" value="{{user_lastName}}">
                                             <div class="note note-success-compulsory">Campo obligatorio</div>
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_alias">Alias</label>
-                                            <input type="text" name="alias" id="inp_alias" class="form-control" {{#user_alias}} placeholder="{{user_alias}}" {{/user_alias}}>
+                                            <input type="text" name="alias" id="inp_alias" class="form-control" {{#user_alias}} value="{{user_alias}}" {{/user_alias}}>
                                             <div class="note note-success-compulsory">Se mostrar&aacute; en lugar de tu nombre</div>
                                         </div>
                                         <div class="col col-12 full-width">
@@ -984,7 +984,7 @@
                                     <section class="row">
                                         <div class="col col-12 full-width">
                                             <label for="inp_city">Ciudad</label>
-                                            <input type="text" name="city" id="inp_city" class="form-control" {{#user_city}} placeholder="{{user_city}}" {{/user_city}}> </div>
+                                            <input type="text" name="city" id="inp_city" class="form-control" {{#user_city}} value="{{user_city}}" {{/user_city}} > </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_country">Pa&iacute;s de residencia</label>
                                             <div class="select">
@@ -1195,7 +1195,7 @@
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_phone">Tel&eacute;fono</label>
-                                            <input type="text" name="phone" id="inp_phone" class="form-control" {{#user_phone}} placeholder="{{user_phone}}" {{/user_phone}}> </div>
+                                            <input type="text" name="phone" id="inp_phone" class="form-control" {{#user_phone}} value="{{user_phone}}" {{/user_phone}}> </div>
                                         <hr>
                                         <div class="col col-12 full-width">
                                             <label for="inp_description">Descripci&oacute;n personal</label>
@@ -1203,7 +1203,7 @@
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_url">URL blog o p&aacute;gina personal</label>
-                                            <input type="text" name="url" id="inp_url" class="form-control" {{#user_url}} placeholder="{{user_url}}" {{/user_url}} {{^user_url}}placeholder="http://..." {{/user_url}}> </div>
+                                            <input type="text" name="url" id="inp_url" class="form-control" {{#user_url}} value="{{user_url}}" {{/user_url}} {{^user_url}} placeholder="http://..." {{/user_url}}> </div>
                                     </section>
                                     <footer>
                                         <button type="submit" class="btn btn-primary pull-right">Guardar</button>
@@ -1217,7 +1217,7 @@
                                     <section class="row">
                                         <div class="col col-12 full-width">
                                             <label for="inp_email">Correo electr&oacute;nico</label>
-                                            <input type="text" name="email" id="inp_email" class="form-control" placeholder="mi@correo.com"> </div>
+                                            <input type="text" name="email" id="inp_email" class="form-control" value="{{user_email}}"> </div>
                                     </section>
                                     <hr>
                                     <div class="alert alert-info fade in"> <i class="fa fa-info-circle"></i> <strong>Cambio de contrase&ntilde;a:</strong> De forma opcional puede cambiar su contrase&ntilde;a. Tan solo debe rellenar los campos que se presentan a continuaci&oacute;n </div>
@@ -1236,6 +1236,7 @@
                                     </section>
                                     <footer>
                                         <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                                        {{#changed_success}}<div>{{changed_success}}</div>{{/changed_success}}
                                     </footer>
                                 </form>
                                 <!--/ Error states for elements -->

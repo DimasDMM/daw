@@ -1,4 +1,4 @@
-package com.daw.themadridnews.article.requests;
+package com.daw.themadridnews.requests;
 
 import com.daw.themadridnews.utils.Message;
 

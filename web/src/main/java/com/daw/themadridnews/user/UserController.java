@@ -43,12 +43,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = POST)
-    public String register(Model model, User user){
-        user.getRoles().add("USER");
+    public String register(User user){
+        user.getRoles().add("ROLE_USER");
+        user.getRoles().add("ROLE_EDITOR");
         userRepository.save(user);
         userComponent.setLoggedUser(user);
 
-	return "user_sign";
+	    return "user_sign";
     }
     
     @RequestMapping(value = "/registerend", method = POST)
