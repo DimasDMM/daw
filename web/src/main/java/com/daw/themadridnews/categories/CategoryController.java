@@ -2,6 +2,7 @@ package com.daw.themadridnews.categories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +15,6 @@ import com.daw.themadridnews.article.*;
 
 @Controller
 public class CategoryController {
-	/*
-	@Autowired
-	ArticleCategoryRepository categoryRepository;
 	
 	@Autowired
 	ArticleRepository articleRepository;
@@ -24,13 +22,14 @@ public class CategoryController {
 	@RequestMapping("/category/{cat}")
 	public String categories(Model model, @PathVariable String cat, Pageable pag){
 		
-		Page<Article> articles = articleRepository.findAll(pag);
+		Page<Article> articles = articleRepository.findLast10ByCategory(cat,new PageRequest(0,10));
 		
 		model.addAttribute("category",cat);
-		model.addAttribute(arg0)
+		
+		model.addAttribute("articulos",articles);
 						
 		return cat;
 		
 	}
-	*/
+	
 }
