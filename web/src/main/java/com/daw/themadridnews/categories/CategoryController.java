@@ -19,10 +19,10 @@ public class CategoryController {
 	@Autowired
 	ArticleRepository articleRepository;
 	
-	@RequestMapping("/categoria/{cat}")
-	public String categories(Model model, @PathVariable String cat, Pageable pag){
+	@RequestMapping("/categoria/{cat}/{npage}")
+	public String categories(Model model, @PathVariable String cat, Pageable pag, @PathVariable int npage){
 		
-		Page<Article> articles = articleRepository.findByCategory(cat, new PageRequest(0,10));
+		Page<Article> articles = articleRepository.findByCategory(cat, new PageRequest(npage,10));
 		
 		model.addAttribute("category",cat);
 		
@@ -35,7 +35,7 @@ public class CategoryController {
 		model.addAttribute("currentPage",articles.getNumber()+1);
 		model.addAttribute("totalPages",articles.getTotalPages());
 						
-		return cat;
+		return "categoria";
 		
 	}
 	

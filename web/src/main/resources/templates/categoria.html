@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="es"> <!--<![endif]-->
 <head>
-	<title>The Madrid Times | Madrid</title>
+	<title>The Madrid Times | {{cat}}</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -93,7 +93,7 @@
 				</button>
 
 				<div class="navbar-brand">
-					<a href="index.html">
+					<a href="/portada">
 						<img src="/img/icons/logo-default.png" alt="Logo">
 					</a>
 				</div>
@@ -1155,11 +1155,11 @@
 				<!-- Pager v4 -->
 				<ul class="pager pager-v4">
 					{{#showPrev}}
-					<li class="previous"><a class="rounded-3x" href="/categoria/{{category}}/?page={{prevPage}}">&larr; Anterior</a></li>
+					<li class="previous"><a class="rounded-3x" href="/categoria/{{category}}/{{prevPage}}">&larr; Anterior</a></li>
 					{{/showPrev}}
 					<li class="page-amount">{{currentPage}} of {{totalPages}}</li>
 					{{#showNext}}
-					<li class="next"><a class="rounded-3x" href="/categoria/{{category}}/?page={{nextPage}}">Siguiente &rarr;</a></li>
+					<li class="next"><a class="rounded-3x" href="/categoria/{{category}}/{{nextPage}}">Siguiente &rarr;</a></li>
 					{{/showNext}}
 				</ul>
 				<!-- End Pager v4 -->
