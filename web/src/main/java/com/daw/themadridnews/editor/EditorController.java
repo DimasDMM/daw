@@ -162,6 +162,11 @@ public class EditorController {
 		return showListAux(model, 0);
 	}
 	
+	@RequestMapping(value="/editor/articulo/lista/{nPage}", method=RequestMethod.GET)
+	public String showList(Model model, @PathVariable int nPage) {
+		return showListAux(model, nPage-1);
+	}
+	
 	@RequestMapping(value="/editor/articulo/lista/publicado", method=RequestMethod.GET)
 	public String showListPublished(Model model) {
 		Message message = new Message(0, "El articulo ha sido publicado correctamente", "success");
@@ -181,11 +186,6 @@ public class EditorController {
 		Message message = new Message(0, "El articulo ha sido eliminado correctamente", "success");
 		model.addAttribute("message", message);
 		return showListAux(model, 0);
-	}
-	
-	@RequestMapping(value="/editor/articulo/lista/{nPage}", method=RequestMethod.GET)
-	public String showList(Model model, @PathVariable int nPage) {
-		return showListAux(model, nPage-1);
 	}
 	
 	

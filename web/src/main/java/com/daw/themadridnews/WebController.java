@@ -15,7 +15,7 @@ public class WebController {
     private UserComponent userComponent;
     
 
-    @RequestMapping(value= {"/","/inicio"})
+    @RequestMapping(value= {"/","/portada"})
     public String index(Model model, HttpServletRequest request){
         userComponent.checkRolesAndName(model, request);
         return "index";
