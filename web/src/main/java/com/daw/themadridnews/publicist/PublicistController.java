@@ -1,8 +1,6 @@
 package com.daw.themadridnews.publicist;
 
-import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.daw.themadridnews.ad.Ad;
 import com.daw.themadridnews.ad.AdRepository;
 import com.daw.themadridnews.ad.AdView;
@@ -32,18 +29,31 @@ public class PublicistController {
 
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.GET)
 	public String showFormNewPreview(Model model) {
-		model.addAttribute("is_modification", true);
+		model.addAttribute("ad_title", "");
+		model.addAttribute("ad_url", "");
+		model.addAttribute("ad_type_banner", false);
+		model.addAttribute("ad_type_background", false);
+		model.addAttribute("ad_weight", "");
+		model.addAttribute("ad_date_start", "");
+		model.addAttribute("ad_date_end", "");
+		model.addAttribute("ad_clicks", "");
+		model.addAttribute("ad_views", "");
+		
+		model.addAttribute("is_modification", false);
 		return "ads_form";
 	}
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.POST)
 	public String showFormNewPreview(Model model, FormNewAd r) {
+		
+		System.out.println("##### "+ r.toString());
+		
 		Message message = r.validation();
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
-			return "ads_form";
+			return showFormNewPreview(model);
 		}
 		
-		Ad ad = new Ad( r.getTitle(), r.getUrl(), r.getType(), r.getWeight(), r.getDateStart(), r.getDateEnd(), r.getClicks(), r.getViews() );
+		Ad ad = new Ad( r.getTitle(), r.getUrl(), r.getType(), r.getWeight(), r.getDatestart(), r.getDateend(), r.getClicks(), r.getViews() );
 		adRepository.save( ad );
 
 		model.addAttribute("is_modification", true);
@@ -100,8 +110,8 @@ public class PublicistController {
 		ad.setUrl(r.getUrl());
 		ad.setType(r.getType());
 		ad.setWeight(r.getWeight());
-		ad.setLimDateStart(r.getDateStart());
-		ad.setLimDateEnd(r.getDateEnd());
+		ad.setLimDateStart(r.getDatestart());
+		ad.setLimDateEnd(r.getDateend());
 		ad.setLimClicks(r.getClicks());
 		ad.setLimViews(r.getViews());
 		

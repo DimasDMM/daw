@@ -9,24 +9,24 @@ public class FormNewAd extends RequestBase {
 	
 	protected String title;
 	protected String url;
-	protected int type;
-	protected int weight;
-	protected String dateStart;
-	protected String dateEnd;
-	protected int clicks;
-	protected int views;
+	protected String type;
+	protected String weight;
+	protected String datestart;
+	protected String dateend;
+	protected String clicks;
+	protected String views;
 	
 	
 	public FormNewAd() {super();}
 
-	public FormNewAd(String title, String url, int type, int weight, String dateStart, String dateEnd, int clicks, int views) {
+	public FormNewAd(String title, String url, String type, String weight, String datestart, String dateend, String clicks, String views) {
 		super();
 		this.title = title;
 		this.url = url;
 		this.type = type;
 		this.weight = weight;
-		this.dateStart = dateStart;
-		this.dateEnd = dateEnd;
+		this.datestart = datestart;
+		this.dateend = dateend;
 		this.clicks = clicks;
 		this.views = views;
 	}
@@ -48,66 +48,74 @@ public class FormNewAd extends RequestBase {
 	}
 
 	public int getType() {
-		return type;
+		if(type == null || type.isEmpty()) return 0;
+		
+		return Integer.valueOf( type );
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
 	public int getWeight() {
-		return weight;
+		if(weight == null || weight.isEmpty()) return 0;
+		
+		return Integer.valueOf( weight );
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(String weight) {
 		this.weight = weight;
 	}
 
-	public Date getDateStart() {
-		if(dateStart == null || dateStart.isEmpty())
+	public Date getDatestart() {
+		if(datestart == null || datestart.isEmpty())
 			return null;
 		
 		try {
 			SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
-			return ft.parse( this.dateStart );
+			return ft.parse( this.datestart );
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	public void setDateStart(String dateStart) {
-		this.dateStart = dateStart;
+	public void setDatestart(String datestart) {
+		this.datestart = datestart;
 	}
 
-	public Date getDateEnd() {
-		if(dateEnd == null || dateEnd.isEmpty())
+	public Date getDateend() {
+		if(dateend == null || dateend.isEmpty())
 			return null;
 		
 		try {
 			SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
-			return ft.parse( this.dateEnd );
+			return ft.parse( this.dateend );
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	public void setDateEnd(String dateEnd) {
-		this.dateEnd = dateEnd;
+	public void setDateend(String dateend) {
+		this.dateend = dateend;
 	}
 
 	public int getClicks() {
-		return clicks;
+		if(clicks == null || clicks.isEmpty()) return 0;
+		
+		return Integer.valueOf( clicks );
 	}
 
-	public void setClicks(int clicks) {
+	public void setClicks(String clicks) {
 		this.clicks = clicks;
 	}
 
 	public int getViews() {
-		return views;
+		if(views == null || views.isEmpty()) return 0;
+		
+		return Integer.valueOf( views );
 	}
 
-	public void setViews(int views) {
+	public void setViews(String views) {
 		this.views = views;
 	}
 
@@ -121,10 +129,10 @@ public class FormNewAd extends RequestBase {
 			message.setType("danger");
 			
 		} else if(
-				!Validator.intValidMinMax(type, 0, 1) ||
-				!Validator.intValidMin(weight, 1) ||
-				!Validator.intValidMin(clicks, 0) ||
-				!Validator.intValidMin(views, 0)
+				!Validator.intValidMinMax(this.getViews(), 0, 1) ||
+				!Validator.intValidMin(this.getWeight(), 1) ||
+				!Validator.intValidMin(this.getClicks(), 0) ||
+				!Validator.intValidMin(this.getViews(), 0)
 		) {
 			message.setCode(2);
 			message.setMessage("Hay campos con informacion no valida. Por favor, reviselos antes de continuar");
@@ -136,7 +144,7 @@ public class FormNewAd extends RequestBase {
 
 	@Override
 	public String toString() {
-		return "FormNewAd [title=" + title + ", url=" + url + ", type=" + type + ", weight=" + weight + ", dateStart="
-				+ dateStart + ", dateEnd=" + dateEnd + ", clicks=" + clicks + ", views=" + views + "]";
+		return "FormNewAd [title=" + title + ", url=" + url + ", type=" + type + ", weight=" + weight + ", datestart="
+				+ datestart + ", dateend=" + dateend + ", clicks=" + clicks + ", views=" + views + "]";
 	}
 }

@@ -15,7 +15,7 @@
 	<meta name="author" content="">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="img/icons/favicon.ico">
+	<link rel="shortcut icon" href="/img/icons/favicon.ico">
 
 	<!-- Web Fonts -->
 	<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700'>
@@ -1181,6 +1181,7 @@
 					</thead>
 					<tbody>
 						{{#ad_list}}
+						<tr>
 							<td>{{title}}</td>
 							<td>{{{limDateStart}}}</td>
 							<td>{{{limDateEnd}}}</td>
@@ -1192,6 +1193,7 @@
 								{{#statusOver}}<span class="label label-danger">Finalizado</span>{{/statusOver}}
 							</td>
 							<td><a href="/publicista/anuncio/{{id}}" class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></a></td>
+						</tr>
 						{{/ad_list}}
 						<!--
 						<tr>

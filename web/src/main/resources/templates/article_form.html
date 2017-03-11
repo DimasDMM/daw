@@ -1173,11 +1173,10 @@
 			</aside>
 
 			<section class="col-md-9">
-			
 				{{#message}}
-				<div class="alert alert-{{message.type}} fade in text-center">
+				<div class="alert alert-{{type}} fade in text-center">
 					<p>
-						{{message.message}}
+						{{{message}}}
 					</p>
 				</div>
 				{{/message}}
@@ -1216,7 +1215,7 @@
 					{{{article_content}}}
 	
 					<ul class="source-list">
-						<li><strong>Fuente:</strong> <a href="{{article_source}}">{{article_source}}</a></li>
+						<li><strong>Fuente:</strong> <a href="{{article_source}}" target="_blank">{{article_source}}</a></li>
 						<li><strong>Autor:</strong> <a>{{editor_name}} {{editor_lastname}}</a></li>
 					</ul>
 	
@@ -1283,7 +1282,7 @@
 						<div class="col col-12 full-width">
 							<label for="inp_file">Imagen principal</label>
 							<div class="input input-file">
-								<div class="button"><input type="file" name="file" id="inp_file" multiple onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="JPG, PNG o GIF" readonly>
+								<div class="button"><input type="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
 							</div>
 						</div>
 
@@ -1432,6 +1431,7 @@
 <!--=== End Footer v8 ===-->
 </div><!--/wrapper-->
 
+{{#is_modification}}
 <!-- ModalDeleteArticle -->
 <div class="modal fade" id="modalDeleteArticle" tabindex="-1" role="dialog" aria-labelledby="modalDeleteArticleLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -1450,6 +1450,7 @@
 	</div>
 </div>
 <!-- /ModalDeleteArticle -->
+{{/is_modification}}
 
 <!-- JS Global Compulsory -->
 <script src="/plugins/jquery/jquery.min.js"></script>

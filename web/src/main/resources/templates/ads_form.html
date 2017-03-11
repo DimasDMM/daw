@@ -15,7 +15,7 @@
 	<meta name="author" content="">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="img/icons/favicon.ico">
+	<link rel="shortcut icon" href="/img/icons/favicon.ico">
 
 	<!-- Web Fonts -->
 	<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700'>
@@ -1160,9 +1160,9 @@
 
 			<section class="col-md-9">
 				{{#message}}
-				<div class="alert alert-{{message.type}} fade in text-center">
+				<div class="alert alert-{{type}} fade in text-center">
 					<p>
-						{{message.message}}
+						{{{message}}}
 					</p>
 				</div>
 				{{/message}}
@@ -1190,7 +1190,7 @@
 				{{^is_modification}}
 				<form action="/publicista/anuncio/nuevo" method="post" class="margin-bottom-20 sky-form no-border">
 				{{/is_modification}}
-
+				
 					<input type="hidden" name="_csrf" value="{{token}}" />
 
 					<section class="row">
@@ -1207,7 +1207,7 @@
 						<div class="col col-md-6">
 							<label for="inp_ad_type">Tipo de anuncio</label>
 							<label class="select">
-								<select name="ad_type" id="inp_ad_type">
+								<select name="type" id="inp_ad_type">
 									<option value="0" {{#ad_type_banner}}selected{{/ad_type_banner}}>Banner</option>
 									<option value="1" {{#ad_type_background}}selected{{/ad_type_background}}>Fondo de la web</option>
 								</select>
@@ -1222,9 +1222,9 @@
 						</div>
 
 						<div class="col col-12 full-width">
-							<label for="inp_file">Imagen (jpg, gif o png)</label>
+							<label for="inp_file">Imagen JPG</label>
 							<div class="input input-file">
-								<div class="button"><input type="file" name="file" id="inp_file" multiple onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen principal" readonly>
+								<div class="button"><input type="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
 							</div>
 						</div>
 
@@ -1388,6 +1388,7 @@
 <!--=== End Footer v8 ===-->
 </div><!--/wrapper-->
 
+{{#is_modification}}
 <!-- ModalDeleteAd -->
 <div class="modal fade" id="modalDeleteAd" tabindex="-1" role="dialog" aria-labelledby="modalDeleteAdLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -1406,6 +1407,7 @@
 	</div>
 </div>
 <!-- /ModalDeleteAd -->
+{{/is_modification}}
 
 <!-- JS Global Compulsory -->
 <script src="/plugins/jquery/jquery.min.js"></script>
