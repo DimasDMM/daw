@@ -19,16 +19,23 @@ public class CategoryController {
 	@Autowired
 	ArticleRepository articleRepository;
 	
-	@RequestMapping("/category/{cat}")
-	public String categories(Model model, @PathVariable String cat, Pageable pag){
+	@RequestMapping("/categoria/{cat}/{npage}")
+	public String categories(Model model, @PathVariable String cat, Pageable pag, @PathVariable int npage){
 		
-		Page<Article> articles = articleRepository.findAll(pag);
+		Page<Article> articles = articleRepository.findByCategory(cat, new PageRequest(npage,10));
 		
-		model.addAttribute("category",cat);
+		model.addAttribute("category",CategoryService.getName(cat));
 		
 		model.addAttribute("articulos",ArticleView.castList(articles.getContent()));
+		
+		model.addAttribute("showNext",!articles.isLast());
+		model.addAttribute("showPrev",!articles.isFirst());
+		model.addAttribute("nextPage",articles.getNumber()+1);
+		model.addAttribute("prevPage",articles.getNumber()-1);
+		model.addAttribute("currentPage",articles.getNumber()+1);
+		model.addAttribute("totalPages",articles.getTotalPages());
 						
-		return cat;
+		return "category";
 		
 	}
 	

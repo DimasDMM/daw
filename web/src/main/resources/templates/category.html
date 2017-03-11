@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="es"> <!--<![endif]-->
 <head>
-	<title>The Madrid Times | Madrid</title>
+	<title>The Madrid Times | {{cat}}</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -93,7 +93,7 @@
 				</button>
 
 				<div class="navbar-brand">
-					<a href="index.html">
+					<a href="/portada">
 						<img src="/img/icons/logo-default.png" alt="Logo">
 					</a>
 				</div>
@@ -1118,14 +1118,14 @@
 					</div>
 					<div class="col-sm-8">
 						<div class="blog-grid">
-							<h3><a href="article.html">{{title}}</a></h3>
+							<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 							<ul class="blog-grid-info">
 								<li>{{author.name}} {{author.lastName}}</li>
 								<li>{{dateInsert}}</li>
 								<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
 							</ul>
 							<p>Madrid ha activado esta mañana por primera vez en su historia el escenario 3 del protocolo de contaminación, que prohíbe circular por la ciudad a cualquier persona que no haya votado a Manuela Carmena en las pasadas elecciones municipales. "La alta contaminación de dióxido de nitrógeno (NO2) nos obliga a prohibir que entren en la almendra central de la ciudad los vehículos cuyos propietarios sean de derechas", ha explicado Marta Higueras, teniente de alcalde del Ayuntamiento de Madrid.</p>
-							<a class="r-more" href="article.html">Leer m&aacute;s</a>
+							<a class="r-more" href="/articulo/{{id}}">Leer m&aacute;s</a>
 						</div>
 					</div>
 				</div>
@@ -1152,93 +1152,15 @@
 				</div>
 				<!-- End Blog Grid -->
 
-				<!-- Blog Grid -->
-				<div class="row margin-bottom-50">
-					<div class="col-sm-4 sm-margin-bottom-20">
-						<img class="img-responsive" src="/img/blog//img-default.jpg" alt="">
-					</div>
-					<div class="col-sm-8">
-						<div class="blog-grid">
-							<h3><a href="blog_single.html">New 5 star hotel in Sydney</a></h3>
-							<ul class="blog-grid-info">
-								<li>Evan Bartlett</li>
-								<li>Mar 6, 2015</li>
-								<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-							</ul>
-							<p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi. Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices velit vitae tortor posuere ultrices.</p>
-							<a class="r-more" href="blog_single.html">Read More</a>
-						</div>
-					</div>
-				</div>
-				<!-- End Blog Grid -->
-
-				<!-- Blog Grid -->
-				<div class="row margin-bottom-50">
-					<div class="col-sm-4 sm-margin-bottom-20">
-						<img class="img-responsive" src="/img/blog//img-default.jpg" alt="">
-					</div>
-					<div class="col-sm-8">
-						<div class="blog-grid">
-							<h3><a href="blog_single.html">Prepare yourself for summer</a></h3>
-							<ul class="blog-grid-info">
-								<li>Evan Bartlett</li>
-								<li>Mar 6, 2015</li>
-								<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-							</ul>
-							<p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi. Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices velit vitae tortor posuere ultrices.</p>
-							<a class="r-more" href="blog_single.html">Read More</a>
-						</div>
-					</div>
-				</div>
-				<!-- End Blog Grid -->
-
-				<!-- Blog Grid -->
-				<div class="row margin-bottom-50">
-					<div class="col-sm-4 sm-margin-bottom-20">
-						<div class="responsive-video">
-							<iframe src="//player.vimeo.com/video/93003441?color=567fc7" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-						</div>
-					</div>
-					<div class="col-sm-8">
-						<div class="blog-grid">
-							<h3><a href="blog_single.html">Education news, opinion and guides</a></h3>
-							<ul class="blog-grid-info">
-								<li>Evan Bartlett</li>
-								<li>Mar 6, 2015</li>
-								<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-							</ul>
-							<p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi. Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices velit vitae tortor posuere ultrices.</p>
-							<a class="r-more" href="blog_single.html">Read More</a>
-						</div>
-					</div>
-				</div>
-				<!-- End Blog Grid -->
-
-				<!-- Blog Grid -->
-				<div class="row margin-bottom-50">
-					<div class="col-sm-4 sm-margin-bottom-20">
-						<img class="img-responsive" src="/img/blog//img-default.jpg" alt="">
-					</div>
-					<div class="col-sm-8">
-						<div class="blog-grid">
-							<h3><a href="blog_single.html">New winter fashion style</a></h3>
-							<ul class="blog-grid-info">
-								<li>Evan Bartlett</li>
-								<li>Mar 6, 2015</li>
-								<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-							</ul>
-							<p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi. Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices velit vitae tortor posuere ultrices.</p>
-							<a class="r-more" href="blog_single.html">Read More</a>
-						</div>
-					</div>
-				</div>
-				<!-- End Blog Grid -->
-
 				<!-- Pager v4 -->
 				<ul class="pager pager-v4">
-					<li class="previous"><a class="rounded-3x" href="#">&larr; Older</a></li>
-					<li class="page-amount">1 of 7</li>
-					<li class="next"><a class="rounded-3x" href="#">Newer &rarr;</a></li>
+					{{#showPrev}}
+					<li class="previous"><a class="rounded-3x" href="/categoria/{{category}}/{{prevPage}}">&larr; Anterior</a></li>
+					{{/showPrev}}
+					<li class="page-amount">{{currentPage}} of {{totalPages}}</li>
+					{{#showNext}}
+					<li class="next"><a class="rounded-3x" href="/categoria/{{category}}/{{nextPage}}">Siguiente &rarr;</a></li>
+					{{/showNext}}
 				</ul>
 				<!-- End Pager v4 -->
 			</div>

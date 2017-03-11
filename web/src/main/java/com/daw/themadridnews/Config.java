@@ -49,14 +49,34 @@ public class Config {
 	
 	public List<CategoryItem> getMenuList() {
 		List<Category> categoryList = CategoryService.getCategoryList();
-		Iterator<Category> it = categoryList.iterator();
+		Iterator<Category> it_cat = categoryList.iterator();
 		
 		List<CategoryItem> list = new ArrayList<CategoryItem>();
 		
-		while(it.hasNext()) {
+		while(it_cat.hasNext()) {
 			CategoryItem item = new CategoryItem();
-			item.category = it.next();
-			item.articles = ArticleView.castList( articleRepository.findFirst9ByCategoryAndVisible( item.category.getId(), true), commentRepository );
+			item.category = it_cat.next();
+			List<ArticleView> l = ArticleView.castList( articleRepository.findFirst9ByCategoryAndVisible( item.category.getId(), true), commentRepository );
+			
+			Iterator<ArticleView> it_art = l.iterator();
+			int i = 0;
+
+			item.articles_col1 = new ArrayList<ArticleView>();
+			item.articles_col2 = new ArrayList<ArticleView>();
+			item.articles_col3 = new ArrayList<ArticleView>();
+			
+			while(it_art.hasNext()) {
+				if(i < 3) {
+					item.articles_col1.add(it_art.next());
+				} else if(i < 6) {
+					item.articles_col2.add(it_art.next());
+				} else {
+					item.articles_col3.add(it_art.next());
+				}
+				
+				i++;
+			}
+			
 			list.add(item);
 		}
 		
@@ -66,6 +86,8 @@ public class Config {
 	
 	public class CategoryItem {
 		public Category category;
-		public List<ArticleView> articles;
+		public List<ArticleView> articles_col1;
+		public List<ArticleView> articles_col2;
+		public List<ArticleView> articles_col3;
 	}
 }

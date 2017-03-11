@@ -144,12 +144,12 @@
 									{{category.name}}
 								</a>
 								<ul class="dropdown-menu">
-									{{#articles}}
 									<li>
 										<div class="mega-menu-content">
 											<div class="container">
 												<div class="row">
 													<div class="col-md-4 md-margin-bottom-30">
+														{{#articles_col1}}
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
@@ -165,12 +165,50 @@
 															</div>
 														</div>
 														<!-- End Blog Thumb -->
+														{{/articles_col1}}
+													</div>
+													<div class="col-md-4">
+														{{#articles_col2}}
+														<!-- Blog Thumb -->
+														<div class="blog-thumb margin-bottom-20">
+															<div class="blog-thumb-hover">
+																<img src="/img/blog/guardiacivilagents.jpg">
+																<a class="hover-grad" href="article/{{id}}"><i class="fa fa-photo"></i></a>
+															</div>
+															<div class="blog-thumb-desc">
+																<h3><a href="article/{{id}}">{{title}}</a></h3>
+																<ul class="blog-thumb-info">
+																	<li>{{dateInsertStrShort}} </li>
+																	<li><a href="/categoria/{{category.id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
+																</ul>
+															</div>
+														</div>
+														<!-- End Blog Thumb -->
+														{{/articles_col2}}
+													</div>
+													<div class="col-md-4">
+														{{#articles_col3}}
+														<!-- Blog Thumb -->
+														<div class="blog-thumb margin-bottom-20">
+															<div class="blog-thumb-hover">
+																<img src="/img/blog/guardiacivilagents.jpg">
+																<a class="hover-grad" href="article/{{id}}"><i class="fa fa-photo"></i></a>
+															</div>
+															<div class="blog-thumb-desc">
+																<h3><a href="article/{{id}}">{{title}}</a></h3>
+																<ul class="blog-thumb-info">
+																	<li>{{dateInsertStrShort}} </li>
+																	<li><a href="/categoria/{{category.id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
+																</ul>
+															</div>
+														</div>
+														<!-- End Blog Thumb -->
+														{{/articles_col3}}
 													</div>
 												</div>
 											</div>
 										</div>
 									</li>
-									{{/articles}}
 								</ul>
 							</li>		
 							{{/page_header}}
@@ -484,7 +522,7 @@
 			</ul>
 
 			<div id="cd-login"> <!-- log en el formulario -->
-				<form class="cd-form" action="/index" method="post">
+				<form class="cd-form" action="/portada" method="post">
 					<div class="lined-text"><span>Usa tu cuenta del Blog</span><hr></div>
 
 					<p class="fieldset">
@@ -516,7 +554,7 @@
 			</div> <!-- cd-login -->
             
 			<div id="cd-signup"> <!-- Formulario de registro -->
-				<form class="cd-form" action="user_sign.html" method="get">
+				<form class="cd-form" action="/register" method="post">
 					<div class="lined-text"><span>Registra tu nueva cuenta en The Madrid Times</span><hr></div>
 
 					<p class="fieldset">
