@@ -1,6 +1,5 @@
 package com.daw.themadridnews.requests;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -65,10 +64,13 @@ public class FormNewAd extends RequestBase {
 	}
 
 	public Date getDateStart() {
+		if(dateStart == null || dateStart.isEmpty())
+			return null;
+		
 		try {
 			SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
 			return ft.parse( this.dateStart );
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			return null;
 		}
 	}
@@ -78,10 +80,13 @@ public class FormNewAd extends RequestBase {
 	}
 
 	public Date getDateEnd() {
+		if(dateEnd == null || dateEnd.isEmpty())
+			return null;
+		
 		try {
 			SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
 			return ft.parse( this.dateEnd );
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			return null;
 		}
 	}
@@ -115,20 +120,15 @@ public class FormNewAd extends RequestBase {
 			message.setMessage("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
 			message.setType("danger");
 			
-		} else if(Validator.intValidMinMax(type, 0, 1)) {
+		} else if(
+				!Validator.intValidMinMax(type, 0, 1) ||
+				!Validator.intValidMin(weight, 1) ||
+				!Validator.intValidMin(clicks, 0) ||
+				!Validator.intValidMin(views, 0)
+		) {
 			message.setCode(2);
 			message.setMessage("Hay campos con informacion no valida. Por favor, reviselos antes de continuar");
-			message.setType("danger");
-			
-		} else if(type != 0 && type != 1) {
-			message.setCode(3);
-			message.setMessage("El tipo de anuncio no es válido. Por favor, escoja un tipo antes de continuar.");
-			message.setType("danger");
-			
-		} else if(type != 0 && type != 1) {
-			message.setCode(3);
-			message.setMessage("El tipo de anuncio no es válido. Por favor, escoja un tipo antes de continuar.");
-			message.setType("danger");
+			message.setType("danger");	
 		}
 		
 		return message;

@@ -1159,7 +1159,30 @@
 			</aside>
 
 			<section class="col-md-9">
+				{{#message}}
+				<div class="alert alert-{{message.type}} fade in text-center">
+					<p>
+						{{message.message}}
+					</p>
+				</div>
+				{{/message}}
+				
+				{{#is_modification}}
+				<div class="alert alert-warning fade in text-center">
+					<h4>Eliminar anuncio</h4>
+					<p>
+						Si quieres eliminar el anuncio haz click en el siguiente bot&oacute;n.
+						Recuerda que esta acci&oacute;n es irreversible.
+					</p>
+					<p>
+						<a class="btn btn-danger btn-delete">Eliminar</a>
+					</p>
+				</div>
+				<h1>Modificar anuncio</h1>
+				{{/is_modification}}
+				{{^is_modification}}
 				<h1>A&ntilde;adir anuncio</h1>
+				{{/is_modification}}
 
 				{{#is_modification}}
 				<form action="/publicista/anuncio/{{id}}" method="post" class="margin-bottom-20 sky-form no-border">
@@ -1240,7 +1263,7 @@
 					</section>
 
 					<footer>
-						<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-eye"></i> A&ntilde;adir</button>
+						<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-floppy-o"></i> Guardar</button>
 					</footer>
 
 				</form>
@@ -1365,6 +1388,25 @@
 <!--=== End Footer v8 ===-->
 </div><!--/wrapper-->
 
+<!-- ModalDeleteAd -->
+<div class="modal fade" id="modalDeleteAd" tabindex="-1" role="dialog" aria-labelledby="modalDeleteAdLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				<h4 class="modal-title">Confirmaci&oacute;n</h4>
+			</div>
+			<div class="modal-body">
+				<p><b>Importante: </b> Esta acci&oacute;n es irreversible, el anuncio ser&aacute; eliminado sin posibilidad de ser recuperado.</p>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-danger" href="/publicista/anuncio/{{id}}/eliminar"><i class="fa fa-trash"></i> Eliminar</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /ModalDeleteAd -->
+
 <!-- JS Global Compulsory -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <script src="/plugins/jquery/jquery-migrate.min.js"></script>
@@ -1374,6 +1416,7 @@
 <script src="/plugins/smoothScroll.js"></script>
 <!-- JS Customization -->
 <script src="/js/page.general.js"></script>
+<script src="/js/page.publicist.js"></script>
 <script src="/plugins/modernizr.js"></script>
 <script src="/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
 <!-- JS Page Level -->

@@ -1,5 +1,6 @@
 package com.daw.themadridnews.publicist;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,24 @@ public class PublicistController {
 	
 	private static final int nItemsList = 20;
 	
-	
+
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.GET)
+	public String showFormNewPreview(Model model) {
+		model.addAttribute("is_modification", true);
+		return "ads_form";
+	}
+	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.POST)
 	public String showFormNewPreview(Model model, FormNewAd r) {
-
+		Message message = r.validation();
+		if(message.getCode() != 0) {
+			model.addAttribute("message", message);
+			return "ads_form";
+		}
 		
+		Ad ad = new Ad( r.getTitle(), r.getUrl(), r.getType(), r.getWeight(), r.getDateStart(), r.getDateEnd(), r.getClicks(), r.getViews() );
+		adRepository.save( ad );
 
-		// Guardar
+		model.addAttribute("is_modification", true);
 
 		return "redirect:/publicista/anuncio/lista/publicado";
 	}
@@ -80,15 +92,28 @@ public class PublicistController {
 		
 		message = r.validation();
 		if(message.getCode() != 0) {
-
-			
+			model.addAttribute("message", message);
+			return showFormModify(model, id);
 		}
-
 		
+		ad.setTitle(r.getTitle());
+		ad.setUrl(r.getUrl());
+		ad.setType(r.getType());
+		ad.setWeight(r.getWeight());
+		ad.setLimDateStart(r.getDateStart());
+		ad.setLimDateEnd(r.getDateEnd());
+		ad.setLimClicks(r.getClicks());
+		ad.setLimViews(r.getViews());
 		
 		ad = adRepository.save(ad);
 		
-		return "redirect:/publicista/anuncio/publicado";
+		return "redirect:/publicista/anuncio/lista/publicado";
+	}
+	
+	@RequestMapping(value="/publicista/anuncio/{id}/eliminar", method=RequestMethod.GET)
+	public String deleteAd(Model model, @PathVariable long id) {
+		adRepository.delete(id);
+		return "redirect:/publicista/anuncio/lista/eliminado";
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/lista", method=RequestMethod.GET)
@@ -99,13 +124,6 @@ public class PublicistController {
 	@RequestMapping(value="/publicista/anuncio/lista/publicado", method=RequestMethod.GET)
 	public String showListPublished(Model model) {
 		Message message = new Message(0, "El anuncio ha sido publicado correctamente", "success");
-		model.addAttribute("message", message);
-		return showListAux(model, 0);
-	}
-	
-	@RequestMapping(value="/publicista/anuncio/lista/ocultado", method=RequestMethod.GET)
-	public String showListHidden(Model model) {
-		Message message = new Message(0, "El anuncio ha sido ocultado correctamente", "success");
 		model.addAttribute("message", message);
 		return showListAux(model, 0);
 	}

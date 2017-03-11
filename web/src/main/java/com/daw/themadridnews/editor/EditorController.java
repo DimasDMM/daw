@@ -56,6 +56,11 @@ public class EditorController {
 	
 	@RequestMapping(value="/editor/articulo/nuevo", method=RequestMethod.POST)
 	public String showFormNewPreview(Model model, FormNewArticle r) {
+		Message message = r.validation();
+		if(message.getCode() != 0) {
+			model.addAttribute("message", message);
+			return showFormNew(model);
+		}
 
 		User editor = userComponent.getLoggedUser();
 		
@@ -180,23 +185,25 @@ public class EditorController {
 	}
 	
 	
-	private String showPreviewAux(Model model, Article article, boolean isModification) {
-		List<CategoryView> articleCategories = CategoryView.castList( CategoryService.getCategoryList() );
-		CategoryView.setActiveInList( articleCategories, article.getCategory() );
+	private String showPreviewAux(Model model, Article a, boolean isModification) {
+		ArticleView av = new ArticleView(a);
 		
-		model.addAttribute("article_id", article.getId());
-		model.addAttribute("article_title", article.getTitle());
-		model.addAttribute("article_content", article.getFormatedContent());
-		model.addAttribute("article_content_raw", article.getContent());
+		List<CategoryView> articleCategories = CategoryView.castList( CategoryService.getCategoryList() );
+		CategoryView.setActiveInList( articleCategories, av.getCategory().getId() );
+		
+		model.addAttribute("article_id", av.getId());
+		model.addAttribute("article_title", av.getTitle());
+		model.addAttribute("article_content", av.getFormatedContent());
+		model.addAttribute("article_content_raw", av.getContent());
 		model.addAttribute("article_categories", articleCategories);
-		model.addAttribute("article_tags", article.getTags());
-		model.addAttribute("article_tags_str", article.getTagsStr());
-		model.addAttribute("article_source", article.getSource());
-		model.addAttribute("article_visible", article.isVisible());
-		model.addAttribute("article_date_insert", article.getStrDateInsert());
+		model.addAttribute("article_tags", av.getTags());
+		model.addAttribute("article_tags_str", av.getTagsStr());
+		model.addAttribute("article_source", av.getSource());
+		model.addAttribute("article_visible", av.isVisible());
+		model.addAttribute("article_date_insert", av.getStrDateInsert());
 
-		model.addAttribute("editor_name", article.getAuthor().getName());
-		model.addAttribute("editor_lastname", article.getAuthor().getLastName());
+		model.addAttribute("editor_name", av.getAuthor().getName());
+		model.addAttribute("editor_lastname", av.getAuthor().getLastName());
 		
 		model.addAttribute("is_modification", isModification);
 		model.addAttribute("is_preview", true);
