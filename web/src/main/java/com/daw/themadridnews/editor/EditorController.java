@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.daw.themadridnews.Config;
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.ArticleView;
@@ -35,6 +37,9 @@ public class EditorController {
 	@Autowired
 	protected UserComponent userComponent;
 	
+	@Autowired
+	protected Config config;
+	
 	protected static final int nItemsList = 5; // Numero de articulos por pagina
 
 	
@@ -54,6 +59,14 @@ public class EditorController {
 
 		model.addAttribute("is_modification", false);
 		model.addAttribute("is_preview", false);
+
+		model.addAttribute("page_header_date", config.getHeaderDate());
+		model.addAttribute("page_header_menu", config.getMenuList());
+
+		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
+		model.addAttribute("page_footer_last_articles", footerLastArticles);
+		model.addAttribute("page_header_date", config.getHeaderDate());
+		model.addAttribute("page_header_menu", config.getMenuList());
 		
 		return "article_form";
 	}
@@ -188,7 +201,6 @@ public class EditorController {
 		return showListAux(model, 0);
 	}
 	
-	
 	private String showPreviewAux(Model model, Article a, boolean isModification) {
 		ArticleView av = new ArticleView(a);
 		
@@ -211,6 +223,14 @@ public class EditorController {
 		
 		model.addAttribute("is_modification", isModification);
 		model.addAttribute("is_preview", true);
+
+		model.addAttribute("page_header_date", config.getHeaderDate());
+		model.addAttribute("page_header_menu", config.getMenuList());
+
+		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
+		model.addAttribute("page_footer_last_articles", footerLastArticles);
+		model.addAttribute("page_header_date", config.getHeaderDate());
+		model.addAttribute("page_header_menu", config.getMenuList());
 		
 		return "article_form";
 	}

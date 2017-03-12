@@ -50,9 +50,9 @@ public class ArticleController {
 		
 		List<CommentView> comments = CommentView.castList( commentRepository.findByArticle(a) );
 		long nComments = commentRepository.countByArticle(a);
-		
-		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );
+
 		List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst5ByVisible(true), commentRepository );
+		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );
 		List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );
 		List<ArticleView> otherArticles = ArticleView.castList( articleRepository.findRandom4() );
 
@@ -69,13 +69,18 @@ public class ArticleController {
 		model.addAttribute("comments", comments);
 		
 		model.addAttribute("categories", categories);
-		model.addAttribute("last_articles", lastArticles);
 		model.addAttribute("last_comments", lastComments);
+		model.addAttribute("last_articles", lastArticles);
 		model.addAttribute("other_articles", otherArticles);
 
 		model.addAttribute("editor_name", av.getAuthor().getName());
 		model.addAttribute("editor_lastname", av.getAuthor().getLastName());
-		
+
+		model.addAttribute("page_header_date", config.getHeaderDate());
+		model.addAttribute("page_header_menu", config.getMenuList());
+
+		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
+		model.addAttribute("page_footer_last_articles", footerLastArticles);
 		model.addAttribute("page_header_date", config.getHeaderDate());
 		model.addAttribute("page_header_menu", config.getMenuList());
 		
