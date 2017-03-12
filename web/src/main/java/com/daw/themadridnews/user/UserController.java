@@ -157,7 +157,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = POST)
-    public String register(User user){
+    public String register(User user, Model model, HttpServletRequest request){
+    	config.setPageParams(model, request);
     	
         user.getRoles().add("ROLE_USER");
         user.getRoles().add("ROLE_EDITOR");
