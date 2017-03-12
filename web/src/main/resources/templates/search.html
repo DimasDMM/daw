@@ -48,8 +48,8 @@
 			<!-- Search bar -->
 			<div class="topbar-search-block">
 				<div class="container">
-					<form action="/buscar">
-						<input type="text" class="form-control" name="searchItem" id="search-value" placeholder="Buscar">
+					<form action="/buscar" method="post">
+						<input type="text" class="form-control" name="search" placeholder="Buscar">
 						<div class="search-close"><i class="icon-close"></i></div>
 					</form>
 				</div>
@@ -150,7 +150,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/img/blog/guardiacivilagents.jpg">
+																<img src="/imagen/articulo/{{id}}">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -169,7 +169,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/img/blog/guardiacivilagents.jpg">
+																<img src="/imagen/articulo/{{id}}">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -188,7 +188,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/img/blog/guardiacivilagents.jpg">
+																<img src="/imagen/articulo/{{id}}">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -395,7 +395,7 @@
 						<!-- Latest News -->
 						{{#page_footer_last_articles}}
 						<div class="latest-news margin-bottom-20">
-							<img src="/img/blog/guardiacivilagents.jpg">
+							<img src="/imagen/articulo/{{id}}">
 							<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 							<p>{{contentShort}}</p>
 						</div>
@@ -409,10 +409,11 @@
 						<p><strong>&iexcl;Subscr&iacute;bete</strong> a nuestro bolet&iacute;n de noticias y ent&eacute;rate de todo en el momento!</p><br>
 
 						<!-- Form Group -->
-						<form class="input-group margin-bottom-50">
-							<input class="form-control" type="email" placeholder="Introduzca su correo">
+						<form class="input-group margin-bottom-50" action="/portada/subscripcion" method="post">
+							<input name="_csrf" value="{{token}}" type="hidden" />
+							<input class="form-control" type="email" name="email" placeholder="Introduzca su correo">
 							<div class="input-group-btn">
-								<button type="button" class="btn-u input-btn">Subscribirse</button>
+								<button type="submit" class="btn-u input-btn">Subscribirse</button>
 							</div>
 						</form>
 						<!-- End Form Group -->
