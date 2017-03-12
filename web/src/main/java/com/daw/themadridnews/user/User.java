@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "users")
 public class User {
-    
+
 	// Attributes
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -69,6 +69,25 @@ public class FileUploadController {
 		}
 	}
 
+	public static boolean saveImage(MultipartFile file, String path, String ImageName){
+		if (!file.isEmpty()) {
+			try {
+				File filesFolder = new File(path);
+				if (!filesFolder.exists()) {
+					filesFolder.mkdirs();
+				}
+				File uploadedFile = new File(filesFolder.getAbsolutePath(), ImageName);
+				file.transferTo(uploadedFile);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}else {
+			return false;
+		}
+
+	}
+
 	@RequestMapping("/image/{fileName}")
 	public void handleFileDownload(@PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
