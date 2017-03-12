@@ -37,198 +37,214 @@
     <link rel="stylesheet" href="css/theme-skins/dark-form.css">
     <link rel="stylesheet" href="css/theme-skins/dark.css">
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="css/custom.css"> </head>
+    <link rel="stylesheet" href="css/custom.css">
     <!-- JS and JQuery -->
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-
+</head>
 <body class="header-fixed header-fixed-space-v2 boxed-layout container">
     <div class="wrapper">
         <!--=== Header ===-->
-        <header class="header-v8 header-sticky">
-            <!-- Topbar blog -->
-            <div class="blog-topbar">
-                <!-- Search bar -->
-                <div class="topbar-search-block">
-                    <div class="container">
-                        <form action="/buscar" method="post">
-                            <input type="text" class="form-control" name="search" placeholder="Buscar">
-                            <div class="search-close"><i class="icon-close"></i></div>
-                        </form>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <!-- Date & Contact -->
-                        <div class="col-sm-8 col-xs-8">
-                            <div class="topbar-time">{{page_header_date}}</div>
-                            <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
-                            <ul class="topbar-list topbar-menu">
-                                <li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a></li>
-                                {{^user_logged}}
-                                <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Entrar</a></strong></li>
-                                <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Registrarse</a></strong></li>
-                                {{/user_logged}}
-                            </ul>
-                        </div>
-                        <!-- User options -->
-                        <div class="col-sm-4 col-xs-4 clearfix">
-                            <i class="fa fa-search search-btn pull-right"></i>
-                            <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
-                                {{^user_logged}}
-                                <li class="cd-log_reg home"><a class="cd-signin" href="javascript:void(0);">Entrar</a></li>
-                                <li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Registrarse</a></li>
-                                {{/user_logged}}
-                                {{#user_logged}}
-                                <li>
-                                    <a href="javascript:void(0);">{{user_logged}}</a>
-                                    <ul class="topbar-dropdown">
-                                        <li class="topbar-submenu"><a href="/ajustes">Ajustes</a></li>
-                                        {{#editor}}
-                                        <li class="topbar-submenu">
-                                            <a href="javascript:void(0);">Art&iacute;culos</a>
-                                            <ul class="topbar-submenu-in">
-                                                <li><a href="/editor/articulo/lista">Lista</a></li>
-                                                <li><a href="/editor/articulo/nuevo">Redactar</a></li>
-                                            </ul>
-                                        </li>
-                                        {{/editor}}
-                                        {{#advert}}
-                                        <li class="topbar-submenu">
-                                            <a href="javascript:void(0);">Publicidad</a>
-                                            <ul class="topbar-submenu-in">
-                                                <li><a href="/publicista/anuncio/lista">Lista</a></li>
-                                                <li><a href="/publicista/anuncio/nuevo">A&ntilde;adir</a></li>
-                                            </ul>
-                                        </li>
-                                        {{/advert}}
-                                    </ul>
-                                </li>
-                                <li><a href="/logout">Cerrar sesi&oacute;n</a></li>
-                                {{/user_logged}}
-                            </ul>
-                        </div>
-                    </div><!--/end row-->
-                </div><!--/end container-->
-            </div>
-            <!-- End Topbar blog -->
-
-            <!-- Navbar -->
-            <nav class="navbar mega-menu" role="navigation">
-                <div class="container">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="res-container">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-
-                        <div class="navbar-brand">
-                            <a href="/portada">
-                                <img src="/img/icons/logo-default.png" alt="Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <!--/end responsive container-->
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse navbar-responsive-collapse">
-                        <div class="res-container">
-                            <ul class="nav navbar-nav">
-
-                                {{#page_header_menu}}
-                                <li class="dropdown mega-menu-fullwidth">
-                                    <a href="/categoria/{{category.id}}" class="dropdown-toggle">
-                                        {{category.name}}
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <div class="mega-menu-content">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-md-4 md-margin-bottom-30">
-                                                            {{#articles_col1}}
-                                                            <!-- Blog Thumb -->
-                                                            <div class="blog-thumb margin-bottom-20">
-                                                                <div class="blog-thumb-hover">
-                                                                    <img src="/img/blog/guardiacivilagents.jpg">
-                                                                    <a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
-                                                                </div>
-                                                                <div class="blog-thumb-desc">
-                                                                    <h3><a href="/articulo/{{id}}">{{title}}</a></h3>
-                                                                    <ul class="blog-thumb-info">
-                                                                        <li>{{dateInsertStrShort}} </li>
-                                                                        <li><a href="/categoria/{{category.id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <!-- End Blog Thumb -->
-                                                            {{/articles_col1}}
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            {{#articles_col2}}
-                                                            <!-- Blog Thumb -->
-                                                            <div class="blog-thumb margin-bottom-20">
-                                                                <div class="blog-thumb-hover">
-                                                                    <img src="/img/blog/guardiacivilagents.jpg">
-                                                                    <a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
-                                                                </div>
-                                                                <div class="blog-thumb-desc">
-                                                                    <h3><a href="/articulo/{{id}}">{{title}}</a></h3>
-                                                                    <ul class="blog-thumb-info">
-                                                                        <li>{{dateInsertStrShort}} </li>
-                                                                        <li><a href="/categoria/{{category.id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <!-- End Blog Thumb -->
-                                                            {{/articles_col2}}
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            {{#articles_col3}}
-                                                            <!-- Blog Thumb -->
-                                                            <div class="blog-thumb margin-bottom-20">
-                                                                <div class="blog-thumb-hover">
-                                                                    <img src="/img/blog/guardiacivilagents.jpg">
-                                                                    <a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
-                                                                </div>
-                                                                <div class="blog-thumb-desc">
-                                                                    <h3><a href="/articulo/{{id}}">{{title}}</a></h3>
-                                                                    <ul class="blog-thumb-info">
-                                                                        <li>{{dateInsertStrShort}} </li>
-                                                                        <li><a href="/categoria/{{category.id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <!-- End Blog Thumb -->
-                                                            {{/articles_col3}}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                {{/page_header_menu}}
-                            </ul>
-                        </div><!--/responsive container-->
-                    </div><!--/navbar-collapse-->
-                </div><!--/end contaoner-->
-            </nav>
-            <!-- End Navbar -->
-        </header>
-        <!--=== End Header ===-->
+		<header class="header-v8 header-sticky">
+			<!-- Topbar blog -->
+			<div class="blog-topbar">
+				<!-- Search bar -->
+				<div class="topbar-search-block">
+					<div class="container">
+						<form action="/buscar" method="post">
+							<input type="text" class="form-control" name="search" placeholder="Buscar">
+							<div class="search-close"><i class="icon-close"></i></div>
+						</form>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+	                    <!-- Date & Contact -->
+	                    <div class="col-sm-8 col-xs-8">
+	                        <div class="topbar-time">{{page_header_date}}</div>
+	                        <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
+	                        <ul class="topbar-list topbar-menu">
+	                            <li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a></li>
+	                            {{^user_logged}}
+	                            <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Entrar</a></strong></li>
+	                            <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Registrarse</a></strong></li>
+	                            {{/user_logged}}
+	                        </ul>
+	                    </div>
+	                    <!-- User options -->
+	                    <div class="col-sm-4 col-xs-4 clearfix">
+	                        <i class="fa fa-search search-btn pull-right"></i>
+	                        <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
+	                            {{^user_logged}}
+	                            <li class="cd-log_reg home"><a class="cd-signin" href="javascript:void(0);">Entrar</a></li>
+	                            <li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Registrarse</a></li>
+	                            {{/user_logged}}
+	                            {{#user_logged}}
+	                            <li>
+	                                <a href="javascript:void(0);">{{user_logged}}</a>
+	                                <ul class="topbar-dropdown">
+	                                    <li class="topbar-submenu"><a href="/ajustes">Ajustes</a></li>
+	                                    {{#editor}}
+	                                    <li class="topbar-submenu">
+	                                        <a href="javascript:void(0);">Art&iacute;culos</a>
+	                                        <ul class="topbar-submenu-in">
+	                                            <li><a href="/editor/articulo/lista">Lista</a></li>
+	                                            <li><a href="/editor/articulo/nuevo">Redactar</a></li>
+	                                        </ul>
+	                                    </li>
+	                                    {{/editor}}
+	                                    {{#advert}}
+	                                    <li class="topbar-submenu">
+	                                        <a href="javascript:void(0);">Publicidad</a>
+	                                        <ul class="topbar-submenu-in">
+	                                            <li><a href="/publicista/anuncio/lista">Lista</a></li>
+	                                            <li><a href="/publicista/anuncio/nuevo">A&ntilde;adir</a></li>
+	                                        </ul>
+	                                    </li>
+	                                    {{/advert}}
+	                                </ul>
+	                            </li>
+	                            <li><a href="/logout">Cerrar sesi&oacute;n</a></li>
+	                            {{/user_logged}}
+	                        </ul>
+	                    </div>
+	                </div><!--/end row-->
+				</div><!--/end container-->
+			</div>
+			<!-- End Topbar blog -->
+		
+			<!-- Navbar -->
+			<nav class="navbar mega-menu" role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="res-container">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+		
+						<div class="navbar-brand">
+							<a href="/portada">
+								<img src="/img/icons/logo-default.png" alt="Logo">
+							</a>
+						</div>
+					</div>
+					<!--/end responsive container-->
+		
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse navbar-responsive-collapse">
+						<div class="res-container">
+							<ul class="nav navbar-nav">
+								
+								{{#page_header_menu}}
+								<li class="dropdown mega-menu-fullwidth">
+									<a href="/categoria/{{category.id}}" class="dropdown-toggle">
+										{{category.name}}
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<div class="mega-menu-content">
+												<div class="container">
+													<div class="row">
+														<div class="col-md-4 md-margin-bottom-30">
+															{{#articles_col1}}
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="/imagen/articulo/{{id}}">
+																	<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>{{dateInsertStrShort}} </li>
+																		<li><a href="/categoria/{{category.id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+															{{/articles_col1}}
+														</div>
+														<div class="col-md-4">
+															{{#articles_col2}}
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="/imagen/articulo/{{id}}">
+																	<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>{{dateInsertStrShort}} </li>
+																		<li><a href="/categoria/{{category.id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+															{{/articles_col2}}
+														</div>
+														<div class="col-md-4">
+															{{#articles_col3}}
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="/imagen/articulo/{{id}}">
+																	<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>{{dateInsertStrShort}} </li>
+																		<li><a href="/categoria/{{category.id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+															{{/articles_col3}}
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</li>		
+								{{/page_header_menu}}
+							</ul>
+						</div><!--/responsive container-->
+					</div><!--/navbar-collapse-->
+				</div><!--/end contaoner-->
+			</nav>
+			<!-- End Navbar -->
+		</header>
+		<!--=== End Header ===-->
+	
         <!--=== Content Part ===-->
         <div class="container content">
             <div class="row">
                 <aside class="col-md-3 md-margin-bottom-50">
                     <!-- Options Menu -->
-                    <div class="margin-bottom-50"> <img class="img-responsive profile-img margin-bottom-20" src="imagen/usuario/{{id}}" alt="">
+                    <div class="margin-bottom-50">
+                    	<img class="img-responsive profile-img margin-bottom-20" src="imagen/usuario/{{user_logged_id}}">
                         <h1 class="title-v4">Opciones</h1>
-                        {{#user_logged}}
-                        <h3>{{user_logged}}</h3>
-                        {{/user_logged}}
+
+						{{#editor}}
+						<h3>Art&iacute;culos</h3>
+						<ul class="list-group sidebar-nav-v1">
+							<li class="list-group-item"><a href="/editor/articulo/lista">Publicados</a></li>
+							<li class="list-group-item"><a href="/editor/articulo/nuevo">Redactar</a></li>
+						</ul>
+	                    {{/editor}}
+						{{#advert}}
+						<h3>Anuncios</h3>
+						<ul class="list-group sidebar-nav-v1">
+							<li class="list-group-item"><a href="/publicista/anuncio/lista">Listado</a></li>
+							<li class="list-group-item"><a href="/publicista/anuncio/nuevo">Nuevo</a></li>
+						</ul>
+						{{/advert}}
+						
+						<h3>{{user_logged}}</h3>
                         <ul class="list-group sidebar-nav-v1">
                             <li class="list-group-item active"><a href="/ajustes">Preferencias</a></li>
                             <li class="list-group-item"><a href="/logout">Cerrar sesi&oacute;n</a></li>
@@ -249,39 +265,37 @@
                         <div class="tab-content">
                             <!-- Personal Data Forms -->
                             <div class="tab-pane fade in active" id="tab-personal-data">
-                                <form action="/ajustes/guardar1" method="post" class="margin-bottom-20 sky-form no-border">
+                                <form action="/ajustes/guardar/personal" method="post" class="margin-bottom-20 sky-form no-border">
                                     <section class="row">
                                         <div class="col col-12 full-width">
-                                            <label for="inp_name">{{#name_new}} {{name_new}} {{/name_new}} {{^name_new}}Nombre {{/name_new}}</label>
+                                            <label for="inp_name">Nombre</label>
                                             <input type="text" name="name" id="inp_name" class="form-control" value="{{user_name}}" required>
-                                            {{#name_empty}}<span> {{name_empty}} </span>{{#name_empty}}
                                             <div class="note note-success-compulsory">Campo obligatorio</div>
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_surname">Apellidos</label>
-                                            <input type="text" name="lastName" id="inp_surname" class="form-control" value="{{user_lastName}}" required>
-                                            {{#lastName_empty}}<span> {{lastName_empty}} </span>{{#lastName_empty}}
+                                            <input type="text" name="lastname" id="inp_surname" class="form-control" value="{{user_lastname}}" required>
                                             <div class="note note-success-compulsory">Campo obligatorio</div>
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_alias">Alias</label>
-                                            <input type="text" name="alias" id="inp_alias" class="form-control" {{#user_alias}} value="{{user_alias}}" {{/user_alias}}>
-                                            <div class="note note-success-compulsory">{{#alias_repeated}} {{alias_repeated}} {{/alias_repeated}} {{^alias_repeated}}Se mostrar&aacute; en lugar de tu nombre{{/alias_repeated}}</div>
+                                            <input type="text" name="alias" id="inp_alias" class="form-control" value="{{user_alias}}">
+                                        </div>
+                                        <div class="col col-12 full-width">
+                                            <label for="inp_email">Correo electr&oacute;nico</label>
+                                            <input type="text" name="email" id="inp_email" class="form-control" value="{{user_email}}">
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label>Sexo</label>
                                             <div class="row">
                                                 <div class="col col-4">
-                                                    <label class="radio">
-                                                        <input type="radio" name="sex" value="m"><i class="rounded-x"></i>Hombre</label>
+                                                    <label class="radio"><input type="radio" name="sex" value="m"><i class="rounded-x"></i>Hombre</label>
                                                 </div>
                                                 <div class="col col-4">
-                                                    <label class="radio">
-                                                        <input type="radio" name="sex" value="f"><i class="rounded-x"></i>Mujer</label>
+                                                    <label class="radio"><input type="radio" name="sex" value="f"><i class="rounded-x"></i>Mujer</label>
                                                 </div>
                                                 <div class="col col-4">
-                                                    <label class="radio">
-                                                        <input type="radio" name="sex" value="o"><i class="rounded-x"></i>Otro</label>
+                                                    <label class="radio"><input type="radio" name="sex" value="o"><i class="rounded-x"></i>Otro</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -290,226 +304,23 @@
                                     <section class="row">
                                         <div class="col col-12 full-width">
                                             <label for="inp_city">Ciudad</label>
-                                            <input type="text" name="city" id="inp_city" class="form-control" {{#user_city}} value="{{user_city}}" {{/user_city}} > </div>
+                                            <input type="text" name="city" id="inp_city" class="form-control" value="{{user_city}}">
+                                        </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_country">Pa&iacute;s de residencia</label>
-                                            <div class="select">
-                                                <select name="country" id="inp_country">
-                                                    <option value="53" selected="selected">España</option>
-                                                    <option value="8">Afganistán</option>
-                                                    <option value="9">Albania</option>
-                                                    <option value="10">Alemania</option>
-                                                    <option value="11">Andorra</option>
-                                                    <option value="12">Angola</option>
-                                                    <option value="9653">Antigua y Barbuda</option>
-                                                    <option value="13">Arabia Saudí</option>
-                                                    <option value="14">Argelia</option>
-                                                    <option value="15">Argentina</option>
-                                                    <option value="9864">Armenia</option>
-                                                    <option value="18">Australia</option>
-                                                    <option value="19">Austria</option>
-                                                    <option value="9867">Azerbaiyán</option>
-                                                    <option value="20">Bahamas</option>
-                                                    <option value="9870">Bahrein</option>
-                                                    <option value="21">Bangladesh</option>
-                                                    <option value="22">Barbados</option>
-                                                    <option value="23">Bélgica</option>
-                                                    <option value="9684">Belice</option>
-                                                    <option value="24">Benin</option>
-                                                    <option value="25">Bielorrusia</option>
-                                                    <option value="26">Bolivia</option>
-                                                    <option value="9985">Bosnia-Herzegovina</option>
-                                                    <option value="28">Botswana</option>
-                                                    <option value="29">Brasil</option>
-                                                    <option value="9836">Brunei</option>
-                                                    <option value="30">Bulgaria</option>
-                                                    <option value="9613">Burkina Faso</option>
-                                                    <option value="9503">Burundi</option>
-                                                    <option value="9815">Bután</option>
-                                                    <option value="31">Cabo Verde</option>
-                                                    <option value="32">Camboya</option>
-                                                    <option value="33">Camerún</option>
-                                                    <option value="9769">Canadá</option>
-                                                    <option value="9898">Catar</option>
-                                                    <option value="9547">Chad</option>
-                                                    <option value="34">Chile</option>
-                                                    <option value="35">China</option>
-                                                    <option value="36">Chipre</option>
-                                                    <option value="37">Ciudad del Vaticano</option>
-                                                    <option value="38">Colombia</option>
-                                                    <option value="9506">Comoras</option>
-                                                    <option value="39">Corea del Norte</option>
-                                                    <option value="40">Corea del Sur</option>
-                                                    <option value="41">Costa de Marfil</option>
-                                                    <option value="42">Costa Rica</option>
-                                                    <option value="43">Croacia</option>
-                                                    <option value="44">Cuba</option>
-                                                    <option value="29016">Curaçao</option>
-                                                    <option value="45">Dinamarca</option>
-                                                    <option value="9663">Dominica</option>
-                                                    <option value="46">Ecuador</option>
-                                                    <option value="48">Egipto</option>
-                                                    <option value="49">El Salvador</option>
-                                                    <option value="50">Emiratos Árabes Unidos</option>
-                                                    <option value="9512">Eritrea</option>
-                                                    <option value="51">Eslovaquia</option>
-                                                    <option value="52">Eslovenia</option>
-                                                    <option value="47">Estados Unidos</option>
-                                                    <option value="8143">Estonia</option>
-                                                    <option value="8144">Etiopía</option>
-                                                    <option value="8147">Filipinas</option>
-                                                    <option value="8148">Finlandia</option>
-                                                    <option value="8149">Francia</option>
-                                                    <option value="9556">Gabón</option>
-                                                    <option value="9622">Gambia</option>
-                                                    <option value="9877">Georgia</option>
-                                                    <option value="8150">Ghana</option>
-                                                    <option value="9664">Granada</option>
-                                                    <option value="8151">Grecia</option>
-                                                    <option value="8153">Guatemala</option>
-                                                    <option value="9747">Guayana Francesa</option>
-                                                    <option value="8154">Guinea</option>
-                                                    <option value="9559">Guinea Ecuatorial</option>
-                                                    <option value="9629">Guinea-Bissau</option>
-                                                    <option value="9748">Guyana</option>
-                                                    <option value="8155">Haití</option>
-                                                    <option value="8156">Honduras</option>
-                                                    <option value="8158">Hungría</option>
-                                                    <option value="8159">India</option>
-                                                    <option value="8160">Indonesia</option>
-                                                    <option value="8162">Irak</option>
-                                                    <option value="8161">Irán</option>
-                                                    <option value="8163">Irlanda</option>
-                                                    <option value="8164">Islandia</option>
-                                                    <option value="10154">Islas Marshall</option>
-                                                    <option value="10145">Islas Salomón</option>
-                                                    <option value="8166">Israel</option>
-                                                    <option value="8167">Italia</option>
-                                                    <option value="8168">Jamaica</option>
-                                                    <option value="8169">Japón</option>
-                                                    <option value="9887">Jordania</option>
-                                                    <option value="9778">Kazajistán</option>
-                                                    <option value="8170">Kenia</option>
-                                                    <option value="9781">Kirguizistán</option>
-                                                    <option value="10157">Kiribati</option>
-                                                    <option value="10179">Kosovo</option>
-                                                    <option value="8171">Kuwait</option>
-                                                    <option value="9846">Laos</option>
-                                                    <option value="9598">Lesoto</option>
-                                                    <option value="8172">Letonia</option>
-                                                    <option value="9892">Líbano</option>
-                                                    <option value="9632">Liberia</option>
-                                                    <option value="8173">Libia</option>
-                                                    <option value="8174">Liechtenstein</option>
-                                                    <option value="8175">Lituania</option>
-                                                    <option value="8176">Luxemburgo</option>
-                                                    <option value="17">Macedonia</option>
-                                                    <option value="8177">Madagascar</option>
-                                                    <option value="8178">Malasia</option>
-                                                    <option value="8179">Malawi</option>
-                                                    <option value="9826">Maldivas</option>
-                                                    <option value="8180">Malí</option>
-                                                    <option value="8181">Malta</option>
-                                                    <option value="8182">Marruecos</option>
-                                                    <option value="8183">Mauricio</option>
-                                                    <option value="8184">Mauritania</option>
-                                                    <option value="8185">México</option>
-                                                    <option value="8186">Micronesia</option>
-                                                    <option value="8187">Moldavia</option>
-                                                    <option value="8188">Mónaco</option>
-                                                    <option value="9807">Mongolia</option>
-                                                    <option value="8189">Mozambique</option>
-                                                    <option value="9851">Myanmar</option>
-                                                    <option value="8190">Namibia</option>
-                                                    <option value="8145">Nauru</option>
-                                                    <option value="9829">Nepal</option>
-                                                    <option value="8191">Nicaragua</option>
-                                                    <option value="8192">Níger</option>
-                                                    <option value="8193">Nigeria</option>
-                                                    <option value="8194">Noruega</option>
-                                                    <option value="8196">Nueva Zelanda</option>
-                                                    <option value="9895">Omán</option>
-                                                    <option value="8201">Países Bajos</option>
-                                                    <option value="8202">Pakistán</option>
-                                                    <option value="10163">Palaos</option>
-                                                    <option value="9903">Palestina (ANP)</option>
-                                                    <option value="8203">Panamá</option>
-                                                    <option value="8204">Papúa Nueva Guinea</option>
-                                                    <option value="8205">Paraguay</option>
-                                                    <option value="8206">Perú</option>
-                                                    <option value="8208">Polonia</option>
-                                                    <option value="8209">Portugal</option>
-                                                    <option value="29043">Puerto Rico Estado</option>
-                                                    <option value="8211">Reino Unido</option>
-                                                    <option value="8212">República Centroafricana</option>
-                                                    <option value="8213">República Checa</option>
-                                                    <option value="9550">República del Congo</option>
-                                                    <option value="8214">República Democrática del Congo</option>
-                                                    <option value="8215">República Dominicana</option>
-                                                    <option value="9531">Reunión</option>
-                                                    <option value="8216">Ruanda</option>
-                                                    <option value="8217">Rumania</option>
-                                                    <option value="8218">Rusia</option>
-                                                    <option value="9590">Sáhara occidental</option>
-                                                    <option value="8219">Samoa</option>
-                                                    <option value="10166">Samoa Americana</option>
-                                                    <option value="10184">San Bartolomé</option>
-                                                    <option value="9678">San Cristóbal y Nieves</option>
-                                                    <option value="8220">San Marino</option>
-                                                    <option value="10185">San Martín</option>
-                                                    <option value="9679">San Vicente y las Granadinas</option>
-                                                    <option value="9680">Santa Lucía</option>
-                                                    <option value="9564">Santo Tomé y Príncipe</option>
-                                                    <option value="8221">Senegal</option>
-                                                    <option value="10046">Serbia</option>
-                                                    <option value="8224">Sierra Leona</option>
-                                                    <option value="9854">Singapur</option>
-                                                    <option value="8225">Siria</option>
-                                                    <option value="8226">Somalia</option>
-                                                    <option value="9834">Sri Lanka</option>
-                                                    <option value="9603">Suazilandia</option>
-                                                    <option value="8227">Sudáfrica</option>
-                                                    <option value="8228">Sudán</option>
-                                                    <option value="29034">Sudán del Sur</option>
-                                                    <option value="8229">Suecia</option>
-                                                    <option value="8230">Suiza</option>
-                                                    <option value="9762">Surinam</option>
-                                                    <option value="8231">Tailandia</option>
-                                                    <option value="10187">Taiwán</option>
-                                                    <option value="8232">Tanzania</option>
-                                                    <option value="9784">Tayikistán</option>
-                                                    <option value="9857">Timor Oriental</option>
-                                                    <option value="8233">Togo</option>
-                                                    <option value="10167">Tonga</option>
-                                                    <option value="9681">Trinidad y Tobago</option>
-                                                    <option value="8234">Túnez</option>
-                                                    <option value="9787">Turkmenistán</option>
-                                                    <option value="8236">Turquía</option>
-                                                    <option value="10168">Tuvalu</option>
-                                                    <option value="8237">Ucrania</option>
-                                                    <option value="8238">Uganda</option>
-                                                    <option value="8240">Uruguay</option>
-                                                    <option value="9788">Uzbekistán</option>
-                                                    <option value="10150">Vanuatu</option>
-                                                    <option value="8241">Venezuela</option>
-                                                    <option value="8242">Vietnam</option>
-                                                    <option value="9908">Yemen</option>
-                                                    <option value="9509">Yibuti</option>
-                                                    <option value="8243">Zambia</option>
-                                                    <option value="8244">Zimbabue</option>
-                                                </select> <i></i> </div>
+                                            <input type="text" name="city" id="inp_city" class="form-control" value="{{user_country}}">
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_phone">Tel&eacute;fono</label>
-                                            <input type="text" name="phoneNumber" id="inp_phone" class="form-control" {{#user_phone}} value="{{user_phone}}" {{/user_phone}}> </div>
+                                            <input type="text" name="phoneNumber" id="inp_phone" class="form-control" value="{{user_phone}}"> </div>
                                         <hr>
                                         <div class="col col-12 full-width">
                                             <label for="inp_description">Descripci&oacute;n personal</label>
-                                            <textarea class="form-control" name="description" id="inp_description" rows="10" >{{#user_description}} {{user_description}} {{/user_description}}</textarea>
+                                            <textarea class="form-control" name="description" id="inp_description" rows="10" >{{user_description}}</textarea>
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_url">URL blog o p&aacute;gina personal</label>
-                                            <input type="text" name="personalWeb" id="inp_url" class="form-control" {{#user_url}} value="{{user_url}}" {{/user_url}} {{^user_url}} placeholder="http://..." {{/user_url}}> </div>
+                                            <input type="text" name="personalWeb" id="inp_url" class="form-control" value="{{user_url}}" placeholder="http://..."> </div>
                                     </section>
                                     <footer>
                                         <button type="submit" class="btn btn-primary pull-right">Guardar</button>
@@ -520,25 +331,7 @@
                             <!-- End Personal Data Forms -->
                             <!-- Password Forms -->
                             <div class="tab-pane fade" id="tab-email-pass">
-                                <form action="/ajustes/guardar2" method="post" class="margin-bottom-20 sky-form no-border">
-                                    <section class="row">
-                                        <div class="col col-12 full-width">
-                                            <label for="inp_email">Correo electr&oacute;nico</label>
-                                            <input type="text" name="email" id="inp_email" class="form-control" value="{{user_email}}"> </div>
-                                    </section>
-                                    <section class="row">
-                                        <div class="col col-12 full-width">
-                                            <label for="inp_pass_now">Contrase&ntilde;a actual</label>
-                                            <input type="password" name="pass_now" id="inp_pass_now_email" class="form-control"> </div>
-                                    </section>
-                                    {{#email_error}}<span>{{email_error}} </span> {{/email_error}}
-                                    <footer>
-                                        <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                                        <input type="hidden" name="_csrf" value="{{token}}"/>
-                                    </footer>
-                                </form>
-                                    <hr>
-                                <form action="/ajustes/guardar3" method="post" class="margin-bottom-20 sky-form no-border">
+                                <form action="/ajustes/guardar/contrasena" method="post" class="margin-bottom-20 sky-form no-border">
                                     <div class="alert alert-info fade in"> <i class="fa fa-info-circle"></i> <strong>Cambio de contrase&ntilde;a:</strong> De forma opcional puede cambiar su contrase&ntilde;a. Tan solo debe rellenar los campos que se presentan a continuaci&oacute;n </div>
                                     <section class="row">
                                         <div class="col col-12 full-width">
@@ -563,8 +356,12 @@
                             <!-- End Password Form -->
                             <!-- My News Forms -->
                             <div class="tab-pane fade" id="tab-my-news">
-                                <form action="#" method="post" class="margin-bottom-20 sky-form no-border">
-                                    <div class="alert alert-info fade in"> <i class="fa fa-info-circle"></i> <strong>Mis Noticias:</strong> Seleccione las casillas que desee para ordenar las noticias de acuerdo a sus preferencias </div>
+                                <form action="/ajustes/guardar/noticias" method="post" class="margin-bottom-20 sky-form no-border">
+                                    <div class="alert alert-info fade in">
+                                    	<i class="fa fa-info-circle"></i>
+                                    	<strong>Mis Noticias:</strong>
+                                    	Seleccione las casillas que desee para ordenar las noticias de acuerdo a sus preferencias
+                                   	</div>
                                     <section class="row">
                                         <div class="col col-4">
                                             <label class="checkbox">
@@ -580,15 +377,18 @@
                                         </div>
                                         <div class="col col-4">
                                             <label class="checkbox">
-                                                <input type="checkbox" name="mynews[]"><i></i>Cultura</label>
+                                                <input type="checkbox" name="mynews[]"><i></i>Cultura
+                                            </label>
                                             <label class="checkbox">
-                                                <input type="checkbox" name="mynews[]"><i></i>Tecnolog&iacute;a</label>
+                                                <input type="checkbox" name="mynews[]"><i></i>Tecnolog&iacute;a
+                                            </label>
                                         </div>
                                     </section>
                                     <section class="row">
                                         <div class="col col-12">
                                             <label class="toggle">
-                                                <input type="checkbox" name="checkbox-toggle"><i class="rounded-4x"></i> Recibir notificaciones por email </label>
+                                                <input type="checkbox" name="checkbox-toggle"><i class="rounded-4x"></i> Recibir notificaciones por email
+                                            </label>
                                         </div>
                                     </section>
                                     <footer>
@@ -599,7 +399,7 @@
                             <!-- End My news Forms -->
                             <!-- My Photo Form -->
                             <div class="tab-pane fade" id="tab-my-photo">
-                                <form action="/ajustes/imagen" method="post" class="margin-bottom-20 sky-form no-border" enctype="multipart/form-data">
+                                <form action="/ajustes/guardar/imagen" method="post" class="margin-bottom-20 sky-form no-border" enctype="multipart/form-data">
                                     <section class="row">
                                         <div class="col col-12 full-width">
                                             <label for="inp_file">Foto de perfil</label>
@@ -611,13 +411,10 @@
                                             </div>
                                         </div>
                                     </section>
-                                    <div>
-                                        {{#error}} {{error}} {{/error}}
-                                    </div>
-                                        <footer>
-                                            <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                                            <input type="hidden" name="_csrf" value="{{token}}"/>
-                                        </footer>
+                                    <footer>
+                                        <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                                    </footer>
                                 </form>
                             </div>
                             <!-- End My Photo Form -->
