@@ -8,7 +8,7 @@ $(document).ready(function () {
         $('#spinner').removeClass('hidden');
 
         $.ajax({
-            url: "/categoria/" + categoryId + "/" + nPage
+            url: "/buscar/" + nPage
         }).done(function (data) {
             
             console.log( JSON.stringify(data) );

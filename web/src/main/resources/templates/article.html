@@ -477,8 +477,9 @@
 						<p><strong>&iexcl;Subscr&iacute;bete</strong> a nuestro bolet&iacute;n de noticias y ent&eacute;rate de todo en el momento!</p><br>
 
 						<!-- Form Group -->
-						<form class="input-group margin-bottom-50">
-							<input class="form-control" type="email" placeholder="Introduzca su correo">
+						<form class="input-group margin-bottom-50" action="/portada/subscripcion" method="post">
+							<input name="_csrf" value="{{token}}" type="hidden" />
+							<input class="form-control" type="email" name="email" placeholder="Introduzca su correo">
 							<div class="input-group-btn">
 								<button type="button" class="btn-u input-btn">Subscribirse</button>
 							</div>
@@ -647,9 +648,10 @@
 	<div class="g-popup g-popup--subscribe3">
 		<h3><i class="fa fa-envelope-o"></i> Subscr&iacute;bete</h3>
 		<p>Recibe correos electr&oacute;nicos con las &uacute;ltimas noticias.</p>
-		<form action="#" class="sky-form">
+		<form action="/portada/subscripcion" method="post" class="sky-form">
+			<input type="hidden" name="_csrf" value="{{token}}" />
 			<label class="input margin-bottom-20">
-				<input type="email" placeholder="Email" class="form-control">
+				<input type="email" placeholder="Email" name="email" class="form-control">
 			</label>
 			<label class="input">
 				<button class="btn btn-default" type="submit">Subscribirme</button>

@@ -2638,3 +2638,7 @@ img.img-center,
 .button-more-results {
     text-align: center;
 }
+
+.search-category {
+    text-transform: none !important;
+}

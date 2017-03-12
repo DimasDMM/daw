@@ -302,8 +302,9 @@
 							<p><strong>&iexcl;Subscr&iacute;bete</strong> a nuestro bolet&iacute;n de noticias y ent&eacute;rate de todo en el momento!</p><br>
 	
 							<!-- Form Group -->
-							<form class="input-group margin-bottom-50">
-								<input class="form-control" type="email" placeholder="Introduzca su correo">
+							<form class="input-group margin-bottom-50" action="/portada/subscripcion" method="post">
+								<input name="_csrf" value="{{token}}" type="hidden" />
+								<input class="form-control" type="email" name="email" placeholder="Introduzca su correo">
 								<div class="input-group-btn">
 									<button type="button" class="btn-u input-btn">Subscribirse</button>
 								</div>

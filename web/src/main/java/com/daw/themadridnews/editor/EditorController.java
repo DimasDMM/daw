@@ -22,7 +22,6 @@ import com.daw.themadridnews.article.CategoryView;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.requests.FormModifyArticle;
 import com.daw.themadridnews.requests.FormNewArticle;
-import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.utils.ModPagination;
@@ -76,11 +75,10 @@ public class EditorController {
 			return showFormNew(model, request);
 		}
 
-		User editor = userComponent.getLoggedUser();
 		
 		String category = r.getCategory();
 		
-		Article article = new Article( category, r.getTitle(), r.getContent(), editor, r.getSource(), r.getTags(), null, false );
+		Article article = new Article( category, r.getTitle(), r.getContent(), userComponent.getLoggedUser(), r.getSource(), r.getTags(), null, false );
 		article = articleRepository.save(article);
 
 		return showPreviewAux(model, article, false, request);

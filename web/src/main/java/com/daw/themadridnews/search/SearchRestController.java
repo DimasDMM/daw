@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleRepository;
@@ -25,9 +26,9 @@ public class SearchRestController {
 	@Autowired
 	protected ArticleRepository articleRepository;
 
-	@RequestMapping("/categoria/{cat}/{npage}")
-	public ArticleList categories(Model model, @PathVariable String cat, @PathVariable int npage, HttpServletRequest request){
-		Page<Article> a = articleRepository.findByCategory(cat, new PageRequest(npage,10));
+	@RequestMapping("/buscar/{npage}")
+	public ArticleList search(Model model, @RequestParam String searchItem, @PathVariable int npage, HttpServletRequest request){
+		Page<Article> a = articleRepository.findByTitle(searchItem, new PageRequest(npage,10));
 		List<ArticleView> av = ArticleView.castList( a.getContent(), commentRepository);
 		
 		ArticleList articleList = new ArticleList();

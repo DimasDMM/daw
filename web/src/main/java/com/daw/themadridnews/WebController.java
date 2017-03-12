@@ -10,13 +10,18 @@ import com.daw.themadridnews.article.CategoryView;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.comment.CommentView;
 import com.daw.themadridnews.favourite.Favourite;
+import com.daw.themadridnews.requests.FormSubscription;
+import com.daw.themadridnews.subscription.Subscription;
+import com.daw.themadridnews.subscription.SubscriptionRepository;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
+import com.daw.themadridnews.utils.Message;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -40,6 +45,9 @@ public class WebController {
     
     @Autowired
     private UserComponent userComponent;
+    
+    @Autowired
+    private SubscriptionRepository subscriptionRepository;
     
 
     @RequestMapping(value= {"/","/portada"})
@@ -130,5 +138,21 @@ public class WebController {
 		
         return "terms_and_conditions";
     }
+
+	@RequestMapping(value="/portada/subscripcion", method=RequestMethod.POST)
+	public String subscription(Model model, FormSubscription r, HttpServletRequest request) {
+		Message message = r.validation();
+		
+		String email = r.getEmail();
+		Subscription subscription = new Subscription(email);
+		subscriptionRepository.save( subscription );
+		
+		model.addAttribute("modal_subscription", true);
+		model.addAttribute("modal_type", (message.getCode() == 0 ? "success" : "danger" ) );
+		model.addAttribute("modal_title", (message.getCode() == 0 ? "Perfecto" : "¡Ups!" ) );
+		model.addAttribute("modal_message", (message.getCode() == 0 ? "Te has subscrito correctamente a nuestro boletin. Pronto comenzarás a recibir noticias en tu correo electrónico." : message) );
+		
+		return index(model, request);
+	}
     
 }
