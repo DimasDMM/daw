@@ -299,13 +299,13 @@
                                             <label>Sexo</label>
                                             <div class="row">
                                                 <div class="col col-4">
-                                                    <label class="radio"><input type="radio" name="sex" value="m" {{#sex_m}}selected{{/sex_m}}><i class="rounded-x"></i>Hombre</label>
+                                                    <label class="radio"><input type="radio" name="sex" value="m" {{#sex_m}}checked{{/sex_m}}><i class="rounded-x"></i>Hombre</label>
                                                 </div>
                                                 <div class="col col-4">
-                                                    <label class="radio"><input type="radio" name="sex" value="f" {{#sex_f}}selected{{/sex_f}}><i class="rounded-x"></i>Mujer</label>
+                                                    <label class="radio"><input type="radio" name="sex" value="f" {{#sex_f}}checked{{/sex_f}}><i class="rounded-x"></i>Mujer</label>
                                                 </div>
                                                 <div class="col col-4">
-                                                    <label class="radio"><input type="radio" name="sex" value="o" {{#sex_o}}selected{{/sex_o}}><i class="rounded-x"></i>Otro</label>
+                                                    <label class="radio"><input type="radio" name="sex" value="o" {{#sex_o}}checked{{/sex_o}}><i class="rounded-x"></i>Otro</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -366,7 +366,7 @@
                             <!-- End Password Form -->
                             <!-- My News Forms -->
                             <div class="tab-pane fade" id="tab-my-news">
-                                <form action="/ajustes/guardar/noticias" method="post" class="margin-bottom-20 sky-form no-border">
+                                <form action="/ajustes/guardar/favoritos" method="post" class="margin-bottom-20 sky-form no-border">
                                     <div class="alert alert-info fade in">
                                     	<i class="fa fa-info-circle"></i>
                                     	<strong>Mis Noticias:</strong>
@@ -375,34 +375,35 @@
                                     <section class="row">
                                         <div class="col col-4">
                                             <label class="checkbox">
-                                                <input type="checkbox" name="mynews[]"><i></i>Mundo</label>
+                                                <input type="checkbox" name="favs[]" {{#fav_world}}checked{{/fav_world}} value="world"><i></i>Mundo</label>
                                             <label class="checkbox">
-                                                <input type="checkbox" name="mynews[]"><i></i>Madrid</label>
+                                                <input type="checkbox" name="favs[]" {{#fav_madrid}}checked{{/fav_madrid}} value="madrid"><i></i>Madrid</label>
                                         </div>
                                         <div class="col col-4">
                                             <label class="checkbox">
-                                                <input type="checkbox" name="mynews[]"><i></i>España</label>
+                                                <input type="checkbox" name="favs[]" {{#fav_spain}}checked{{/fav_spain}} value="spain"><i></i>España</label>
                                             <label class="checkbox">
-                                                <input type="checkbox" name="mynews[]"><i></i>Deportes</label>
+                                                <input type="checkbox" name="favs[]" {{#fav_sports}}checked{{/fav_sports}} value="sports"><i></i>Deportes</label>
                                         </div>
                                         <div class="col col-4">
                                             <label class="checkbox">
-                                                <input type="checkbox" name="mynews[]"><i></i>Cultura
+                                                <input type="checkbox" name="favs[]" {{#fav_culture}}checked{{/fav_culture}} value="culture"><i></i>Cultura
                                             </label>
                                             <label class="checkbox">
-                                                <input type="checkbox" name="mynews[]"><i></i>Tecnolog&iacute;a
+                                                <input type="checkbox" name="favs[]" {{#fav_technology}}checked{{/fav_technology}} value="technology"><i></i>Tecnolog&iacute;a
                                             </label>
                                         </div>
                                     </section>
-                                    <section class="row">
+                                    <!--<section class="row">
                                         <div class="col col-12">
                                             <label class="toggle">
                                                 <input type="checkbox" name="checkbox-toggle"><i class="rounded-4x"></i> Recibir notificaciones por email
                                             </label>
                                         </div>
-                                    </section>
+                                    </section>-->
                                     <footer>
                                         <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                                        <input type="hidden" name="_csrf" value="{{token}}"/>
                                     </footer>
                                 </form>
                             </div>
@@ -414,11 +415,8 @@
                                         <div class="col col-12 full-width">
                                             <label for="inp_file">Foto de perfil</label>
                                             <div class="input input-file">
-                                                <div class="button">
-                                                    <input type="file" name="file" id="inp_file" multiple onchange="this.parentNode.nextSibling.value=this.value">
-                                                    <input type="hidden" name="_csrf" value="{{token}}"/>Buscar...</div>
-                                                <input type="text" placeholder="JPG, PNG o GIF" readonly>
-                                            </div>
+												<div class="button"><input type="file" id="inp_file" name="file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
+											</div>
                                         </div>
                                     </section>
                                     <footer>

@@ -3,6 +3,9 @@ package com.daw.themadridnews.user;
 import com.daw.themadridnews.Config;
 import com.daw.themadridnews.favourite.Favourite;
 import com.daw.themadridnews.files.FileUploadController;
+import com.daw.themadridnews.files.FileUploadService;
+import com.daw.themadridnews.requests.FormNewArticle;
+import com.daw.themadridnews.requests.FormUserFavourites;
 import com.daw.themadridnews.requests.FormUserPass;
 import com.daw.themadridnews.requests.FormUserPersonal;
 import com.daw.themadridnews.requests.Validator;
@@ -57,6 +60,14 @@ public class UserController {
         model.addAttribute("sex_f", (user.getSex() == 'f') );
         model.addAttribute("sex_o", (user.getSex() == 'o') );
         
+        Favourite favs = user.getFavourites();
+        model.addAttribute("fav_world", favs.getWorld());
+        model.addAttribute("fav_spain", favs.getSpain());
+        model.addAttribute("fav_madrid", favs.getMadrid());
+        model.addAttribute("fav_sports", favs.getSports());
+        model.addAttribute("fav_technology", favs.getTechnology());
+        model.addAttribute("fav_culture", favs.getCulture());
+        
         return "user-settings";
     }
 
@@ -91,7 +102,7 @@ public class UserController {
 		return userSettings(model, request);
     }
 
-    @RequestMapping("/ajustes/guardar/contrasena")
+    @RequestMapping(value="/ajustes/guardar/contrasena", method=RequestMethod.POST)
     public String userSettingsSavePass(Model model, HttpServletRequest request, FormUserPass r) {
     	Message message = r.validation();
     	if(message.getCode() != 0) {
@@ -120,12 +131,29 @@ public class UserController {
 		return userSettings(model, request);
     }
 
-    @RequestMapping("/ajustes/guardar3")
-    public String userSettingsSave3(@RequestParam(value="pass_new", required=false) String newPass,
-                                    @RequestParam(value="pass_new2", required=false) String newPass2,
-                                    @RequestParam("pass_now") String currentPass) {
-        boolean valid=true;
-        return "redirect:/ajustes";
+    @RequestMapping(value="/ajustes/guardar/favoritos", method=RequestMethod.POST)
+    public String userSettingsSaveFavourites(Model model, HttpServletRequest request, FormUserFavourites r) {
+    	Message message = r.validation();
+
+    	message.setCode(0);
+    	message.setMessage("Los cambios han sido guardados correctamente");
+    	message.setType("success");
+    	model.addAttribute("message", message);
+		return userSettings(model, request);
+    }
+
+    @RequestMapping(value="/ajustes/guardar/imagen", method=RequestMethod.POST)
+    public String userSettingsSaveFavourites(Model model, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+    	Message message = new Message();
+
+        User userLogged = userComponent.getLoggedUser();
+    	FileUploadService.saveImage( file, config.getPathImgUsers(), String.valueOf(userLogged.getId()) );
+
+    	message.setCode(0);
+    	message.setMessage("La imagen de perfil ha sido guardada correctamente");
+    	message.setType("success");
+    	model.addAttribute("message", message);
+		return userSettings(model, request);
     }
 
     @RequestMapping(value = "/register", method = POST)
