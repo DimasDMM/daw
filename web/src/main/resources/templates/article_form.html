@@ -334,10 +334,10 @@
 				{{/is_preview}}
 
 				{{#is_modification}}
-				<form action="/editor/articulo/{{id}}" method="post" class="margin-bottom-20 sky-form no-border">
+				<form action="/editor/articulo/{{id}}" method="post" enctype="multipart/form-data" class="margin-bottom-20 sky-form no-border">
 				{{/is_modification}}
 				{{^is_modification}}
-				<form action="/editor/articulo/nuevo" method="post" class="margin-bottom-20 sky-form no-border">
+				<form action="/editor/articulo/nuevo" method="post" enctype="multipart/form-data" class="margin-bottom-20 sky-form no-border">
 				{{/is_modification}}
 				
 					<input type="hidden" name="_csrf" value="{{token}}" />
@@ -368,7 +368,7 @@
 						<div class="col col-12 full-width">
 							<label for="inp_file">Imagen principal</label>
 							<div class="input input-file">
-								<div class="button"><input type="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
+								<div class="button"><input type="file" name="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
 							</div>
 						</div>
 

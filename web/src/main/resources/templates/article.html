@@ -647,9 +647,10 @@
 	<div class="g-popup g-popup--subscribe3">
 		<h3><i class="fa fa-envelope-o"></i> Subscr&iacute;bete</h3>
 		<p>Recibe correos electr&oacute;nicos con las &uacute;ltimas noticias.</p>
-		<form action="#" class="sky-form">
+		<form action="/portada/subscripcion" method="post" class="sky-form">
+			<input type="hidden" name="_csrf" value="{{token}}" />
 			<label class="input margin-bottom-20">
-				<input type="email" placeholder="Email" class="form-control">
+				<input type="email" placeholder="Email" name="email" class="form-control">
 			</label>
 			<label class="input">
 				<button class="btn btn-default" type="submit">Subscribirme</button>
