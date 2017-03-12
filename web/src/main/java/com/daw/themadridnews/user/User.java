@@ -3,6 +3,7 @@ package com.daw.themadridnews.user;
 import com.daw.themadridnews.favourite.Favourite;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,6 +47,8 @@ public class User {
     private String phoneNumber;
     private String description;
     private String personalWeb;
+
+    private File profileImage;
     
     //Constructors
     public User(){
@@ -178,6 +181,14 @@ public class User {
 
     public void setPersonalWeb(String personalWeb) {
 	this.personalWeb = personalWeb;
+    }
+
+    public File getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(File profileImage) {
+        this.profileImage = profileImage;
     }
 
 }

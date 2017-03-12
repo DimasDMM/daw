@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,54 +21,52 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import static com.sun.xml.internal.ws.api.model.wsdl.WSDLBoundOperation.ANONYMOUS.required;
-
 @Controller
 public class FileUploadController {
 
 	@Autowired
-	UserComponent userComponent;
+	private UserComponent userComponent;
 
-	private static final String FILES_FOLDER = "files";
+	@Autowired
+	private Config config;
+
+	private final String USER_FILE_FOLDER = "files";
+	//private String USER_FILE_FOLDER = config.getPathImgUsers();
+	//private final String ARTICLE_FILE_FOLDER = config.getPathImgArticles();
+	//private final String AD_FILE_FOLDER = config.getPathImgAds();
 
 	private List<String> imageTitles = new ArrayList<>();
 
-	@RequestMapping(value = "/imagen/subir", method = RequestMethod.POST)
-	public String handleFileUpload(Model model, 
-			@RequestParam(value = "imageTitle", required = false) String imageTitle,
-			@RequestParam("file") MultipartFile file) {
-
-		String fileName = imageTitles.size() + ".jpg";
-
+	@RequestMapping(value = "/ajustes/imagen", method = RequestMethod.POST)
+	public String handleFileUpload(Model model, @RequestParam("file") MultipartFile file) {
 		if (!file.isEmpty()) {
+			User user = userComponent.getLoggedUser();
+			String fileName = user.getId()+".jpg";
 			try {
-				File filesFolder = new File(FILES_FOLDER);
+				File filesFolder = new File(USER_FILE_FOLDER);
 				if (!filesFolder.exists()) {
 					filesFolder.mkdirs();
 				}
-
 				File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
 				file.transferTo(uploadedFile);
+				imageTitles.add(fileName);
+				user.setProfileImage(uploadedFile);
 
-				imageTitles.add(imageTitle);
-				
-				model.addAttribute("imageTitles", imageTitles);
-				
-				return "index";
+				return "redirect:/ajustes";
 
 			} catch (Exception e) {
 				
 				model.addAttribute("fileName",fileName);
 				model.addAttribute("error",
 						e.getClass().getName() + ":" + e.getMessage());
-				
-				return "index";
+
+				return "redirect:/ajustes";
 			}
 		} else {
 			
 			model.addAttribute("error",	"The file is empty");
-			
-			return "index";
+
+			return "redirect:/ajustes";
 		}
 	}
 
@@ -75,7 +74,7 @@ public class FileUploadController {
 	public void handleFileDownload(@PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
 
-		File file = new File(FILES_FOLDER, fileName+".jpg");
+		File file = new File(USER_FILE_FOLDER, fileName+".jpg");
 
 		if (file.exists()) {
 			res.setContentType("image/jpeg");

@@ -914,7 +914,7 @@
             <div class="row">
                 <aside class="col-md-3 md-margin-bottom-50">
                     <!-- Options Menu -->
-                    <div class="margin-bottom-50"> <img class="img-responsive profile-img margin-bottom-20" src="img/team/img32-md.jpg" alt="">
+                    <div class="margin-bottom-50"> <img class="img-responsive profile-img margin-bottom-20" src="image/{{fileName}}" alt="">
                         <h1 class="title-v4">Opciones</h1>
                         {{#user_logged}}
                         <h3>{{user_logged}}</h3>
@@ -1275,7 +1275,7 @@
                             <!-- End My news Forms -->
                             <!-- My Photo Form -->
                             <div class="tab-pane fade" id="tab-my-photo">
-                                <form action="/imagen/subir" method="post" class="margin-bottom-20 sky-form no-border" enctype="multipart/form-data">
+                                <form action="/ajustes/imagen" method="post" class="margin-bottom-20 sky-form no-border" enctype="multipart/form-data">
                                     <section class="row">
                                         <div class="col col-12 full-width">
                                             <label for="inp_file">Foto de perfil</label>
@@ -1287,8 +1287,13 @@
                                             </div>
                                         </div>
                                     </section>
+                                    <div>
+                                        {{#fileName}} {{fileName}} {{/fileName}}
+                                        {{#error}} {{error}} {{/error}}
+                                    </div>
                                         <footer>
                                             <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                                            <input type="hidden" name="_csrf" value="{{token}}"/>
                                         </footer>
                                 </form>
                             </div>
