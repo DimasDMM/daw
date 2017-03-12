@@ -17,6 +17,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 	
 
 	public Page<Article> findByCategory(String category, Pageable page);
+	public Page<Article> findByTitle(String title, Pageable page);
 	
 	@Query(nativeQuery=true, value="SELECT * FROM articles ORDER BY RAND() LIMIT 4")
 	public List<Article> findRandom4();
