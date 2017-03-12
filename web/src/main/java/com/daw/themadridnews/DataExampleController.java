@@ -42,8 +42,10 @@ public class DataExampleController implements CommandLineRunner {
         userRepository.save(u1); userRepository.save(u2); userRepository.save(u3);
         
         // Anuncio de ejemplo
-        Ad ad = new Ad("Cocacola", "http://cocacola.es/", 0, 40, null, null, 1500, 700);
+        Ad ad = new Ad("ZalduaAbogados", "http://www.zgasociados.com/", 0, 40, null, null, 1500, 700);
         adRepository.save(ad);
+        Ad ad2 = new Ad("HyS", "http://www.hys.es/es-es", 0, 40, null, null, 1500, 700);
+        adRepository.save(ad2);
         
         // Articulo de ejemplo
         ArrayList<String> tags = new ArrayList<String>();
@@ -56,10 +58,10 @@ public class DataExampleController implements CommandLineRunner {
         
         User editor = userRepository.findByName("Jorge");
         
-        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("espana", "Pene pene1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("mundo", "Calvo1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "El Ayuntamiento de Madrid proh&iacute;be circular a los conductores del Partido Popular", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("espana", "JxS&iacute; y la CUP tumban la comparecencia de Puigdemont por el caso Santi Vidal", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("mundo", "El jefe del Consejo Europeo define a Trump como una amenaza exterior", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "El teatro de t&iacute;teres del Retiro programar&aacute; obras para adultos", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("espana", "Pene pene1", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("mundo", "Calvo1", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
