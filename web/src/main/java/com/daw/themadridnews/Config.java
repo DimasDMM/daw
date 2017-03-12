@@ -27,6 +27,9 @@ public class Config {
 	private String[] weekDays = {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
 	private String[] months = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
 
+    @Value("${path.img.absolute}") 
+	private String pathImgAbsolute;
+	
     @Value("${path.img.articles}") 
     private String pathImgArticles;
 
@@ -56,6 +59,10 @@ public class Config {
 	
 	public String getPathImgAds() {
 		return pathImgAds;
+	}
+	
+	public String getPathImgAbsolute() {
+		return pathImgAbsolute;
 	}
 	
 	public String getHeaderDate() {

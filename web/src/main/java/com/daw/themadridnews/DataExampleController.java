@@ -1,9 +1,15 @@
 package com.daw.themadridnews;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.daw.themadridnews.ad.Ad;
 import com.daw.themadridnews.ad.AdRepository;
 import com.daw.themadridnews.article.Article;
@@ -11,6 +17,7 @@ import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.favourite.Favourite;
+import com.daw.themadridnews.files.FileUploadService;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserRepository;
 
@@ -25,12 +32,20 @@ public class DataExampleController implements CommandLineRunner {
     
     @Autowired
     private CommentRepository commentRepository;
-    
+
     @Autowired
     private AdRepository adRepository;
+    
+    @Autowired
+    private Config config;
 	
 	@Override
 	public void run(String... args) throws Exception {
+		// Inicializacion de imagen not found
+		File fileNotFound = new ClassPathResource("static/img/no-image.jpg").getFile();
+		File fileDest = new File(config.getPathImgAbsolute(), "no-image.jpg");
+		FileUploadService.copyFileUsingStream(fileNotFound, fileDest);
+		
 		// Usuarios
         User u1 = userRepository.save(new User("pepe", "jiménez", "pepji@mail.com", "pass", "ROLE_USER"));
         User u2 = userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_ADVERTISING","ROLE_EDITOR", "ROLE_USER"));
