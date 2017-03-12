@@ -1,4 +1,4 @@
-package com.daw.themadridnews;
+package com.daw.themadridnews.files;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.daw.themadridnews.Config;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,25 +68,6 @@ public class FileUploadController {
 
 			return "redirect:/ajustes";
 		}
-	}
-
-	public static boolean saveImage(MultipartFile file, String path, String ImageName){
-		if (!file.isEmpty()) {
-			try {
-				File filesFolder = new File(path);
-				if (!filesFolder.exists()) {
-					filesFolder.mkdirs();
-				}
-				File uploadedFile = new File(filesFolder.getAbsolutePath(), ImageName);
-				file.transferTo(uploadedFile);
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}else {
-			return false;
-		}
-
 	}
 
 	@RequestMapping("/image/{fileName}")

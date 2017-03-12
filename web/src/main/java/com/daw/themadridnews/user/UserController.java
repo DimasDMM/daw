@@ -1,8 +1,9 @@
 package com.daw.themadridnews.user;
 
 import com.daw.themadridnews.Config;
-import com.daw.themadridnews.FileUploadController;
 import com.daw.themadridnews.favourite.Favourite;
+import com.daw.themadridnews.files.FileUploadController;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
