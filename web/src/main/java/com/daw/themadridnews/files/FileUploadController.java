@@ -1,4 +1,4 @@
-package com.daw.themadridnews;
+package com.daw.themadridnews.files;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.daw.themadridnews.Config;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
