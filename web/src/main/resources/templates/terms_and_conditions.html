@@ -248,7 +248,7 @@
         </div>
         <!--=== End Container Part ===-->
         
-        <!--=== Footer v8 ===-->
+        <!--=== Footer ===-->
 		<div class="footer-v8">
 			<footer class="footer">
 				<div class="container">
@@ -294,14 +294,14 @@
 							<h2>&uacute;ltimas noticias</h2>
 							
 							<!-- Latest News -->
-							{{#last_articles}}
+							{{#page_footer_last_articles}}
 							<div class="latest-news margin-bottom-20">
 								<img src="/img/blog/guardiacivilagents.jpg">
 								<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 								<p>{{contentShort}}</p>
 							</div>
 							<hr>
-							{{/last_articles}}
+							{{/page_footer_last_articles}}
 							<!-- End Latest News -->
 						</div>
 	
@@ -345,7 +345,7 @@
 				</div><!--/end container-->
 			</footer>
 		</div>
-		<!--=== End Footer v8 ===-->
+		<!--=== End Footer ===-->
         
         <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
 			<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
@@ -367,7 +367,7 @@
 						<p class="fieldset">
 							<label class="image-replace cd-password" for="signin-password">Contrase&ntilde;a</label>
 							<input class="full-width has-padding has-border" id="signin-password" name="password" type="password"  placeholder="Contrase&ntilde;a">
-							<a href="javascript:void(0);" class="hide-password">Mostrar</a>
+							<a href="javascript:void(0);" class="hide-password">Ocultar</a>
 							<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 						</p>
 	
@@ -392,33 +392,26 @@
 	
 						<p class="fieldset">
 							<label class="image-replace cd-username" for="signup-username">Nombre</label>
-							<input class="full-width has-padding has-border" id="signup-username" name="name" type="text" placeholder="Nombre">
+							<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Nombre">
 							<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 						</p>
 	
 	                    <p class="fieldset">
 							<label class="image-replace cd-username" for="signup-surnames">Apellidos</label>
-							<input class="full-width has-padding has-border" id="signup-surnames" name="lastName" type="text" placeholder="Apellidos">
+							<input class="full-width has-padding has-border" id="signup-surnames" type="text" placeholder="Apellidos">
 							<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 						</p>
 	
 						<p class="fieldset">
 							<label class="image-replace cd-email" for="signup-email">Correo electr&oacute;nico</label>
-							<input class="full-width has-padding has-border" id="signup-email" name="email" type="email" placeholder="Correo electr&oacute;nico">
+							<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="Correo electr&oacute;nico">
 							<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 						</p>
 	
 						<p class="fieldset">
 							<label class="image-replace cd-password" for="signup-password">Contrase&ntilde;a</label>
-							<input class="full-width has-padding has-border" id="signup-password" name="passwordHash" type="password"  placeholder="Contrase&ntilde;a">
-							<a href="javascript:void(0);" class="hide-password">Mostrar</a>
-							<span class="cd-error-message">¡Dato err&oacute;neo!</span>
-						</p>
-	                    
-	                    <p class="fieldset">
-							<label class="image-replace cd-password" for="confirm-signup-password">Contrase&ntilde;a</label>
-							<input class="full-width has-padding has-border" id="confirm-signup-password" type="password"  placeholder="Confirmar Contrase&ntilde;a">
-							<a href="javascript:void(0);" class="hide-password">Mostrar</a>
+							<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Contrase&ntilde;a">
+							<a href="javascript:void(0);" class="hide-password">Ocultar</a>
 							<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 						</p>
 	
