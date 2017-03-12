@@ -18,4 +18,8 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 	
 	@Query(nativeQuery=true, value="SELECT * FROM articles ORDER BY RAND() LIMIT 4")
 	public List<Article> findRandom4();
+
+	@Query(nativeQuery=true, value="SELECT DISTINCT(category) FROM articles ORDER BY dateInsert DESC LIMIT 7")
+	public List<Article> findFirstEachCategory();
+	
 }

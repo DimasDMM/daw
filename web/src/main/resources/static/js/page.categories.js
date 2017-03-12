@@ -12,7 +12,7 @@ $(document).ready(function () {
             
             npage++;
             
-            for(var i = 0; i<10, i++){
+            for(var i = 0; i<10; i++){
                 
                 var article = page<Article>.findOne();
             }

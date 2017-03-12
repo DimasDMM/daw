@@ -33,6 +33,9 @@ public class WebController {
     @RequestMapping(value= {"/","/portada"})
     public String index(Model model, HttpServletRequest request){
         userComponent.checkRolesAndName(model, request);
+        
+        List<ArticleView> carrousel = ArticleView.castList( articleRepository.findFirstEachCategory() );
+        model.addAttribute("carrousel", carrousel);
 
 		model.addAttribute("page_header_date", config.getHeaderDate());
 		model.addAttribute("page_header_menu", config.getMenuList());
@@ -46,15 +49,15 @@ public class WebController {
     }
 
     @RequestMapping(value= {"/logout"})
-    public String logout(HttpServletRequest request) throws ServletException {
+    public String logout(Model model, HttpServletRequest request) throws ServletException {
         request.logout();
-        return "index";
+		
+        return index(model, request);
     }
 
     @RequestMapping(value="/login")
     public String login(Model model, HttpServletRequest request){
-        userComponent.checkRolesAndName(model, request);
-        return "index";
+        return index(model, request);
     }
 
     @RequestMapping(value= {"/privacidad"})
