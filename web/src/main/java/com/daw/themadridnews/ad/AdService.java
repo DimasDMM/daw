@@ -14,17 +14,21 @@ public class AdService {
 	}
 	
 	public static int getStatus(Ad ad) {
-		if(ad.isLimClicks() && ad.getLimClicks() <= ad.getClicks())
+		if(ad.isLimClicks() && ad.getLimClicks() <= ad.getClicks()) {
 			return 2;
+		}
 
-		if(ad.isLimViews() && ad.getViews() <= ad.getViews())
+		if(ad.isLimViews() && ad.getLimViews() <= ad.getViews()) {
 			return 2;
+		}
 		
-		if(ad.isLimDateStart() && ad.getLimDateStart().after( new Date() ))
+		if(ad.isLimDateStart() && ad.getLimDateStart().after( new Date() )) {
 			return 0;
+		}
 		
-		if(ad.isLimDateEnd() && ad.getLimDateEnd().after( new Date() ))
+		if(ad.isLimDateEnd() && ad.getLimDateEnd().before( new Date() )) {
 			return 2;
+		}
 
 		return 1;
 	}

@@ -129,7 +129,7 @@ public class FormNewAd extends RequestBase {
 			message.setType("danger");
 			
 		} else if(
-				!Validator.intValidMinMax(this.getViews(), 0, 1) ||
+				!Validator.intValidMinMax(this.getType(), 0, 1) ||
 				!Validator.intValidMin(this.getWeight(), 1) ||
 				!Validator.intValidMin(this.getClicks(), 0) ||
 				!Validator.intValidMin(this.getViews(), 0)

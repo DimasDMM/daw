@@ -155,7 +155,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/img/no-image.jpg">
+																<img src="/imagen/articulo/{{id}}">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -174,7 +174,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/img/no-image.jpg">
+																<img src="/imagen/articulo/{{id}}">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -193,7 +193,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/img/no-image.jpg">
+																<img src="/imagen/articulo/{{id}}">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -232,7 +232,7 @@
 			<div class="master-slider ms-skin-default" id="masterslider">
 				{{#carrousel}}
 				<div class="ms-slide blog-slider">
-					<img src="/img/no-image.jpg" />
+					<img src="/imagen/articulo/{{id}}" />
 					<span class="blog-slider-badge">{{category.name}}</span>
 					<div class="ms-info"></div>
 					<div class="blog-slider-title">
@@ -284,7 +284,7 @@
 								<div class="col-sm-7">
 									<!-- Blog Grid -->
 									<div class="blog-grid sm-margin-bottom-40">
-										<img class="img-responsive" src="/img/no-image.jpg">
+										<img class="img-responsive" src="/imagen/articulo/{{last_articles_feat.id}}">
 										<h3><a href="/articulo/{{last_articles_feat.id}}">{{last_articles_feat.titleMid}}</a></h3>
 										<ul class="blog-grid-info">
 											<li>{{last_articles_feat.author.name}} {{last_articles_feat.author.lastName}}</li>
@@ -302,7 +302,7 @@
 									<!-- Blog Thumb -->
 									<div class="blog-thumb margin-bottom-20">
 										<div class="blog-thumb-hover">
-											<img src="/img/no-image.jpg">
+											<img src="/imagen/articulo/{{id}}">
 											<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-camera"></i></a>
 										</div>
 										<div class="blog-thumb-desc">
@@ -345,7 +345,7 @@
 						<div class="item">
 							<div class="row">
 								<div class="col-sm-5 sm-margin-bottom-20">
-									<img class="img-responsive" src="/img/no-image.jpg" title="{{title}}">
+									<img class="img-responsive" src="/imagen/articulo/{{id}}" title="{{title}}">
 								</div>
 								<div class="col-sm-7">
 									<div class="blog-grid">
@@ -377,7 +377,7 @@
 						<div class="col-sm-6">
 							<!-- Blog Grid -->
 							<div class="blog-grid margin-bottom-40">
-								<img class="img-responsive" src="/img/no-image.jpg" title="{{title}}">
+								<img class="img-responsive" src="/imagen/articulo/{{id}}" title="{{title}}">
 								<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 								<ul class="blog-grid-info">
 									<li>{{author.name}} {{author.lastName}}</li>
@@ -406,7 +406,7 @@
 				
 				<section><!-- Advertisement -->
 					<div class="ad-banner text-center">
-						<a href="/anuncio/{{ad_banner.id}}"><img width="100%" src="/img/no-image.jpg" alt="{{ad_banner.title}}"></a>
+						<a href="/anuncio/{{ad_banner.id}}" target="_blank"><img width="100%" src="/imagen/anuncio/{{ad_banner.id}}" alt="{{ad_banner.title}}"></a>
 					</div>
                 </section>
 
@@ -419,7 +419,7 @@
 						<div class="col-sm-3 col-xs-6 sm-margin-bottom-30">
 							<!-- Blog Thumb v4 -->
 							<div class="blog-thumb-v4">
-								<img class="img-responsive margin-bottom-10" src="/img/no-image.jpg" title="{{title}}">
+								<img class="img-responsive margin-bottom-10" src="/imagen/articulo/{{id}}" title="{{title}}">
 								<h3><a href="/articulo/{{id}}">{{titleMid}}</a></h3>
 							</div>
 							<!-- End Blog Thumb v4 -->
@@ -467,7 +467,7 @@
 					<h2 class="title-v4">Anuncio</h2>
 					<div class="item">
 						<div class="hidden-sm hidden-xs blog-video">
-							<a href="/anuncio/{{ad_banner.id}}"><img class="full-width" src="/img/no-image.jpg" title="{{ad_banner.title}}"></a>
+							<a href="/anuncio/{{ad_banner.id}}" target="_blank"><img class="full-width" src="/imagen/anuncio/{{ad_banner.id}}" title="{{ad_banner.title}}"></a>
 						</div>
 					</div>
                 </section>
@@ -539,7 +539,7 @@
 						<!-- Latest News -->
 						{{#page_footer_last_articles}}
 						<div class="latest-news margin-bottom-20">
-							<img src="/img/no-image.jpg">
+							<img src="/imagen/articulo/{{id}}">
 							<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 							<p>{{contentShort}}</p>
 						</div>

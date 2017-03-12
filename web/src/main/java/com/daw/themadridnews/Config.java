@@ -18,6 +18,7 @@ import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.article.Category;
 import com.daw.themadridnews.article.CategoryService;
 import com.daw.themadridnews.comment.CommentRepository;
+import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 
 @Configuration
@@ -123,6 +124,10 @@ public class Config {
 		model.addAttribute("page_footer_last_articles", footerLastArticles);
 		model.addAttribute("page_header_date", this.getHeaderDate());
 		model.addAttribute("page_header_menu", this.getMenuList());
+		
+		User userLogged = userComponent.getLoggedUser();
+		if(userLogged != null)
+			model.addAttribute("user_logged_id", userLogged.getId());
 	}
 	
 	

@@ -156,7 +156,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/img/no-image.jpg">
+																<img src="/imagen/articulo/{{id}}">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -175,7 +175,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/img/no-image.jpg">
+																<img src="/imagen/articulo/{{id}}">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -194,7 +194,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/img/no-image.jpg">
+																<img src="/imagen/articulo/{{id}}">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -230,7 +230,7 @@
 			<aside class="col-md-3 md-margin-bottom-50">
 				<!-- Options Menu -->
 				<div class="margin-bottom-50">
-					<img class="img-responsive profile-img margin-bottom-20" src="/img/no-image.jpg">
+					<img class="img-responsive profile-img margin-bottom-20" src="/imagen/usuario/{{user_logged_id}}">
 
 					<h1 class="title-v4">Opciones</h1>
 
@@ -285,10 +285,10 @@
 				{{/is_modification}}
 
 				{{#is_modification}}
-				<form action="/publicista/anuncio/{{id}}" method="post" class="margin-bottom-20 sky-form no-border">
+				<form action="/publicista/anuncio/{{id}}" method="post" enctype="multipart/form-data" class="margin-bottom-20 sky-form no-border">
 				{{/is_modification}}
 				{{^is_modification}}
-				<form action="/publicista/anuncio/nuevo" method="post" class="margin-bottom-20 sky-form no-border">
+				<form action="/publicista/anuncio/nuevo" method="post" enctype="multipart/form-data" class="margin-bottom-20 sky-form no-border">
 				{{/is_modification}}
 				
 					<input type="hidden" name="_csrf" value="{{token}}" />
@@ -324,7 +324,7 @@
 						<div class="col col-12 full-width">
 							<label for="inp_file">Imagen JPG</label>
 							<div class="input input-file">
-								<div class="button"><input type="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
+								<div class="button"><input type="file" id="inp_file" name="file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
 							</div>
 						</div>
 
@@ -421,7 +421,7 @@
 						<!-- Latest News -->
 						{{#page_footer_last_articles}}
 						<div class="latest-news margin-bottom-20">
-							<img src="/img/no-image.jpg">
+							<img src="/imagen/articulo/{{id}}">
 							<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 							<p>{{contentShort}}</p>
 						</div>

@@ -76,7 +76,7 @@ public class PublicistController {
 		Ad ad = new Ad( r.getTitle(), r.getUrl(), r.getType(), r.getWeight(), r.getDatestart(), r.getDateend(), r.getClicks(), r.getViews() );
 		ad = adRepository.save( ad );
 		
-		FileUploadService.saveImage( file, config.getPathImgArticles(), String.valueOf(ad.getId()) );
+		FileUploadService.saveImage( file, config.getPathImgAds(), String.valueOf(ad.getId()) );
 
 		model.addAttribute("is_modification", true);
 
@@ -141,7 +141,7 @@ public class PublicistController {
 		
 		ad = adRepository.save(ad);
 		
-		FileUploadService.saveImage( file, config.getPathImgArticles(), String.valueOf(ad.getId()) );
+		FileUploadService.saveImage( file, config.getPathImgAds(), String.valueOf(ad.getId()) );
 		
 		return "redirect:/publicista/anuncio/lista/publicado";
 	}
