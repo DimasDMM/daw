@@ -2,8 +2,6 @@ package com.daw.themadridnews.files;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import com.daw.themadridnews.Config;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,38 +19,40 @@ public class FileUploadController {
 
 
 	@RequestMapping("/imagen/articulo/{filename}")
-	public void handleFileArticleDownload(@PathVariable String filename, HttpServletResponse res) throws FileNotFoundException, IOException {
+	public void handleFileArticleDownload(@PathVariable String filename, HttpServletResponse res) {
 		File file = new File( config.getPathImgArticles(), filename+".jpg");
 		showImage(file, res);
 	}
 
 	@RequestMapping("/imagen/anuncio/{filename}")
-	public void handleFileAdsDownload(@PathVariable String filename, HttpServletResponse res) throws FileNotFoundException, IOException {
+	public void handleFileAdsDownload(@PathVariable String filename, HttpServletResponse res) {
 		File file = new File( config.getPathImgAds(), filename+".jpg");
 		showImage(file, res);
 	}
 
 	@RequestMapping("/imagen/usuario/{filename}")
-	public void handleFileUsersDownload(@PathVariable String filename, HttpServletResponse res) throws FileNotFoundException, IOException {
+	public void handleFileUsersDownload(@PathVariable String filename, HttpServletResponse res) {
 		File file = new File( config.getPathImgUsers(), filename+".jpg");
 		showImage(file, res);
 	}
 	
-	protected void showImage(File file, HttpServletResponse res) throws FileNotFoundException, IOException {
-
-		if (file.exists()) {
-			res.setContentType("image/jpeg");
-			res.setContentLength(new Long(file.length()).intValue());
-			FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
-			
-		} else {
-			file = new ClassPathResource("static/img/no-image.jpg").getFile();
-			res.setContentType("image/jpeg");
-			res.setContentLength(new Long(file.length()).intValue());
-			FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
+	protected void showImage(File file, HttpServletResponse res) {
+		try {
+			if (file.exists()) {
+				res.setContentType("image/jpeg");
+				res.setContentLength(new Long(file.length()).intValue());
+				FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
+				
+			} else {
+				file = new ClassPathResource("static/img/no-image.jpg").getFile();
+				res.setContentType("image/jpeg");
+				res.setContentLength(new Long(file.length()).intValue());
+				FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
+			}
+	
+			res.flushBuffer();
+		} catch(Exception e) {
 		}
-
-		res.flushBuffer();
 	}
 
 }

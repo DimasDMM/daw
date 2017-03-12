@@ -83,7 +83,13 @@ public class DataExampleController implements CommandLineRunner {
         articleRepository.save(new Article("cultura", "Emerge en Londres un Dalí fuera de mercado desde 1925", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("cultura", "La Pax Anza, el triunfo de los españoles frente a navajos, comanches y apaches", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("cultura", "La La land o la amenaza histórica de llevarse un batacazo en los Oscar", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("madrid", "La plaza de Santo Domingo volverá a tener un aparcamiento", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "La plaza de Santo Domingo volverá a tener un aparcamiento1", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "La plaza de Santo Domingo volverá a tener un aparcamiento2", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "La plaza de Santo Domingo volverá a tener un aparcamiento3", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "La plaza de Santo Domingo volverá a tener un aparcamiento4", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "La plaza de Santo Domingo volverá a tener un aparcamiento5", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "La plaza de Santo Domingo volverá a tener un aparcamiento6", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "La plaza de Santo Domingo volverá a tener un aparcamiento7", article_content, editor, "http://www.mifuente.com", tags, null, true));
         
         
         // Comentarios de ejemplo
