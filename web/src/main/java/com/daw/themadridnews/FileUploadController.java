@@ -85,14 +85,13 @@ public class FileUploadController {
 		}else {
 			return false;
 		}
-
 	}
 
-	@RequestMapping("/image/{fileName}")
-	public void handleFileDownload(@PathVariable String fileName,
+	@RequestMapping("/imagen/usuario/{id}")
+	public void handleFileDownload(@PathVariable String id,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
 
-		File file = new File(USER_FILE_FOLDER, fileName+".jpg");
+		File file = new File(USER_FILE_FOLDER, id+".jpg");
 
 		if (file.exists()) {
 			res.setContentType("image/jpeg");
@@ -100,7 +99,7 @@ public class FileUploadController {
 			FileCopyUtils
 					.copy(new FileInputStream(file), res.getOutputStream());
 		} else {
-			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath()
+			res.sendError(404, "File" + id + "(" + file.getAbsolutePath()
 					+ ") does not exist");
 		}
 	}

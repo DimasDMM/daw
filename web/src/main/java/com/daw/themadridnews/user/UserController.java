@@ -42,24 +42,37 @@ public class UserController {
         model.addAttribute("user_description", user.getDescription());
         model.addAttribute("user_url", user.getPersonalWeb());
         model.addAttribute("user_email", user.getEmail());
-        model.addAttribute("fileName", user.getId());
+        model.addAttribute("id", user.getId());
         return "user-settings";
     }
 
     @RequestMapping("/ajustes/guardar1")
     public String userSettingsSave(User newUser, Model model, HttpServletRequest request) {
+        boolean valid=true;
         User oldUser =userComponent.getLoggedUser();
-        oldUser.setName(newUser.getName());
-        oldUser.setLastName(newUser.getLastName());
+        if(newUser.getName()==null){
+            valid=false;
+            model.addAttribute("name_empty", "Por favor, introduzca un nombre válido");
+        }else{
+            oldUser.setName(newUser.getName());
+        }
+        if(newUser.getLastName()==null){
+            valid=false;
+            model.addAttribute("lastName_empty", "Por favor, introduzca un apellido válido");
+        }else{
+            oldUser.setLastName(newUser.getLastName());
+        }
         oldUser.setSex(newUser.getSex());
         oldUser.setCity(newUser.getCity());
         oldUser.setCountry(newUser.getCountry());
         oldUser.setDescription(newUser.getDescription());
         oldUser.setPersonalWeb(newUser.getPersonalWeb());
-        if (userRepository.findByAlias(newUser.getAlias())!=null)
-            oldUser.setAlias(newUser.getAlias());
+        if (userRepository.findByAlias(newUser.getAlias())==null) {
+            valid=false;
+            model.addAttribute("alias_repeated", "El alias ya está en uso");
+        }
         else{
-            model.addAttribute("alias_repeated","El alias ya está en uso");
+            oldUser.setAlias(newUser.getAlias());
         }
         oldUser.setPhoneNumber(newUser.getPhoneNumber());
         userRepository.save(oldUser);
