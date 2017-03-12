@@ -34,8 +34,8 @@ public class WebController {
     public String index(Model model, HttpServletRequest request){
         userComponent.checkRolesAndName(model, request);
         
-        List<ArticleView> carrousel = ArticleView.castList( articleRepository.findFirstEachCategory() );
-        model.addAttribute("carrousel", carrousel);
+        //List<ArticleView> carrousel = ArticleView.castList( articleRepository.findFirstEachCategory() );
+        //model.addAttribute("carrousel", carrousel);
 
 		model.addAttribute("page_header_date", config.getHeaderDate());
 		model.addAttribute("page_header_menu", config.getMenuList());
