@@ -4,10 +4,13 @@ import com.daw.themadridnews.Config;
 import com.daw.themadridnews.favourite.Favourite;
 import com.daw.themadridnews.files.FileUploadController;
 
+import com.daw.themadridnews.requests.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,29 +46,68 @@ public class UserController {
         model.addAttribute("user_description", user.getDescription());
         model.addAttribute("user_url", user.getPersonalWeb());
         model.addAttribute("user_email", user.getEmail());
-        model.addAttribute("fileName", user.getId());
+        model.addAttribute("id", user.getId());
         return "user-settings";
     }
 
     @RequestMapping("/ajustes/guardar1")
-    public String userSettingsSave(User newUser, Model model, HttpServletRequest request) {
+    public String userSettingsSave1(User newUser, Model model) {
+        boolean valid=true;
         User oldUser =userComponent.getLoggedUser();
-        oldUser.setName(newUser.getName());
-        oldUser.setLastName(newUser.getLastName());
+        if(newUser.getName()==null || !Validator.strOnlyLetters(newUser.getName())){
+            valid=false;
+            model.addAttribute("name_empty", "Por favor, introduzca un nombre válido");
+        }else{
+            oldUser.setName(newUser.getName());
+        }
+        if(newUser.getLastName()==null || !Validator.strOnlyLetters(newUser.getLastName())){
+            valid=false;
+            model.addAttribute("lastName_empty", "Por favor, introduzca un apellido válido");
+        }else{
+            oldUser.setLastName(newUser.getLastName());
+        }
         oldUser.setSex(newUser.getSex());
         oldUser.setCity(newUser.getCity());
         oldUser.setCountry(newUser.getCountry());
         oldUser.setDescription(newUser.getDescription());
         oldUser.setPersonalWeb(newUser.getPersonalWeb());
-        if (userRepository.findByAlias(newUser.getAlias())!=null)
-            oldUser.setAlias(newUser.getAlias());
+        if (userRepository.findByAlias(newUser.getAlias())!=null) {
+            valid=false;
+            model.addAttribute("alias_repeated", "El alias ya está en uso");
+        }
         else{
-            model.addAttribute("alias_repeated","El alias ya está en uso");
+            oldUser.setAlias(newUser.getAlias());
         }
         oldUser.setPhoneNumber(newUser.getPhoneNumber());
-        userRepository.save(oldUser);
-        return "user-settings";
-        //return userSettings(model, request);
+        if (valid)
+            userRepository.save(oldUser);
+        return "redirect:/ajustes";
+    }
+
+    @RequestMapping("/ajustes/guardar2")
+    public String userSettingsSave2(Model model, @RequestParam("email") String newEmail,
+                                    @RequestParam(value="pass_now", required=false) String currentPass) {
+        User oldUser =userComponent.getLoggedUser();
+        if(newEmail.equals(oldUser.getEmail())){
+            return "redirect:/ajustes";
+        }else{
+            if(Validator.strValidMail(newEmail) && (new BCryptPasswordEncoder().matches(currentPass, oldUser.getPasswordHash()))){
+                oldUser.setEmail(newEmail);
+                userRepository.save(oldUser);
+            }
+            else{
+                model.addAttribute("email_error","Por favor, introduzca un email válido y su contraseña");
+            }
+        }
+        return "redirect:/ajustes";
+    }
+
+    @RequestMapping("/ajustes/guardar3")
+    public String userSettingsSave3(@RequestParam(value="pass_new", required=false) String newPass,
+                                    @RequestParam(value="pass_new2", required=false) String newPass2,
+                                    @RequestParam("pass_now") String currentPass) {
+        boolean valid=true;
+        return "redirect:/ajustes";
     }
 
     @RequestMapping(value = "/register", method = POST)
