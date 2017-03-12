@@ -23,7 +23,11 @@ public class CommentView {
 	public CommentView() {}
 
 	public CommentView(Comment comment) {
-		this.article = new ArticleView( comment.getArticle() );
+		this(comment, new ArticleView( comment.getArticle() ) );
+	}
+
+	public CommentView(Comment comment, ArticleView av) {
+		this.article = av;
 		this.author = comment.getAuthor();
 		this.number = comment.getNumber();
 		this.comment = comment.getComment();
@@ -36,6 +40,7 @@ public class CommentView {
 		if(this.comment.length() > 100)
 			commentShort = this.comment.substring(0,100) + "...";
 	}
+	
 
 	public long getId() {
 		return id;

@@ -32,7 +32,16 @@ public class Favourite {
     public Favourite(){
     }
     
-    public long getId(){
+    public Favourite(boolean madrid, boolean spain, boolean world, boolean sports, boolean technology, boolean culture) {
+		this.madrid = madrid;
+		this.spain = spain;
+		this.world = world;
+		this.sports = sports;
+		this.technology = technology;
+		this.culture = culture;
+	}
+
+	public long getId(){
         return this.id;
     }
     

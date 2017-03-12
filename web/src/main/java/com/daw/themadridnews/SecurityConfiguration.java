@@ -21,6 +21,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     	// Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/portada").permitAll();
+        http.authorizeRequests().antMatchers("/portada/subscripcion").permitAll();
+        
         http.authorizeRequests().antMatchers("/buscar").permitAll();
         
         http.authorizeRequests().antMatchers("/loginerror").permitAll();
@@ -33,6 +35,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/terminos-de-uso").permitAll();
 
         http.authorizeRequests().antMatchers("/ajustes").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/ajustes/guardar1").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/imagen/subir").hasAnyRole("USER");
         
         http.authorizeRequests().antMatchers("/editor/articulo/{id}").hasAnyRole( "EDITOR", "ADMIN");
         http.authorizeRequests().antMatchers("/editor/articulo/{id}/publicar").hasAnyRole( "EDITOR", "ADMIN");

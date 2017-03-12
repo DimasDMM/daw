@@ -37,6 +37,7 @@ public class UserController {
         model.addAttribute("user_description", user.getDescription());
         model.addAttribute("user_url", user.getPersonalWeb());
         model.addAttribute("user_email", user.getEmail());
+        model.addAttribute("fileName", user.getId());
         return "user-settings";
     }
 
