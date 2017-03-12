@@ -11,6 +11,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @Controller
 public class UserController {
+
     //Attributes
     @Autowired
     private UserRepository userRepository;
@@ -20,31 +21,44 @@ public class UserController {
     
     @Autowired
     private Config config;
-    
-    
+
+
     //Requests
-    @RequestMapping("/user-settings")
+    @RequestMapping("/ajustes")
     public String userSettings(Model model, HttpServletRequest request) {
-		User user = userComponent.getLoggedUser();
-		model.addAttribute("user_name", user.getName());
-		model.addAttribute("user_lastName", user.getLastName());
-		model.addAttribute("user_alias", user.getAlias());
-		model.addAttribute("user_alias", user.getAlias());
-		model.addAttribute("user_city", user.getCity());
-		model.addAttribute("user_phone", user.getPhoneNumber());
-		model.addAttribute("user_description", user.getDescription());
-		model.addAttribute("user_url", user.getPersonalWeb());
-
-		config.setPageParams(model, request);
-
+        userComponent.checkRolesAndName(model, request);
+        User user =userComponent.getLoggedUser();
+        model.addAttribute("user_name", user.getName());
+        model.addAttribute("user_lastName", user.getLastName());
+        model.addAttribute("user_alias", user.getAlias());
+        model.addAttribute("user_alias", user.getAlias());
+        model.addAttribute("user_city", user.getCity());
+        model.addAttribute("user_phone", user.getPhoneNumber());
+        model.addAttribute("user_description", user.getDescription());
+        model.addAttribute("user_url", user.getPersonalWeb());
+        model.addAttribute("user_email", user.getEmail());
         return "user-settings";
     }
 
-    @RequestMapping("/#")
-    public String userSettingsSave(Model model, HttpServletRequest request) {
-    	config.setPageParams(model, request);
-	
-		return userSettings(model, request);
+    @RequestMapping("/ajustes/guardar1")
+    public String userSettingsSave(User newUser, Model model, HttpServletRequest request) {
+        User oldUser =userComponent.getLoggedUser();
+        oldUser.setName(newUser.getName());
+        oldUser.setLastName(newUser.getLastName());
+        oldUser.setSex(newUser.getSex());
+        oldUser.setCity(newUser.getCity());
+        oldUser.setCountry(newUser.getCountry());
+        oldUser.setDescription(newUser.getDescription());
+        oldUser.setPersonalWeb(newUser.getPersonalWeb());
+        if (userRepository.findByAlias(newUser.getAlias())!=null)
+            oldUser.setAlias(newUser.getAlias());
+        else{
+            model.addAttribute("alias_repeated","El alias ya está en uso");
+        }
+        oldUser.setPhoneNumber(newUser.getPhoneNumber());
+        userRepository.save(oldUser);
+        return "user-settings";
+        //return userSettings(model, request);
     }
 
     @RequestMapping(value = "/register", method = POST)
