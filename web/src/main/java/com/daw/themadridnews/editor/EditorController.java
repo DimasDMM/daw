@@ -141,7 +141,7 @@ public class EditorController {
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.POST)
-	public String showFormModifyPreview(Model model, FormModifyArticle r, @PathVariable long id, HttpServletRequest request) {
+	public String showFormModifyPreview(Model model, FormModifyArticle r, @PathVariable long id, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
 		Message message;
 		Article article = articleRepository.findOne(id);
 		
@@ -166,6 +166,8 @@ public class EditorController {
 		article.setTags(r.getTags());
 		
 		article = articleRepository.save(article);
+		
+		FileUploadService.saveImage( file, config.getPathImgArticles(), String.valueOf(article.getId()) );
 		
 		return showPreviewAux(model, article, true, request);
 	}

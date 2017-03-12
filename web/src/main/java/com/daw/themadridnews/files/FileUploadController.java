@@ -4,9 +4,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.http.HttpServletResponse;
 import com.daw.themadridnews.Config;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,18 +43,17 @@ public class FileUploadController {
 	}
 	
 	protected void showImage(File file, HttpServletResponse res) throws FileNotFoundException, IOException {
+
 		if (file.exists()) {
 			res.setContentType("image/jpeg");
 			res.setContentLength(new Long(file.length()).intValue());
-			FileCopyUtils
-					.copy(new FileInputStream(file), res.getOutputStream());
+			FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
+			
 		} else {
-			file = new File( "img", "no-image.jpg");
-			res.setContentType("image/jpeg");
-			res.setContentLength(new Long(file.length()).intValue());
-			FileCopyUtils
-					.copy(new FileInputStream(file), res.getOutputStream());
+
 		}
+		
+		res.flushBuffer();
 	}
 
 }

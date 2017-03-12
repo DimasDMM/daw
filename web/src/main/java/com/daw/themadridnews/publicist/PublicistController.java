@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.daw.themadridnews.Config;
 import com.daw.themadridnews.ad.Ad;
@@ -19,6 +21,7 @@ import com.daw.themadridnews.ad.AdRepository;
 import com.daw.themadridnews.ad.AdView;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.comment.CommentRepository;
+import com.daw.themadridnews.files.FileUploadService;
 import com.daw.themadridnews.requests.FormModifyAd;
 import com.daw.themadridnews.requests.FormNewAd;
 import com.daw.themadridnews.utils.Message;
@@ -61,8 +64,9 @@ public class PublicistController {
 		
 		return "ads_form";
 	}
+	
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.POST)
-	public String showFormNewPreview(Model model, FormNewAd r, HttpServletRequest request) {
+	public String showFormNewPreview(Model model, FormNewAd r, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
 		Message message = r.validation();
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
@@ -70,7 +74,9 @@ public class PublicistController {
 		}
 		
 		Ad ad = new Ad( r.getTitle(), r.getUrl(), r.getType(), r.getWeight(), r.getDatestart(), r.getDateend(), r.getClicks(), r.getViews() );
-		adRepository.save( ad );
+		ad = adRepository.save( ad );
+		
+		FileUploadService.saveImage( file, config.getPathImgArticles(), String.valueOf(ad.getId()) );
 
 		model.addAttribute("is_modification", true);
 
@@ -108,7 +114,7 @@ public class PublicistController {
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/{id}", method=RequestMethod.POST)
-	public String showFormModify(Model model, FormModifyAd r, @PathVariable long id, HttpServletRequest request) {
+	public String showFormModify(Model model, FormModifyAd r, @PathVariable long id, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
 		Message message;
 		Ad ad = adRepository.findOne(id);
 		
@@ -134,6 +140,8 @@ public class PublicistController {
 		ad.setLimViews(r.getViews());
 		
 		ad = adRepository.save(ad);
+		
+		FileUploadService.saveImage( file, config.getPathImgArticles(), String.valueOf(ad.getId()) );
 		
 		return "redirect:/publicista/anuncio/lista/publicado";
 	}
