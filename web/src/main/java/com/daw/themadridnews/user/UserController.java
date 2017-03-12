@@ -82,6 +82,8 @@ public class UserController {
         
         userComponent.checkRolesAndName(model, request);
         
+        model.addAttribute("page_header_date", config.getHeaderDate());
+        
         return "index";
     }
 }
