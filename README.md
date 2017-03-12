@@ -117,7 +117,7 @@ Formulario para que los nuevos usuarios se den de alta en el sitio.
 ## Diagrama de BBDD Relacionales
 A continuación podemos ver las entidades que tiene nuestra BBDD, así como las relaciones existentes entre ellas.
 
-![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/BDDRelacional.jpg)
+![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/BBDDRelacional.jpg)
 
 ## Cambios respecto a la plantilla
 
