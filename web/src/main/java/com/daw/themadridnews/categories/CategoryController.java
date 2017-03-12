@@ -38,7 +38,8 @@ public class CategoryController {
 		model.addAttribute("categ",CategoryService.getName(cat));
 		model.addAttribute("cat",cat);
 		
-		model.addAttribute("page_header", config.getMenuList());
+		model.addAttribute("page_header_date", config.getHeaderDate());
+	    model.addAttribute("page_header_menu", config.getMenuList());
 		
 		model.addAttribute("articulos",ArticleView.castList(articles.getContent()));
 		
