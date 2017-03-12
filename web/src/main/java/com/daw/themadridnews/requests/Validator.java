@@ -29,6 +29,15 @@ public class Validator {
 		String regex = "^https?://.+$";
         return isMatch(str,regex);
 	}
+
+	/*
+	 * Comprueba si un string es una dirección de email valida
+	 */
+	public static boolean strValidMail(String str) {
+		String regex = "^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*\n" +
+				"      @[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$";
+		return isMatch(str,regex);
+	}
 	
 	private static boolean isMatch(String s, String pattern) {
         try {

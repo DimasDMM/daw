@@ -53,6 +53,7 @@ public class WebController {
     @RequestMapping(value= {"/","/portada"})
     public String index(Model model, HttpServletRequest request){
     	User user = userComponent.getLoggedUser();
+    	userComponent.checkRolesAndName(model, request);
     	
     	// Seccion: Carrousel
         List<ArticleView> carrousel = ArticleView.castList( articleRepository.findFirstEachCategory() );

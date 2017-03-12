@@ -526,36 +526,24 @@
                                             <label for="inp_email">Correo electr&oacute;nico</label>
                                             <input type="text" name="email" id="inp_email" class="form-control" value="{{user_email}}"> </div>
                                     </section>
-                                    <section class="row">
-                                        <div class="col col-12 full-width">
-                                            <label for="inp_pass_now">Contrase&ntilde;a actual</label>
-                                            <input type="password" name="pass_now" id="inp_pass_now_email" class="form-control"> </div>
-                                    </section>
-                                    {{#email_error}}<span>{{email_error}} </span> {{/email_error}}
-                                    <footer>
-                                        <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                                        <input type="hidden" name="_csrf" value="{{token}}"/>
-                                    </footer>
-                                </form>
                                     <hr>
-                                <form action="/ajustes/guardar3" method="post" class="margin-bottom-20 sky-form no-border">
                                     <div class="alert alert-info fade in"> <i class="fa fa-info-circle"></i> <strong>Cambio de contrase&ntilde;a:</strong> De forma opcional puede cambiar su contrase&ntilde;a. Tan solo debe rellenar los campos que se presentan a continuaci&oacute;n </div>
                                     <section class="row">
                                         <div class="col col-12 full-width">
                                             <label for="inp_pass_now">Contrase&ntilde;a actual</label>
-                                            <input type="password" name="pass_now" id="inp_pass_now" class="form-control"> </div>
+                                            <input type="text" name="pass_now" id="inp_pass_now" class="form-control"> </div>
                                     </section>
                                     <section class="row">
                                         <div class="col col-12 full-width">
                                             <label for="inp_pass_new">Nueva contrase&ntilde;a</label>
-                                            <input type="password" name="pass_new" id="inp_pass_new" class="form-control"> </div>
+                                            <input type="text" name="pass_new" id="inp_pass_new" class="form-control"> </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_pass_new2">Confirmar nueva contrase&ntilde;a</label>
-                                            <input type="password" name="pass_new2" id="inp_pass_new2" class="form-control"> </div>
+                                            <input type="text" name="pass_new2" id="inp_pass_new2" class="form-control"> </div>
                                     </section>
                                     <footer>
                                         <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                                        {{#changed_success}}<div>{{changed_success}}</div>{{/changed_success}}
                                     </footer>
                                 </form>
                                 <!--/ Error states for elements -->
@@ -563,7 +551,7 @@
                             <!-- End Password Form -->
                             <!-- My News Forms -->
                             <div class="tab-pane fade" id="tab-my-news">
-                                <form action="#" method="post" class="margin-bottom-20 sky-form no-border">
+                                <form action="#" method="get" class="margin-bottom-20 sky-form no-border">
                                     <div class="alert alert-info fade in"> <i class="fa fa-info-circle"></i> <strong>Mis Noticias:</strong> Seleccione las casillas que desee para ordenar las noticias de acuerdo a sus preferencias </div>
                                     <section class="row">
                                         <div class="col col-4">
