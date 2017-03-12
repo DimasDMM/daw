@@ -1,7 +1,6 @@
 package com.daw.themadridnews.requests;
 
 import java.util.List;
-
 import com.daw.themadridnews.utils.Message;
 
 public class FormModifyArticle extends FormNewArticle {

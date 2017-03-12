@@ -303,7 +303,7 @@
 									<div class="blog-thumb margin-bottom-20">
 										<div class="blog-thumb-hover">
 											<img src="/img/blog/img-default.jpg">
-											<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-video-camera"></i></a>
+											<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-camera"></i></a>
 										</div>
 										<div class="blog-thumb-desc">
 											<h3><a href="/articulo/{{id}}">{{titleShort}}</a></h3>
@@ -324,7 +324,7 @@
                 </section>
 				<!-- End Tab v4 -->
 				
-				{{^last_articles_category_name}}
+				{{#last_articles_category_name}}
                 <section>
 					<!-- Blog Carousel Heading -->
 					<div class="blog-cars-heading">
@@ -355,8 +355,8 @@
 											<li>{{dateInsertStrLong}}</li>
 											<li><a href="/articulo/{{id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
 										</ul>
-										<p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi. Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta.</p>
-										<a class="r-more" href="/articulo/{{id}}">Read More</a>
+										<p>{{contentLong}}</p>
+										<a class="r-more" href="/articulo/{{id}}">Leer m&aacute;s</a>
 									</div>
 								</div>
 							</div>

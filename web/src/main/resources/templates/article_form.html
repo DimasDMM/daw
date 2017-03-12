@@ -294,11 +294,15 @@
 								<div class="addthis_sharing_toolbox"></div>
 							</div>
 						</div>
-						<img class="img-responsive" src="/articles/{{article_id}}/main.jpg" alt="Imagen portada del articulo">
+						<div class="text-center">
+							<img class="article-img" src="/imagen/articulo/{{article_id}}" alt="Imagen portada del articulo">
+						</div>
 					</div>
 					<!-- End Article Header -->
 					
 					{{{article_content}}}
+					
+					<div class="clearfix"></div>
 	
 					<ul class="source-list">
 						<li><strong>Fuente:</strong> <a href="{{article_source}}" target="_blank">{{article_source}}</a></li>
@@ -309,7 +313,7 @@
 					<ul class="blog-grid-tags">
 					   <li class="head">Tags</li>
 					   {{#article_tags}}
-					       <li><a href="#">{{.}}</a></li>
+					       <li><a href="/buscar?searchItem={{.}}" target="_blank">{{.}}</a></li>
 					   {{/article_tags}}
 					</ul>
 					<!-- End Blog Grid Tagds -->
