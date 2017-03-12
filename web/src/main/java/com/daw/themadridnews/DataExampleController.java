@@ -77,21 +77,16 @@ public class DataExampleController implements CommandLineRunner {
         articleRepository.save(new Article("deportes", "La nueva F1 estudia eliminar el DRS", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("tecnologia", "Hackers secuestran un hotel entero en Los Alpes", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("tecnologia", "Muere Masaya Nakamura, el padre del legendario videojuego Pac-Man", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("tecnologia", "Pene pene1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("tecnologia", "Calvo1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("tecnologia", "¿Pueden realmente hackear tus huellas dactilares usando tus fotos en internet?", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("tecnologia", "El fútbol reclama el uso de la tecnología de inmediato", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("cultura", "Hallan la tumba de un desconocido escriba real en Egipto", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("cultura", "Emerge en Londres un Dalí fuera de mercado desde 1925", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("cultura", "La Pax Anza, el triunfo de los españoles frente a navajos, comanches y apaches", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("cultura", "La La land o la amenaza histórica de llevarse un batacazo en los Oscar", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("espana", "Pene pene1", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("mundo", "Calvo1", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("espana", "Pene pene1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("mundo", "Calvo1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("espana", "Pene pene1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("mundo", "Calvo1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        
         
         // Comentarios de ejemplo
         User user = userRepository.findByName("pepe");
