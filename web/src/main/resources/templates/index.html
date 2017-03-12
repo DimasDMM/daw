@@ -261,13 +261,7 @@
 						<h1 class="index-titles">Últimas noticias</h1>
 						<ul class="nav nav-tabs" role="tablist">
 							<li class="home active">
-								<a href="#tab-v4-a1" role="tab" data-toggle="tab">Todas</a>
-							</li>
-							<li>
-								<a href="#tab-v4-a2" role="tab" data-toggle="tab">Política</a>
-							</li>
-							<li>
-								<a href="#tab-v4-a3" role="tab" data-toggle="tab">Educación</a>
+								<a role="tab" data-toggle="tab">{{last_articles_category}}</a>
 							</li>
 						</ul>
 					</div>
@@ -275,306 +269,42 @@
 
 					<!-- Tab Content -->
 					<div class="tab-content">
-						<div class="tab-pane fade in active" id="tab-v4-a1">
+						<div class="tab-pane fade in active">
 							<div class="row">
 								<div class="col-sm-7">
 									<!-- Blog Grid -->
 									<div class="blog-grid sm-margin-bottom-40">
-										<img class="img-responsive" src="/articles/1/main.jpg" alt="">
-										<h3><a href="article.html">El Ayuntamiento de Madrid proh&iacute;be circular a los conductores del Partido Popular</a></h3>
+										<img class="img-responsive" src="/articles/1/main.jpg">
+										<h3><a href="/articulo/{{last_articles_feat.id}}">{{last_articles_feat.titleMid}}</a></h3>
 										<ul class="blog-grid-info">
-											<li>Jorge Injusto</li>
-											<li>Mar 6, 2015</li>
-											<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+											<li>{{last_articles_feat.author.name}} {{last_articles_feat.author.lastName}}</li>
+											<li>{{last_articles_feat.dateInsertStrLong}}</li>
+											<li><a href="/articulo/{{last_articles_feat.id}}"><i class="fa fa-comments"></i> {{last_articles_feat.nComments}}</a></li>
 										</ul>
-										<p>Madrid ha activado esta mañana por primera vez en su historia el escenario 3 del protocolo de contaminación, que prohíbe circular por la ciudad a cualquier persona que no haya votado a Manuela Carmena en las pasadas elecciones municipales. "La alta contaminación de dióxido de nitrógeno (NO2) nos obliga a prohibir que entren en la almendra central de la ciudad los vehículos cuyos propietarios sean de derechas", ha explicado Marta Higueras, teniente de alcalde del Ayuntamiento de Madrid.</p>
-										<a class="r-more" href="article.html">Leer m&aacute;s</a>
+										<p>{{last_articles_feat.contentLong}}</p>
+										<a class="r-more" href="/articulo/{{last_articles_feat.id}}">Leer m&aacute;s</a>
 									</div>
 									<!-- End Blog Grid -->
 								</div>
 
 								<div class="col-sm-5">
+									{{#last_articles_sec}}
 									<!-- Blog Thumb -->
 									<div class="blog-thumb margin-bottom-20">
 										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-video-camera"></i></a>
+											<img src="/img/blog/img-default.jpg">
+											<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-video-camera"></i></a>
 										</div>
 										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">8 health benefits and drawbacks of coffee</a></h3>
+											<h3><a href="/articulo/{{id}}">{{titleShort}}</a></h3>
 											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+												<li>{{dateInsertStrShort}}</li>
+												<li><a href="/articulo/{{id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
 											</ul>
 										</div>
 									</div>
 									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb margin-bottom-20">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">Harvard tops list of world university rankings again</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb margin-bottom-20">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">Stylish things to do, see and buy this week</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb margin-bottom-20">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">Dogs in the road - make your road safe for your dog</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">10 great novels of the year</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-								</div>
-							</div><!--/end row-->
-						</div>
-						<div class="tab-pane fade" id="tab-v4-a2">
-							<div class="row">
-								<div class="col-sm-7">
-									<!-- Blog Grid -->
-									<div class="blog-grid sm-margin-bottom-40">
-										<img class="img-responsive" src="/img/blog/img-default.jpg" alt="">
-										<h3><a href="blog_single.html">Is this the end for fashion police?</a></h3>
-										<ul class="blog-grid-info">
-											<li>Susie Lau</li>
-											<li>Mar 7, 2015</li>
-											<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-										</ul>
-										<p>Mauris iaculis nisl eu ipsum dapibus pretium. Morbi quis justo non turpis cursus pharetra. Cras ac ligula sem. Nulla facilisi. Curabitur vulputate cursus ornare. Sed enim sapien, sodales at augue vel, molestie commodo velit.</p>
-										<a class="r-more" href="blog_single.html">Read More</a>
-									</div>
-									<!-- End Blog Grid -->
-								</div>
-
-								<div class="col-sm-5">
-									<!-- Blog Thumb -->
-									<div class="blog-thumb margin-bottom-20">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-video-camera"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">Nadège Vanhee-Cybulski makes Hermès debut</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb margin-bottom-20">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">Minimalism gives way to embroidery and crystals as Paris shows draw to a close</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb margin-bottom-20">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">In bed with Cara Delevingne as she talks bags, boys and bunnies</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb margin-bottom-20">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">Malaika Firth tells all: 'I met my boyfriend through Twitter'</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">Instagram style tips of the week</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-								</div>
-							</div><!--/end row-->
-						</div>
-						<div class="tab-pane fade" id="tab-v4-a3">
-							<div class="row">
-								<div class="col-sm-7">
-									<!-- Blog Grid -->
-									<div class="blog-grid sm-margin-bottom-40">
-										<img class="img-responsive" src="/img/blog/img-default.jpg" alt="">
-										<h3><a href="blog_single.html">Education news, opinion and guides</a></h3>
-										<ul class="blog-grid-info">
-											<li>Richard Garner</li>
-											<li>Mar 9, 2015</li>
-											<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-										</ul>
-										<p>Nulla gravida sit amet odio vel posuere. Proin maximus est diam, sed iaculis arcu ultrices sed. Quisque nisi diam, sodales sit amet diam ut, bibendum interdum metus. Pellentesque urna magna, sollicitudin vel semper quis, iaculis sed neque.</p>
-										<a class="r-more" href="blog_single.html">Read More</a>
-									</div>
-									<!-- End Blog Grid -->
-								</div>
-
-								<div class="col-sm-5">
-									<!-- Blog Thumb -->
-									<div class="blog-thumb margin-bottom-20">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">Learning as you're earning: The alternative to a degree</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb margin-bottom-20">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-video-camera"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">Universities found to offer ‘unlawful’ terms to students</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb margin-bottom-20">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">25 Unconventional Business Books that You Won't See on Most Bookshelves (But Should)</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb margin-bottom-20">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">Learn something new every day</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
-
-									<!-- Blog Thumb -->
-									<div class="blog-thumb">
-										<div class="blog-thumb-hover">
-											<img src="/img/blog/img-default.jpg" alt="">
-											<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
-										</div>
-										<div class="blog-thumb-desc">
-											<h3><a href="blog_single.html">Student finance: Crunch the numbers cleverly</a></h3>
-											<ul class="blog-thumb-info">
-												<li>Mar 6, 2015</li>
-												<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Blog Thumb -->
+									{{/last_articles_sec}}
 								</div>
 							</div><!--/end row-->
 						</div>
@@ -1221,190 +951,51 @@
                 <section>
 				<div class="margin-bottom-50">
 					<h1 class="title-v4">Comentarios</h1>
-
+					
+					{{#last_comments}}
 					<div class="blog-thumb-v3">
-						<small><a href="#">Evan Bartlett</a></small>
-						<h3><a href="#">Cameron's silence on defence is shameful</a></h3>
+						<small><a href="/articulo/{{article.id}}">{{article.titleShort}}</a></small>
+						<h3><a href="/articulo/{{article.id}}">{{commentShort}}</a></h3>
 					</div>
-
 					<hr class="hr-xs">
-
-					<div class="blog-thumb-v3">
-						<small><a href="#">Jonathan Owen</a></small>
-						<h3><a href="#">Architects plan to stop skyscrapers from blocking out sunlight</a></h3>
-					</div>
-
-					<hr class="hr-xs">
-
-					<div class="blog-thumb-v3">
-						<small><a href="#">Susie Lau</a></small>
-						<h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend for style blogging</a></h3>
-					</div>
-
-					<hr class="hr-xs">
-
-					<div class="blog-thumb-v3">
-						<small><a href="#">John Rentoul</a></small>
-						<h3><a href="#">How to run a country: A 10 point manifesto for leaders who stand – and want to deliver</a></h3>
-					</div>
-
-					<hr class="hr-xs">
-
-					<div class="blog-thumb-v3">
-						<small><a href="#">Richard Garner</a></small>
-						<h3><a href="#">Controversial plan to test new primary school pupils infuriates teachers</a></h3>
-					</div>
+					{{/last_comments}}
 				</div>
                 </section>
 				<!-- End Blog Thumb v3 -->
 
-				<!-- Social Shares -->
-                <section>
+				<!-- Tags -->
 				<div class="margin-bottom-50">
-					<h1 class="title-v4">Redes Sociales</h1>
-					<ul class="blog-social-shares">
-						<li>
-							<i class="rounded-x fb fa fa-facebook"></i>
-							<a class="rounded-3x" href="#">Like</a>
-							<span class="counter">31,702</span>
-						</li>
-						<li>
-							<i class="rounded-x tw fa fa-twitter"></i>
-							<a class="rounded-3x" href="#">Follow Us</a>
-							<span class="counter">164,290</span>
-						</li>
-						<li>
-							<i class="rounded-x gp fa fa-google-plus"></i>
-							<a class="rounded-3x" href="#">Add to circle</a>
-							<span class="counter">5,425,764</span>
-						</li>
+					<h2 class="title-v4">Temas</h2>
+					<ul class="list-inline tags-v3">
+						{{#categories}}
+						<li><a class="rounded-3x" href="/categoria/{{id}}">{{name}}</a></li>
+						{{/categories}}
 					</ul>
 				</div>
-                </section>
-				<!-- End Social Shares -->
-
-				<!-- Blog Thumb v2 -->
-                <section>
-				<div class="margin-bottom-50">
-					<h1 class="title-v4">Recientes</h1>
-
-					<div class="blog-thumb blog-thumb-circle margin-bottom-15">
-						<div class="blog-thumb-hover">
-							<img class="rounded-x" src="/img/blog/img-default.jpg" alt="">
-							<a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
-						</div>
-						<div class="blog-thumb-desc">
-							<h3><a href="blog_single.html">Misused words and how to use them correctly</a></h3>
-							<ul class="blog-thumb-info">
-								<li>Mar 6, 2015</li>
-								<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="blog-thumb blog-thumb-circle margin-bottom-15">
-						<div class="blog-thumb-hover">
-							<img class="rounded-x" src="/img/blog/img-default.jpg" alt="">
-							<a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
-						</div>
-						<div class="blog-thumb-desc">
-							<h3><a href="blog_single.html">8 health benefits and drawbacks of coffee</a></h3>
-							<ul class="blog-thumb-info">
-								<li>Mar 6, 2015</li>
-								<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="blog-thumb blog-thumb-circle margin-bottom-15">
-						<div class="blog-thumb-hover">
-							<img class="rounded-x" src="/img/blog/img-default.jpg" alt="">
-							<a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
-						</div>
-						<div class="blog-thumb-desc">
-							<h3><a href="blog_single.html">What are the top five books you must read?</a></h3>
-							<ul class="blog-thumb-info">
-								<li>Mar 6, 2015</li>
-								<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="blog-thumb blog-thumb-circle">
-						<div class="blog-thumb-hover">
-							<img class="rounded-x" src="/img/blog/img-default.jpg" alt="">
-							<a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
-						</div>
-						<div class="blog-thumb-desc">
-							<h3><a href="blog_single.html">Stylish things to do, see and buy this week</a></h3>
-							<ul class="blog-thumb-info">
-								<li>Mar 6, 2015</li>
-								<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-							</ul>
-						</div>
-					</div>
-                </div>
-                </section>
-				<!-- End Blog Thumb v2 -->
+				<!-- End Tags -->
 
 				
                 <section><!-- Advertisement -->
+					<h2 class="title-v4">Anuncio</h2>
 					<div class="item">
 						<div class="hidden-sm hidden-xs blog-video">
-							<a href="http://www.hys.es/es-es"><img class="full-width" src="/img/HS.jpg" alt=""></a>
+							<a href="/anuncio/{{ad_banner.id}}"><img class="full-width" src="/img/HS.jpg" title="{{ad_banner.title}}"></a>
 						</div>
 					</div>
                 </section>
 
 				<!-- Twitter Posts -->
-                <section>
+                
+
+				<!-- Twitter Posts -->
 				<div class="margin-bottom-50">
 					<h2 class="title-v4">Twitter</h2>
 
 					<ul class="twitter-posts">
-						<li>
-							<img class="rounded-x" src="/img/thumb/img-thumb5.jpg" alt="">
-							<div class="twitter-posts-in">
-								<strong>Dr.Cafee</strong>
-								<span><a href="#">@DrCafee</a></span>
-								<span>4h</span>
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-								<a class="link" href="#">http://bit.ly/1c0UN3Y</a>
-							</div>
-						</li>
-						<li>
-							<img class="rounded-x" src="/img/thumb/img-thumb4.jpg" alt="">
-							<div class="twitter-posts-in">
-								<strong>Jessi</strong>
-								<span><a href="#">@Jessi</a></span>
-								<span>5m</span>
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-								<a class="link" href="#">http://bit.ly/1c0UN3Y</a>
-							</div>
-						</li>
-						<li>
-							<img class="rounded-x" src="/img/thumb/img-thumb6.jpg" alt="">
-							<div class="twitter-posts-in">
-								<strong>PhotoStudio</strong>
-								<span><a href="#">@PS</a></span>
-								<span>7h</span>
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-								<a class="link" href="#">http://bit.ly/1c0UN3Y</a>
-							</div>
-						</li>
-						<li>
-							<img class="rounded-x" src="/img/thumb/img-thumb7.jpg" alt="">
-							<div class="twitter-posts-in">
-								<strong>Wrapbootstrap</strong>
-								<span><a href="#">@Wrapbootstrap</a></span>
-								<span>25m</span>
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-								<a class="link" href="#">http://bit.ly/1c0UN3Y</a>
-							</div>
-						</li>
+						<a class="twitter-timeline" href="https://twitter.com/themadridnews_">Tweets by themadridnews_</a>
+						<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 					</ul>
 				</div>
-                </section>
 				<!-- End Twitter Posts -->
 			</div>
 			<!-- End Right Sidebar -->

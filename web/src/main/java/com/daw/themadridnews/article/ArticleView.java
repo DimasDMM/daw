@@ -16,9 +16,11 @@ public class ArticleView {
 	protected Category category;
 	protected String title;
 	protected String titleShort;
+	protected String titleMid;
 	protected String content;
 	protected String contentTxt;
 	protected String contentShort;
+	protected String contentLong;
 	protected User author;
 	protected String source;
 	protected List<String> tags;
@@ -59,15 +61,25 @@ public class ArticleView {
 
 		SimpleDateFormat fts = new SimpleDateFormat ("dd-MM-yyyy");
 		dateInsertStrShort = fts.format(dateInsert);
-		
+
 		titleShort = title;
-		if(title.length() > 20)
-			titleShort = title.substring(0,20) + "...";
+		titleMid = title;
 		
-		contentTxt = content.replaceAll("\\<.*?>","");
+		if(titleShort.length() > 20)
+			titleShort = titleShort.substring(0,20) + "...";
+		
+		if(titleMid.length() > 40)
+			titleMid = titleMid.substring(0,40) + "...";
+		
+		contentTxt = getFormatedContent().replaceAll("\\<.*?>","");
 		contentShort = contentTxt;
+		contentLong = contentTxt;
+		
 		if(contentShort.length() > 60)
 			contentShort = contentShort.substring(0,60) + "...";
+		
+		if(contentLong.length() > 350)
+			contentLong = contentLong.substring(0,350) + "...";
 	}
 
 	public long getId() {

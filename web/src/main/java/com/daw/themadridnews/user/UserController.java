@@ -72,8 +72,8 @@ public class UserController {
     }
     
     @RequestMapping(value = "/registerend", method = POST)
-    public String registerEnd(Favourite theme, Model model, HttpServletRequest request){
-        userComponent.getLoggedUser().setThemes(theme);
+    public String registerEnd(Favourite favourite, Model model, HttpServletRequest request){
+        userComponent.getLoggedUser().setFavourites(favourite);
         userRepository.save(userComponent.getLoggedUser());
 
         return "redirect:/portada";
