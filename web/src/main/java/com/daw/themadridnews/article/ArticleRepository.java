@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
@@ -17,7 +18,14 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 	
 
 	public Page<Article> findByCategory(String category, Pageable page);
-	public Page<Article> findByTitle(String title, Pageable page);
+	
+	//@Query(nativeQuery=true, value="SELECT * FROM Article WHERE title LIKE '%title%' LIMIT 10")
+	//public Page<Article> findByTitle(@Param("text") String title, Pageable page);
+	
+//	@Query(value = "SELECT * FROM articles WHERE title LIKE %?1% ")
+//	public Page<Article> findByTitle(String text, Pageable pageable);
+	
+	public Page<Article> findByTitleContaining(String title, Pageable pageable);
 	
 	@Query(nativeQuery=true, value="SELECT * FROM articles ORDER BY RAND() LIMIT 4")
 	public List<Article> findRandom4();

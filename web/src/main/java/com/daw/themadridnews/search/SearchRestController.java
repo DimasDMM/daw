@@ -26,9 +26,9 @@ public class SearchRestController {
 	@Autowired
 	protected ArticleRepository articleRepository;
 
-	@RequestMapping("/buscar/{npage}")
+	@RequestMapping("/buscarbuscar?searchItem=/{npage}")
 	public ArticleList search(Model model, @RequestParam String searchItem, @PathVariable int npage, HttpServletRequest request){
-		Page<Article> a = articleRepository.findByTitle(searchItem, new PageRequest(npage,10));
+		Page<Article> a = articleRepository.findByTitleContaining(searchItem, new PageRequest(npage,10));
 		List<ArticleView> av = ArticleView.castList( a.getContent(), commentRepository);
 		
 		ArticleList articleList = new ArticleList();

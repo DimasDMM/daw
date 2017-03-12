@@ -8,12 +8,14 @@ $(document).ready(function () {
         $('#spinner').removeClass('hidden');
 
         $.ajax({
-            url: "/buscar/"+nPage+"?searchItem="+searchItem
+            url: "/buscar/?searchItem="+searchWord+"/"+nPage
         }).done(function (data) {
             
             console.log( JSON.stringify(data) );
             
             nPage++;
+            
+            $('#noticias').append(searchWord);
             
             for(var i = 0; i< data.content.length; i++){
                 

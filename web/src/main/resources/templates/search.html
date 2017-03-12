@@ -48,8 +48,8 @@
 			<!-- Search bar -->
 			<div class="topbar-search-block">
 				<div class="container">
-					<form action="/buscar" method="post">
-						<input type="text" class="form-control" name="search" placeholder="Buscar">
+					<form action="/buscar">
+						<input type="text" class="form-control" name="searchItem" id="search-value" placeholder="Buscar">
 						<div class="search-close"><i class="icon-close"></i></div>
 					</form>
 				</div>
@@ -269,14 +269,7 @@
 				
                 </div>
                 
-                <div id="spinner" class="hidden text-center">
-               		<img src='/img/spinner.gif'/>
-                </div>
-				
-				<!-- more results -->
-                <div class="button-more-results">
-				    <button class="moreResults" id="moreResults">M&aacute;s resultados</button>
-                </div>
+                
 				
 			</div>
 			
@@ -569,7 +562,8 @@
 		App.init();
 		App.initCounter();
 	});
-	var searchTerm="{{searchItem}}";
+	var searchItem="{{searchItem}}";
+	var searchWord = searchItem.replace(/ /gi,"+");
 	var nPage=1;
 </script>
 <!--[if lt IE 9]>

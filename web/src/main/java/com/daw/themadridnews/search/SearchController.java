@@ -36,7 +36,7 @@ public class SearchController {
 	
 	@RequestMapping("/buscar")
 	public String categories(Model model, @RequestParam String searchItem, HttpServletRequest request){
-		Page<Article> articles = articleRepository.findByTitle(searchItem, new PageRequest(0,10));
+		Page<Article> articles = articleRepository.findByTitleContaining(searchItem, new PageRequest(0,10));
 		
 		List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst5ByVisible(true), commentRepository );
 		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );
@@ -47,12 +47,12 @@ public class SearchController {
 		
 		model.addAttribute("articulos",ArticleView.castList(articles.getContent()));
 		
-		model.addAttribute("showNext",!articles.isLast());
+		/*model.addAttribute("showNext",!articles.isLast());
 		model.addAttribute("showPrev",!articles.isFirst());
 		model.addAttribute("nextPage",articles.getNumber()+1);
 		model.addAttribute("prevPage",articles.getNumber()-1);
 		model.addAttribute("currentPage",articles.getNumber()+1);
-		model.addAttribute("totalPages",articles.getTotalPages());
+		model.addAttribute("totalPages",articles.getTotalPages());*/
 		
 		model.addAttribute("categories", categories);
 		model.addAttribute("last_comments", lastComments);
