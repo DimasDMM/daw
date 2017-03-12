@@ -455,19 +455,19 @@
 			</ul>
 
 			<div id="cd-login"> <!-- log en el formulario -->
-				<form class="cd-form" action="user-index.html" method="get">
+				<form class="cd-form" action="/portada" method="post">
 					<div class="lined-text"><span>Usa tu cuenta del Blog</span><hr></div>
 
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signin-email">Correo electr&oacute;nico</label>
-						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="Correo electr&oacute;nico">
+						<input class="full-width has-padding has-border" id="signin-email" name="email" type="email" placeholder="Correo electr&oacute;nico">
 						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signin-password">Contrase&ntilde;a</label>
-						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Contrase&ntilde;a">
-						<a href="javascript:void(0);" class="hide-password">Ocultar</a>
+						<input class="full-width has-padding has-border" id="signin-password" name="password" type="password"  placeholder="Contrase&ntilde;a">
+						<a href="javascript:void(0);" class="hide-password">Mostrar</a>
 						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
 
@@ -478,6 +478,7 @@
 
 					<p class="fieldset">
                         <input class="full-width" type="submit" value="Entrar">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
 					</p>
 				</form>
 
@@ -486,34 +487,41 @@
 			</div> <!-- cd-login -->
             
 			<div id="cd-signup"> <!-- Formulario de registro -->
-				<form class="cd-form" action="user_sign.html" method="get">
+				<form class="cd-form" action="/register" method="post">
 					<div class="lined-text"><span>Registra tu nueva cuenta en The Madrid Times</span><hr></div>
 
 					<p class="fieldset">
 						<label class="image-replace cd-username" for="signup-username">Nombre</label>
-						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Nombre">
+						<input class="full-width has-padding has-border" id="signup-username" name="name" type="text" placeholder="Nombre">
 						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
-                    
+
                     <p class="fieldset">
 						<label class="image-replace cd-username" for="signup-surnames">Apellidos</label>
-						<input class="full-width has-padding has-border" id="signup-surnames" type="text" placeholder="Apellidos">
+						<input class="full-width has-padding has-border" id="signup-surnames" name="lastName" type="text" placeholder="Apellidos">
 						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signup-email">Correo electr&oacute;nico</label>
-						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="Correo electr&oacute;nico">
+						<input class="full-width has-padding has-border" id="signup-email" name="email" type="email" placeholder="Correo electr&oacute;nico">
 						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signup-password">Contrase&ntilde;a</label>
-						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Contrase&ntilde;a">
-						<a href="javascript:void(0);" class="hide-password">Ocultar</a>
+						<input class="full-width has-padding has-border" id="signup-password" name="passwordHash" type="password"  placeholder="Contrase&ntilde;a">
+						<a href="javascript:void(0);" class="hide-password">Mostrar</a>
 						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
- 
+                    
+                    <p class="fieldset">
+						<label class="image-replace cd-password" for="confirm-signup-password">Contrase&ntilde;a</label>
+						<input class="full-width has-padding has-border" id="confirm-signup-password" type="password"  placeholder="Confirmar Contrase&ntilde;a">
+						<a href="javascript:void(0);" class="hide-password">Mostrar</a>
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+
 					<p class="fieldset">
 						<input type="checkbox" id="accept-terms">
 						<label for="accept-terms">Acepto los t&eacute;rminos del <a href="javascript:void(0);">Contrato</a></label>
@@ -521,6 +529,7 @@
 
 					<p class="fieldset">
                         <input class="full-width has-padding" type="submit" value="Crear cuenta">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
 					</p>
 				</form>
 
@@ -539,6 +548,7 @@
 
 					<p class="fieldset">
 						<input class="full-width has-padding" type="submit" value="Recibir mensaje">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
 					</p>
 				</form>
 
