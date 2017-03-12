@@ -238,11 +238,15 @@
 								<div class="addthis_sharing_toolbox"></div>
 							</div>
 						</div>
-						<img class="img-responsive" src="/articles/{{article_id}}/main.jpg" alt="Imagen portada del articulo">
+						<div class="text-center">
+							<img class="article-img" src="/imagen/articulo/{{article_id}}" alt="Imagen portada del articulo">
+						</div>
 					</div>
 					<!-- End Article Header -->
 					
 					{{{article_content}}}
+					
+					<div class="clearfix"></div>
 	
 					<ul class="source-list">
 						<li><strong>Fuente:</strong> <a href="{{article_source}}">{{article_source}}</a></li>
@@ -253,7 +257,7 @@
 					<ul class="blog-grid-tags">
 					   <li class="head">Tags</li>
 					   {{#article_tags}}
-					       <li><a href="#">{{.}}</a></li>
+					       <li><a href="/buscar?searchItem={{.}}" target="_blank">{{.}}</a></li>
 					   {{/article_tags}}
 					</ul>
 					<!-- End Blog Grid Tagds -->
@@ -267,7 +271,7 @@
 						<div class="col-sm-3 col-xs-6">
 							<!-- Thumb -->
 							<div class="blog-thumb-v4">
-								<img class="img-responsive margin-bottom-10" src="/img/blog/img-default.jpg">
+								<img class="img-responsive margin-bottom-10" src="/imagen/usuario/{{id}}">
 								<h3><a href="/articulo/{{id}}">{{contentShort}}</a></h3>
 							</div>
 							<!-- End Thumb -->
@@ -357,13 +361,13 @@
 					{{#last_articles}}
 					<div class="blog-thumb blog-thumb-circle margin-bottom-15">
 						<div class="blog-thumb-hover">
-							<img class="rounded-x" src="/articles/{{article_id}}/main.jpg">
-							<a class="hover-grad" href="#"><i class="fa fa-link"></i></a>
+							<img class="rounded-x" src="/imagen/articulo/{{id}}">
+							<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-link"></i></a>
 						</div>
 						<div class="blog-thumb-desc">
 							<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 							<ul class="blog-thumb-info">
-								<li>6, Marzo, 2015</li>
+								<li>{{dateInsertStrShort}}</li>
 								<li><a href="/articulo/{{id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
 							</ul>
 						</div>
@@ -477,8 +481,9 @@
 						<p><strong>&iexcl;Subscr&iacute;bete</strong> a nuestro bolet&iacute;n de noticias y ent&eacute;rate de todo en el momento!</p><br>
 
 						<!-- Form Group -->
-						<form class="input-group margin-bottom-50">
-							<input class="form-control" type="email" placeholder="Introduzca su correo">
+						<form class="input-group margin-bottom-50" action="/portada/subscripcion" method="post">
+							<input name="_csrf" value="{{token}}" type="hidden" />
+							<input class="form-control" type="email" name="email" placeholder="Introduzca su correo">
 							<div class="input-group-btn">
 								<button type="button" class="btn-u input-btn">Subscribirse</button>
 							</div>

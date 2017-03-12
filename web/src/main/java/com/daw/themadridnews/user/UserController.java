@@ -2,11 +2,17 @@ package com.daw.themadridnews.user;
 
 import com.daw.themadridnews.Config;
 import com.daw.themadridnews.favourite.Favourite;
+import com.daw.themadridnews.files.FileUploadController;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @Controller

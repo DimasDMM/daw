@@ -8,7 +8,6 @@ import com.daw.themadridnews.utils.Message;
 
 public class FormNewArticle extends RequestBase {
 
-	protected MultipartFile file;
 	protected String category;
 	protected String title;
 	protected String content;
