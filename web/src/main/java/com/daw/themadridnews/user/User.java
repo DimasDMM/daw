@@ -50,7 +50,7 @@ public class User {
 
 	// Constructors
 	public User() {
-		this.roles = new ArrayList();
+		this.roles = new ArrayList<String>();
 	}
 
 	public User(String name, String lastName, String email, String pass, String... roles) {
@@ -58,7 +58,7 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.passwordHash = new BCryptPasswordEncoder().encode(pass);
-		this.roles = new ArrayList<>(Arrays.asList(roles));
+		this.roles = new ArrayList<String>(Arrays.asList(roles));
 	}
 
 	// Method toString
