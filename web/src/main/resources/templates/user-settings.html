@@ -73,7 +73,7 @@
                                 <li>
                                     <a href="javascript:void(0);">{{user_logged}}</a>
                                     <ul class="topbar-dropdown">
-                                        <li class="topbar-submenu"><a href="user-settings.html">Ajustes</a></li>
+                                        <li class="topbar-submenu"><a href="/ajustes">Ajustes</a></li>
                                         {{#editor}}
                                         <li class="topbar-submenu">
                                             <a href="javascript:void(0);">Art&iacute;culos</a>
@@ -110,7 +110,7 @@
                     <div class="res-container">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                         <div class="navbar-brand">
-                            <a href="index.html"> <img src="img/icons/logo-default.png" alt="Logo"> </a>
+                            <a href="/portada"> <img src="img/icons/logo-default.png" alt="Logo"> </a>
                         </div>
                     </div>
                     <!--/end responsive container-->
@@ -920,7 +920,7 @@
                         <h3>{{user_logged}}</h3>
                         {{/user_logged}}
                         <ul class="list-group sidebar-nav-v1">
-                            <li class="list-group-item active"><a href="settings.html">Preferencias</a></li>
+                            <li class="list-group-item active"><a href="/ajustes">Preferencias</a></li>
                             <li class="list-group-item"><a href="/logout">Cerrar sesi&oacute;n</a></li>
                         </ul>
                     </div>
@@ -934,33 +934,27 @@
                             <li class="active"><a href="#tab-personal-data" data-toggle="tab">Datos personales</a></li>
                             <li><a href="#tab-email-pass" data-toggle="tab">Email &amp; Contraseña</a></li>
                             <li><a href="#tab-my-news" data-toggle="tab">Mis noticias</a></li>
+                            <li><a href="#tab-my-photo" data-toggle="tab">Mi foto de perfil</a></li>
                         </ul>
                         <div class="tab-content">
                             <!-- Personal Data Forms -->
                             <div class="tab-pane fade in active" id="tab-personal-data">
-                                <form action="/user-settings/save" method="post" class="margin-bottom-20 sky-form no-border">
+                                <form action="/ajustes/guardar1" method="post" class="margin-bottom-20 sky-form no-border">
                                     <section class="row">
                                         <div class="col col-12 full-width">
                                             <label for="inp_name">{{#name_new}} {{name_new}} {{/name_new}} {{^name_new}}Nombre {{/name_new}}</label>
-                                            <input type="text" name="name" id="inp_name" class="form-control" value="{{user_name}}">
+                                            <input type="text" name="name" id="inp_name" class="form-control" value="{{user_name}}" required>
                                             <div class="note note-success-compulsory">Campo obligatorio</div>
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_surname">Apellidos</label>
-                                            <input type="text" name="lastName" id="inp_surname" class="form-control" value="{{user_lastName}}">
+                                            <input type="text" name="lastName" id="inp_surname" class="form-control" value="{{user_lastName}}" required>
                                             <div class="note note-success-compulsory">Campo obligatorio</div>
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_alias">Alias</label>
                                             <input type="text" name="alias" id="inp_alias" class="form-control" {{#user_alias}} value="{{user_alias}}" {{/user_alias}}>
-                                            <div class="note note-success-compulsory">Se mostrar&aacute; en lugar de tu nombre</div>
-                                        </div>
-                                        <div class="col col-12 full-width">
-                                            <label for="inp_file">Foto de perfil</label>
-                                            <div class="input input-file">
-                                                <div class="button">
-                                                    <input type="file" name="file" id="inp_file" multiple onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div>
-                                                <input type="text" placeholder="JPG, PNG o GIF" readonly> </div>
+                                            <div class="note note-success-compulsory">{{#alias_repeated}} {{alias_repeated}} {{/alias_repeated}} {{^alias_repeated}}Se mostrar&aacute; en lugar de tu nombre{{/alias_repeated}}</div>
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label>Sexo</label>
@@ -1195,7 +1189,7 @@
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_phone">Tel&eacute;fono</label>
-                                            <input type="text" name="phone" id="inp_phone" class="form-control" {{#user_phone}} value="{{user_phone}}" {{/user_phone}}> </div>
+                                            <input type="text" name="phoneNumber" id="inp_phone" class="form-control" {{#user_phone}} value="{{user_phone}}" {{/user_phone}}> </div>
                                         <hr>
                                         <div class="col col-12 full-width">
                                             <label for="inp_description">Descripci&oacute;n personal</label>
@@ -1203,17 +1197,18 @@
                                         </div>
                                         <div class="col col-12 full-width">
                                             <label for="inp_url">URL blog o p&aacute;gina personal</label>
-                                            <input type="text" name="url" id="inp_url" class="form-control" {{#user_url}} value="{{user_url}}" {{/user_url}} {{^user_url}} placeholder="http://..." {{/user_url}}> </div>
+                                            <input type="text" name="personalWeb" id="inp_url" class="form-control" {{#user_url}} value="{{user_url}}" {{/user_url}} {{^user_url}} placeholder="http://..." {{/user_url}}> </div>
                                     </section>
                                     <footer>
                                         <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                                        <input type="hidden" name="_csrf" value="{{token}}"/>
                                     </footer>
                                 </form>
                             </div>
                             <!-- End Personal Data Forms -->
                             <!-- Password Forms -->
                             <div class="tab-pane fade" id="tab-email-pass">
-                                <form action="#" method="get" class="margin-bottom-20 sky-form no-border">
+                                <form action="/ajustes/guardar2" method="post" class="margin-bottom-20 sky-form no-border">
                                     <section class="row">
                                         <div class="col col-12 full-width">
                                             <label for="inp_email">Correo electr&oacute;nico</label>
@@ -1278,6 +1273,26 @@
                                 </form>
                             </div>
                             <!-- End My news Forms -->
+                            <!-- My Photo Form -->
+                            <div class="tab-pane fade" id="tab-my-photo">
+                                <form action="/imagen/subir" method="post" class="margin-bottom-20 sky-form no-border" enctype="multipart/form-data">
+                                    <section class="row">
+                                        <div class="col col-12 full-width">
+                                            <label for="inp_file">Foto de perfil</label>
+                                            <div class="input input-file">
+                                                <div class="button">
+                                                    <input type="file" name="file" id="inp_file" multiple onchange="this.parentNode.nextSibling.value=this.value">
+                                                    <input type="hidden" name="_csrf" value="{{token}}"/>Buscar...</div>
+                                                <input type="text" placeholder="JPG, PNG o GIF" readonly>
+                                            </div>
+                                        </div>
+                                    </section>
+                                        <footer>
+                                            <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                                        </footer>
+                                </form>
+                            </div>
+                            <!-- End My Photo Form -->
                         </div>
                     </div>
                     <!-- End Tabs-->
@@ -1293,7 +1308,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 col-sm-6 column-one md-margin-bottom-50">
-                            <a href="index.html"><img class="footer-logo" src="img/icons/logo-light.png" alt=""></a>
+                            <a href="/portada"><img class="footer-logo" src="img/icons/logo-light.png" alt=""></a>
                             <p class="margin-bottom-20">Tu peri&oacute;dico online de Madrid</p> <span>Sede:</span>
                             <p>Paseo de la Castellana, 713 Madrid ESPA&Ntilde;A CP:28046</p>
                             <hr> <span>Tel&eacute;fono:</span>
@@ -1304,7 +1319,7 @@
                             <h2>Tags</h2>
                             <!-- Tag Links v4 -->
                             <ul class="tags-v4 margin-bottom-40">
-                                <li><a class="rounded-4x" href="index.html">The Madrid News</a></li>
+                                <li><a class="rounded-4x" href="/portada">The Madrid News</a></li>
                                 <li><a class="rounded-4x" href="madrid.html">Madrid</a></li>
                                 <li><a class="rounded-4x" href="spain.html">Espa&ntilde;a</a></li>
                                 <li><a class="rounded-4x" href="world.html">Mundo</a></li>
