@@ -119,6 +119,17 @@ A continuación podemos ver las entidades que tiene nuestra BBDD, así como las 
 
 ![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/BBDDRelacional.jpg)
 
+## Diagrama de Clases
+
+Estas son las clases que componen la aplicación. Hemos utilizado los colores para diferenciar las siguientes clases:
+ - Blanco  -> Normal
+ - Azul    -> Component
+ - Naranja -> Controller
+ - Verde   -> Template
+ - Rojo    -> Entity
+ 
+![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/Classes.jpg)
+
 ## Cambios respecto a la plantilla
 
  - index.html
