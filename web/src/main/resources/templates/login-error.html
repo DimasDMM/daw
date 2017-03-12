@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<!--[if IE 8]>
-<html lang="es" class="ie8"> <![endif]-->
-<!--[if IE 9]>
-<html lang="es" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="es"> <!--<![endif]-->
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="es"> <!--<![endif]-->
 <head>
-	<title>The Madrid Times | Redactar art&iacute;culo</title>
+	<title>The Madrid Times | Cultura</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -15,34 +12,31 @@
 	<meta name="author" content="">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="/img/icons/favicon.ico">
+	<link rel="shortcut icon" href="img/icons/favicon.ico">
 
 	<!-- Web Fonts -->
 	<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700'>
 
 	<!-- CSS Global Compulsory -->
-	<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/blog.style.css">
+	<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/blog.style.css">
 
 	<!-- CSS Header and Footer -->
-	<link rel="stylesheet" href="/css/headers/header-v8.css">
-	<link rel="stylesheet" href="/css/footers/footer-v8.css">
+	<link rel="stylesheet" href="css/headers/header-v8.css">
+	<link rel="stylesheet" href="css/footers/footer-v8.css">
 
 	<!-- CSS Implementing Plugins -->
-	<link rel="stylesheet" href="/plugins/animate.css">
-	<link rel="stylesheet" href="/plugins/line-icons/line-icons.css">
-	<link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/plugins/login-signup-modal-window/css/style.css">
-	<link rel="stylesheet" href="/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
-	<link rel="stylesheet" href="/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
-	<link rel="stylesheet" href="/css/blocks.css">
+	<link rel="stylesheet" href="plugins/animate.css">
+	<link rel="stylesheet" href="plugins/line-icons/line-icons.css">
+	<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="plugins/login-signup-modal-window/css/style.css">
 
 	<!-- CSS Theme -->
-	<link rel="stylesheet" href="/css/theme-colors/default.css">
-	<link rel="stylesheet" href="/css/theme-skins/dark.css">
+	<link rel="stylesheet" href="css/theme-colors/default.css" id="style_color">
+	<link rel="stylesheet" href="css/theme-skins/dark.css">
 
 	<!-- CSS Customization -->
-	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="stylesheet" href="css/custom.css">
 </head>
 
 <body class="header-fixed header-fixed-space-v2 boxed-layout container">
@@ -156,7 +150,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/imagen/articulo/{{id}}">
+																<img src="/img/blog/guardiacivilagents.jpg">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -175,7 +169,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/imagen/articulo/{{id}}">
+																<img src="/img/blog/guardiacivilagents.jpg">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -194,7 +188,7 @@
 														<!-- Blog Thumb -->
 														<div class="blog-thumb margin-bottom-20">
 															<div class="blog-thumb-hover">
-																<img src="/imagen/articulo/{{id}}">
+																<img src="/img/blog/guardiacivilagents.jpg">
 																<a class="hover-grad" href="/articulo/{{id}}"><i class="fa fa-photo"></i></a>
 															</div>
 															<div class="blog-thumb-desc">
@@ -223,190 +217,18 @@
 		<!-- End Navbar -->
 	</header>
 	<!--=== End Header ===-->
-
-	<!-- Container Part -->
-	<div class="container content">
+    
+<!--=== Container Part ===-->
+	<div class="container content-sm">
+        <h1 class="login-error">Error</h1>
 		<div class="row">
-			<aside class="col-md-3 md-margin-bottom-50">
-				<!-- Options Menu -->
-				<div class="margin-bottom-50">
-					<img class="img-responsive profile-img margin-bottom-20" src="/img/team/img32-md.jpg" alt="">
-
-					<h1 class="title-v4">Opciones</h1>
-
-                    {{#editor}}
-					<h3>Art&iacute;culos</h3>
-					<ul class="list-group sidebar-nav-v1">
-						<li class="list-group-item"><a href="/editor/articulo/lista">Publicados</a></li>
-						<li class="list-group-item {{#is_modification}}active{{/is_modification}}"><a href="/editor/articulo/nuevo">Redactar</a></li>
-					</ul>
-                    {{/editor}}
-					{{#advert}}
-					<h3>Anuncios</h3>
-					<ul class="list-group sidebar-nav-v1">
-						<li class="list-group-item"><a href="/publicista/anuncio/lista">Listado</a></li>
-						<li class="list-group-item"><a href="/publicista/anuncio/nuevo">Nuevo</a></li>
-					</ul>
-                    {{/advert}}
-
-					<h3>Usuario</h3>
-					<ul class="list-group sidebar-nav-v1">
-						<li class="list-group-item"><a href="/ajustes">Preferencias</a></li>
-						<li class="list-group-item"><a href="/logout">Cerrar sesi&oacute;n</a></li>
-					</ul>
-				</div>
-				<!-- End Options Menu -->
-			</aside>
-
-			<section class="col-md-9">
-				{{#message}}
-				<div class="alert alert-{{type}} fade in text-center">
-					<p>
-						{{{message}}}
-					</p>
-				</div>
-				{{/message}}
-
-				{{#is_preview}}
-				<div class="alert alert-warning fade in text-center">
-					<h4>Previsualizaci&oacute;n</h4>
-					<p>
-						En la parte inferior de la noticia est&aacute; el bot&oacute;n
-						{{#article_visible}}"Ocultar"{{/article_visible}}
-						{{^article_visible}}"Publicar"{{/article_visible}}
-						y el formulario para modificar los detalles de la noticia.
-					</p>
-					<p>
-						<a class="btn btn-danger btn-delete">Eliminar</a>
-					</p>
-				</div>
-
-				<article>
-					<!-- Article Header -->
-					<div class="blog-grid margin-bottom-30">
-						<h1 class="blog-grid-title-lg">{{article_title}}</h1>
-						<div class="overflow-h margin-bottom-10">
-							<ul class="blog-grid-info pull-left">
-								<li>{{editor_name}} {{editor_lastname}}</li>
-								<li>{{article_date_insert}}</li>
-							</ul>
-							<div class="pull-right">
-								<div class="addthis_sharing_toolbox"></div>
-							</div>
-						</div>
-						<div class="text-center">
-							<img class="article-img" src="/imagen/articulo/{{article_id}}" alt="Imagen portada del articulo">
-						</div>
-					</div>
-					<!-- End Article Header -->
-					
-					{{{article_content}}}
-					
-					<div class="clearfix"></div>
-	
-					<ul class="source-list">
-						<li><strong>Fuente:</strong> <a href="{{article_source}}" target="_blank">{{article_source}}</a></li>
-						<li><strong>Autor:</strong> <a>{{editor_name}} {{editor_lastname}}</a></li>
-					</ul>
-	
-					<!-- Blog Grid Tags -->
-					<ul class="blog-grid-tags">
-					   <li class="head">Tags</li>
-					   {{#article_tags}}
-					       <li><a href="/buscar?searchItem={{.}}" target="_blank">{{.}}</a></li>
-					   {{/article_tags}}
-					</ul>
-					<!-- End Blog Grid Tagds -->
-				</article>
-
-				<div class="alert alert-warning fade in text-center">
-					<h4>Previsualizaci&oacute;n</h4>
-					{{#article_visible}}
-					<p>Si quieres ocultar temporalmente la noticia haz click en el bot&oacute;n "Ocultar"</p>
-					<p>
-						<a class="btn btn-warning" href="/editor/articulo/{{article_id}}/ocultar">Ocultar</a>
-					</p>
-					{{/article_visible}}
-					
-					{{^article_visible}}
-					<p>Cuando la noticia este lista haz click en el bot&oacute;n "Publicar"</p>
-					<p>
-						<a class="btn btn-primary" href="/editor/articulo/{{article_id}}/publicar">Publicar</a>
-					</p>
-					{{/article_visible}}
-				</div>
-				{{/is_preview}}
-
-				{{#is_modification}}
-				<form action="/editor/articulo/{{id}}" method="post" enctype="multipart/form-data" class="margin-bottom-20 sky-form no-border">
-				{{/is_modification}}
-				{{^is_modification}}
-				<form action="/editor/articulo/nuevo" method="post" enctype="multipart/form-data" class="margin-bottom-20 sky-form no-border">
-				{{/is_modification}}
-				
-					<input type="hidden" name="_csrf" value="{{token}}" />
-				
-					<section class="row">
-						<div class="col col-12 full-width">
-							<label for="inp_title">Categoría</label>
-							<label class="select">
-								<select name="category">
-									{{#article_categories}}
-										<option value="{{id}}" {{#isActive}}selected="selected"{{/isActive}}>{{name}}</option>
-									{{/article_categories}}
-								</select>
-								<i></i>
-							</label>
-						</div>
-						
-						<div class="col col-12 full-width">
-							<label for="inp_title">Título</label>
-							<input type="text" name="title" id="inp_title" class="form-control" value="{{article_title}}">
-						</div>
-
-						<div class="col col-12 full-width">
-							<label for="inp_article">Art&iacute;culo</label>
-							<textarea class="form-control" name="content" id="inp_article" rows="30">{{article_content_raw}}</textarea>
-						</div>
-
-						<div class="col col-12 full-width">
-							<label for="inp_file">Imagen principal</label>
-							<div class="input input-file">
-								<div class="button"><input type="file" name="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
-							</div>
-						</div>
-
-						<hr>
-
-						<div class="col col-12 full-width">
-							<label for="inp_source">Fuente</label>
-							<input type="text" name="source" id="inp_source" placeholder="http://..." value="{{article_source}}" class="form-control">
-						</div>
-
-						<div class="col col-12 full-width">
-							<label for="inp_source">Etiquetas</label>
-							<input type="text" name="tags" id="inp_source" placeholder="Ej.: Sucesos,Accidente,..." value="{{article_tags_str}}" class="form-control">
-							<small>Las etiquetas deberán ir separadas por comas</small>
-						</div>
-					</section>
-
-					<footer>
-						{{#is_modification}}
-						<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-floppy-o"></i> Guardar y previsualizar</button>
-						{{/is_modification}}
-						{{^is_modification}}
-						<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-eye"></i> Previsualizar</button>
-						{{/is_modification}}
-					</footer>
-
-				</form>
-
-			</section>
-		</div>
+			<p class="error">El usuario o contraseña introducidos no son correctos</p>
+		</div><!--/end row-->
 	</div>
 	<!--=== End Container Part ===-->
-
-	<!--=== Footer ===-->
+    
+    
+<!--=== Footer ===-->
 	<div class="footer-v8">
 		<footer class="footer">
 			<div class="container">
@@ -472,7 +294,7 @@
 							<input name="_csrf" value="{{token}}" type="hidden" />
 							<input class="form-control" type="email" name="email" placeholder="Introduzca su correo">
 							<div class="input-group-btn">
-								<button type="button" class="btn-u input-btn">Subscribirse</button>
+								<button type="submit" class="btn-u input-btn">Subscribirse</button>
 							</div>
 						</form>
 						<!-- End Form Group -->
@@ -505,52 +327,144 @@
 		</footer>
 	</div>
 	<!--=== End Footer ===-->
+
+	<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+		<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+			<ul class="cd-switcher">
+				<li><a href="javascript:void(0);">Entrar</a></li>
+				<li><a href="javascript:void(0);">Registrarse</a></li>
+			</ul>
+
+			<div id="cd-login"> <!-- log en el formulario -->
+				<form class="cd-form" action="/portada" method="post">
+					<div class="lined-text"><span>Usa tu cuenta del Blog</span><hr></div>
+
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="signin-email">Correo electr&oacute;nico</label>
+						<input class="full-width has-padding has-border" id="signin-email" name="email" type="email" placeholder="Correo electr&oacute;nico">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace cd-password" for="signin-password">Contrase&ntilde;a</label>
+						<input class="full-width has-padding has-border" id="signin-password" name="password" type="password"  placeholder="Contrase&ntilde;a">
+						<a href="javascript:void(0);" class="hide-password">Mostrar</a>
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+
+					<p class="fieldset">
+						<input type="checkbox" id="remember-me" checked>
+						<label for="remember-me">Recordar</label>
+					</p>
+
+					<p class="fieldset">
+                        <input class="full-width" type="submit" value="Entrar">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+					</p>
+				</form>
+
+				<p class="cd-form-bottom-message"><a href="javascript:void(0);">¿Olvidaste tu contrase&ntilde;a?</a></p>
+                <a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
+			</div> <!-- cd-login -->
+            
+			<div id="cd-signup"> <!-- Formulario de registro -->
+				<form class="cd-form" action="/register" method="post">
+					<div class="lined-text"><span>Registra tu nueva cuenta en The Madrid Times</span><hr></div>
+
+					<p class="fieldset">
+						<label class="image-replace cd-username" for="signup-username">Nombre</label>
+						<input class="full-width has-padding has-border" id="signup-username" name="name" type="text" placeholder="Nombre">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+
+                    <p class="fieldset">
+						<label class="image-replace cd-username" for="signup-surnames">Apellidos</label>
+						<input class="full-width has-padding has-border" id="signup-surnames" name="lastName" type="text" placeholder="Apellidos">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="signup-email">Correo electr&oacute;nico</label>
+						<input class="full-width has-padding has-border" id="signup-email" name="email" type="email" placeholder="Correo electr&oacute;nico">
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace cd-password" for="signup-password">Contrase&ntilde;a</label>
+						<input class="full-width has-padding has-border" id="signup-password" name="passwordHash" type="password"  placeholder="Contrase&ntilde;a">
+						<a href="javascript:void(0);" class="hide-password">Mostrar</a>
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+                    
+                    <p class="fieldset">
+						<label class="image-replace cd-password" for="confirm-signup-password">Contrase&ntilde;a</label>
+						<input class="full-width has-padding has-border" id="confirm-signup-password" type="password"  placeholder="Confirmar Contrase&ntilde;a">
+						<a href="javascript:void(0);" class="hide-password">Mostrar</a>
+						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
+					</p>
+
+					<p class="fieldset">
+						<input type="checkbox" id="accept-terms">
+						<label for="accept-terms">Acepto los t&eacute;rminos del <a href="javascript:void(0);">Contrato</a></label>
+					</p>
+
+					<p class="fieldset">
+                        <input class="full-width has-padding" type="submit" value="Crear cuenta">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+					</p>
+				</form>
+
+				<a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
+			</div> <!-- cd-signup -->
+            
+            <div id="cd-reset-password"> <!-- reset password form -->
+				<p class="cd-form-message">&iquest;Olvidaste tu contraseña? Por favor, introduce tu dirección de correo electr&oacute;nico. Recibir&aacute;s un link en el que podr&aacute;s cambiar tu contrase&ntilde;a.</p>
+
+				<form class="cd-form">
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="reset-email">Correo electr&oacute;nico</label>
+						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="Correo electr&oacute;nico">
+						<span class="cd-error-message">Error de mensaje</span>
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width has-padding" type="submit" value="Recibir mensaje">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+					</p>
+				</form>
+
+				<p class="cd-form-bottom-message"><a href="javascript:void(0);">Volver a entrar</a></p>
+			</div> <!-- cd-reset-password -->
+			<a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
+		</div><!-- cd-user-modal-container -->
+	</div> <!-- cd-user-modal -->
 </div><!--/wrapper-->
 
-{{#is_modification}}
-<!-- ModalDeleteArticle -->
-<div class="modal fade" id="modalDeleteArticle" tabindex="-1" role="dialog" aria-labelledby="modalDeleteArticleLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-				<h4 class="modal-title">Confirmaci&oacute;n</h4>
-			</div>
-			<div class="modal-body">
-				<p><b>Importante: </b> Esta acci&oacute;n es irreversible, la noticia ser&aacute; eliminada sin posibilidad de ser recuperada.</p>
-			</div>
-			<div class="modal-footer">
-				<a class="btn btn-danger" href="/editor/articulo/{{id}}/eliminar"><i class="fa fa-trash"></i> Eliminar</a>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- /ModalDeleteArticle -->
-{{/is_modification}}
-
 <!-- JS Global Compulsory -->
-<script src="/plugins/jquery/jquery.min.js"></script>
-<script src="/plugins/jquery/jquery-migrate.min.js"></script>
-<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/jquery/jquery-migrate.min.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- JS Implementing Plugins -->
-<script src="/plugins/back-to-top.js"></script>
-<script src="/plugins/smoothScroll.js"></script>
+<script src="plugins/back-to-top.js"></script>
+<script src="plugins/smoothScroll.js"></script>
+<script src="plugins/counter/waypoints.min.js"></script>
+<script src="plugins/counter/jquery.counterup.min.js"></script>
+<script src="plugins/modernizr.js"></script>
+<script src="plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
 <!-- JS Customization -->
-<script src="/js/page.general.js"></script>
-<script src="/js/page.editor.js"></script>
-<script src="/plugins/modernizr.js"></script>
-<script src="/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
+<script src="js/custom.js"></script>
 <!-- JS Page Level -->
-<script src="/js/app.js"></script>
+<script src="js/app.js"></script>
 <script>
-	jQuery(document).ready(function () {
+	jQuery(document).ready(function() {
 		App.init();
+		App.initCounter();
 	});
 </script>
 <!--[if lt IE 9]>
-<script src="/plugins/respond.js"></script>
-<script src="/plugins/html5shiv.js"></script>
-<script src="/plugins/placeholder-IE-fixes.js"></script>
+	<script src="plugins/respond.js"></script>
+	<script src="plugins/html5shiv.js"></script>
+	<script src="plugins/placeholder-IE-fixes.js"></script>
 <![endif]-->
 </body>
 </html>

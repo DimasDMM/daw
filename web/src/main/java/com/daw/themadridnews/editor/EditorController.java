@@ -7,11 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.daw.themadridnews.Config;
 import com.daw.themadridnews.article.Article;
@@ -20,6 +23,7 @@ import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.article.CategoryService;
 import com.daw.themadridnews.article.CategoryView;
 import com.daw.themadridnews.comment.CommentRepository;
+import com.daw.themadridnews.files.FileUploadService;
 import com.daw.themadridnews.requests.FormModifyArticle;
 import com.daw.themadridnews.requests.FormNewArticle;
 import com.daw.themadridnews.user.UserComponent;
@@ -68,18 +72,19 @@ public class EditorController {
 	}
 	
 	@RequestMapping(value="/editor/articulo/nuevo", method=RequestMethod.POST)
-	public String showFormNewPreview(Model model, FormNewArticle r, HttpServletRequest request) {
+	public String showFormNewPreview(Model model, FormNewArticle r, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
 		Message message = r.validation();
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
 			return showFormNew(model, request);
 		}
 
-		
 		String category = r.getCategory();
 		
 		Article article = new Article( category, r.getTitle(), r.getContent(), userComponent.getLoggedUser(), r.getSource(), r.getTags(), null, false );
 		article = articleRepository.save(article);
+		
+		FileUploadService.saveImage( file, config.getPathImgArticles(), String.valueOf(article.getId()) );
 
 		return showPreviewAux(model, article, false, request);
 	}
@@ -136,7 +141,7 @@ public class EditorController {
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.POST)
-	public String showFormModifyPreview(Model model, FormModifyArticle r, @PathVariable long id, HttpServletRequest request) {
+	public String showFormModifyPreview(Model model, FormModifyArticle r, @PathVariable long id, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
 		Message message;
 		Article article = articleRepository.findOne(id);
 		
@@ -161,6 +166,8 @@ public class EditorController {
 		article.setTags(r.getTags());
 		
 		article = articleRepository.save(article);
+		
+		FileUploadService.saveImage( file, config.getPathImgArticles(), String.valueOf(article.getId()) );
 		
 		return showPreviewAux(model, article, true, request);
 	}
@@ -225,7 +232,7 @@ public class EditorController {
 	}
 	
 	private String showListAux(Model model, int nPage, HttpServletRequest request) {
-		Page<Article> page = articleRepository.findAll( new PageRequest(nPage, nItemsList) );
+		Page<Article> page = articleRepository.findAll( new PageRequest(nPage, nItemsList, Sort.Direction.DESC, "id") );
 		
 		List<Article> articleList = page.getContent();
 		model.addAttribute("article_list", ArticleView.castList(articleList, commentRepository) );

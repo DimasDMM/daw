@@ -15,6 +15,14 @@ public class Validator {
 	}
 	
 	/*
+	 * Comprueba si un string unicamente tiene letras
+	 */
+	public static boolean strOnlyLetters(String str) {
+		String regex = "^[A-Za-z ]+$";
+        return isMatch(str,regex);
+	}
+	
+	/*
 	 * Comprueba si un string es una URL valida
 	 */
 	public static boolean strValidUrl(String str) {

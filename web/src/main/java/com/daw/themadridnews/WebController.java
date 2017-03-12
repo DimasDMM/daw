@@ -124,7 +124,14 @@ public class WebController {
     public String login(Model model, HttpServletRequest request){
         return index(model, request);
     }
-
+    
+    @RequestMapping(value="/loginError")
+    public String loginError(Model model, HttpServletRequest request){
+    	config.setPageParams(model, request);
+		
+        return "login-error";
+    }
+    
     @RequestMapping(value= {"/privacidad"})
     public String privacy(Model model, HttpServletRequest request){
     	config.setPageParams(model, request);
