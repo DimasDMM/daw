@@ -130,6 +130,7 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = POST)
     public String register(User user){
+    	
         user.getRoles().add("ROLE_USER");
         user.getRoles().add("ROLE_EDITOR");
         userRepository.save(user);
@@ -140,6 +141,8 @@ public class UserController {
     
     @RequestMapping(value = "/registerend", method = POST)
     public String registerEnd(Favourite favourite, Model model, HttpServletRequest request){
+    	config.setPageParams(model, request);
+    	
         userComponent.getLoggedUser().setFavourites(favourite);
         userRepository.save(userComponent.getLoggedUser());
 
