@@ -83,9 +83,7 @@ public class DataExampleController implements CommandLineRunner {
         articleRepository.save(new Article("cultura", "Emerge en Londres un Dalí fuera de mercado desde 1925", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("cultura", "La Pax Anza, el triunfo de los españoles frente a navajos, comanches y apaches", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("cultura", "La La land o la amenaza histórica de llevarse un batacazo en los Oscar", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("espana", "Pene pene1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("mundo", "Calvo1", article_content, editor, "http://www.mifuente.com", tags, null, true));
-        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "La plaza de Santo Domingo volverá a tener un aparcamiento", article_content, editor, "http://www.mifuente.com", tags, null, true));
         
         
         // Comentarios de ejemplo
