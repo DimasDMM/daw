@@ -230,78 +230,17 @@
 		<div class="ms-partialview-template" id="partial-view-1">
 			<!-- masterslider -->
 			<div class="master-slider ms-skin-default" id="masterslider">
+				{{#carrousel}}
 				<div class="ms-slide blog-slider">
-					<img src="/img/blog/f1.jpg" data-src="/img/blog/f1.jpg" alt="lorem ipsum dolor sit"/>
-					<span class="blog-slider-badge">Deportes</span>
+					<img src="/img/blog/img-default.jpg" data-src="/img/blog/img-default.jpg" />
+					<span class="blog-slider-badge">{{category.name}}</span>
 					<div class="ms-info"></div>
 					<div class="blog-slider-title">
-						<span class="blog-slider-posted">Feb 6, 2017</span>
-						<h2><a href="#">La nueva F1 estudia eliminar el DRS</a></h2>
+						<span class="blog-slider-posted">{{dateInsertStrShort}}</span>
+						<h2><a href="/articulo/{{id}}">{{title}}</a></h2>
 					</div>
 				</div>
-				<div class="ms-slide blog-slider">
-					<img src="/articles/main.jpg" data-src="/articles/main.jpg" alt="lorem ipsum dolor sit"/>
-					<span class="blog-slider-badge">Madrid</span>
-					<div class="ms-info"></div>
-					<div class="blog-slider-title">
-						<span class="blog-slider-posted">Feb 5, 2017</span>
-						<h2><a href="article.html">El Ayuntamiento de Madrid proh&iacute;be circular a los conductores del Partido Popular</a></h2>
-					</div>
-				</div>
-				<div class="ms-slide blog-slider">
-					<img src="/img/blog/ceuta.jpg" data-src="/img/blog/ceuta.jpg" alt="lorem ipsum dolor sit"/>
-					<span class="blog-slider-badge">Espa&ntilde;a</span>
-					<div class="ms-info"></div>
-					<div class="blog-slider-title">
-						<span class="blog-slider-posted">Feb 6, 2017</span>
-						<h2><a href="#">La Fiscal&iacute;a recurre la absolución de seis supuestos islamistas detenidos en Ceuta</a></h2>
-					</div>
-				</div>
-				<div class="ms-slide blog-slider">
-					<img src="/img/blog/tumbakhonsu.jpg" data-src="/img/blog/tumbakhonsu.jpg" alt="lorem ipsum dolor sit"/>
-					<span class="blog-slider-badge">Cultura</span>
-					<div class="ms-info"></div>
-					<div class="blog-slider-title">
-						<span class="blog-slider-posted">Feb 6, 2017</span>
-						<h2><a href="#">Hallan la tumba de un desconocido escriba real en Egipto</a></h2>
-					</div>
-				</div>
-				 <div class="ms-slide blog-slider">
-					<img src="/img/blog/docedeoctubrefloods.jpg" data-src="/img/blog/docedeoctubrefloods.jpg" alt="lorem ipsum dolor sit"/>
-					<span class="blog-slider-badge">Madrid</span>
-					<div class="ms-info"></div>
-					<div class="blog-slider-title">
-						<span class="blog-slider-posted">Feb 6, 2017</span>
-						<h2><a href="#">Inundaciones en Urgencias del 12 de Octubre por el estallido de una tuber&iacute;a</a></h2>
-					</div>
-				</div>
-				<div class="ms-slide blog-slider">
-					<img src="/img/blog/img-default.jpg" alt="lorem ipsum dolor sit"/>
-					<span class="blog-slider-badge">Tecnolog&iacute;a</span>
-					<div class="ms-info"></div>
-					<div class="blog-slider-title">
-						<span class="blog-slider-posted">Mar 6, 2015</span>
-						<h2><a href="#">Must be visited places in the world</a></h2>
-					</div>
-				</div>
-				<div class="ms-slide blog-slider">
-					<img src="/img/blog/img-default.jpg" alt="lorem ipsum dolor sit"/>
-					<span class="blog-slider-badge">Mundo</span>
-					<div class="ms-info"></div>
-					<div class="blog-slider-title">
-						<span class="blog-slider-posted">Mar 6, 2015</span>
-						<h2><a href="#">5 Facts about Coca-Cola</a></h2>
-					</div>
-				</div>
-				<div class="ms-slide blog-slider">
-					<img src="/img/blog/sentencetotheagressorofpacogonzalezwife.jpg" data-src="/img/blog/sentencetotheagressorofpacogonzalezwife.jpg" alt="lorem ipsum dolor sit"/>
-					<span class="blog-slider-badge">España</span>
-					<div class="ms-info"></div>
-					<div class="blog-slider-title">
-						<span class="blog-slider-posted">Feb 6, 2017</span>
-						<h2><a href="#">El supremo confirma la sentencia para la agresora de la mujer de Paco Gonz&aacute;lez</a></h2>
-					</div>
-				</div>
+				{{/carrousel}}
 			</div>
 			<!-- end of masterslider -->
 		</div>
