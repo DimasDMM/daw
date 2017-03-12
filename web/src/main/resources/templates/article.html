@@ -51,8 +51,8 @@
 			<!-- Search bar -->
 			<div class="topbar-search-block">
 				<div class="container">
-					<form action="">
-						<input type="text" class="form-control" placeholder="Buscar">
+					<form action="/buscar" method="post">
+						<input type="text" class="form-control" name="search" placeholder="Buscar">
 						<div class="search-close"><i class="icon-close"></i></div>
 					</form>
 				</div>
@@ -415,7 +415,7 @@
 	</div>
 	<!--=== End Container Part ===-->
 
-	<!--=== Footer v8 ===-->
+	<!--=== Footer ===-->
 	<div class="footer-v8">
 		<footer class="footer">
 			<div class="container">
@@ -461,14 +461,14 @@
 						<h2>&uacute;ltimas noticias</h2>
 						
 						<!-- Latest News -->
-						{{#last_articles}}
+						{{#page_footer_last_articles}}
 						<div class="latest-news margin-bottom-20">
 							<img src="/img/blog/guardiacivilagents.jpg">
 							<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 							<p>{{contentShort}}</p>
 						</div>
 						<hr>
-						{{/last_articles}}
+						{{/page_footer_last_articles}}
 						<!-- End Latest News -->
 					</div>
 
@@ -512,7 +512,7 @@
 			</div><!--/end container-->
 		</footer>
 	</div>
-	<!--=== End Footer v8 ===-->
+	<!--=== End Footer ===-->
 
 	<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
 		<div class="cd-user-modal-container"> <!-- this is the container wrapper -->

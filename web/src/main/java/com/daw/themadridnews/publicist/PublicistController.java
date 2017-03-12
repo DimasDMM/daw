@@ -9,9 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.daw.themadridnews.Config;
 import com.daw.themadridnews.ad.Ad;
 import com.daw.themadridnews.ad.AdRepository;
 import com.daw.themadridnews.ad.AdView;
+import com.daw.themadridnews.article.ArticleRepository;
+import com.daw.themadridnews.article.ArticleView;
+import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.requests.FormModifyAd;
 import com.daw.themadridnews.requests.FormNewAd;
 import com.daw.themadridnews.utils.Message;
@@ -24,11 +29,23 @@ public class PublicistController {
 	@Autowired
 	protected AdRepository adRepository;
 	
+	@Autowired
+	protected ArticleRepository articleRepository;
+	
+	@Autowired
+	protected CommentRepository commentRepository;
+	
+	@Autowired Config config;
+	
 	private static final int nItemsList = 20;
 	
 
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.GET)
 	public String showFormNewPreview(Model model) {
+		
+		model.addAttribute("page_header_date", config.getHeaderDate());
+		model.addAttribute("page_header_menu", config.getMenuList());
+		
 		model.addAttribute("ad_title", "");
 		model.addAttribute("ad_url", "");
 		model.addAttribute("ad_type_banner", false);
@@ -40,6 +57,12 @@ public class PublicistController {
 		model.addAttribute("ad_views", "");
 		
 		model.addAttribute("is_modification", false);
+
+		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
+		model.addAttribute("page_footer_last_articles", footerLastArticles);
+		model.addAttribute("page_header_date", config.getHeaderDate());
+		model.addAttribute("page_header_menu", config.getMenuList());
+		
 		return "ads_form";
 	}
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.POST)
@@ -70,6 +93,9 @@ public class PublicistController {
 		}
 		
 		AdView adv = new AdView(ad);
+
+		model.addAttribute("page_header_date", config.getHeaderDate());
+		model.addAttribute("page_header_menu", config.getMenuList());
 		
 		model.addAttribute("ad_title", adv.getTitle());
 		model.addAttribute("ad_url", adv.getUrl());
@@ -82,6 +108,11 @@ public class PublicistController {
 		model.addAttribute("ad_views", adv.getLimViewsStr());
 		
 		model.addAttribute("is_modification", true);
+
+		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
+		model.addAttribute("page_footer_last_articles", footerLastArticles);
+		model.addAttribute("page_header_date", config.getHeaderDate());
+		model.addAttribute("page_header_menu", config.getMenuList());
 		
 		return "ads_form";
 	}
