@@ -45,9 +45,6 @@ public class PublicistController {
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.GET)
 	public String showFormNewPreview(Model model, HttpServletRequest request) {
 		
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
-		
 		model.addAttribute("ad_title", "");
 		model.addAttribute("ad_url", "");
 		model.addAttribute("ad_type_banner", false);

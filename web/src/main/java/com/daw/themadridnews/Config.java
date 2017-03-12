@@ -112,9 +112,6 @@ public class Config {
 	public void setPageParams(Model model, HttpServletRequest request) {
 		userComponent.checkRolesAndName(model, request);
 
-		model.addAttribute("page_header_date", this.getHeaderDate());
-		model.addAttribute("page_header_menu", this.getMenuList());
-
 		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
 		model.addAttribute("page_footer_last_articles", footerLastArticles);
 		model.addAttribute("page_header_date", this.getHeaderDate());

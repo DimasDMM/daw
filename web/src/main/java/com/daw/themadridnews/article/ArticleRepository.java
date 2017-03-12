@@ -19,7 +19,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 	@Query(nativeQuery=true, value="SELECT * FROM articles ORDER BY RAND() LIMIT 4")
 	public List<Article> findRandom4();
 
-	@Query(nativeQuery=true, value="SELECT articles.* FROM ( SELECT DISTINCT category, id FROM daw.articles ORDER BY date_insert DESC LIMIT 7 ) as rows, daw.articles articles WHERE articles.id = rows.id")
+	@Query(nativeQuery=true, value="SELECT m1.* FROM daw.articles m1 LEFT JOIN daw.articles m2 ON (m1.category = m2.category AND m1.id < m2.id) WHERE m2.id IS NULL;")
 	public List<Article> findFirstEachCategory();
 	
 }
