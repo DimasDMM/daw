@@ -111,8 +111,8 @@ public class UserController {
         }
         
         // Guardar contraseña
-        
-
+        oldUser.setPasswordHash(r.getPass_new());
+        userRepository.save(oldUser);
     	message.setCode(0);
     	message.setMessage("La nueva contraseña ha sido guardada correctamente");
     	message.setType("success");
