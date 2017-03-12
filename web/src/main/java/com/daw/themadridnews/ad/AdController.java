@@ -16,12 +16,11 @@ public class AdController {
 	
 
 	@RequestMapping(value="/anuncio/{id}", method=RequestMethod.GET)
-	public void redirect(HttpServletResponse r, @PathVariable long id) {
+	public String redirect(HttpServletResponse r, @PathVariable long id) {
 		Ad ad = adRepository.findOne(id);
 		
 		if(ad == null) {
-			r.setHeader("Location", "/error/404");
-			return;
+			return "redirect:/error/404";
 		}
 		
 		ad.addClick();
@@ -29,7 +28,7 @@ public class AdController {
 		
 		String url = ad.getUrl();
 		
-		r.setHeader("Location", url);
+		return "redirect:"+url;
 	}
 
 }
