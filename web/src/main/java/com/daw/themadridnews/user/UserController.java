@@ -169,8 +169,11 @@ public class UserController {
     }
     
     @RequestMapping(value = "/registerend", method = POST)
-    public String registerEnd(Favourite favourite, Model model, HttpServletRequest request){
+    public String registerEnd(Favourite favourite, Model model, HttpServletRequest request, @RequestParam("file") MultipartFile file){
     	config.setPageParams(model, request);
+
+        User userLogged = userComponent.getLoggedUser();
+    	FileUploadService.saveImage( file, config.getPathImgUsers(), String.valueOf(userLogged.getId()) );
     	
         userComponent.getLoggedUser().setFavourites(favourite);
         userRepository.save(userComponent.getLoggedUser());
