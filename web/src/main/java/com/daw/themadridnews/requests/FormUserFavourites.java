@@ -6,21 +6,21 @@ import com.daw.themadridnews.utils.Message;
 
 public class FormUserFavourites extends RequestBase {
 	
-	protected List<String> favs;
+	protected String favs[];
 	
 	
 	public FormUserFavourites() {super();}
 	
-	public FormUserFavourites(List<String> favs) {
+	public FormUserFavourites(String[] favs) {
 		super();
 		this.favs = favs;
 	}
 
-	public List<String> getFavs() {
+	public String[] getFavs() {
 		return favs;
 	}
 
-	public void setFavs(List<String> favs) {
+	public void setFavs(String[] favs) {
 		this.favs = favs;
 	}
 
