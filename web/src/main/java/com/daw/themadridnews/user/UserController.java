@@ -4,7 +4,7 @@ import com.daw.themadridnews.Config;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.comment.CommentRepository;
-import com.daw.themadridnews.theme.Theme;
+import com.daw.themadridnews.favourite.Favourite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,7 +76,7 @@ public class UserController {
     }
     
     @RequestMapping(value = "/registerend", method = POST)
-    public String registerEnd(Theme theme, Model model, HttpServletRequest request){
+    public String registerEnd(Favourite theme, Model model, HttpServletRequest request){
         userComponent.getLoggedUser().setThemes(theme);
         userRepository.save(userComponent.getLoggedUser());
         

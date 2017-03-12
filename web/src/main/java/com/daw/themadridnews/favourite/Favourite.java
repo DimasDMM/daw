@@ -1,4 +1,4 @@
-package com.daw.themadridnews.theme;
+package com.daw.themadridnews.favourite;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Theme {
+public class Favourite {
     //Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +20,7 @@ public class Theme {
     private boolean culture;
     
     //Constructor
-    public Theme(){
+    public Favourite(){
     }
     
     //Methods Getter & Setter
