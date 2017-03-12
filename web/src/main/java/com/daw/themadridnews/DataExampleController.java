@@ -81,6 +81,10 @@ public class DataExampleController implements CommandLineRunner {
         articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("espana", "Pene pene1", article_content, editor, "http://www.mifuente.com", tags, null, true));
         articleRepository.save(new Article("mundo", "Calvo1", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
+        articleRepository.save(new Article("madrid", "El alicatador sigue fugado1", article_content, editor, "http://www.mifuente.com", tags, null, true));
         
         // Comentarios de ejemplo
         User user = userRepository.findByName("pepe");
