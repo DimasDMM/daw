@@ -34,6 +34,7 @@ public class CategoryController {
 	@RequestMapping("/categoria/{cat}")
 	public String categories(Model model, @PathVariable String cat, HttpServletRequest request){
 		Page<Article> articles = articleRepository.findByCategory(cat, new PageRequest(0,10));
+		
 		List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst5ByVisible(true), commentRepository );
 		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );
 		List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );

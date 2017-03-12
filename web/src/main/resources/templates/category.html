@@ -229,7 +229,7 @@
 					{{#articulos}}
 					<div class="row margin-bottom-50">
 						<div class="col-sm-4 sm-margin-bottom-20">
-							<img class="img-responsive" src="/articles/1/main.jpg" alt="">
+							<img class="img-responsive" src="/imagen/articulo/{{id}}" alt="">
 						</div>
 						<div class="col-sm-8">
 							<div class="blog-grid">
@@ -237,7 +237,7 @@
 								<ul class="blog-grid-info">
 									<li>{{author.name}} {{author.lastName}}</li>
 									<li>{{dateInsert}}</li>
-									<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+									<li><a href="/articulo/{{id}}"><i class="fa fa-comments"></i> 0</a></li>
 								</ul>
 								<p>{{contentShort}}</p>
 								<a class="r-more" href="/articulo/{{id}}">Leer m&aacute;s</a>
