@@ -44,7 +44,6 @@ public class CategoryRestController {
 	
 	public class ArticleList {
 		public List<ArticleView> content;
-		public String contentShort;
 		public boolean isLast;
 	}
 }
