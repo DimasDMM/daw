@@ -61,10 +61,12 @@ public class WebController {
         
         List<ArticleView> lastArticlesSec = null;
         if(category == null) {
-            model.addAttribute("last_articles_category", "Todos");
+            model.addAttribute("last_articles_category_name", false);
+            model.addAttribute("last_articles_category_id", false);
         	lastArticlesSec = ArticleView.castList( articleRepository.findFirst6ByVisible(true), commentRepository );
         } else {
-            model.addAttribute("last_articles_category", "Categoria: "+ CategoryService.getName(category));
+            model.addAttribute("last_articles_category_name", "Categoria: "+ CategoryService.getName(category));
+            model.addAttribute("last_articles_category_id", category);
             lastArticlesSec = ArticleView.castList( articleRepository.findFirst6ByCategoryAndVisible(category, true), commentRepository );
         }
         
@@ -74,9 +76,21 @@ public class WebController {
         model.addAttribute("last_articles_feat", lastArticlesFeat);
         model.addAttribute("last_articles_sec", lastArticlesSec);
         
+        // Seccion: Ultimos articulos de todo
+        List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst6ByVisible(true), commentRepository );
+        model.addAttribute("last_articles", lastArticles);
+        
+        // Seccion: Articulos mas leidos
+        List<ArticleView> popularArticles = ArticleView.castList( articleRepository.find2PopularByVisible(), commentRepository );
+        model.addAttribute("popular_articles", popularArticles);
+        
         // Seccion: Ultimos comentarios
         List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );
         model.addAttribute("last_comments", lastComments);
+        
+        // Seccion: Noticias de la semana
+        List<ArticleView> weekArticles = ArticleView.castList( articleRepository.findRandom4ThisWeek() );
+        model.addAttribute("week_articles", weekArticles);
         
         // Seccion: Categorias
 		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );

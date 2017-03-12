@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.comment.CommentRepository;
+import com.daw.themadridnews.comment.CommentView;
 import com.daw.themadridnews.user.User;
 
 
@@ -27,7 +28,7 @@ public class ArticleView {
 	protected boolean visible;
 	protected long nComments;
 	protected int views;
-	protected List<Comment> comments;
+	protected List<CommentView> commentsSummary;
 	protected String dateInsertStrLong;
 	protected String dateInsertStrShort;
 	protected Date dateInsert;
@@ -53,9 +54,18 @@ public class ArticleView {
 		this.tags = article.getTags();
 		this.visible = article.isVisible();
 		this.views = article.getViews();
-		this.comments = article.getComments();
 		this.dateInsert = article.getDateInsert();
 
+		this.commentsSummary = new ArrayList<CommentView>();
+		if(article.getComments() != null) {
+			int i = 0;
+			Iterator<Comment> it = article.getComments().iterator();
+			while(it.hasNext() && i < 3) {
+				this.commentsSummary.add( new CommentView( it.next(), this ) );
+				i++;
+			}
+		}
+		
 		SimpleDateFormat ftl = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm'h'");
 		dateInsertStrLong = ftl.format(dateInsert);
 
@@ -144,8 +154,8 @@ public class ArticleView {
 		return nComments;
 	}
 	
-	public List<Comment> getComments() {
-		return comments;
+	public List<CommentView> getCommentsSummary() {
+		return commentsSummary;
 	}
 	
 	public Date getDateInsert() {
@@ -177,6 +187,8 @@ public class ArticleView {
 	}
 	
 	public static List<ArticleView> castList(List<Article> l, CommentRepository rep) {
+		if(l == null) return null;
+		
 		List<ArticleView> c = new ArrayList<ArticleView>();
 		Iterator<Article> it = l.iterator();
 		

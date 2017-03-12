@@ -22,7 +22,13 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 	@Query(nativeQuery=true, value="SELECT * FROM articles ORDER BY RAND() LIMIT 4")
 	public List<Article> findRandom4();
 
-	@Query(nativeQuery=true, value="SELECT m1.* FROM daw.articles m1 LEFT JOIN daw.articles m2 ON (m1.category = m2.category AND m1.id < m2.id) WHERE m2.id IS NULL;")
+	@Query(nativeQuery=true, value="SELECT m1.* FROM articles m1 LEFT JOIN articles m2 ON (m1.category = m2.category AND m1.id < m2.id) WHERE m2.id IS NULL;")
 	public List<Article> findFirstEachCategory();
+	
+	@Query(nativeQuery=true, value="SELECT * FROM articles WHERE date_insert > DATE_SUB( NOW(), INTERVAL 1 WEEK ) AND visible = 1 ORDER BY views DESC LIMIT 2")
+	public List<Article> find2PopularByVisible();
+	
+	@Query(nativeQuery=true, value="SELECT * FROM articles WHERE date_insert > DATE_SUB( NOW(), INTERVAL 1 WEEK ) AND visible = 1 ORDER BY RAND() LIMIT 4")
+	public List<Article> findRandom4ThisWeek();
 	
 }
