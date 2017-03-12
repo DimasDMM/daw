@@ -35,18 +35,20 @@ public class UserController {
     //Requests
     @RequestMapping("/ajustes")
     public String userSettings(Model model, HttpServletRequest request) {
-        userComponent.checkRolesAndName(model, request);
-        User user =userComponent.getLoggedUser();
+    	config.setPageParams(model, request);
+    	
+        User user = userComponent.getLoggedUser();
         model.addAttribute("user_name", user.getName());
-        model.addAttribute("user_lastName", user.getLastName());
-        model.addAttribute("user_alias", user.getAlias());
-        model.addAttribute("user_alias", user.getAlias());
-        model.addAttribute("user_city", user.getCity());
-        model.addAttribute("user_phone", user.getPhoneNumber());
-        model.addAttribute("user_description", user.getDescription());
-        model.addAttribute("user_url", user.getPersonalWeb());
+        model.addAttribute("user_lastname", user.getLastName());
+        model.addAttribute("user_alias", (user.getAlias() == null ? "" : user.getAlias()) );
+        model.addAttribute("user_country", (user.getCountry() == null ? "" : user.getCountry()) );
+        model.addAttribute("user_city", (user.getCity() == null ? "" : user.getCity()) );
+        model.addAttribute("user_phone", (user.getPhoneNumber() == null ? "" : user.getPhoneNumber()) );
+        model.addAttribute("user_description", (user.getDescription() == null ? "" : user.getDescription()) );
+        model.addAttribute("user_url", (user.getPersonalWeb() == null ? "" : user.getPersonalWeb()) );
         model.addAttribute("user_email", user.getEmail());
-        model.addAttribute("id", user.getId());
+        model.addAttribute("user_id", user.getId());
+        
         return "user-settings";
     }
 
