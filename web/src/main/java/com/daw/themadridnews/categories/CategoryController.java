@@ -27,19 +27,10 @@ public class CategoryController {
 	@Autowired
 	protected Config config;
 	
-	@RequestMapping("/categoria/{cat}/{npage}")
-	public String categories(Model model, @PathVariable String cat, @PathVariable int npage, HttpServletRequest request){
-		npage = ( npage <= 0 ? 0 : npage-1 );
-		return showCategories(model, cat, npage, request);
-	}
 	
 	@RequestMapping("/categoria/{cat}")
 	public String categories(Model model, @PathVariable String cat, HttpServletRequest request){
-		return showCategories(model, cat, 0, request);
-	}
-	
-	private String showCategories(Model model, String cat, int npage, HttpServletRequest request) {
-		Page<Article> articles = articleRepository.findByCategory(cat, new PageRequest(npage,10));
+		Page<Article> articles = articleRepository.findByCategory(cat, new PageRequest(0,10));
 		
 		model.addAttribute("categ",CategoryService.getName(cat));
 		model.addAttribute("cat",cat);
