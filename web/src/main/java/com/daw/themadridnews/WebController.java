@@ -2,8 +2,6 @@ package com.daw.themadridnews;
 
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.ArticleView;
-import com.daw.themadridnews.comment.CommentRepository;
-import com.daw.themadridnews.user.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class WebController {
-
-    @Autowired
-    private UserComponent userComponent;
     
     @Autowired
     private Config config;
@@ -26,24 +21,13 @@ public class WebController {
     @Autowired
     private ArticleRepository articleRepository;
     
-    @Autowired
-    private CommentRepository commentRepository;
-    
 
     @RequestMapping(value= {"/","/portada"})
     public String index(Model model, HttpServletRequest request){
-        userComponent.checkRolesAndName(model, request);
-        
         List<ArticleView> carrousel = ArticleView.castList( articleRepository.findFirstEachCategory() );
         model.addAttribute("carrousel", carrousel);
 
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
-
-		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
-		model.addAttribute("page_footer_last_articles", footerLastArticles);
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
+        config.setPageParams(model, request);
 		
         return "index";
     }
@@ -62,30 +46,14 @@ public class WebController {
 
     @RequestMapping(value= {"/privacidad"})
     public String privacy(Model model, HttpServletRequest request){
-        userComponent.checkRolesAndName(model, request);
-
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
-
-		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
-		model.addAttribute("page_footer_last_articles", footerLastArticles);
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
+    	config.setPageParams(model, request);
 		
         return "privacy";
     }
 
     @RequestMapping(value= {"/terminos-de-uso"})
     public String termsAndConditions(Model model, HttpServletRequest request){
-        userComponent.checkRolesAndName(model, request);
-
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
-
-		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
-		model.addAttribute("page_footer_last_articles", footerLastArticles);
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
+    	config.setPageParams(model, request);
 		
         return "terms_and_conditions";
     }

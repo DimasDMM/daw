@@ -1,6 +1,9 @@
 package com.daw.themadridnews.editor;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,7 +47,7 @@ public class EditorController {
 
 	
 	@RequestMapping(value="/editor/articulo/nuevo", method=RequestMethod.GET)
-	public String showFormNew(Model model) {
+	public String showFormNew(Model model, HttpServletRequest request) {
 		String newline = System.lineSeparator();
 		String article_content = "Este es un texto de ejemplo con letra *cursiva* y **negrita**."+newline+newline+"~~"+newline+"Este será un"+newline+"texto lateral."+newline+"~~"+newline+newline+"[[http://url/imagen.jpg|right|Imagen lateral]]"+newline+newline+"[[http://url/imagen.jpg|full|Imagen final]]";
 		
@@ -60,23 +63,17 @@ public class EditorController {
 		model.addAttribute("is_modification", false);
 		model.addAttribute("is_preview", false);
 
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
-
-		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
-		model.addAttribute("page_footer_last_articles", footerLastArticles);
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
+        config.setPageParams(model, request);
 		
 		return "article_form";
 	}
 	
 	@RequestMapping(value="/editor/articulo/nuevo", method=RequestMethod.POST)
-	public String showFormNewPreview(Model model, FormNewArticle r) {
+	public String showFormNewPreview(Model model, FormNewArticle r, HttpServletRequest request) {
 		Message message = r.validation();
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
-			return showFormNew(model);
+			return showFormNew(model, request);
 		}
 
 		User editor = userComponent.getLoggedUser();
@@ -86,30 +83,30 @@ public class EditorController {
 		Article article = new Article( category, r.getTitle(), r.getContent(), editor, r.getSource(), r.getTags(), null, false );
 		article = articleRepository.save(article);
 
-		return showPreviewAux(model, article, false);
+		return showPreviewAux(model, article, false, request);
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.GET)
-	public String showFormModify(Model model, @PathVariable long id) {
+	public String showFormModify(Model model, @PathVariable long id, HttpServletRequest request) {
 		Article article = articleRepository.findOne(id);
 		
 		if(article == null) {
 			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, request);
 		}
 		
-		return showPreviewAux(model, article, true);
+		return showPreviewAux(model, article, true, request);
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}/publicar", method=RequestMethod.GET)
-	public String publishArticle(Model model, @PathVariable long id) {
+	public String publishArticle(Model model, @PathVariable long id, HttpServletRequest request) {
 		Article article = articleRepository.findOne(id);
 		
 		if(article == null) {
 			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, request);
 		}
 		
 		article.setVisible(true);
@@ -119,13 +116,13 @@ public class EditorController {
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}/ocultar", method=RequestMethod.GET)
-	public String hideArticle(Model model, @PathVariable long id) {
+	public String hideArticle(Model model, @PathVariable long id, HttpServletRequest request) {
 		Article article = articleRepository.findOne(id);
 		
 		if(article == null) {
 			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, request);
 		}
 		
 		article.setVisible(false);
@@ -141,20 +138,20 @@ public class EditorController {
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.POST)
-	public String showFormModifyPreview(Model model, FormModifyArticle r, @PathVariable long id) {
+	public String showFormModifyPreview(Model model, FormModifyArticle r, @PathVariable long id, HttpServletRequest request) {
 		Message message;
 		Article article = articleRepository.findOne(id);
 		
 		if(article == null) {
 			message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, request);
 		}
 		
 		message = r.validation();
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
-			return showPreviewAux(model, article, true);
+			return showPreviewAux(model, article, true, request);
 		}
 		
 		String category = r.getCategory();
@@ -167,41 +164,41 @@ public class EditorController {
 		
 		article = articleRepository.save(article);
 		
-		return showPreviewAux(model, article, true);
+		return showPreviewAux(model, article, true, request);
 	}
 	
 	@RequestMapping(value="/editor/articulo/lista", method=RequestMethod.GET)
-	public String showList(Model model) {
-		return showListAux(model, 0);
+	public String showList(Model model, HttpServletRequest request) {
+		return showListAux(model, 0, request);
 	}
 	
 	@RequestMapping(value="/editor/articulo/lista/{nPage}", method=RequestMethod.GET)
-	public String showList(Model model, @PathVariable int nPage) {
-		return showListAux(model, nPage-1);
+	public String showList(Model model, @PathVariable int nPage, HttpServletRequest request) {
+		return showListAux(model, nPage-1, request);
 	}
 	
 	@RequestMapping(value="/editor/articulo/lista/publicado", method=RequestMethod.GET)
-	public String showListPublished(Model model) {
+	public String showListPublished(Model model, HttpServletRequest request) {
 		Message message = new Message(0, "El articulo ha sido publicado correctamente", "success");
 		model.addAttribute("message", message);
-		return showListAux(model, 0);
+		return showListAux(model, 0, request);
 	}
 	
 	@RequestMapping(value="/editor/articulo/lista/ocultado", method=RequestMethod.GET)
-	public String showListHidden(Model model) {
+	public String showListHidden(Model model, HttpServletRequest request) {
 		Message message = new Message(0, "El articulo ha sido ocultado correctamente", "success");
 		model.addAttribute("message", message);
-		return showListAux(model, 0);
+		return showListAux(model, 0, request);
 	}
 	
 	@RequestMapping(value="/editor/articulo/lista/eliminado", method=RequestMethod.GET)
-	public String showListDeleted(Model model) {
+	public String showListDeleted(Model model, HttpServletRequest request) {
 		Message message = new Message(0, "El articulo ha sido eliminado correctamente", "success");
 		model.addAttribute("message", message);
-		return showListAux(model, 0);
+		return showListAux(model, 0, request);
 	}
 	
-	private String showPreviewAux(Model model, Article a, boolean isModification) {
+	private String showPreviewAux(Model model, Article a, boolean isModification, HttpServletRequest request) {
 		ArticleView av = new ArticleView(a);
 		
 		List<CategoryView> articleCategories = CategoryView.castList( CategoryService.getCategoryList() );
@@ -224,18 +221,12 @@ public class EditorController {
 		model.addAttribute("is_modification", isModification);
 		model.addAttribute("is_preview", true);
 
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
-
-		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
-		model.addAttribute("page_footer_last_articles", footerLastArticles);
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
+		config.setPageParams(model, request);
 		
 		return "article_form";
 	}
 	
-	private String showListAux(Model model, int nPage) {
+	private String showListAux(Model model, int nPage, HttpServletRequest request) {
 		Page<Article> page = articleRepository.findAll( new PageRequest(nPage, nItemsList) );
 		
 		List<Article> articleList = page.getContent();
@@ -244,6 +235,8 @@ public class EditorController {
 		ModPagination modPagination = new ModPagination();
 		List<ModPageItem> pageList = modPagination.getModPageList(page, "/editor/articulo/lista/");
 		model.addAttribute("page_list", pageList);
+
+		config.setPageParams(model, request);
 		
 		return "article_list";
 	}

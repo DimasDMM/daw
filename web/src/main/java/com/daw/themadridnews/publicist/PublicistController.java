@@ -1,6 +1,9 @@
 package com.daw.themadridnews.publicist;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +18,6 @@ import com.daw.themadridnews.ad.Ad;
 import com.daw.themadridnews.ad.AdRepository;
 import com.daw.themadridnews.ad.AdView;
 import com.daw.themadridnews.article.ArticleRepository;
-import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.requests.FormModifyAd;
 import com.daw.themadridnews.requests.FormNewAd;
@@ -41,7 +43,7 @@ public class PublicistController {
 	
 
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.GET)
-	public String showFormNewPreview(Model model) {
+	public String showFormNewPreview(Model model, HttpServletRequest request) {
 		
 		model.addAttribute("page_header_date", config.getHeaderDate());
 		model.addAttribute("page_header_menu", config.getMenuList());
@@ -58,19 +60,16 @@ public class PublicistController {
 		
 		model.addAttribute("is_modification", false);
 
-		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
-		model.addAttribute("page_footer_last_articles", footerLastArticles);
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
+		config.setPageParams(model, request);
 		
 		return "ads_form";
 	}
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.POST)
-	public String showFormNewPreview(Model model, FormNewAd r) {
+	public String showFormNewPreview(Model model, FormNewAd r, HttpServletRequest request) {
 		Message message = r.validation();
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
-			return showFormNewPreview(model);
+			return showFormNewPreview(model, request);
 		}
 		
 		Ad ad = new Ad( r.getTitle(), r.getUrl(), r.getType(), r.getWeight(), r.getDatestart(), r.getDateend(), r.getClicks(), r.getViews() );
@@ -82,20 +81,17 @@ public class PublicistController {
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/{id}", method=RequestMethod.GET)
-	public String showFormModify(Model model, @PathVariable long id) {
+	public String showFormModify(Model model, @PathVariable long id, HttpServletRequest request) {
 		Message message;
 		Ad ad = adRepository.findOne(id);
 		
 		if(ad == null) {
 			message = new Message(1, "El anuncio no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, request);
 		}
 		
 		AdView adv = new AdView(ad);
-
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
 		
 		model.addAttribute("ad_title", adv.getTitle());
 		model.addAttribute("ad_url", adv.getUrl());
@@ -109,29 +105,26 @@ public class PublicistController {
 		
 		model.addAttribute("is_modification", true);
 
-		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
-		model.addAttribute("page_footer_last_articles", footerLastArticles);
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
+		config.setPageParams(model, request);
 		
 		return "ads_form";
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/{id}", method=RequestMethod.POST)
-	public String showFormModify(Model model, FormModifyAd r, @PathVariable long id) {
+	public String showFormModify(Model model, FormModifyAd r, @PathVariable long id, HttpServletRequest request) {
 		Message message;
 		Ad ad = adRepository.findOne(id);
 		
 		if(ad == null) {
 			message = new Message(1, "El anuncio no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, request);
 		}
 		
 		message = r.validation();
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
-			return showFormModify(model, id);
+			return showFormModify(model, id, request);
 		}
 		
 		ad.setTitle(r.getTitle());
@@ -149,36 +142,36 @@ public class PublicistController {
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/{id}/eliminar", method=RequestMethod.GET)
-	public String deleteAd(Model model, @PathVariable long id) {
+	public String deleteAd(Model model, @PathVariable long id, HttpServletRequest request) {
 		adRepository.delete(id);
 		return "redirect:/publicista/anuncio/lista/eliminado";
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/lista", method=RequestMethod.GET)
-	public String showList(Model model) {
-		return showListAux(model, 0);
+	public String showList(Model model, HttpServletRequest request) {
+		return showListAux(model, 0, request);
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/lista/publicado", method=RequestMethod.GET)
-	public String showListPublished(Model model) {
+	public String showListPublished(Model model, HttpServletRequest request) {
 		Message message = new Message(0, "El anuncio ha sido publicado correctamente", "success");
 		model.addAttribute("message", message);
-		return showListAux(model, 0);
+		return showListAux(model, 0, request);
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/lista/eliminado", method=RequestMethod.GET)
-	public String showListDeleted(Model model) {
+	public String showListDeleted(Model model, HttpServletRequest request) {
 		Message message = new Message(0, "El anuncio ha sido eliminado correctamente", "success");
 		model.addAttribute("message", message);
-		return showListAux(model, 0);
+		return showListAux(model, 0, request);
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/lista/{nPage}", method=RequestMethod.GET)
-	public String showList(Model model, @PathVariable int nPage) {
-		return showListAux(model, nPage-1);
+	public String showList(Model model, @PathVariable int nPage, HttpServletRequest request) {
+		return showListAux(model, nPage-1, request);
 	}
 	
-	private String showListAux(Model model, int nPage) {
+	private String showListAux(Model model, int nPage, HttpServletRequest request) {
 		Page<Ad> page = adRepository.findAll( new PageRequest(nPage, nItemsList) );
 		
 		List<Ad> adList = page.getContent();
@@ -187,6 +180,8 @@ public class PublicistController {
 		ModPagination modPagination = new ModPagination();
 		List<ModPageItem> pageList = modPagination.getModPageList(page, "/publicista/anuncio/lista/");
 		model.addAttribute("page_list", pageList);
+		
+		config.setPageParams(model, request);
 		
 		return "ads_list";
 	}

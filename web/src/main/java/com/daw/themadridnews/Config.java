@@ -5,16 +5,20 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.ui.Model;
 
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.article.Category;
 import com.daw.themadridnews.article.CategoryService;
 import com.daw.themadridnews.comment.CommentRepository;
+import com.daw.themadridnews.user.UserComponent;
 
 @Configuration
 @PropertySource("classpath:config.properties")
@@ -37,6 +41,9 @@ public class Config {
     
     @Autowired
     private CommentRepository commentRepository;
+    
+    @Autowired
+    private UserComponent userComponent;
 
     
 	public String getPathImgArticles() {
@@ -100,6 +107,18 @@ public class Config {
 		}
 		
 		return list;
+	}
+	
+	public void setPageParams(Model model, HttpServletRequest request) {
+		userComponent.checkRolesAndName(model, request);
+
+		model.addAttribute("page_header_date", this.getHeaderDate());
+		model.addAttribute("page_header_menu", this.getMenuList());
+
+		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
+		model.addAttribute("page_footer_last_articles", footerLastArticles);
+		model.addAttribute("page_header_date", this.getHeaderDate());
+		model.addAttribute("page_header_menu", this.getMenuList());
 	}
 	
 	

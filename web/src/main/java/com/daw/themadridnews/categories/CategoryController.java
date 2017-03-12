@@ -1,6 +1,6 @@
 package com.daw.themadridnews.categories;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,17 +28,17 @@ public class CategoryController {
 	protected Config config;
 	
 	@RequestMapping("/categoria/{cat}/{npage}")
-	public String categories(Model model, @PathVariable String cat, @PathVariable int npage){
+	public String categories(Model model, @PathVariable String cat, @PathVariable int npage, HttpServletRequest request){
 		npage = ( npage <= 0 ? 0 : npage-1 );
-		return showCategories(model, cat, npage);
+		return showCategories(model, cat, npage, request);
 	}
 	
 	@RequestMapping("/categoria/{cat}")
-	public String categories(Model model, @PathVariable String cat){
-		return showCategories(model, cat, 0);
+	public String categories(Model model, @PathVariable String cat, HttpServletRequest request){
+		return showCategories(model, cat, 0, request);
 	}
 	
-	private String showCategories(Model model, String cat, int npage) {
+	private String showCategories(Model model, String cat, int npage, HttpServletRequest request) {
 		Page<Article> articles = articleRepository.findByCategory(cat, new PageRequest(npage,10));
 		
 		model.addAttribute("categ",CategoryService.getName(cat));
@@ -53,13 +53,7 @@ public class CategoryController {
 		model.addAttribute("currentPage",articles.getNumber()+1);
 		model.addAttribute("totalPages",articles.getTotalPages());
 
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
-		
-		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
-		model.addAttribute("page_footer_last_articles", footerLastArticles);
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
+		config.setPageParams(model, request);
 						
 		return "category";
 	}
