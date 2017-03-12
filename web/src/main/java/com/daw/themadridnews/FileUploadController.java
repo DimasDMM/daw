@@ -50,7 +50,6 @@ public class FileUploadController {
 				File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
 				file.transferTo(uploadedFile);
 				imageTitles.add(fileName);
-				user.setProfileImage(uploadedFile);
 
 				return "redirect:/ajustes";
 
