@@ -48,7 +48,7 @@
 			<!-- Search bar -->
 			<div class="topbar-search-block">
 				<div class="container">
-					<form action="/buscar" method="post">
+					<form action="/buscar">
 						<input type="text" class="form-control" name="searchItem" id="search-value" placeholder="Buscar">
 						<div class="search-close"><i class="icon-close"></i></div>
 					</form>
@@ -220,7 +220,7 @@
 
 	<!--=== Container Part ===-->
 	<div class="container content-sm">
-        <h1 class="title-v4 h1_category">B&uacute;squeda: </h1>
+        <h1 class="title-v4 h1_category">B&uacute;squeda: <span class="search-category">{{searchItem}}</span></h1>
 		<div class="row">
 			<div class="col-md-9 md-margin-bottom-50">
 				<!-- Blog Grid -->
@@ -622,7 +622,7 @@
 <script src="/plugins/modernizr.js"></script>
 <script src="/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
 <!-- JS Customization -->
-<script src="/js/page.categories.js"></script>
+<script src="/js/page.search.js"></script>
 <!-- JS Page Level -->
 <script src="/js/app.js"></script>
 <script>
@@ -630,8 +630,7 @@
 		App.init();
 		App.initCounter();
 	});
-	
-	var categoryId="{{cat}}";
+	var searchTerm="{{searchItem}}";
 	var nPage=1;
 </script>
 <!--[if lt IE 9]>

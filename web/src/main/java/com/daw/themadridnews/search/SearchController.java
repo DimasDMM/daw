@@ -32,10 +32,10 @@ public class SearchController {
 	
 	
 	@RequestMapping("/buscar")
-	public String categories(Model model, HttpServletRequest request){
-		Page<Article> articles = articleRepository.findByCategory("madrid", new PageRequest(0,10));
+	public String categories(Model model, @RequestParam String searchItem, HttpServletRequest request){
+		Page<Article> articles = articleRepository.findByTitle(searchItem, new PageRequest(0,10));
 		
-		//model.addAttribute("searchItem",searchItem);
+		model.addAttribute("searchItem",searchItem);
 		
 		model.addAttribute("articulos",ArticleView.castList(articles.getContent()));
 		
