@@ -1,4 +1,4 @@
-package com.daw.themadridnews.categories;
+package com.daw.themadridnews.search;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,7 +8,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.daw.themadridnews.Config;
 import com.daw.themadridnews.article.*;
@@ -16,7 +19,7 @@ import com.daw.themadridnews.comment.CommentRepository;
 
 
 @Controller
-public class CategoryController {
+public class SearchController {
 	
 	@Autowired
 	protected ArticleRepository articleRepository;
@@ -28,12 +31,11 @@ public class CategoryController {
 	protected Config config;
 	
 	
-	@RequestMapping("/categoria/{cat}")
-	public String categories(Model model, @PathVariable String cat, HttpServletRequest request){
-		Page<Article> articles = articleRepository.findByCategory(cat, new PageRequest(0,10));
+	@RequestMapping("/buscar")
+	public String categories(Model model, HttpServletRequest request){
+		Page<Article> articles = articleRepository.findByCategory("madrid", new PageRequest(0,10));
 		
-		model.addAttribute("categ",CategoryService.getName(cat));
-		model.addAttribute("cat",cat);
+		//model.addAttribute("searchItem",searchItem);
 		
 		model.addAttribute("articulos",ArticleView.castList(articles.getContent()));
 		
@@ -46,7 +48,7 @@ public class CategoryController {
 
 		config.setPageParams(model, request);
 						
-		return "category";
+		return "search";
 	}
 	
 }

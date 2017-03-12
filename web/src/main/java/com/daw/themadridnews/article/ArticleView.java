@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.comment.CommentRepository;
+import com.daw.themadridnews.comment.CommentView;
 import com.daw.themadridnews.user.User;
 
 
@@ -16,16 +17,18 @@ public class ArticleView {
 	protected Category category;
 	protected String title;
 	protected String titleShort;
+	protected String titleMid;
 	protected String content;
 	protected String contentTxt;
 	protected String contentShort;
+	protected String contentLong;
 	protected User author;
 	protected String source;
 	protected List<String> tags;
 	protected boolean visible;
 	protected long nComments;
 	protected int views;
-	protected List<Comment> comments;
+	protected List<CommentView> commentsSummary;
 	protected String dateInsertStrLong;
 	protected String dateInsertStrShort;
 	protected Date dateInsert;
@@ -51,23 +54,42 @@ public class ArticleView {
 		this.tags = article.getTags();
 		this.visible = article.isVisible();
 		this.views = article.getViews();
-		this.comments = article.getComments();
 		this.dateInsert = article.getDateInsert();
 
+		this.commentsSummary = new ArrayList<CommentView>();
+		if(article.getComments() != null) {
+			int i = 0;
+			Iterator<Comment> it = article.getComments().iterator();
+			while(it.hasNext() && i < 3) {
+				this.commentsSummary.add( new CommentView( it.next(), this ) );
+				i++;
+			}
+		}
+		
 		SimpleDateFormat ftl = new SimpleDateFormat ("dd-MM-yyyy 'a las' hh:mm'h'");
 		dateInsertStrLong = ftl.format(dateInsert);
 
 		SimpleDateFormat fts = new SimpleDateFormat ("dd-MM-yyyy");
 		dateInsertStrShort = fts.format(dateInsert);
-		
+
 		titleShort = title;
-		if(title.length() > 20)
-			titleShort = title.substring(0,20) + "...";
+		titleMid = title;
 		
-		contentTxt = content.replaceAll("\\<.*?>","");
+		if(titleShort.length() > 20)
+			titleShort = titleShort.substring(0,20) + "...";
+		
+		if(titleMid.length() > 40)
+			titleMid = titleMid.substring(0,40) + "...";
+		
+		contentTxt = getFormatedContent().replaceAll("\\<.*?>","");
 		contentShort = contentTxt;
+		contentLong = contentTxt;
+		
 		if(contentShort.length() > 60)
 			contentShort = contentShort.substring(0,60) + "...";
+		
+		if(contentLong.length() > 350)
+			contentLong = contentLong.substring(0,350) + "...";
 	}
 
 	public long getId() {
@@ -132,8 +154,8 @@ public class ArticleView {
 		return nComments;
 	}
 	
-	public List<Comment> getComments() {
-		return comments;
+	public List<CommentView> getCommentsSummary() {
+		return commentsSummary;
 	}
 	
 	public Date getDateInsert() {
@@ -165,6 +187,8 @@ public class ArticleView {
 	}
 	
 	public static List<ArticleView> castList(List<Article> l, CommentRepository rep) {
+		if(l == null) return null;
+		
 		List<ArticleView> c = new ArrayList<ArticleView>();
 		Iterator<Article> it = l.iterator();
 		

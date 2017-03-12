@@ -10,6 +10,7 @@ import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.comment.CommentRepository;
+import com.daw.themadridnews.favourite.Favourite;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserRepository;
 
@@ -31,10 +32,14 @@ public class DataExampleController implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Usuarios
-        userRepository.save(new User("pepe", "jiménez", "pepji@mail.com", "pass", "ROLE_USER"));
-        userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_ADVERTISING","ROLE_EDITOR", "ROLE_USER"));
-        userRepository.save(new User("admin", "1", "admin@mail.com", "adminpass", "ROLE_ADMIN", "ROLE_ADVERTISING","ROLE_EDITOR", "ROLE_USER"));
-        
+        User u1 = userRepository.save(new User("pepe", "jiménez", "pepji@mail.com", "pass", "ROLE_USER"));
+        User u2 = userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_ADVERTISING","ROLE_EDITOR", "ROLE_USER"));
+        User u3 = userRepository.save(new User("admin", "1", "admin@mail.com", "adminpass", "ROLE_ADMIN", "ROLE_ADVERTISING","ROLE_EDITOR", "ROLE_USER"));
+
+        // Favorito de ejemplo
+		Favourite fav = new Favourite(true, false, true, false, false, false);
+        u1.setFavourites(fav); u2.setFavourites(fav); u3.setFavourites(fav);
+        userRepository.save(u1); userRepository.save(u2); userRepository.save(u3);
         
         // Anuncio de ejemplo
         Ad ad = new Ad("Cocacola", "http://cocacola.es/", 0, 40, null, null, 1500, 700);

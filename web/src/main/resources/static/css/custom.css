@@ -172,3 +172,9 @@
 .no-border {
 	border: 0 !important;
 }
+
+.ad-banner,
+.ad-banner img {
+	height: 300px !important;
+	width: auto;
+}

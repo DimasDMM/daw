@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="articles")
@@ -41,6 +42,7 @@ public class Article {
 	
 	@ManyToOne
 	@NotNull
+	@JsonBackReference
 	protected User author;
 	
 	protected String source;
@@ -56,6 +58,7 @@ public class Article {
 	protected int views;
 	
 	@OneToMany(mappedBy="article", cascade=CascadeType.ALL)
+	@JsonBackReference
 	protected List<Comment> comments;
 	
 	@NotNull

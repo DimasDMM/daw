@@ -1,30 +1,47 @@
 package com.daw.themadridnews.favourite;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Favourite {
-    //Attributes
-    @Id
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    private boolean sports;
+	@NotNull
     private boolean madrid;
-    private boolean international;
-    private boolean national;
+	@NotNull
+    private boolean spain;
+	@NotNull
+    private boolean world;
+	@NotNull
+    private boolean sports;
+	@NotNull
     private boolean technology;
+	@NotNull
     private boolean culture;
-    
-    //Constructor
+
+
     public Favourite(){
     }
     
-    //Methods Getter & Setter
-    public long getId(){
+    public Favourite(boolean madrid, boolean spain, boolean world, boolean sports, boolean technology, boolean culture) {
+		this.madrid = madrid;
+		this.spain = spain;
+		this.world = world;
+		this.sports = sports;
+		this.technology = technology;
+		this.culture = culture;
+	}
+
+	public long getId(){
         return this.id;
     }
     
@@ -36,12 +53,12 @@ public class Favourite {
         return this.madrid;
     }
     
-    public boolean getInternational(){
-        return this.international;
+    public boolean getWorld(){
+        return this.world;
     }
     
-    public boolean getNational(){
-        return this.national;
+    public boolean getSpain(){
+        return this.spain;
     }
     
     public boolean getTechnology(){
@@ -64,12 +81,12 @@ public class Favourite {
         this.madrid = madrid;
     }
     
-    public void setInternational(boolean international){
-        this.international = international;
+    public void setWorld(boolean world){
+        this.world = world;
     }
     
-    public void setNational(boolean national){
-        this.national = national;
+    public void setNational(boolean spain){
+        this.spain = spain;
     }
     
     public void setTechnology(boolean technology){
@@ -79,7 +96,24 @@ public class Favourite {
     public void setCulture(boolean culture){
         this.culture = culture;
     }
-    
-    
-    
+
+
+	public String getRandom() {
+		ArrayList<String> list = new ArrayList<String>();
+
+		if(getMadrid()) list.add("madrid");
+		if(getSpain()) list.add("spain");
+		if(getWorld()) list.add("world");
+		if(getSports()) list.add("sports");
+		if(getSports()) list.add("technology");
+		if(getSports()) list.add("culture");
+		
+		int size = list.size() - 1;
+		
+		if(size < 0) return null;
+		
+		int random = (int)(Math.random() * size);
+		
+		return list.get(random);
+	}
 }
