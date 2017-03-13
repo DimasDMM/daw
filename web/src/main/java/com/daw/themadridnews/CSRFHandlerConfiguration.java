@@ -12,15 +12,14 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @Configuration
 public class CSRFHandlerConfiguration extends WebMvcConfigurerAdapter {
-	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new CSRFHandlerInterceptor());
+		registry.addInterceptor(new CSRFHandlerInterceptor()).excludePathPatterns(
+				"/imagen/**", "/css/**", "/img/**", "/js/**", "/plugins/**", "/anuncio/**");
 	}
 }
 
 class CSRFHandlerInterceptor extends HandlerInterceptorAdapter {
-	
 	@Override
     public void postHandle(final HttpServletRequest request,
             final HttpServletResponse response, final Object handler,

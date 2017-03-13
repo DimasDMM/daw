@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -15,6 +16,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public UserRepositoryAuthenticationProvider authenticationProvider;
 
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -22,10 +24,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/portada").permitAll();
         http.authorizeRequests().antMatchers("/portada/subscripcion").permitAll();
-
+/*
         http.authorizeRequests().antMatchers("/imagen/articulo/{filename}").permitAll();
         http.authorizeRequests().antMatchers("/imagen/anuncio/{filename}").permitAll();
         http.authorizeRequests().antMatchers("/imagen/usuario/{filename}").permitAll();
+        */
+        http.csrf().ignoringAntMatchers("/imagen/**");
+        http.authorizeRequests().antMatchers("/imagen/**").permitAll();
         
         http.authorizeRequests().antMatchers("/buscar").permitAll();
         
