@@ -4,14 +4,13 @@ import java.util.List;
 
 import com.daw.themadridnews.utils.Message;
 
-public class FormUserFavourites extends RequestBase {
-	
+public class FormSignupPreferences extends RequestBase {
+
 	protected List<String> favs;
 	
+	public FormSignupPreferences() {super();}
 	
-	public FormUserFavourites() {super();}
-	
-	public FormUserFavourites(List<String> favs) {
+	public FormSignupPreferences(List<String> favs) {
 		super();
 		this.favs = favs;
 	}

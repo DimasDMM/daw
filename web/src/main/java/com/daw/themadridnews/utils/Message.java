@@ -54,4 +54,9 @@ public class Message {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	@Override
+	public String toString() {
+		return "Message [code=" + code + ", message=" + message + ", type=" + type + "]";
+	}
 }

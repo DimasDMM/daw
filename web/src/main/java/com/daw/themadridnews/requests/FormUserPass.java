@@ -22,24 +22,12 @@ public class FormUserPass extends RequestBase {
 		return pass_now;
 	}
 
-	public void setPass_now(String pass_now) {
-		this.pass_now = pass_now;
-	}
-
 	public String getPass_new() {
 		return pass_new;
 	}
 
-	public void setPass_new(String pass_new) {
-		this.pass_new = pass_new;
-	}
-
 	public String getPass_new2() {
 		return pass_new2;
-	}
-
-	public void setPass_new2(String pass_new2) {
-		this.pass_new2 = pass_new2;
 	}
 
 	public Message validation() {

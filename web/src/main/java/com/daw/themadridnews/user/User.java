@@ -89,6 +89,9 @@ public class User {
 	}
 
 	public List<String> getRoles() {
+		if(this.roles == null)
+			return new ArrayList<String>();
+		
 		return roles;
 	}
 
@@ -97,6 +100,9 @@ public class User {
 	}
 
 	public Favourite getFavourites() {
+		if(this.favourites == null)
+			return new Favourite();
+		
 		return this.favourites;
 	}
 

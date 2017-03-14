@@ -240,61 +240,78 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<form action="/registerend" method="post" class="margin-bottom-20 sky-form">
+				{{#signup_success}}
+				<div class="alert alert-success fade in text-center">
+					<h4>Enhorabuena</h4>
+					<p>
+						Hemos guardado tus preferencias correctamente. Ya puedes empezar a disfrutar de las ventajas
+						de estar registrado en The Madrid Times.
+					</p>
+					<p>
+						<a class="btn-u" href="/portada">Ir a la portada</a>
+					</p>
+				</div>
+				{{/signup_success}}
+				{{^signup_success}}
+				<form action="/registro/ajustes-iniciales" method="post" enctype="multipart/form-data" class="margin-bottom-20 sky-form">
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                    
 					<header>Ajustes iniciales</header>
 
 					<fieldset>                        
                         <div class="row">
-                            <section class="col col-12 full-width">
-                                <label class="label">Imagen principal (Opcional)</label>
-                                <label for="inp_file" class="input input-file">
-				                    <div class="button">
-                                        <input type="file" name="file" id="inp_file">Buscar...
-                                    </div>
-                                    <input type="text" readonly>
-				                </label>
-                            </section> 
+                            <div class="col col-12 full-width">
+								<label for="inp_file">(Opcional) Imagen de perfil</label>
+								<div class="input input-file">
+									<div class="button"><input type="file" id="inp_file" name="file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
+								</div>
+							</div>
                         </div>
                         
+                        <hr>
+                        
                         <div class="row">
-                            <label class="label">Temas de inter&eacute;s</label>
-                            <hr>
-                            <section class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="sports" id="sports"><i></i>Deportes</label>
-                            </section>
-                            <section class="col col-4">
-						        <label class="checkbox"><input type="checkbox" name="madrid" id="madrid"><i></i>Madrid</label>
-                            </section>
-                            <section class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="international" id="international"><i></i>Internacional</label>
-                            </section>
-                            <section class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="national" id="national"><i></i>Espa&ntilde;a</label>
-                            </section>
-                            <section class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="technology" id="technology"><i></i>Tecnolog&iacute;a</label>
-                            </section>
-                            <section class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="culture" id="culture"><i></i>Cultura</label>
-                            </section>
+                            <div class="col col-12 full-width">
+	                            <label>(Opcional) Temas de inter&eacute;s</label>
+	                            <div class="row">
+		                            <section class="col col-4">
+		                                <label class="checkbox"><input type="checkbox" name="favs" value="sports"><i></i>Deportes</label>
+		                            </section>
+		                            <section class="col col-4">
+								        <label class="checkbox"><input type="checkbox" name="favs" value="madrid"><i></i>Madrid</label>
+		                            </section>
+		                            <section class="col col-4">
+		                                <label class="checkbox"><input type="checkbox" name="favs" value="world"><i></i>Mundo</label>
+		                            </section>
+		                            <section class="col col-4">
+		                                <label class="checkbox"><input type="checkbox" name="favs" value="spain"><i></i>Espa&ntilde;a</label>
+		                            </section>
+		                            <section class="col col-4">
+		                                <label class="checkbox"><input type="checkbox" name="favs" value="technology"><i></i>Tecnolog&iacute;a</label>
+		                            </section>
+		                            <section class="col col-4">
+		                                <label class="checkbox"><input type="checkbox" name="favs" value="culture"><i></i>Cultura</label>
+		                            </section>
+	                            </div>
+                        	</div>
                         </div>
+                        
+                        <hr>
 
 						<div class="row">
-                            <hr>
                             <section class="col col-6">
 								<label class="checkbox"><input type="checkbox" name="subscription" id="subscription" checked><i></i>Quiero recibir noticias y ofertas especiales</label>
 				            </section>
 						</div>
+						
 					</fieldset>
 
 				    <footer>
 				        <button type="submit" class="btn-u" name="Accept">Aceptar</button>
-                        <button type="submit" class="btn-u" name="Cancel">Omitir</button>
-                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                        <a href="/portada" class="btn-u">Omitir</a>
 				    </footer>
-
 				</form>
-
+				{{/signup_success}}
 			</div>
 		</div>
 	</div>

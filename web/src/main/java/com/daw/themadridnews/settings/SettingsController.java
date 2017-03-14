@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 
-import static org.springframework.web.bind.annotation.RequestMethod.*;
-
 @Controller
 public class SettingsController {
 
@@ -65,7 +63,7 @@ public class SettingsController {
         model.addAttribute("fav_technology", favs.getTechnology());
         model.addAttribute("fav_culture", favs.getCulture());
         
-        return "user-settings";
+        return "settings";
     }
 
     @RequestMapping(value="/ajustes/guardar/personal", method=RequestMethod.POST)
@@ -121,6 +119,7 @@ public class SettingsController {
         // Guardar contraseña
         oldUser.setPasswordHash(r.getPass_new());
         userRepository.save(oldUser);
+        
     	message.setCode(0);
     	message.setMessage("La nueva contraseña ha sido guardada correctamente");
     	message.setType("success");
@@ -164,30 +163,5 @@ public class SettingsController {
     	message.setType("success");
     	model.addAttribute("message", message);
 		return userSettings(model, request);
-    }
-
-    @RequestMapping(value = "/register", method = POST)
-    public String register(User user, Model model, HttpServletRequest request){
-    	config.setPageParams(model, request);
-    	
-        user.getRoles().add("ROLE_USER");
-        user.getRoles().add("ROLE_EDITOR");
-        userRepository.save(user);
-        userComponent.setLoggedUser(user);
-
-	    return "user_sign";
-    }
-    
-    @RequestMapping(value = "/registerend", method = POST)
-    public String registerEnd(Favourite favourite, Model model, HttpServletRequest request){
-    	config.setPageParams(model, request);
-
-        User userLogged = userComponent.getLoggedUser();
-    	//FileUploadService.saveImage( file, config.getPathImgUsers(), String.valueOf(userLogged.getId()) );
-    	
-        userComponent.getLoggedUser().setFavourites(favourite);
-        userRepository.save(userComponent.getLoggedUser());
-
-        return "redirect:/portada";
     }
 }
