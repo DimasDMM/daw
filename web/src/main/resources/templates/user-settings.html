@@ -375,32 +375,25 @@
                                     <section class="row">
                                         <div class="col col-4">
                                             <label class="checkbox">
-                                                <input type="checkbox" name="favs[]" {{#fav_world}}checked{{/fav_world}} value="world"><i></i>Mundo</label>
+                                                <input type="checkbox" name="favs" {{#fav_world}}checked{{/fav_world}} value="world"><i></i>Mundo</label>
                                             <label class="checkbox">
-                                                <input type="checkbox" name="favs[]" {{#fav_madrid}}checked{{/fav_madrid}} value="madrid"><i></i>Madrid</label>
+                                                <input type="checkbox" name="favs" {{#fav_madrid}}checked{{/fav_madrid}} value="madrid"><i></i>Madrid</label>
                                         </div>
                                         <div class="col col-4">
                                             <label class="checkbox">
-                                                <input type="checkbox" name="favs[]" {{#fav_spain}}checked{{/fav_spain}} value="spain"><i></i>España</label>
+                                                <input type="checkbox" name="favs" {{#fav_spain}}checked{{/fav_spain}} value="spain"><i></i>España</label>
                                             <label class="checkbox">
-                                                <input type="checkbox" name="favs[]" {{#fav_sports}}checked{{/fav_sports}} value="sports"><i></i>Deportes</label>
+                                                <input type="checkbox" name="favs" {{#fav_sports}}checked{{/fav_sports}} value="sports"><i></i>Deportes</label>
                                         </div>
                                         <div class="col col-4">
                                             <label class="checkbox">
-                                                <input type="checkbox" name="favs[]" {{#fav_culture}}checked{{/fav_culture}} value="culture"><i></i>Cultura
+                                                <input type="checkbox" name="favs" {{#fav_culture}}checked{{/fav_culture}} value="culture"><i></i>Cultura
                                             </label>
                                             <label class="checkbox">
-                                                <input type="checkbox" name="favs[]" {{#fav_technology}}checked{{/fav_technology}} value="technology"><i></i>Tecnolog&iacute;a
+                                                <input type="checkbox" name="favs" {{#fav_technology}}checked{{/fav_technology}} value="technology"><i></i>Tecnolog&iacute;a
                                             </label>
                                         </div>
                                     </section>
-                                    <!--<section class="row">
-                                        <div class="col col-12">
-                                            <label class="toggle">
-                                                <input type="checkbox" name="checkbox-toggle"><i class="rounded-4x"></i> Recibir notificaciones por email
-                                            </label>
-                                        </div>
-                                    </section>-->
                                     <footer>
                                         <button type="submit" class="btn btn-primary pull-right">Guardar</button>
                                         <input type="hidden" name="_csrf" value="{{token}}"/>

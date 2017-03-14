@@ -5,6 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 
 public class CategoryService {
+	
+	/*
+	 * Si se modifica alguna categoria, recordar modificar tambien los formularios
+	 * correspondientes, como el de SettingsController
+	 */
 
 	protected static List<String> listId;
 	protected static List<String> listName;

@@ -1,16 +1,15 @@
-package com.daw.themadridnews.user;
+package com.daw.themadridnews.settings;
 
 import com.daw.themadridnews.Config;
 import com.daw.themadridnews.favourite.Favourite;
-import com.daw.themadridnews.files.FileUploadController;
 import com.daw.themadridnews.files.FileUploadService;
-import com.daw.themadridnews.requests.FormNewArticle;
 import com.daw.themadridnews.requests.FormUserFavourites;
 import com.daw.themadridnews.requests.FormUserPass;
 import com.daw.themadridnews.requests.FormUserPersonal;
-import com.daw.themadridnews.requests.Validator;
+import com.daw.themadridnews.user.User;
+import com.daw.themadridnews.user.UserComponent;
+import com.daw.themadridnews.user.UserRepository;
 import com.daw.themadridnews.utils.Message;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,14 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @Controller
-public class UserController {
+public class SettingsController {
 
     //Attributes
     @Autowired
@@ -134,6 +131,19 @@ public class UserController {
     @RequestMapping(value="/ajustes/guardar/favoritos", method=RequestMethod.POST)
     public String userSettingsSaveFavourites(Model model, HttpServletRequest request, FormUserFavourites r) {
     	Message message = r.validation();
+    	
+    	User userLogged = userComponent.getLoggedUser();
+    	Favourite favourite = userLogged.getFavourites();
+    	
+    	favourite.setMadrid( r.get("madrid") );
+    	favourite.setSpain( r.get("spain") );
+    	favourite.setWorld( r.get("world") );
+    	favourite.setSports( r.get("sports") );
+    	favourite.setTechnology( r.get("technology") );
+    	favourite.setCulture( r.get("culture") );
+    	
+    	userLogged.setFavourites(favourite);
+    	userRepository.save(userLogged);
 
     	message.setCode(0);
     	message.setMessage("Los cambios han sido guardados correctamente");

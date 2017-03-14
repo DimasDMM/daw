@@ -6,21 +6,21 @@ import com.daw.themadridnews.utils.Message;
 
 public class FormUserFavourites extends RequestBase {
 	
-	protected String favs[];
+	protected List<String> favs;
 	
 	
 	public FormUserFavourites() {super();}
 	
-	public FormUserFavourites(String[] favs) {
+	public FormUserFavourites(List<String> favs) {
 		super();
 		this.favs = favs;
 	}
 
-	public String[] getFavs() {
+	public List<String> getFavs() {
 		return favs;
 	}
 
-	public void setFavs(String[] favs) {
+	public void setFavs(List<String> favs) {
 		this.favs = favs;
 	}
 
@@ -28,5 +28,10 @@ public class FormUserFavourites extends RequestBase {
 		Message message = new Message();
 		
 		return message;
+	}
+
+	// Devuelve true o false dependiendo de si se ha marcado el checkbox
+	public boolean get(String value) {
+		return favs.contains(value);
 	}
 }

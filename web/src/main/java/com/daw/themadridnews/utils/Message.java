@@ -10,7 +10,11 @@ public class Message {
 	protected String message;
 	protected String type;
 	
-	public Message() {}
+	public Message() {
+		this.code = 0;
+		this.message = "";
+		this.type = "";
+	}
 	
 	public Message(int code, String message, String type) {
 		this.code = code;

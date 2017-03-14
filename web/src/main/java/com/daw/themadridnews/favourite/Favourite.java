@@ -45,20 +45,20 @@ public class Favourite {
         return this.id;
     }
     
-    public boolean getSports(){
-        return this.sports;
-    }
-    
     public boolean getMadrid(){
         return this.madrid;
+    }
+    
+    public boolean getSpain(){
+        return this.spain;
     }
     
     public boolean getWorld(){
         return this.world;
     }
     
-    public boolean getSpain(){
-        return this.spain;
+    public boolean getSports(){
+        return this.sports;
     }
     
     public boolean getTechnology(){
@@ -73,20 +73,20 @@ public class Favourite {
         this.id = id;
     }
     
-    public void setSports(boolean sports){
-        this.sports = sports;
-    }
-    
     public void setMadrid(boolean madrid){
         this.madrid = madrid;
+    }
+    
+    public void setSpain(boolean spain){
+        this.spain = spain;
     }
     
     public void setWorld(boolean world){
         this.world = world;
     }
     
-    public void setNational(boolean spain){
-        this.spain = spain;
+    public void setSports(boolean sports){
+        this.sports = sports;
     }
     
     public void setTechnology(boolean technology){

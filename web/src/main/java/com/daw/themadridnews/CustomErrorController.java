@@ -6,25 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.daw.themadridnews.article.ArticleRepository;
-import com.daw.themadridnews.article.ArticleView;
-import com.daw.themadridnews.comment.CommentRepository;
-
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class CustomErrorController implements ErrorController {
 	
 	private static final String PATH = "/error";
-
-	@Autowired
-	private ArticleRepository articleRepository;
-	
-	@Autowired
-	private CommentRepository commentRepository;
 	
 	@Autowired
 	private Config config;
@@ -34,6 +21,7 @@ public class CustomErrorController implements ErrorController {
 		  
 	@RequestMapping(value="/error")
 	public String renderErrorPage(Model model, HttpServletRequest request){
+		config.setPageParams(model, request);
 		
 		// Http error code
 		int code = getHttpStatusCode(request);
@@ -44,13 +32,7 @@ public class CustomErrorController implements ErrorController {
 	@RequestMapping(value="/error/{code}")
 	public String renderErrorCodePage(Model model, HttpServletRequest request, @PathVariable int code){
 
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
-
-		List<ArticleView> footerLastArticles = ArticleView.castList( articleRepository.findFirst4ByVisible(true), commentRepository );
-		model.addAttribute("page_footer_last_articles", footerLastArticles);
-		model.addAttribute("page_header_date", config.getHeaderDate());
-		model.addAttribute("page_header_menu", config.getMenuList());
+		config.setPageParams(model, request);
 		
 		String errorMessage = errorService.generateErrorMessage(code);
 		
