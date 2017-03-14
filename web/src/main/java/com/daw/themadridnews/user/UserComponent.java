@@ -40,4 +40,7 @@ public class UserComponent {
         }
     }
 
+    public boolean hasRole(String role) {
+    	return user.getRoles().contains( role );
+    }
 }

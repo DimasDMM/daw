@@ -1,12 +1,11 @@
 package com.daw.themadridnews.article;
 
 import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import com.daw.themadridnews.user.User;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
@@ -16,7 +15,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 	public List<Article> findFirst6ByCategoryAndVisible(String category, boolean visible);
 	public List<Article> findFirst9ByCategoryAndVisible(String category, boolean visible);
 	
-
+	public Page<Article> findByAuthor(User author, Pageable page);
 	public Page<Article> findByCategory(String category, Pageable page);
 	
 	//@Query(nativeQuery=true, value="SELECT * FROM Article WHERE title LIKE '%title%' LIMIT 10")

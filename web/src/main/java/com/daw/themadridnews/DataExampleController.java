@@ -32,9 +32,9 @@ public class DataExampleController implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Usuarios
-        User u1 = userRepository.save(new User("pepe", "jiménez", "pepji@mail.com", "pass", "ROLE_USER"));
-        User u2 = userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_ADVERTISING","ROLE_EDITOR", "ROLE_USER"));
-        User u3 = userRepository.save(new User("admin", "1", "admin@mail.com", "adminpass", "ROLE_ADMIN", "ROLE_ADVERTISING","ROLE_EDITOR", "ROLE_USER"));
+        User u1 = userRepository.save(new User("pepe", "jiménez", "pepji@mail.com", "pass", "ROLE_USER","ROLE_ADVERTISING"));
+        User u2 = userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_USER", "ROLE_ADVERTISING","ROLE_EDITOR"));
+        User u3 = userRepository.save(new User("admin", "1", "admin@mail.com", "adminpass", "ROLE_USER", "ROLE_ADMIN", "ROLE_ADVERTISING","ROLE_EDITOR"));
 
         // Favorito de ejemplo
 		Favourite fav = new Favourite(true, false, true, false, false, false);
@@ -42,10 +42,8 @@ public class DataExampleController implements CommandLineRunner {
         userRepository.save(u1); userRepository.save(u2); userRepository.save(u3);
         
         // Anuncio de ejemplo
-        Ad ad = new Ad("ZalduaAbogados", "http://www.zgasociados.com/", 0, 40, null, null, 1500, 700);
-        adRepository.save(ad);
-        Ad ad2 = new Ad("HyS", "http://www.hys.es/es-es", 0, 40, null, null, 1500, 700);
-        adRepository.save(ad2);
+        adRepository.save( new Ad(u2, "ZalduaAbogados", "http://www.zgasociados.com/", 0, 40, null, null, 1500, 700) );
+        adRepository.save( new Ad(u2, "HyS", "http://www.hys.es/es-es", 0, 40, null, null, 1500, 700) );
         
         // Articulo de ejemplo
         ArrayList<String> tags = new ArrayList<String>();

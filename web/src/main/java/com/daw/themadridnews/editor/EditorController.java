@@ -26,6 +26,7 @@ import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.files.FileUploadService;
 import com.daw.themadridnews.requests.FormModifyArticle;
 import com.daw.themadridnews.requests.FormNewArticle;
+import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.utils.ModPagination;
@@ -232,7 +233,14 @@ public class EditorController {
 	}
 	
 	private String showListAux(Model model, int nPage, HttpServletRequest request) {
-		Page<Article> page = articleRepository.findAll( new PageRequest(nPage, nItemsList, Sort.Direction.DESC, "id") );
+		Page<Article> page;
+		
+		if(userComponent.hasRole("ADMIN")) {
+			page = articleRepository.findAll( new PageRequest(nPage, nItemsList, Sort.Direction.DESC, "id") );
+		} else {
+			User userLogged = userComponent.getLoggedUser();
+			page = articleRepository.findByAuthor( userLogged, new PageRequest(nPage, nItemsList, Sort.Direction.DESC, "id") );
+		}
 		
 		List<Article> articleList = page.getContent();
 		model.addAttribute("article_list", ArticleView.castList(articleList, commentRepository) );

@@ -1,12 +1,11 @@
 package com.daw.themadridnews.publicist;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.daw.themadridnews.Config;
 import com.daw.themadridnews.ad.Ad;
 import com.daw.themadridnews.ad.AdRepository;
@@ -24,6 +22,8 @@ import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.files.FileUploadService;
 import com.daw.themadridnews.requests.FormModifyAd;
 import com.daw.themadridnews.requests.FormNewAd;
+import com.daw.themadridnews.user.User;
+import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.utils.ModPagination;
 import com.daw.themadridnews.utils.ModPagination.ModPageItem;
@@ -39,6 +39,9 @@ public class PublicistController {
 	
 	@Autowired
 	protected CommentRepository commentRepository;
+	
+	@Autowired
+	protected UserComponent userComponent;
 	
 	@Autowired Config config;
 	
@@ -73,7 +76,9 @@ public class PublicistController {
 			return showFormNewPreview(model, request);
 		}
 		
-		Ad ad = new Ad( r.getTitle(), r.getUrl(), r.getType(), r.getWeight(), r.getDatestart(), r.getDateend(), r.getClicks(), r.getViews() );
+		User userLogged = userComponent.getLoggedUser();
+		
+		Ad ad = new Ad( userLogged, r.getTitle(), r.getUrl(), r.getType(), r.getWeight(), r.getDatestart(), r.getDateend(), r.getClicks(), r.getViews() );
 		ad = adRepository.save( ad );
 		
 		FileUploadService.saveImage( file, config.getPathImgAds(), String.valueOf(ad.getId()) );
@@ -177,7 +182,14 @@ public class PublicistController {
 	}
 	
 	private String showListAux(Model model, int nPage, HttpServletRequest request) {
-		Page<Ad> page = adRepository.findAll( new PageRequest(nPage, nItemsList) );
+		Page<Ad> page;
+
+		if(userComponent.hasRole("ADMIN")) {
+			page = adRepository.findAll( new PageRequest(nPage, nItemsList, Sort.Direction.DESC, "id") );
+		} else {
+			User userLogged = userComponent.getLoggedUser();
+			page = adRepository.findByAuthor( userLogged, new PageRequest(nPage, nItemsList, Sort.Direction.DESC, "id") );
+		}
 		
 		List<Ad> adList = page.getContent();
 		model.addAttribute("ad_list", AdView.castList(adList) );

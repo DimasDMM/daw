@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.daw.themadridnews.user.User;
 
 @Entity
 @Table(name="ads")
@@ -28,6 +31,10 @@ public class Ad {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected long id;
+	
+	@NotNull
+	@OneToOne
+	protected User author;
 	
 	@NotNull
 	protected String title;
@@ -65,7 +72,8 @@ public class Ad {
 	/*
 	 * Para las restricciones que no queramos, introducir NULL o -1
 	 */
-	public Ad(String title, String url, int type, int weight, Date limDateStart, Date limDateEnd, int limClicks, int limViews) {
+	public Ad(User author, String title, String url, int type, int weight, Date limDateStart, Date limDateEnd, int limClicks, int limViews) {
+		this.author = author;
 		this.title = title;
 		this.url = url;
 		this.type = type;
@@ -87,6 +95,10 @@ public class Ad {
 
 	public long getId() {
 		return id;
+	}
+	
+	public User getAuthor() {
+		return author;
 	}
 
 	public String getTitle() {
