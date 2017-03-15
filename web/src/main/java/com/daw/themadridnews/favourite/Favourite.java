@@ -105,8 +105,8 @@ public class Favourite {
 		if(getSpain()) list.add("spain");
 		if(getWorld()) list.add("world");
 		if(getSports()) list.add("sports");
-		if(getSports()) list.add("technology");
-		if(getSports()) list.add("culture");
+		if(getTechnology()) list.add("technology");
+		if(getCulture()) list.add("culture");
 		
 		int size = list.size() - 1;
 		

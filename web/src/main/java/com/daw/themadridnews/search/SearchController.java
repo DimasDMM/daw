@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.daw.themadridnews.Config;
 import com.daw.themadridnews.article.*;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.comment.CommentView;
+import com.daw.themadridnews.webconfig.Config;
 
 
 @Controller

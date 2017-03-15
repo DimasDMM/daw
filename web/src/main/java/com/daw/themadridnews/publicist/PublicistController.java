@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import com.daw.themadridnews.Config;
+
 import com.daw.themadridnews.ad.Ad;
 import com.daw.themadridnews.ad.AdRepository;
 import com.daw.themadridnews.ad.AdView;
@@ -27,6 +27,7 @@ import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.utils.ModPagination;
 import com.daw.themadridnews.utils.ModPagination.ModPageItem;
+import com.daw.themadridnews.webconfig.Config;
 
 @Controller
 public class PublicistController {

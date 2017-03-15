@@ -1,4 +1,4 @@
-package com.daw.themadridnews;
+package com.daw.themadridnews.webconfig;
 
 import java.util.ArrayList;
 import java.util.Calendar;

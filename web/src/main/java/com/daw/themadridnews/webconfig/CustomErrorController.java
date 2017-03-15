@@ -1,4 +1,4 @@
-package com.daw.themadridnews;
+package com.daw.themadridnews.webconfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorController;

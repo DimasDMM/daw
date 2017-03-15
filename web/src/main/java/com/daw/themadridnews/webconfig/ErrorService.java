@@ -1,4 +1,4 @@
-package com.daw.themadridnews;
+package com.daw.themadridnews.webconfig;
 
 import org.springframework.stereotype.Service;
 

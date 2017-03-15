@@ -12,10 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.daw.themadridnews.Config;
 import com.daw.themadridnews.article.*;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.comment.CommentView;
+import com.daw.themadridnews.webconfig.Config;
 
 
 @Controller

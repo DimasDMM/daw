@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.daw.themadridnews.Config;
 import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.comment.CommentView;
@@ -19,6 +18,7 @@ import com.daw.themadridnews.requests.FormComment;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.utils.Message;
+import com.daw.themadridnews.webconfig.Config;
 
 @Controller
 public class ArticleController {

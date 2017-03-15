@@ -20,6 +20,8 @@ import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.user.UserRepository;
 import com.daw.themadridnews.utils.Message;
+import com.daw.themadridnews.webconfig.Config;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,17 +63,7 @@ public class WebController {
             	category = fav.getRandom();
         }
         
-        List<ArticleView> lastArticlesSec = null;
-        if(category == null) {
-            model.addAttribute("last_articles_category_name", false);
-            model.addAttribute("last_articles_category_id", false);
-        	lastArticlesSec = ArticleView.castList( articleRepository.findFirst6ByVisible(true), commentRepository );
-        } else {
-            model.addAttribute("last_articles_category_name", "Categoria: "+ CategoryService.getName(category));
-            model.addAttribute("last_articles_category_id", category);
-            lastArticlesSec = ArticleView.castList( articleRepository.findFirst6ByCategoryAndVisible(category, true), commentRepository );
-        }
-        
+        List<ArticleView> lastArticlesSec = getLastArticlesByFavourite(model, category);
         ArticleView lastArticlesFeat = lastArticlesSec.get(0);
         lastArticlesSec.remove(0);
 
@@ -106,8 +98,8 @@ public class WebController {
 		
         return "index";
     }
-    
-    @RequestMapping(value= {"/privacidad"})
+
+	@RequestMapping(value= {"/privacidad"})
     public String privacy(Model model, HttpServletRequest request){
     	config.setPageParams(model, request);
 		
@@ -157,7 +149,7 @@ public class WebController {
     }
 
     @RequestMapping(value="/registro", method=RequestMethod.POST)
-    public String registerNew(Model model, HttpServletRequest request, FormSignupNew r) {
+	public String registerNew(Model model, HttpServletRequest request, FormSignupNew r) {
     	Message message = r.validation();
     	if(message.getCode() != 0) {
     		return "redirect:/portada";
@@ -175,7 +167,7 @@ public class WebController {
         
     	config.setPageParams(model, request);
 
-	    return "user-signup-preferences";
+	    return "signup-preferences";
     }
     
     @RequestMapping(value="/registro/ajustes-iniciales", method=RequestMethod.POST)
@@ -200,6 +192,29 @@ public class WebController {
     	
     	model.addAttribute("signup_success", true);
 
-	    return "user-signup-preferences";
+	    return "signup-preferences";
     }
+
+    /*
+     * FUNCIONES AUXILIARES
+     */
+    
+    private List<ArticleView> getLastArticlesByFavourite(Model model, String category) {
+    	List<ArticleView> lastArticles;
+    	
+    	if(category == null) {
+        	model.addAttribute("last_articles_category_name", false);
+            model.addAttribute("last_articles_category_id", false);
+            lastArticles = ArticleView.castList( articleRepository.findFirst6ByVisible(true), commentRepository );
+        } else {
+            model.addAttribute("last_articles_category_name", "Categoria: "+ CategoryService.getName(category));
+            model.addAttribute("last_articles_category_id", category);
+            lastArticles = ArticleView.castList( articleRepository.findFirst6ByCategoryAndVisible(category, true), commentRepository );
+        }
+    	
+    	if(lastArticles == null || lastArticles.size() == 0)
+    		lastArticles = getLastArticlesByFavourite(model, null);
+    	
+		return lastArticles;
+	}
 }

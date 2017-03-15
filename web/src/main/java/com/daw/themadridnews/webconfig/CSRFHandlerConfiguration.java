@@ -1,4 +1,4 @@
-package com.daw.themadridnews;
+package com.daw.themadridnews.webconfig;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,11 +21,17 @@ public class CSRFHandlerConfiguration extends WebMvcConfigurerAdapter {
 
 class CSRFHandlerInterceptor extends HandlerInterceptorAdapter {
 	@Override
-    public void postHandle(final HttpServletRequest request,
-            final HttpServletResponse response, final Object handler,
-            final ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf"); 
-    	modelAndView.addObject("token", token.getToken());    	
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		
+		if(token == null && request.getSession() != null)
+			token = (CsrfToken) request.getSession().getAttribute("_csrf");
+		
+		if(token != null) {
+			modelAndView.addObject("token", token.getToken());
+		} else {
+			modelAndView.addObject("token", "");
+		}
     }
 }

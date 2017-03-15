@@ -1,9 +1,6 @@
 package com.daw.themadridnews.requests;
 
 import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import com.daw.themadridnews.utils.Message;
 
 public class FormNewArticle extends RequestBase {

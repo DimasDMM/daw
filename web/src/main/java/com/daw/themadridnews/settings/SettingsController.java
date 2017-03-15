@@ -1,6 +1,5 @@
 package com.daw.themadridnews.settings;
 
-import com.daw.themadridnews.Config;
 import com.daw.themadridnews.favourite.Favourite;
 import com.daw.themadridnews.files.FileUploadService;
 import com.daw.themadridnews.requests.FormUserFavourites;
@@ -10,6 +9,8 @@ import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.user.UserRepository;
 import com.daw.themadridnews.utils.Message;
+import com.daw.themadridnews.webconfig.Config;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;

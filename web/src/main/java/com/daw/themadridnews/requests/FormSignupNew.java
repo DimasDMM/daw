@@ -23,35 +23,57 @@ public class FormSignupNew extends RequestBase {
 		this.pass_new1 = pass_new1;
 		this.pass_new2 = pass_new2;
 	}
-	
-	public boolean getTerms() {
+
+	public boolean isTerms() {
 		return terms;
+	}
+
+	public void setTerms(boolean terms) {
+		this.terms = terms;
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getLastName() {
 		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getPass_new1() {
 		return pass_new1;
+	}
+
+	public void setPass_new1(String pass_new1) {
+		this.pass_new1 = pass_new1;
 	}
 
 	public String getPass_new2() {
 		return pass_new2;
 	}
 
+	public void setPass_new2(String pass_new2) {
+		this.pass_new2 = pass_new2;
+	}
+
 	public Message validation() {
 		Message message = new Message();
-		
-		System.out.println("### "+ this.toString());
 		
 		if(!terms) {
 			message.setCode(1);
@@ -68,15 +90,13 @@ public class FormSignupNew extends RequestBase {
 			message.setMessage("Las contraseñas no coinciden. Por favor, revisela antes de continuar.");
 			message.setType("danger");
 		}
-
-		System.out.println("### "+ message.toString());
 		
 		return message;
 	}
 
 	@Override
 	public String toString() {
-		return "FormSignupNew [terms=" + terms + ", name=" + name + ", lastName=" + lastName + ", email=" + email
+		return "FormSignupNew [_csrf=" + _csrf + ", terms=" + terms + ", name=" + name + ", lastName=" + lastName + ", email=" + email
 				+ ", pass_new1=" + pass_new1 + ", pass_new2=" + pass_new2 + "]";
 	}
 }
