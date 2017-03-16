@@ -6,7 +6,7 @@ public class FormSignupNew extends RequestBase {
 
 	protected boolean terms;
 	protected String name;
-	protected String lastName;
+	protected String lastname;
 	protected String email;
 	protected String pass_new1;
 	protected String pass_new2;
@@ -14,11 +14,11 @@ public class FormSignupNew extends RequestBase {
 	
 	public FormSignupNew() {super();}
 
-	public FormSignupNew(boolean terms, String name, String lastName, String email, String pass_new1, String pass_new2) {
+	public FormSignupNew(boolean terms, String name, String lastname, String email, String pass_new1, String pass_new2) {
 		super();
 		this.terms = terms;
 		this.name = name;
-		this.lastName = lastName;
+		this.lastname = lastname;
 		this.email = email;
 		this.pass_new1 = pass_new1;
 		this.pass_new2 = pass_new2;
@@ -40,12 +40,12 @@ public class FormSignupNew extends RequestBase {
 		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getEmail() {
@@ -80,7 +80,7 @@ public class FormSignupNew extends RequestBase {
 			message.setMessage("Es necesario que aceptes los términos de uso antes de enviar el formulario.");
 			message.setType("danger");
 			
-		} else if(name.isEmpty() || lastName.isEmpty() || email.isEmpty() || pass_new1.isEmpty() || pass_new2.isEmpty()) {
+		} else if(name.isEmpty() || lastname.isEmpty() || email.isEmpty() || pass_new1.isEmpty() || pass_new2.isEmpty()) {
 			message.setCode(2);
 			message.setMessage("Hay campos en blanco. Por favor, revisa todo el formulario antes de continuar.");
 			message.setType("danger");
@@ -96,7 +96,7 @@ public class FormSignupNew extends RequestBase {
 
 	@Override
 	public String toString() {
-		return "FormSignupNew [_csrf=" + _csrf + ", terms=" + terms + ", name=" + name + ", lastName=" + lastName + ", email=" + email
+		return "FormSignupNew [_csrf=" + _csrf + ", terms=" + terms + ", name=" + name + ", lastname=" + lastname + ", email=" + email
 				+ ", pass_new1=" + pass_new1 + ", pass_new2=" + pass_new2 + "]";
 	}
 }

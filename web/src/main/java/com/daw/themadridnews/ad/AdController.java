@@ -1,12 +1,12 @@
 package com.daw.themadridnews.ad;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class AdController {
@@ -16,19 +16,18 @@ public class AdController {
 	
 
 	@RequestMapping(value="/anuncio/{id}", method=RequestMethod.GET)
-	public String redirect(HttpServletResponse r, @PathVariable long id) {
+	public ModelAndView redirect(@PathVariable long id) {
 		Ad ad = adRepository.findOne(id);
 		
-		if(ad == null) {
-			return "redirect:/error/404";
-		}
+		if(ad == null)
+			return new ModelAndView( new RedirectView("/error/404") );
 		
 		ad.addClick();
 		adRepository.save(ad);
 		
 		String url = ad.getUrl();
 		
-		return "redirect:"+url;
+		return new ModelAndView( new RedirectView(url) );
 	}
 
 }

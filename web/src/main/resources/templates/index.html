@@ -83,10 +83,12 @@
                             {{/user_logged}}
                             {{#user_logged}}
                             <li>
-                                <a href="javascript:void(0);">{{user_logged}}</a>
+                                <a href="javascript:void(0);">{{user_display}}</a>
                                 <ul class="topbar-dropdown">
-                                    <li class="topbar-submenu"><a href="/ajustes">Ajustes</a></li>
-                                    {{#editor}}
+                                    {{#user_role_admin}}
+                                    <li><a href="/administrador">Administrador</a></li>
+                                    {{/user_role_admin}}
+                                    {{#user_role_editor}}
                                     <li class="topbar-submenu">
                                         <a href="javascript:void(0);">Art&iacute;culos</a>
                                         <ul class="topbar-submenu-in">
@@ -94,8 +96,8 @@
                                             <li><a href="/editor/articulo/nuevo">Redactar</a></li>
                                         </ul>
                                     </li>
-                                    {{/editor}}
-                                    {{#advert}}
+                                    {{/user_role_editor}}
+                                    {{#user_role_publicist}}
                                     <li class="topbar-submenu">
                                         <a href="javascript:void(0);">Publicidad</a>
                                         <ul class="topbar-submenu-in">
@@ -103,7 +105,8 @@
                                             <li><a href="/publicista/anuncio/nuevo">A&ntilde;adir</a></li>
                                         </ul>
                                     </li>
-                                    {{/advert}}
+                                    {{/user_role_publicist}}
+                                    <li><a href="/ajustes">Ajustes</a></li>
                                 </ul>
                             </li>
                             <li><a href="/logout">Cerrar sesi&oacute;n</a></li>
@@ -287,7 +290,7 @@
 										<img class="img-responsive" src="/imagen/articulo/{{last_articles_feat.id}}">
 										<h3><a href="/articulo/{{last_articles_feat.id}}">{{last_articles_feat.titleMid}}</a></h3>
 										<ul class="blog-grid-info">
-											<li>{{last_articles_feat.author.name}} {{last_articles_feat.author.lastName}}</li>
+											<li>{{last_articles_feat.author.name}} {{last_articles_feat.author.lastname}}</li>
 											<li>{{last_articles_feat.dateInsertStrLong}}</li>
 											<li><a href="/articulo/{{last_articles_feat.id}}"><i class="fa fa-comments"></i> {{last_articles_feat.nComments}}</a></li>
 										</ul>
@@ -351,7 +354,7 @@
 									<div class="blog-grid">
 										<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 										<ul class="blog-grid-info">
-											<li>{{author.name}} {{author.lastName}}</li>
+											<li>{{author.name}} {{author.lastname}}</li>
 											<li>{{dateInsertStrLong}}</li>
 											<li><a href="/articulo/{{id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
 										</ul>
@@ -380,7 +383,7 @@
 								<img class="img-responsive" src="/imagen/articulo/{{id}}" title="{{title}}">
 								<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 								<ul class="blog-grid-info">
-									<li>{{author.name}} {{author.lastName}}</li>
+									<li>{{author.name}} {{author.lastname}}</li>
 									<li>{{dateInsertStrShort}}</li>
 									<li><a href="/articulo/{{id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
 								</ul>
@@ -391,7 +394,7 @@
 							
 							{{#commentsSummary}}
 							<div class="blog-thumb-v3">
-								<small><a href="/articulo/{{id}}">{{author.name}} {{author.lastName}}</a></small>
+								<small><a href="/articulo/{{id}}">{{author.name}} {{author.lastname}}</a></small>
 								<h3><a href="/articulo/{{id}}">{{commentShort}}</a></h3>
 							</div>
 							<hr class="hr-xs">
@@ -642,7 +645,7 @@
 
                     <p class="fieldset">
 						<label class="image-replace cd-username" for="signup-surnames">Apellidos</label>
-						<input class="full-width has-padding has-border" id="signup-surnames" name="lastName" type="text" placeholder="Apellidos">
+						<input class="full-width has-padding has-border" id="signup-surnames" name="lastname" type="text" placeholder="Apellidos">
 						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
 

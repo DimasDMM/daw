@@ -32,9 +32,9 @@ public class DataExampleController implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Usuarios
-        User u1 = userRepository.save(new User("pepe", "jiménez", "pepji@mail.com", "pass", "ROLE_USER","ROLE_ADVERTISING"));
-        User u2 = userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_USER", "ROLE_ADVERTISING","ROLE_EDITOR"));
-        User u3 = userRepository.save(new User("admin", "1", "admin@mail.com", "adminpass", "ROLE_USER", "ROLE_ADMIN", "ROLE_ADVERTISING","ROLE_EDITOR"));
+        User u1 = userRepository.save(new User("pepe", "jiménez", "pepji@mail.com", "pass", "ROLE_USER","ROLE_PUBLICIST"));
+        User u2 = userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_USER", "ROLE_ADMIN", "ROLE_PUBLICIST","ROLE_EDITOR"));
+        User u3 = userRepository.save(new User("admin", "1", "admin@mail.com", "adminpass", "ROLE_USER", "ROLE_ADMIN"));
 
         // Favorito de ejemplo
 		Favourite fav = new Favourite(true, false, true, false, false, false);

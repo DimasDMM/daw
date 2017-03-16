@@ -65,9 +65,9 @@ public class AdView {
 		this.limClicks = ( this.isLimClicks ? String.valueOf( ad.getLimClicks() ) : "&infin;" );
 		this.limViews = ( this.isLimViews ? String.valueOf( ad.getLimViews() ) : "&infin;" );
 
-		this.statusWaiting = (AdService.getStatus(ad) == 0);
-		this.statusActive = (AdService.getStatus(ad) == 1);
-		this.statusOver = (AdService.getStatus(ad) == 2);
+		this.statusWaiting = (AdCommons.getStatus(ad) == 0);
+		this.statusActive = (AdCommons.getStatus(ad) == 1);
+		this.statusOver = (AdCommons.getStatus(ad) == 2);
 	}
 	
 	public Ad getAd() {

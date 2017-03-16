@@ -1,7 +1,6 @@
 package com.daw.themadridnews.publicist;
 
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.daw.themadridnews.ad.Ad;
 import com.daw.themadridnews.ad.AdRepository;
 import com.daw.themadridnews.ad.AdView;
-import com.daw.themadridnews.article.ArticleRepository;
-import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.files.FileUploadService;
 import com.daw.themadridnews.requests.FormModifyAd;
 import com.daw.themadridnews.requests.FormNewAd;
@@ -36,21 +35,16 @@ public class PublicistController {
 	protected AdRepository adRepository;
 	
 	@Autowired
-	protected ArticleRepository articleRepository;
-	
-	@Autowired
-	protected CommentRepository commentRepository;
-	
-	@Autowired
 	protected UserComponent userComponent;
 	
-	@Autowired Config config;
+	@Autowired
+	protected Config config;
 	
-	private static final int nItemsList = 20;
+	protected static final int nItemsList = 20;
 	
 
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.GET)
-	public String showFormNewPreview(Model model, HttpServletRequest request) {
+	public ModelAndView showFormNewPreview(Model model) {
 		
 		model.addAttribute("ad_title", "");
 		model.addAttribute("ad_url", "");
@@ -63,18 +57,16 @@ public class PublicistController {
 		model.addAttribute("ad_views", "");
 		
 		model.addAttribute("is_modification", false);
-
-		config.setPageParams(model, request);
 		
-		return "ads_form";
+		return new ModelAndView("ads_form");
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.POST)
-	public String showFormNewPreview(Model model, FormNewAd r, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+	public ModelAndView showFormNewPreview(Model model, FormNewAd r, @RequestParam("file") MultipartFile file) {
 		Message message = r.validation();
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
-			return showFormNewPreview(model, request);
+			return showFormNewPreview(model);
 		}
 		
 		User userLogged = userComponent.getLoggedUser();
@@ -86,18 +78,18 @@ public class PublicistController {
 
 		model.addAttribute("is_modification", true);
 
-		return "redirect:/publicista/anuncio/lista/publicado";
+		return new ModelAndView( new RedirectView("/publicista/anuncio/lista/publicado") );
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/{id}", method=RequestMethod.GET)
-	public String showFormModify(Model model, @PathVariable long id, HttpServletRequest request) {
+	public ModelAndView showFormModify(Model model, @PathVariable long id) {
 		Message message;
 		Ad ad = adRepository.findOne(id);
 		
 		if(ad == null) {
 			message = new Message(1, "El anuncio no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model, request);
+			return showList(model);
 		}
 		
 		AdView adv = new AdView(ad);
@@ -113,27 +105,25 @@ public class PublicistController {
 		model.addAttribute("ad_views", adv.getLimViewsStr());
 		
 		model.addAttribute("is_modification", true);
-
-		config.setPageParams(model, request);
 		
-		return "ads_form";
+		return new ModelAndView("ads_form");
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/{id}", method=RequestMethod.POST)
-	public String showFormModify(Model model, FormModifyAd r, @PathVariable long id, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+	public ModelAndView showFormModify(Model model, FormModifyAd r, @PathVariable long id, @RequestParam("file") MultipartFile file) {
 		Message message;
 		Ad ad = adRepository.findOne(id);
 		
 		if(ad == null) {
 			message = new Message(1, "El anuncio no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model, request);
+			return showList(model);
 		}
 		
 		message = r.validation();
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
-			return showFormModify(model, id, request);
+			return showFormModify(model, id);
 		}
 		
 		ad.setTitle(r.getTitle());
@@ -148,41 +138,41 @@ public class PublicistController {
 		ad = adRepository.save(ad);
 		
 		FileUploadService.saveImage( file, config.getPathImgAds(), String.valueOf(ad.getId()) );
-		
-		return "redirect:/publicista/anuncio/lista/publicado";
+
+		return new ModelAndView( new RedirectView("/publicista/anuncio/lista/publicado") );
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/{id}/eliminar", method=RequestMethod.GET)
-	public String deleteAd(Model model, @PathVariable long id, HttpServletRequest request) {
+	public ModelAndView deleteAd(Model model, @PathVariable long id) {
 		adRepository.delete(id);
-		return "redirect:/publicista/anuncio/lista/eliminado";
+		return new ModelAndView( new RedirectView("/publicista/anuncio/lista/eliminado") );
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/lista", method=RequestMethod.GET)
-	public String showList(Model model, HttpServletRequest request) {
-		return showListAux(model, 0, request);
+	public ModelAndView showList(Model model) {
+		return showListAux(model, 0);
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/lista/publicado", method=RequestMethod.GET)
-	public String showListPublished(Model model, HttpServletRequest request) {
+	public ModelAndView showListPublished(Model model) {
 		Message message = new Message(0, "El anuncio ha sido publicado correctamente", "success");
 		model.addAttribute("message", message);
-		return showListAux(model, 0, request);
+		return showListAux(model, 0);
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/lista/eliminado", method=RequestMethod.GET)
-	public String showListDeleted(Model model, HttpServletRequest request) {
+	public ModelAndView showListDeleted(Model model) {
 		Message message = new Message(0, "El anuncio ha sido eliminado correctamente", "success");
 		model.addAttribute("message", message);
-		return showListAux(model, 0, request);
+		return showListAux(model, 0);
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/lista/{nPage}", method=RequestMethod.GET)
-	public String showList(Model model, @PathVariable int nPage, HttpServletRequest request) {
-		return showListAux(model, nPage-1, request);
+	public ModelAndView showList(Model model, @PathVariable int nPage) {
+		return showListAux(model, nPage-1);
 	}
 	
-	private String showListAux(Model model, int nPage, HttpServletRequest request) {
+	private ModelAndView showListAux(Model model, int nPage) {
 		Page<Ad> page;
 
 		if(userComponent.hasRole("ADMIN")) {
@@ -199,8 +189,6 @@ public class PublicistController {
 		List<ModPageItem> pageList = modPagination.getModPageList(page, "/publicista/anuncio/lista/");
 		model.addAttribute("page_list", pageList);
 		
-		config.setPageParams(model, request);
-		
-		return "ads_list";
+		return new ModelAndView("ads_list");
 	}
 }

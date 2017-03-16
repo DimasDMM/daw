@@ -43,7 +43,7 @@ public class ArticleView {
 	
 	public ArticleView(Article article) {
 		String categoryId = article.getCategory();
-		Category category = new Category(categoryId, CategoryService.getName(categoryId));
+		Category category = new Category(categoryId, CategoryCommons.getName(categoryId));
 		this.category = category;
 		
 		this.id = article.getId();

@@ -1,19 +1,15 @@
 package com.daw.themadridnews.search;
 
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.daw.themadridnews.article.*;
 import com.daw.themadridnews.comment.CommentRepository;
@@ -35,11 +31,14 @@ public class SearchController {
 	
 	
 	@RequestMapping("/buscar")
-	public String categories(Model model, @RequestParam String searchItem, HttpServletRequest request){
+	public ModelAndView categories(Model model, @RequestParam String searchItem){
+		if(searchItem == null)
+			return new ModelAndView( new RedirectView("/portada") );
+		
 		Page<Article> articles = articleRepository.findByTitleContaining(searchItem, new PageRequest(0,10));
 		
 		List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst5ByVisible(true), commentRepository );
-		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );
+		List<CategoryView> categories = CategoryView.castList( CategoryCommons.getCategoryList() );
 		List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );
 		List<ArticleView> otherArticles = ArticleView.castList( articleRepository.findRandom4() );
 		
@@ -59,9 +58,7 @@ public class SearchController {
 		model.addAttribute("last_articles", lastArticles);
 		model.addAttribute("other_articles", otherArticles);
 
-		config.setPageParams(model, request);
-						
-		return "search";
+		return new ModelAndView("search");
 	}
 	
 }

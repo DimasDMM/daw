@@ -14,15 +14,11 @@ public class CustomErrorController implements ErrorController {
 	private static final String PATH = "/error";
 	
 	@Autowired
-	private Config config;
-	
-	@Autowired
 	private ErrorService errorService;
+	
 		  
 	@RequestMapping(value="/error")
 	public String renderErrorPage(Model model, HttpServletRequest request){
-		config.setPageParams(model, request);
-		
 		// Http error code
 		int code = getHttpStatusCode(request);
 		
@@ -31,9 +27,6 @@ public class CustomErrorController implements ErrorController {
 	  
 	@RequestMapping(value="/error/{code}")
 	public String renderErrorCodePage(Model model, HttpServletRequest request, @PathVariable int code){
-
-		config.setPageParams(model, request);
-		
 		String errorMessage = errorService.generateErrorMessage(code);
 		
 		model.addAttribute("error_msg", errorMessage);

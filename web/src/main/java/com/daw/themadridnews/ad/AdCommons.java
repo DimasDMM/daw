@@ -2,7 +2,7 @@ package com.daw.themadridnews.ad;
 
 import java.util.Date;
 
-public class AdService {
+public class AdCommons {
 	
 	public static Ad getRandom(AdRepository rep) {
 		Ad ad = rep.findRandom();

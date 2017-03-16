@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="es"> <!--<![endif]-->
+<!--[if IE 8]>
+<html lang="es" class="ie8"> <![endif]-->
+<!--[if IE 9]>
+<html lang="es" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="es"> <!--<![endif]-->
 <head>
-	<title>The Madrid Times | Error</title>
+	<title>The Madrid Times | Modificar usuario</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -30,9 +33,12 @@
 	<link rel="stylesheet" href="/plugins/line-icons/line-icons.css">
 	<link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/plugins/login-signup-modal-window/css/style.css">
+	<link rel="stylesheet" href="/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+	<link rel="stylesheet" href="/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+	<link rel="stylesheet" href="/css/blocks.css">
 
 	<!-- CSS Theme -->
-	<link rel="stylesheet" href="/css/theme-colors/default.css" id="style_color">
+	<link rel="stylesheet" href="/css/theme-colors/default.css">
 	<link rel="stylesheet" href="/css/theme-skins/dark.css">
 
 	<!-- CSS Customization -->
@@ -41,7 +47,7 @@
 
 <body class="header-fixed header-fixed-space-v2 boxed-layout container">
 <div class="wrapper">
-	<!--=== Header ===-->
+    <!--=== Header ===-->
 	<header class="header-v8 header-sticky">
 		<!-- Topbar blog -->
 		<div class="blog-topbar">
@@ -220,25 +226,110 @@
 		<!-- End Navbar -->
 	</header>
 	<!--=== End Header ===-->
-    
-<!--=== Container Part ===-->
-	<div class="container content-sm">
-        <h1 class="login-error">Error</h1>
+
+	<!-- Container Part -->
+	<div class="container content">
 		<div class="row">
-			{{#error_msg}}
-            	<p class="error">{{error_msg}}</p>
-			{{/error_msg}}
-			{{^error_msg}}
-            	<p class="error">Error desconocido</p>
-			{{/error_msg}}
-            <p class="error">Int&eacute;ntelo m&aacute;s tarde o pongase en <a href="/mailto:themadridnews@tmn.es?SUBJECT=Not found">contacto</a> con los administradores.</p>
-            <img class="error-img img-responsive" src="/img/tbservers.png" alt="Error">		            
-		</div><!--/end row-->
+			<aside class="col-md-3 md-margin-bottom-50">
+				<!-- Options Menu -->
+				<div class="margin-bottom-50">
+					<img class="img-responsive profile-img margin-bottom-20" src="/imagen/usuario/{{user_id}}" width="100%">
+
+					<h1 class="title-v4">Opciones</h1>
+
+					{{#user_role_admin}}
+					<h3>Administrador</h3>
+					<ul class="list-group sidebar-nav-v1">
+						<li class="list-group-item"><a href="/administrador/usuario/lista">Listado</a></li>
+					</ul>
+                    {{/user_role_admin}}
+                    {{#user_role_editor}}
+					<h3>Art&iacute;culos</h3>
+					<ul class="list-group sidebar-nav-v1">
+						<li class="list-group-item"><a href="/editor/articulo/lista">Publicados</a></li>
+						<li class="list-group-item"><a href="/editor/articulo/nuevo">Redactar</a></li>
+					</ul>
+                    {{/user_role_editor}}
+					{{#user_role_advert}}
+					<h3>Anuncios</h3>
+					<ul class="list-group sidebar-nav-v1">
+						<li class="list-group-item"><a href="/publicista/anuncio/lista">Listado</a></li>
+						<li class="list-group-item {{^is_modification}}active{{/is_modification}}"><a href="/publicista/anuncio/nuevo">Nuevo</a></li>
+					</ul>
+					{{/user_role_advert}}
+					
+					<h3>{{user_display}}</h3>
+					<ul class="list-group sidebar-nav-v1">
+						<li class="list-group-item"><a href="/ajustes">Preferencias</a></li>
+						<li class="list-group-item"><a href="/logout">Cerrar sesi&oacute;n</a></li>
+					</ul>
+				</div>
+				<!-- End Options Menu -->
+			</aside>
+
+			<section class="col-md-9">
+				{{#message}}
+				<div class="alert alert-{{type}} fade in text-center">
+					<p>
+						{{{message}}}
+					</p>
+				</div>
+				{{/message}}
+				
+				<div class="alert alert-warning fade in text-center">
+					<h4>Eliminar usuario</h4>
+					<p>
+						Si quieres eliminar el usuario haz click en el siguiente bot&oacute;n.
+						Recuerda que esta acci&oacute;n es irreversible.
+					</p>
+					<p>
+						<a class="btn btn-danger btn-delete">Eliminar</a>
+					</p>
+				</div>
+				
+				<h1>Modificar usuario</h1>
+
+				<form action="/administrador/usuario/{{id}}" method="post" class="margin-bottom-20 sky-form no-border">
+				
+					<input type="hidden" name="_csrf" value="{{token}}" />
+
+					<section class="row">
+						<div class="col col-md-12 full-width">
+							<label for="inp_name">Nombre</label>
+							<input class="form-control" name="name" id="inp_name" value="{{fuser_name}}" placeholder="Nombre del usuario">
+						</div>
+
+						<div class="col col-md-12 full-width">
+							<label for="inp_lastname">Apellidos</label>
+							<input class="form-control" name="lastname" id="inp_lastname" value="{{fuser_lastname}}" placeholder="Apellidos del usuario">
+						</div>
+
+						<div class="col col-md-12 full-width">
+							<label for="inp_alias">Alias</label>
+							<input class="form-control" name="alias" id="inp_alias" value="{{fuser_alias}}" placeholder="Alias del usuario">
+						</div>
+					</section>
+					
+	                <section class="row">
+	                    <div class="col col-4">
+	                        <label class="checkbox"><input type="checkbox" name="roles" {{#fuser_role_editor}}checked{{/fuser_role_editor}} value="ROLE_EDITOR"><i></i>Editor</label>
+	                        <label class="checkbox"><input type="checkbox" name="roles" {{#fuser_role_publicist}}checked{{/fuser_role_publicist}} value="ROLE_PUBLICIST"><i></i>Publicista</label>
+	                        <label class="checkbox"><input type="checkbox" name="roles" {{#fuser_role_admin}}checked{{/fuser_role_admin}} value="ROLE_ADMIN"><i></i>Administrador</label>
+	                    </div>
+	                </section>
+
+					<footer>
+						<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-floppy-o"></i> Guardar</button>
+					</footer>
+
+				</form>
+
+			</section>
+		</div>
 	</div>
 	<!--=== End Container Part ===-->
-    
-    
-<!--=== Footer ===-->
+
+	<!--=== Footer ===-->
 	<div class="footer-v8">
 		<footer class="footer">
 			<div class="container">
@@ -304,7 +395,7 @@
 							<input name="_csrf" value="{{token}}" type="hidden" />
 							<input class="form-control" type="email" name="email" placeholder="Introduzca su correo">
 							<div class="input-group-btn">
-								<button type="submit" class="btn-u input-btn">Subscribirse</button>
+								<button type="button" class="btn-u input-btn">Subscribirse</button>
 							</div>
 						</form>
 						<!-- End Form Group -->
@@ -337,118 +428,28 @@
 		</footer>
 	</div>
 	<!--=== End Footer ===-->
-
-	<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
-		<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
-			<ul class="cd-switcher">
-				<li><a href="javascript:void(0);">Entrar</a></li>
-				<li><a href="javascript:void(0);">Registrarse</a></li>
-			</ul>
-
-			<div id="cd-login"> <!-- log en el formulario -->
-				<form class="cd-form" action="/portada" method="post">
-					<div class="lined-text"><span>Usa tu cuenta del Blog</span><hr></div>
-
-					<p class="fieldset">
-						<label class="image-replace cd-email" for="signin-email">Correo electr&oacute;nico</label>
-						<input class="full-width has-padding has-border" id="signin-email" name="email" type="email" placeholder="Correo electr&oacute;nico">
-						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
-					</p>
-
-					<p class="fieldset">
-						<label class="image-replace cd-password" for="signin-password">Contrase&ntilde;a</label>
-						<input class="full-width has-padding has-border" id="signin-password" name="password" type="password"  placeholder="Contrase&ntilde;a">
-						<a href="javascript:void(0);" class="hide-password">Mostrar</a>
-						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
-					</p>
-
-					<p class="fieldset">
-						<input type="checkbox" id="remember-me" checked>
-						<label for="remember-me">Recordar</label>
-					</p>
-
-					<p class="fieldset">
-                        <input class="full-width" type="submit" value="Entrar">
-                        <input type="hidden" name="_csrf" value="{{token}}"/>
-					</p>
-				</form>
-
-				<p class="cd-form-bottom-message"><a href="javascript:void(0);">¿Olvidaste tu contrase&ntilde;a?</a></p>
-                <a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
-			</div> <!-- cd-login -->
-            
-			<div id="cd-signup"> <!-- Formulario de registro -->
-				<form class="cd-form" action="/register" method="post">
-					<div class="lined-text"><span>Registra tu nueva cuenta en The Madrid Times</span><hr></div>
-
-					<p class="fieldset">
-						<label class="image-replace cd-username" for="signup-username">Nombre</label>
-						<input class="full-width has-padding has-border" id="signup-username" name="name" type="text" placeholder="Nombre">
-						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
-					</p>
-
-                    <p class="fieldset">
-						<label class="image-replace cd-username" for="signup-surnames">Apellidos</label>
-						<input class="full-width has-padding has-border" id="signup-surnames" name="lastname" type="text" placeholder="Apellidos">
-						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
-					</p>
-
-					<p class="fieldset">
-						<label class="image-replace cd-email" for="signup-email">Correo electr&oacute;nico</label>
-						<input class="full-width has-padding has-border" id="signup-email" name="email" type="email" placeholder="Correo electr&oacute;nico">
-						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
-					</p>
-
-					<p class="fieldset">
-						<label class="image-replace cd-password" for="signup-password">Contrase&ntilde;a</label>
-						<input class="full-width has-padding has-border" id="signup-password" name="passwordHash" type="password"  placeholder="Contrase&ntilde;a">
-						<a href="javascript:void(0);" class="hide-password">Mostrar</a>
-						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
-					</p>
-                    
-                    <p class="fieldset">
-						<label class="image-replace cd-password" for="confirm-signup-password">Contrase&ntilde;a</label>
-						<input class="full-width has-padding has-border" id="confirm-signup-password" type="password"  placeholder="Confirmar Contrase&ntilde;a">
-						<a href="javascript:void(0);" class="hide-password">Mostrar</a>
-						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
-					</p>
-
-					<p class="fieldset">
-						<input type="checkbox" id="accept-terms">
-						<label for="accept-terms">Acepto los t&eacute;rminos del <a href="javascript:void(0);">Contrato</a></label>
-					</p>
-
-					<p class="fieldset">
-                        <input class="full-width has-padding" type="submit" value="Crear cuenta">
-                        <input type="hidden" name="_csrf" value="{{token}}"/>
-					</p>
-				</form>
-
-				<a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
-			</div> <!-- cd-signup -->
-            
-            <div id="cd-reset-password"> <!-- reset password form -->
-				<p class="cd-form-message">&iquest;Olvidaste tu contraseña? Por favor, introduce tu dirección de correo electr&oacute;nico. Recibir&aacute;s un link en el que podr&aacute;s cambiar tu contrase&ntilde;a.</p>
-
-				<form class="cd-form">
-					<p class="fieldset">
-						<label class="image-replace cd-email" for="reset-email">Correo electr&oacute;nico</label>
-						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="Correo electr&oacute;nico">
-						<span class="cd-error-message">Error de mensaje</span>
-					</p>
-
-					<p class="fieldset">
-						<input class="full-width has-padding" type="submit" value="Recibir mensaje">
-                        <input type="hidden" name="_csrf" value="{{token}}"/>
-					</p>
-				</form>
-
-				<p class="cd-form-bottom-message"><a href="javascript:void(0);">Volver a entrar</a></p>
-			</div> <!-- cd-reset-password -->
-			<a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
-		</div><!-- cd-user-modal-container -->
-	</div> <!-- cd-user-modal -->
 </div><!--/wrapper-->
+
+{{#is_modification}}
+<!-- ModalDeleteAd -->
+<div class="modal fade" id="modalDeleteAd" tabindex="-1" role="dialog" aria-labelledby="modalDeleteAdLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				<h4 class="modal-title">Confirmaci&oacute;n</h4>
+			</div>
+			<div class="modal-body">
+				<p><b>Importante: </b> Esta acci&oacute;n es irreversible, el anuncio ser&aacute; eliminado sin posibilidad de ser recuperado.</p>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-danger" href="/publicista/anuncio/{{id}}/eliminar"><i class="fa fa-trash"></i> Eliminar</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /ModalDeleteAd -->
+{{/is_modification}}
 
 <!-- JS Global Compulsory -->
 <script src="/plugins/jquery/jquery.min.js"></script>
@@ -457,24 +458,22 @@
 <!-- JS Implementing Plugins -->
 <script src="/plugins/back-to-top.js"></script>
 <script src="/plugins/smoothScroll.js"></script>
-<script src="/plugins/counter/waypoints.min.js"></script>
-<script src="/plugins/counter/jquery.counterup.min.js"></script>
-<script src="/plugins/modernizr.js"></script>
-<script src="/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
 <!-- JS Customization -->
 <script src="/js/page.general.js"></script>
+<script src="/js/page.publicist.js"></script>
+<script src="/plugins/modernizr.js"></script>
+<script src="/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
 <!-- JS Page Level -->
 <script src="/js/app.js"></script>
 <script>
-	jQuery(document).ready(function() {
+	jQuery(document).ready(function () {
 		App.init();
-		App.initCounter();
 	});
 </script>
 <!--[if lt IE 9]>
-	<script src="/plugins/respond.js"></script>
-	<script src="/plugins/html5shiv.js"></script>
-	<script src="/plugins/placeholder-IE-fixes.js"></script>
+<script src="/plugins/respond.js"></script>
+<script src="/plugins/html5shiv.js"></script>
+<script src="/plugins/placeholder-IE-fixes.js"></script>
 <![endif]-->
 </body>
 </html>

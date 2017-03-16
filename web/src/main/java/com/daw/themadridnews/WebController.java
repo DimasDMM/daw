@@ -1,11 +1,11 @@
 package com.daw.themadridnews;
 
 import com.daw.themadridnews.ad.AdRepository;
-import com.daw.themadridnews.ad.AdService;
+import com.daw.themadridnews.ad.AdCommons;
 import com.daw.themadridnews.ad.AdView;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.ArticleView;
-import com.daw.themadridnews.article.CategoryService;
+import com.daw.themadridnews.article.CategoryCommons;
 import com.daw.themadridnews.article.CategoryView;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.comment.CommentView;
@@ -29,6 +29,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -36,19 +39,17 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class WebController {
     
-    @Autowired private Config config;
-    @Autowired private ArticleRepository articleRepository;
-    @Autowired private CommentRepository commentRepository;
-    @Autowired private AdRepository adRepository;
-    @Autowired private UserRepository userRepository;
-    @Autowired private UserComponent userComponent;
-    @Autowired private SubscriptionRepository subscriptionRepository;
+    @Autowired protected Config config;
+    @Autowired protected ArticleRepository articleRepository;
+    @Autowired protected CommentRepository commentRepository;
+    @Autowired protected AdRepository adRepository;
+    @Autowired protected UserRepository userRepository;
+    @Autowired protected UserComponent userComponent;
+    @Autowired protected SubscriptionRepository subscriptionRepository;
     
 
     @RequestMapping(value= {"/","/portada"})
-    public String index(Model model, HttpServletRequest request){
-    	User user = userComponent.getLoggedUser();
-    	userComponent.checkRolesAndName(model, request);
+    public ModelAndView index(Model model){
     	
     	// Seccion: Carrousel
         List<ArticleView> carrousel = ArticleView.castList( articleRepository.findFirstEachCategory() );
@@ -56,8 +57,9 @@ public class WebController {
         
         // Seccion: Ultimas noticias favoritas
         String category = null;
-        if(user != null) {
-            Favourite fav = user.getFavourites();
+    	User userLogged = userComponent.getLoggedUser();
+        if(userLogged != null) {
+            Favourite fav = userLogged.getFavourites();
             
             if(fav != null)
             	category = fav.getRandom();
@@ -87,34 +89,28 @@ public class WebController {
         model.addAttribute("week_articles", weekArticles);
         
         // Seccion: Categorias
-		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );
+		List<CategoryView> categories = CategoryView.castList( CategoryCommons.getCategoryList() );
         model.addAttribute("categories", categories);
         
         // Seccion: Anuncio
-        AdView ad = new AdView( AdService.getRandom(adRepository) );
+        AdView ad = new AdView( AdCommons.getRandom(adRepository) );
         model.addAttribute("ad_banner", ad);
-        
-        config.setPageParams(model, request);
 		
-        return "index";
+		return new ModelAndView("index");
     }
 
 	@RequestMapping(value= {"/privacidad"})
-    public String privacy(Model model, HttpServletRequest request){
-    	config.setPageParams(model, request);
-		
-        return "privacy";
+    public ModelAndView privacy(Model model) {
+		return new ModelAndView("privacy");
     }
 
     @RequestMapping(value= {"/terminos-de-uso"})
-    public String termsAndConditions(Model model, HttpServletRequest request){
-    	config.setPageParams(model, request);
-		
-        return "terms-and-conditions";
+    public ModelAndView termsAndConditions(Model model){
+		return new ModelAndView("terms-and-conditions");
     }
 
 	@RequestMapping(value="/portada/subscripcion", method=RequestMethod.POST)
-	public String subscription(Model model, FormSubscription r, HttpServletRequest request) {
+	public ModelAndView subscription(Model model, FormSubscription r) {
 		Message message = r.validation();
 		
 		String email = r.getEmail();
@@ -126,38 +122,35 @@ public class WebController {
 		model.addAttribute("modal_title", (message.getCode() == 0 ? "Perfecto" : "¡Ups!" ) );
 		model.addAttribute("modal_message", (message.getCode() == 0 ? "Te has subscrito correctamente a nuestro boletin. Pronto comenzarás a recibir noticias en tu correo electrónico." : message) );
 		
-		return index(model, request);
+		return index(model);
 	}
 
     @RequestMapping(value= {"/logout"})
-    public String logout(Model model, HttpServletRequest request) throws ServletException {
+    public ModelAndView logout(Model model, HttpServletRequest request) throws ServletException {
         request.logout();
 		
-        return index(model, request);
+        return index(model);
     }
 
     @RequestMapping(value="/login")
-    public String login(Model model, HttpServletRequest request){
-        return index(model, request);
+    public ModelAndView login(Model model){
+        return index(model);
     }
     
     @RequestMapping(value="/loginError")
-    public String loginError(Model model, HttpServletRequest request){
-    	config.setPageParams(model, request);
-		
-        return "login-error";
+    public ModelAndView loginError(Model model) {
+		return new ModelAndView("login-error");
     }
 
     @RequestMapping(value="/registro", method=RequestMethod.POST)
-	public String registerNew(Model model, HttpServletRequest request, FormSignupNew r) {
+	public ModelAndView registerNew(Model model, FormSignupNew r) {
     	Message message = r.validation();
-    	if(message.getCode() != 0) {
-    		return "redirect:/portada";
-    	}
+    	if(message.getCode() != 0)
+			return new ModelAndView( new RedirectView("/portada") );
     	
     	User user = new User();
     	user.setName( r.getName() );
-    	user.setLastName( r.getLastName() );
+    	user.setLastname( r.getLastname() );
     	user.setEmail( r.getEmail() );
     	user.setPasswordHash( r.getPass_new1() );
     	user.getRoles().add("ROLE_USER");
@@ -165,15 +158,11 @@ public class WebController {
         userRepository.save(user);
         userComponent.setLoggedUser(user);
         
-    	config.setPageParams(model, request);
-
-	    return "signup-preferences";
+		return new ModelAndView("signup-preferences");
     }
     
     @RequestMapping(value="/registro/ajustes-iniciales", method=RequestMethod.POST)
-    public String registerPreferences(Model model, HttpServletRequest request, FormSignupPreferences r, @RequestParam("file") MultipartFile file){
-    	config.setPageParams(model, request);
-
+    public ModelAndView registerPreferences(Model model, FormSignupPreferences r, @RequestParam("file") MultipartFile file){
         User userLogged = userComponent.getLoggedUser();
         
         if(!file.isEmpty())
@@ -192,7 +181,7 @@ public class WebController {
     	
     	model.addAttribute("signup_success", true);
 
-	    return "signup-preferences";
+		return new ModelAndView("signup-preferences");
     }
 
     /*
@@ -207,7 +196,7 @@ public class WebController {
             model.addAttribute("last_articles_category_id", false);
             lastArticles = ArticleView.castList( articleRepository.findFirst6ByVisible(true), commentRepository );
         } else {
-            model.addAttribute("last_articles_category_name", "Categoria: "+ CategoryService.getName(category));
+            model.addAttribute("last_articles_category_name", "Categoria: "+ CategoryCommons.getName(category));
             model.addAttribute("last_articles_category_id", category);
             lastArticles = ArticleView.castList( articleRepository.findFirst6ByCategoryAndVisible(category, true), commentRepository );
         }

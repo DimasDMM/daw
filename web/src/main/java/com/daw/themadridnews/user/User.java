@@ -22,7 +22,7 @@ public class User {
 	private String name;
 
 	@NotNull
-	private String lastName;
+	private String lastname;
 
 	@Column(unique = true)
 	@NotNull
@@ -53,9 +53,9 @@ public class User {
 		this.roles = new ArrayList<String>();
 	}
 
-	public User(String name, String lastName, String email, String pass, String... roles) {
+	public User(String name, String lastname, String email, String pass, String... roles) {
 		this.name = name;
-		this.lastName = lastName;
+		this.lastname = lastname;
 		this.email = email;
 		this.passwordHash = new BCryptPasswordEncoder().encode(pass);
 		this.roles = new ArrayList<String>(Arrays.asList(roles));
@@ -64,7 +64,7 @@ public class User {
 	// Method toString
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", lastName=" + lastName + ", alias=" + alias + "]";
+		return "User [name=" + name + ", lastname=" + lastname + ", alias=" + alias + "]";
 	}
 
 	// Methods Getters & Setters
@@ -76,8 +76,8 @@ public class User {
 		return name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
 	public String getEmail() {
@@ -138,8 +138,8 @@ public class User {
 		this.name = name;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public void setEmail(String email) {
@@ -184,6 +184,10 @@ public class User {
 
 	public void setPersonalWeb(String personalWeb) {
 		this.personalWeb = personalWeb;
+	}
+
+	public boolean hasRole(String role) {
+		return this.getRoles().contains( role );
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class CategoryService {
+public class CategoryCommons {
 	
 	/*
 	 * Si se modifica alguna categoria, recordar modificar tambien los formularios

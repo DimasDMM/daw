@@ -84,10 +84,12 @@
                             {{/user_logged}}
                             {{#user_logged}}
                             <li>
-                                <a href="javascript:void(0);">{{user_logged}}</a>
+                                <a href="javascript:void(0);">{{user_display}}</a>
                                 <ul class="topbar-dropdown">
-                                    <li class="topbar-submenu"><a href="/ajustes">Ajustes</a></li>
-                                    {{#editor}}
+                                    {{#user_role_admin}}
+                                    <li><a href="/administrador">Administrador</a></li>
+                                    {{/user_role_admin}}
+                                    {{#user_role_editor}}
                                     <li class="topbar-submenu">
                                         <a href="javascript:void(0);">Art&iacute;culos</a>
                                         <ul class="topbar-submenu-in">
@@ -95,8 +97,8 @@
                                             <li><a href="/editor/articulo/nuevo">Redactar</a></li>
                                         </ul>
                                     </li>
-                                    {{/editor}}
-                                    {{#advert}}
+                                    {{/user_role_editor}}
+                                    {{#user_role_publicist}}
                                     <li class="topbar-submenu">
                                         <a href="javascript:void(0);">Publicidad</a>
                                         <ul class="topbar-submenu-in">
@@ -104,7 +106,8 @@
                                             <li><a href="/publicista/anuncio/nuevo">A&ntilde;adir</a></li>
                                         </ul>
                                     </li>
-                                    {{/advert}}
+                                    {{/user_role_publicist}}
+                                    <li><a href="/ajustes">Ajustes</a></li>
                                 </ul>
                             </li>
                             <li><a href="/logout">Cerrar sesi&oacute;n</a></li>
@@ -467,7 +470,7 @@
                     
                     <p class="fieldset">
 						<label class="image-replace cd-username" for="signup-surnames">Apellidos</label>
-						<input class="full-width has-padding has-border" id="signup-surnames" name="lastName" type="text" placeholder="Apellidos">
+						<input class="full-width has-padding has-border" id="signup-surnames" name="lastname" type="text" placeholder="Apellidos">
 						<span class="cd-error-message">¡Dato err&oacute;neo!</span>
 					</p>
 

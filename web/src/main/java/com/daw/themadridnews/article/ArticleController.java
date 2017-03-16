@@ -1,15 +1,14 @@
 package com.daw.themadridnews.article;
 
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.comment.CommentRepository;
@@ -37,11 +36,11 @@ public class ArticleController {
 	
 
 	@RequestMapping(value="/articulo/{id}", method=RequestMethod.GET)
-	public String showArticle(Model model, HttpServletRequest request, @PathVariable long id) {
+	public ModelAndView showArticle(Model model, @PathVariable long id) {
 		Article a = articleRepository.findOne(id);
 		
 		if(a == null)
-			return "redirect:/error/404";
+			return new ModelAndView( new RedirectView("/error/404") );
 		
 		a.addView();
 		articleRepository.save(a);
@@ -50,7 +49,7 @@ public class ArticleController {
 		long nComments = commentRepository.countByArticle(a);
 
 		List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst5ByVisible(true), commentRepository );
-		List<CategoryView> categories = CategoryView.castList( CategoryService.getCategoryList() );
+		List<CategoryView> categories = CategoryView.castList( CategoryCommons.getCategoryList() );
 		List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );
 		List<ArticleView> otherArticles = ArticleView.castList( articleRepository.findRandom4() );
 		
@@ -72,24 +71,22 @@ public class ArticleController {
 		model.addAttribute("other_articles", otherArticles);
 
 		model.addAttribute("editor_name", av.getAuthor().getName());
-		model.addAttribute("editor_lastname", av.getAuthor().getLastName());
+		model.addAttribute("editor_lastname", av.getAuthor().getLastname());
 
-		config.setPageParams(model, request);
-		
-		return "article";
+		return new ModelAndView("article");
 	}
 
 	@RequestMapping(value="/articulo/{id}", method=RequestMethod.POST)
-	public String sendComment(Model model, HttpServletRequest request, FormComment r, @PathVariable long id) {
+	public ModelAndView sendComment(Model model, FormComment r, @PathVariable long id) {
 		
 		Article article = articleRepository.findOne(id);
 		if(article == null)
-			return "redirect:/error/404";
+			return new ModelAndView( new RedirectView("/error/404") );
 		
 		Message message = r.validation();
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
-			return showArticle(model, request, id);
+			return showArticle(model, id);
 		}
 		
 		User user = userComponent.getLoggedUser();
@@ -98,6 +95,6 @@ public class ArticleController {
         Comment comment = new Comment(article, user, number, r.getComment());
         commentRepository.save(comment);
 		
-		return showArticle(model, request, id);
+		return showArticle(model, id);
 	}
 }
