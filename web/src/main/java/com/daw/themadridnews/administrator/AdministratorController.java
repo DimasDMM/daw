@@ -1,9 +1,7 @@
 package com.daw.themadridnews.administrator;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -77,11 +75,14 @@ public class AdministratorController {
 			model.addAttribute("message", message);
 			return showFormModify(model, id);
 		}
+		
+		List<String> roles = r.getRoles();
+		roles.add("ROLE_USER");
 
 		user.setName(r.getName());
 		user.setLastname(r.getLastname());
 		user.setAlias(r.getAlias());
-		user.setRoles(r.getRoles());
+		user.setRoles(roles);
 		userRepository.save(user);
 		
 		return new ModelAndView( new RedirectView("/administrador/usuario/lista/guardado") );

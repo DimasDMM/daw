@@ -23,8 +23,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/portada").permitAll();
         http.authorizeRequests().antMatchers("/portada/**").permitAll();
+        http.authorizeRequests().antMatchers("/categoria/**").permitAll();
+        http.authorizeRequests().antMatchers("/privacidad").permitAll();
+        http.authorizeRequests().antMatchers("/terminos-de-uso").permitAll();
 
         http.authorizeRequests().antMatchers("/imagen/**").permitAll();
+        http.authorizeRequests().antMatchers("/anuncio/**").permitAll();
         
         http.authorizeRequests().antMatchers("/buscar").permitAll();
 
@@ -33,16 +37,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/loginerror").permitAll();
         http.authorizeRequests().antMatchers("/logout").permitAll();
 
-        http.authorizeRequests().antMatchers("/categoria/**").permitAll();
-        http.authorizeRequests().antMatchers("/anuncio/{id}").permitAll();
-        http.authorizeRequests().antMatchers("/privacidad").permitAll();
-        http.authorizeRequests().antMatchers("/terminos-de-uso").permitAll();
-
         http.authorizeRequests().antMatchers("/ajustes").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/ajustes/**").hasAnyRole("USER");
         
         http.authorizeRequests().antMatchers("/editor/**").hasAnyRole( "EDITOR", "ADMIN");
         http.authorizeRequests().antMatchers("/publicista/**").hasAnyRole( "ADVERTISING", "ADMIN");
+        http.authorizeRequests().antMatchers("/administrador/**").hasAnyRole( "ADMIN");
         
         // Login form
         http.formLogin().loginPage("/portada").and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/portada");
