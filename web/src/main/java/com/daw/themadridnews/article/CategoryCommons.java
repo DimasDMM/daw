@@ -49,10 +49,9 @@ public class CategoryCommons {
 		
 		List<Category> list = new ArrayList<Category>();
 		Iterator<String> it_id = getListId().iterator();
-		Iterator<String> it_name = getListName().iterator();
 
 		while (it_id.hasNext()) {
-			Category item = new Category(it_id.next(), it_name.next());
+			Category item = new Category(it_id.next());
 			list.add(item);
 		}
 

@@ -126,7 +126,7 @@ public class FormUserPersonal extends RequestBase {
 		Message message = new Message();
 		
 		if(name.isEmpty() || lastname.isEmpty() || email.isEmpty()) {
-			message.setCode(1);
+			message.setCode(100);
 			message.setMessage("Hay campos en blanco. Por favor, revisa todo el formulario antes de continuar.");
 			message.setType("danger");
 		}

@@ -33,7 +33,7 @@ public class FormSubscription extends RequestBase {
 		Message message = super.validation();
 		
 		if(email == null || email.isEmpty()) {
-			message.setCode(1);
+			message.setCode(100);
 			message.setMessage("Por favor, introduzca un correo electronico para poder subscribirse a nuestro boletin.");
 			message.setType("danger");
 		}

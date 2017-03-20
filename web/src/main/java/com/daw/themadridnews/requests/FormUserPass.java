@@ -46,12 +46,12 @@ public class FormUserPass extends RequestBase {
 		Message message = new Message();
 		
 		if(pass_now.isEmpty() || pass_new.isEmpty() || pass_new2.isEmpty()) {
-			message.setCode(1);
+			message.setCode(100);
 			message.setMessage("Hay campos en blanco. Por favor, revisa todo el formulario antes de continuar.");
 			message.setType("danger");
 			
 		} else if(!pass_new.equals(pass_new2)) {
-			message.setCode(2);
+			message.setCode(101);
 			message.setMessage("Las contraseñas no coinciden. Por favor, revisela antes de continuar.");
 			message.setType("danger");
 		}

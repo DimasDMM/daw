@@ -12,20 +12,15 @@ import org.springframework.web.servlet.view.RedirectView;
 public class AdController {
 
 	@Autowired
-	protected AdRepository adRepository;
+	protected AdService adService;
 	
 
 	@RequestMapping(value="/anuncio/{id}", method=RequestMethod.GET)
 	public ModelAndView redirect(@PathVariable long id) {
-		Ad ad = adRepository.findOne(id);
+		String url = adService.getAdUrl(id);
 		
-		if(ad == null)
+		if(url == null)
 			return new ModelAndView( new RedirectView("/error/404") );
-		
-		ad.addClick();
-		adRepository.save(ad);
-		
-		String url = ad.getUrl();
 		
 		return new ModelAndView( new RedirectView(url) );
 	}

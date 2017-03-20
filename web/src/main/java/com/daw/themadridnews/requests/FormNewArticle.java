@@ -74,17 +74,17 @@ public class FormNewArticle extends RequestBase {
 		Message message = new Message();
 		
 		if(category.isEmpty() || title.isEmpty() || content.isEmpty() || source.isEmpty() || tags.isEmpty()) {
-			message.setCode(1);
+			message.setCode(100);
 			message.setMessage("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
 			message.setType("danger");
 			
 		} else if(!Validator.strValidLength(title, 5, -1)) {
-			message.setCode(2);
+			message.setCode(101);
 			message.setMessage("El titulo del articulo no es válido, es demasiado corto.");
 			message.setType("danger");
 			
 		} else if(!Validator.strValidList(tags)) {
-			message.setCode(3);
+			message.setCode(102);
 			message.setMessage("La lista de etiquetas no es valida.");
 			message.setType("danger");
 		}

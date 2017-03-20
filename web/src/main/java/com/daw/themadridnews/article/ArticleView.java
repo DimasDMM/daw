@@ -9,28 +9,31 @@ import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.comment.CommentView;
 import com.daw.themadridnews.user.User;
+import com.fasterxml.jackson.annotation.JsonView;
 
 
 public class ArticleView {
 	
-	protected long id;
-	protected Category category;
-	protected String title;
-	protected String titleShort;
-	protected String titleMid;
-	protected String content;
-	protected String contentTxt;
-	protected String contentShort;
-	protected String contentLong;
-	protected User author;
-	protected String source;
-	protected List<String> tags;
+	public static interface Basic {}
+	
+	@JsonView(Basic.class) protected long id;
+	@JsonView(Basic.class) protected Category category;
+	@JsonView(Basic.class) protected String title;
+	@JsonView(Basic.class) protected String titleShort;
+	@JsonView(Basic.class) protected String titleMid;
+	@JsonView(Basic.class) protected String content;
+	@JsonView(Basic.class) protected String contentTxt;
+	@JsonView(Basic.class) protected String contentShort;
+	@JsonView(Basic.class) protected String contentLong;
+	@JsonView(Basic.class) protected User author;
+	@JsonView(Basic.class) protected String source;
+	@JsonView(Basic.class) protected List<String> tags;
 	protected boolean visible;
-	protected long nComments;
+	@JsonView(Basic.class) protected long nComments;
 	protected int views;
 	protected List<CommentView> commentsSummary;
-	protected String dateInsertStrLong;
-	protected String dateInsertStrShort;
+	@JsonView(Basic.class) protected String dateInsertStrLong;
+	@JsonView(Basic.class) protected String dateInsertStrShort;
 	protected Date dateInsert;
 	
 	
@@ -43,7 +46,7 @@ public class ArticleView {
 	
 	public ArticleView(Article article) {
 		String categoryId = article.getCategory();
-		Category category = new Category(categoryId, CategoryCommons.getName(categoryId));
+		Category category = new Category(categoryId);
 		this.category = category;
 		
 		this.id = article.getId();

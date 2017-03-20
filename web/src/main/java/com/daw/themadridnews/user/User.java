@@ -1,8 +1,8 @@
 package com.daw.themadridnews.user;
 
 import com.daw.themadridnews.favourite.Favourite;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,19 +13,24 @@ import javax.validation.constraints.NotNull;
 @Table(name = "users")
 public class User {
 
-	// Attributes
+	public interface Basic {}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basic.class)
 	private long id;
 
 	@NotNull
+	@JsonView(Basic.class)
 	private String name;
 
 	@NotNull
+	@JsonView(Basic.class)
 	private String lastname;
 
 	@Column(unique = true)
 	@NotNull
+	@JsonView(Basic.class)
 	private String email;
 
 	@NotNull
@@ -36,6 +41,7 @@ public class User {
 	private List<String> roles;
 
 	@Column(unique = true)
+	@JsonView(Basic.class)
 	private String alias;
 
 	@OneToOne(cascade = CascadeType.ALL)

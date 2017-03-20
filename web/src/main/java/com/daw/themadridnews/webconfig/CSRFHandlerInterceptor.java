@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public class CSRFHandlerInterceptor extends HandlerInterceptorAdapter {
 	@Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		if(modelAndView.getView() instanceof RedirectView) return;
+		if(modelAndView == null || modelAndView.getView() instanceof RedirectView) return;
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		

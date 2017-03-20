@@ -7,9 +7,9 @@ public class Category {
 	
 	public Category() {}
 	
-	public Category(String id, String name) {
+	public Category(String id) {
 		this.id = id;
-		this.name = name;
+		this.name = CategoryCommons.getName(id);
 	}
 
 	public String getId() {

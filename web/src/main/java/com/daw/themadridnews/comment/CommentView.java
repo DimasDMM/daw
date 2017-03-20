@@ -7,17 +7,20 @@ import java.util.Iterator;
 import java.util.List;
 import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.user.User;
+import com.fasterxml.jackson.annotation.JsonView;
 
 public class CommentView {
 	
-	protected long id;
+	public interface Basic {}
+	
+	@JsonView(Basic.class) protected long id;
 	protected ArticleView article;
-	protected User author;
-	protected long number;
-	protected String comment;
-	protected String commentShort;
-	protected Date dateInsert;
-	protected String dateInsertStr;
+	@JsonView(Basic.class) protected User author;
+	@JsonView(Basic.class) protected long number;
+	@JsonView(Basic.class) protected String comment;
+	@JsonView(Basic.class) protected String commentShort;
+	@JsonView(Basic.class) protected Date dateInsert;
+	@JsonView(Basic.class) protected String dateInsertStr;
 	
 	
 	public CommentView() {}

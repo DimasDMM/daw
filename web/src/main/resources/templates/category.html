@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if IE 8]> <html lang="es" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="es" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="es"> <!--<![endif]-->
 <head>
-	<title>The Madrid Times | {{categ}}</title>
+	<title>The Madrid Times | {{category.name}}</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -32,7 +32,7 @@
 	<link rel="stylesheet" href="/plugins/login-signup-modal-window/css/style.css">
 
 	<!-- CSS Theme -->
-	<link rel="stylesheet" href="/css/theme-colors/default.css" id="style_color">
+	<link rel="stylesheet" href="/css/theme-colors/default.css">
 	<link rel="stylesheet" href="/css/theme-skins/dark.css">
 
 	<!-- CSS Customization -->
@@ -223,16 +223,16 @@
 
 	<!--=== Container Part ===-->
 	<div class="container content-sm">
-        <h1 class="title-v4 h1_category">{{categ}}</h1>
+        <h1 class="title-v4 h1_category">{{category.name}}</h1>
 		<div class="row">
 			<div class="col-md-9 md-margin-bottom-50">
 				<!-- Blog Grid -->
 				<div class="ms-slide-loading"></div>
-				<div id="noticias">
-					{{#articulos}}
+				<div id="category_news">
+					{{#articles}}
 					<div class="row margin-bottom-50">
 						<div class="col-sm-4 sm-margin-bottom-20">
-							<img class="img-responsive" src="/imagen/articulo/{{id}}" alt="">
+							<img class="img-responsive" src="/imagen/articulo/{{id}}" alt="Imagen del articulo">
 						</div>
 						<div class="col-sm-8">
 							<div class="blog-grid">
@@ -247,7 +247,7 @@
 							</div>
 						</div>
 					</div>
-					{{/articulos}}
+					{{/articles}}
 					<!-- End Blog Grid -->
 				
                 </div>
@@ -258,7 +258,7 @@
 				
 				<!-- more results -->
                 <div class="button-more-results">
-				    <button class="moreResults" id="moreResults">M&aacute;s resultados</button>
+				    <button class="more-results" id="more-results">M&aacute;s resultados</button>
                 </div>
 				
 			</div>
@@ -296,7 +296,6 @@
 						<small><a href="/articulo/{{article.id}}">{{article.titleShort}}</a></small>
 						<h3><a href="/articulo/{{article.id}}">{{commentShort}}</a></h3>
 					</div>
-
 					<hr class="hr-xs">
 					{{/last_comments}}
 
@@ -563,8 +562,7 @@
 		App.initCounter();
 	});
 	
-	var categoryId="{{cat}}";
-	var nPage=1;
+	var categoryId="{{category.id}}";
 </script>
 <!--[if lt IE 9]>
 	<script src="/plugins/respond.js"></script>

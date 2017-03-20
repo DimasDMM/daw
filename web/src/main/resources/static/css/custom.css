@@ -183,3 +183,20 @@
 	height: 400px !important;
 	width: auto;
 }
+
+.more-results {
+    border-radius: 5px;
+    background: rgba(231, 76, 60, 0.80);
+    font-size: medium;
+    font-weight: 700;
+	text-transform: uppercase;
+    font-family: 'Roboto Slab', sans-serif;
+}
+
+.button-more-results {
+    text-align: center;
+}
+
+.search-category {
+    text-transform: none !important;
+}

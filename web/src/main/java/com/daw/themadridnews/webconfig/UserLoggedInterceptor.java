@@ -17,7 +17,7 @@ public class UserLoggedInterceptor extends HandlerInterceptorAdapter {
 	
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-    	if(modelAndView.getView() instanceof RedirectView) return;
+    	if(modelAndView == null || modelAndView.getView() instanceof RedirectView) return;
     	
     	modelAndView.addObject("user_role_user", request.isUserInRole("USER") || request.isUserInRole("ADMIN"));
     	modelAndView.addObject("user_role_editor", request.isUserInRole("EDITOR") || request.isUserInRole("ADMIN"));

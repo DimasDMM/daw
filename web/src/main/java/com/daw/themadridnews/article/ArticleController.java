@@ -9,18 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
-import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.comment.CommentView;
 import com.daw.themadridnews.requests.FormComment;
-import com.daw.themadridnews.user.User;
-import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.utils.Message;
-import com.daw.themadridnews.webconfig.Config;
 
 @Controller
 public class ArticleController {
+	
+	@Autowired
+	protected ArticleService articleService;
 
 	@Autowired
 	protected ArticleRepository articleRepository;
@@ -28,22 +26,14 @@ public class ArticleController {
 	@Autowired
 	protected CommentRepository commentRepository;
 	
-	@Autowired
-	protected UserComponent userComponent;
-	
-	@Autowired
-	protected Config config;
-	
 
 	@RequestMapping(value="/articulo/{id}", method=RequestMethod.GET)
 	public ModelAndView showArticle(Model model, @PathVariable long id) {
-		Article a = articleRepository.findOne(id);
+		Article a = articleService.getArticle(id);
+		articleService.addViewToArticle(a);
 		
 		if(a == null)
 			return new ModelAndView( new RedirectView("/error/404") );
-		
-		a.addView();
-		articleRepository.save(a);
 		
 		List<CommentView> comments = CommentView.castList( commentRepository.findByArticle(a) );
 		long nComments = commentRepository.countByArticle(a);
@@ -83,17 +73,12 @@ public class ArticleController {
 		if(article == null)
 			return new ModelAndView( new RedirectView("/error/404") );
 		
-		Message message = r.validation();
+		Message message = articleService.addComment(id, r);
+		
 		if(message.getCode() != 0) {
 			model.addAttribute("message", message);
 			return showArticle(model, id);
 		}
-		
-		User user = userComponent.getLoggedUser();
-        long number = commentRepository.countByArticle(article) + 1;
-        
-        Comment comment = new Comment(article, user, number, r.getComment());
-        commentRepository.save(comment);
 		
 		return showArticle(model, id);
 	}

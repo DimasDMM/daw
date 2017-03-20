@@ -124,7 +124,7 @@ public class FormNewAd extends RequestBase {
 		Message message = new Message();
 		
 		if(title.isEmpty() || url.isEmpty()) {
-			message.setCode(1);
+			message.setCode(100);
 			message.setMessage("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
 			message.setType("danger");
 			
@@ -134,7 +134,7 @@ public class FormNewAd extends RequestBase {
 				!Validator.intValidMin(this.getClicks(), 0) ||
 				!Validator.intValidMin(this.getViews(), 0)
 		) {
-			message.setCode(2);
+			message.setCode(101);
 			message.setMessage("Hay campos con informacion no valida. Por favor, reviselos antes de continuar");
 			message.setType("danger");	
 		}

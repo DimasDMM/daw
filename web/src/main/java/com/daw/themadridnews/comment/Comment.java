@@ -13,13 +13,17 @@ import javax.validation.constraints.NotNull;
 
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.user.User;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name="comments")
 public class Comment {
 	
+	public interface Basic {}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basic.class)
 	protected long id;
 	
 	@NotNull
@@ -28,15 +32,19 @@ public class Comment {
 	
 	@NotNull
 	@OneToOne
+	@JsonView(Basic.class)
 	protected User author;
 	
 	@NotNull
+	@JsonView(Basic.class)
 	protected long number; // Posicion del comentario en un articulo
 	
 	@Column(nullable = false, length = 500)
+	@JsonView(Basic.class)
 	protected String comment;
 	
 	@NotNull
+	@JsonView(Basic.class)
 	protected Date dateInsert;
 	
 	
