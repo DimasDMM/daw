@@ -1,45 +1,32 @@
 package com.daw.themadridnews.search;
 
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.daw.themadridnews.article.Article;
-import com.daw.themadridnews.article.ArticleRepository;
-import com.daw.themadridnews.article.ArticleView;
-import com.daw.themadridnews.comment.CommentRepository;
+import org.springframework.web.bind.annotation.RestController;
+import com.daw.themadridnews.search.SearchService.PageArticlesView;
+import com.fasterxml.jackson.annotation.JsonView;
 
+@RestController
+@RequestMapping("/api")
 public class SearchRestController {
 	
 	@Autowired
-	protected CommentRepository commentRepository;
-	
-	@Autowired
-	protected ArticleRepository articleRepository;
+	protected SearchService searchService;
 
-	@RequestMapping("/buscarbuscar?searchItem=/{npage}")
-	public ArticleList search(Model model, @RequestParam String searchItem, @PathVariable int npage, HttpServletRequest request){
-		Page<Article> a = articleRepository.findByTitleContaining(searchItem, new PageRequest(npage,10));
-		List<ArticleView> av = ArticleView.castList( a.getContent(), commentRepository);
-		
-		ArticleList articleList = new ArticleList();
-		articleList.content = av;
-		articleList.isLast = a.isLast();
-		
-		return articleList;
-	}
-	
-	
-	/****/
-	
-	public class ArticleList {
-		public List<ArticleView> content;
-		public boolean isLast;
-	}
 
+	@JsonView(SearchService.SearchBasic.class) 
+	@RequestMapping(value="/buscar", method=RequestMethod.GET)
+	public ResponseEntity<PageArticlesView> search(Model model, @RequestParam String item, @RequestParam(required=false) Integer page) {
+		int n = 0;
+		if(page != null)
+			n = page.intValue() - 1;
+		
+		PageArticlesView pav = searchService.getPageArticlesViewContaining(item, n);
+		return new ResponseEntity<>(pav, HttpStatus.OK);
+	}
 }

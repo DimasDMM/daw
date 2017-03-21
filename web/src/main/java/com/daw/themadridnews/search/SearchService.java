@@ -1,4 +1,4 @@
-package com.daw.themadridnews.categories;
+package com.daw.themadridnews.search;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.ArticleView;
@@ -13,27 +14,27 @@ import com.daw.themadridnews.comment.CommentRepository;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Service
-public class CategoryService {
+public class SearchService {
 	
-	public static interface CategoryBasic extends ArticleView.Basic {}
+	public static interface SearchBasic extends ArticleView.Basic {}
 	
-	public static final int N_RESULTS = 10;
+	public static final int N_RESULTS = 1;
 	
 	@Autowired
 	protected ArticleRepository articleRepository;
 	
 	@Autowired
 	protected CommentRepository commentRepository;
-
+	
 
 	// Devuelve una pagina de articulos para una categoria determinada
 	// Recordar que las paginas empiezan en 0
-	public PageArticlesView getPageArticlesView(String categoryId, int nPage) {
-		Page<Article> pa = articleRepository.findByCategory(categoryId, new PageRequest(nPage, N_RESULTS));
+	public PageArticlesView getPageArticlesViewContaining(String item, int nPage) {
+		Page<Article> a = articleRepository.findByTitleContaining(item, new PageRequest(nPage, N_RESULTS));
 		
 		PageArticlesView pav = new PageArticlesView();
-		pav.isLast = pa.isLast();
-		pav.content = ArticleView.castList( pa.getContent(), commentRepository );
+		pav.isLast = a.isLast();
+		pav.content = ArticleView.castList( a.getContent(), commentRepository );
 		
 		return pav;
 	}
@@ -42,7 +43,7 @@ public class CategoryService {
 	/*************/
 	
 	public class PageArticlesView {
-		@JsonView(CategoryService.CategoryBasic.class) public List<ArticleView> content;
-		@JsonView(CategoryService.CategoryBasic.class) public boolean isLast;
+		@JsonView(SearchService.SearchBasic.class) public List<ArticleView> content;
+		@JsonView(SearchService.SearchBasic.class) public boolean isLast;
 	}
 }

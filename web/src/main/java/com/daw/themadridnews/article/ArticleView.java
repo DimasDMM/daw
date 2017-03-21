@@ -175,7 +175,7 @@ public class ArticleView {
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", category=" + category + ", title=" + title + ", content=" + content
+		return "ArticleView [id=" + id + ", category=" + category + ", title=" + title + ", content=" + content
 				+ ", author=" + author + ", source=" + source + ", tags=" + tags + "]";
 	}
 	

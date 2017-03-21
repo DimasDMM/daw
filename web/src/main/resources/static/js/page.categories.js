@@ -1,23 +1,20 @@
 $(function () {
 	"use strict";
 	
-	var nPage = 0;
+	var nPage = 2;
 	
     $("#more-results").click(function () {
-    	
-    	console.log( JSON.stringify("puta") );
 
         $('#more-results').addClass('hidden');
         $('#spinner').removeClass('hidden');
 
         $.ajax({
-            url: "/api/categoria/" + categoryId + "/" + nPage
+            url: "/api/categoria/" + categoryId + "?page=" + nPage
         }).done(function (data) {
-        	
-        	console.log( JSON.stringify(data) );
+
             nPage++;
             
-            for(var i = 0; i< data.content.length; i++){
+            for(var i = 0; i < data.content.length; i++){
                 
                 var article = data.content[i];
                 
@@ -43,7 +40,7 @@ $(function () {
             
             // Terminar
             $('#spinner').addClass('hidden');
-            if (article.isLast == false){
+            if(!data.isLast) {
                 $('#more-results').removeClass('hidden');
             }
             
