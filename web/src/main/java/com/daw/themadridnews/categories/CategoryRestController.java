@@ -12,6 +12,7 @@ import com.daw.themadridnews.categories.CategoryService.PageArticlesView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
+@RequestMapping("/api")
 public class CategoryRestController {
 	
 	@Autowired

@@ -1,7 +1,6 @@
 package com.daw.themadridnews.ad;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
 import com.daw.themadridnews.user.User;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name="ads")
 public class Ad {
+	
+	public static interface Basic {}
 	
 	/*
 	 * Posibles tipos de anuncios
@@ -37,9 +38,11 @@ public class Ad {
 	protected User author;
 	
 	@NotNull
+	@JsonView(Basic.class)
 	protected String title;
 	
 	@NotNull
+	@JsonView(Basic.class)
 	protected String url;
 	
 	@NotNull

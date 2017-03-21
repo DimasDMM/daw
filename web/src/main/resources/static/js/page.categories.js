@@ -11,7 +11,7 @@ $(function () {
         $('#spinner').removeClass('hidden');
 
         $.ajax({
-            url: "/categoria/" + categoryId + "/" + nPage
+            url: "/api/categoria/" + categoryId + "/" + nPage
         }).done(function (data) {
         	
         	console.log( JSON.stringify(data) );
