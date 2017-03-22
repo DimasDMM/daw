@@ -14,14 +14,12 @@ import com.daw.themadridnews.files.FileUploadService;
 import com.daw.themadridnews.requests.FormSubscription;
 import com.daw.themadridnews.requests.FormSignupNew;
 import com.daw.themadridnews.requests.FormSignupPreferences;
-import com.daw.themadridnews.subscription.Subscription;
-import com.daw.themadridnews.subscription.SubscriptionRepository;
+import com.daw.themadridnews.subscription.SubscriptionService;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.user.UserRepository;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.webconfig.Config;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -45,11 +42,11 @@ public class WebController {
     @Autowired protected AdRepository adRepository;
     @Autowired protected UserRepository userRepository;
     @Autowired protected UserComponent userComponent;
-    @Autowired protected SubscriptionRepository subscriptionRepository;
+	@Autowired protected SubscriptionService subscriptionService;
     
 
     @RequestMapping(value= {"/","/portada"})
-    public ModelAndView index(Model model){
+    public ModelAndView index(Model model) {
     	
     	// Seccion: Carrousel
         List<ArticleView> carrousel = ArticleView.castList( articleRepository.findFirstEachCategory() );
@@ -113,9 +110,8 @@ public class WebController {
 	public ModelAndView subscription(Model model, FormSubscription r) {
 		Message message = r.validation();
 		
-		String email = r.getEmail();
-		Subscription subscription = new Subscription(email);
-		subscriptionRepository.save( subscription );
+		if(message.getCode() == 0)
+			subscriptionService.subscribe(r.getEmail());
 		
 		model.addAttribute("modal_subscription", true);
 		model.addAttribute("modal_type", (message.getCode() == 0 ? "success" : "danger" ) );

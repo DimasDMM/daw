@@ -2,16 +2,16 @@ package com.daw.themadridnews.requests;
 
 import com.daw.themadridnews.utils.Message;
 
-public class FormSubscription extends RequestBase {
+public class ApiSubscription {
 	
 	protected String email;
 	
 	
-	public FormSubscription() {
+	public ApiSubscription() {
 		super();
 	}
 
-	public FormSubscription(String email) {
+	public ApiSubscription(String email) {
 		super();
 		this.email = email;
 	}
@@ -26,17 +26,19 @@ public class FormSubscription extends RequestBase {
 
 	@Override
 	public String toString() {
-		return "FormSubscription [email=" + email + "]";
+		return "ApiSubscription [email=" + email + "]";
 	}
 	
 	public Message validation() {
-		Message message = super.validation();
-		if(message.getCode() != 0)
-			return message;
+		Message message = new Message();
 		
 		if(email == null || email.isEmpty()) {
 			message.setCode(100);
 			message.setMessage("Por favor, introduzca un correo electronico para poder subscribirse a nuestro boletin.");
+			message.setType("danger");
+		} else if(Validator.strValidMail(email)) {
+			message.setCode(101);
+			message.setMessage("Por favor, introduzca un correo electronico valido.");
 			message.setType("danger");
 		}
 		

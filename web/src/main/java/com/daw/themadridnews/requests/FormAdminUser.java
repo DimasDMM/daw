@@ -60,7 +60,7 @@ public class FormAdminUser extends RequestBase {
 	}
 
 	public Message validation() {
-		Message message = new Message();
+		Message message = super.validation();
 		
 		return message;
 	}

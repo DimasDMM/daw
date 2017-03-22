@@ -121,7 +121,9 @@ public class FormNewAd extends RequestBase {
 
 
 	public Message validation() {
-		Message message = new Message();
+		Message message = super.validation();
+		if(message.getCode() != 0)
+			return message;
 		
 		if(title.isEmpty() || url.isEmpty()) {
 			message.setCode(100);

@@ -19,6 +19,7 @@ public class FormModifyArticle extends FormNewArticle {
 	
 	public Message validation() {
 		Message message = super.validation();
+		
 		return message;
 	}
 }

@@ -123,7 +123,9 @@ public class FormUserPersonal extends RequestBase {
 	}
 
 	public Message validation() {
-		Message message = new Message();
+		Message message = super.validation();
+		if(message.getCode() != 0)
+			return message;
 		
 		if(name.isEmpty() || lastname.isEmpty() || email.isEmpty()) {
 			message.setCode(100);

@@ -13,9 +13,6 @@ public class FormModifyAd extends FormNewAd {
 	public Message validation() {
 		Message message = super.validation();
 		
-		if(message.getCode() != 0)
-			return message;
-		
 		return message;
 	}
 
