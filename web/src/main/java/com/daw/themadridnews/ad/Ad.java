@@ -15,8 +15,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name="ads")
 public class Ad {
-	
+
 	public static interface Basic {}
+	public static interface Author {}
 	
 	/*
 	 * Posibles tipos de anuncios
@@ -35,6 +36,7 @@ public class Ad {
 	
 	@NotNull
 	@OneToOne
+	@JsonView(Author.class)
 	protected User author;
 	
 	@NotNull
@@ -46,25 +48,17 @@ public class Ad {
 	protected String url;
 	
 	@NotNull
-	protected int type;
-	
-	@NotNull
 	protected int weight;
 	
 	// Limitaciones de visualizacion
-	@NotNull protected boolean isLimDateStart;
-	@NotNull protected boolean isLimDateEnd;
-	@NotNull protected boolean isLimClicks;
-	@NotNull protected boolean isLimViews;
-	
 	@Column(nullable = true) protected Date limDateStart;
 	@Column(nullable = true) protected Date limDateEnd;
-	@NotNull protected int limClicks;
-	@NotNull protected int limViews;
+	@Column(nullable = true) protected Integer limClicks;
+	@Column(nullable = true) protected Integer limViews;
 	
 	// Estadisticas actuales
-	@NotNull protected int nClicks;
-	@NotNull protected int nViews;
+	@NotNull protected int clicks;
+	@NotNull protected int views;
 	
 	@NotNull
 	protected Date dateInsert;
@@ -75,25 +69,20 @@ public class Ad {
 	/*
 	 * Para las restricciones que no queramos, introducir NULL o -1
 	 */
-	public Ad(User author, String title, String url, int type, int weight, Date limDateStart, Date limDateEnd, int limClicks, int limViews) {
+	public Ad(User author, String title, String url, int weight, Date limDateStart, Date limDateEnd, Integer limClicks, Integer limViews) {
 		this.author = author;
 		this.title = title;
 		this.url = url;
-		this.type = type;
 		this.weight = weight;
-		this.nClicks = 0;
-		this.nViews = 0;
-		this.dateInsert = new Date();
-
-		this.isLimDateStart = (limDateStart != null);
-		this.isLimDateEnd = (limDateEnd != null);
-		this.isLimClicks = (limClicks > 0);
-		this.isLimViews = (limViews > 0);
+		this.clicks = 0;
+		this.views = 0;
 		
 		this.limDateStart = limDateStart;
 		this.limDateEnd = limDateEnd;
-		this.limClicks = (isLimClicks ? limClicks : -1);
-		this.limViews = (isLimViews ? limViews : -1);
+		this.limClicks = limClicks;
+		this.limViews = limViews;
+
+		this.dateInsert = new Date();
 	}
 
 	public long getId() {
@@ -120,14 +109,6 @@ public class Ad {
 		this.url = url;
 	}
 
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
-
 	public int getWeight() {
 		return weight;
 	}
@@ -136,49 +117,40 @@ public class Ad {
 		this.weight = weight;
 	}
 
-	public boolean isLimDateStart() { return isLimDateStart; }
-	public boolean isLimDateEnd() { return isLimDateEnd; }
-	public boolean isLimClicks() { return isLimClicks; }
-	public boolean isLimViews() { return isLimViews; }
-
 	public Date getLimDateStart() { return limDateStart; }
 	public Date getLimDateEnd() { return limDateEnd; }
-	public int getLimClicks() { return limClicks; }
-	public int getLimViews() { return limViews; }
+	public Integer getLimClicks() { return limClicks; }
+	public Integer getLimViews() { return limViews; }
 
 	public void setLimDateStart(Date limDateStart) {
-		this.isLimDateStart = (limDateStart != null);
 		this.limDateStart = limDateStart;
 	}
 	public void setLimDateEnd(Date limDateEnd) {
-		this.isLimDateEnd = (limDateEnd != null);
 		this.limDateEnd = limDateEnd;
 	}
 
-	public void setLimClicks(int limClicks) {
-		this.isLimClicks = (limClicks > 0);
-		this.limClicks = (isLimClicks ? limClicks : -1);
+	public void setLimClicks(Integer limClicks) {
+		this.limClicks = limClicks;
 	}
 
-	public void setLimViews(int limViews) {
-		this.isLimViews = (limClicks > 0);
-		this.limViews = (isLimViews ? limViews : -1);
+	public void setLimViews(Integer limViews) {
+		this.limViews = limViews;
 	}
 
 	public int getClicks() {
-		return nClicks;
+		return clicks;
 	}
 	
 	public void addClick() {
-		this.nClicks++;
+		this.clicks++;
 	}
 
 	public int getViews() {
-		return nViews;
+		return views;
 	}
 	
 	public void addView() {
-		this.nViews++;
+		this.views++;
 	}
 
 	public Date getDateInsert() {
@@ -187,10 +159,9 @@ public class Ad {
 
 	@Override
 	public String toString() {
-		return "Ad [id=" + id + ", title=" + title + ", url=" + url + ", type=" + type + ", weight=" + weight
-				+ ", isLimDateStart=" + isLimDateStart + ", isLimDateEnd=" + isLimDateEnd + ", isLimClicks="
-				+ isLimClicks + ", isLimViews=" + isLimViews + ", limDateStart=" + limDateStart + ", limDateEnd="
-				+ limDateEnd + ", limClicks=" + limClicks + ", limViews=" + limViews + ", nClicks=" + nClicks
-				+ ", nViews=" + nViews + ", dateInsert=" + dateInsert + "]";
+		return "Ad [id=" + id + ", author=" + author + ", title=" + title + ", url=" + url
+				+ ", weight=" + weight + ", limDateStart=" + limDateStart + ", limDateEnd=" + limDateEnd
+				+ ", limClicks=" + limClicks + ", limViews=" + limViews + ", clicks=" + clicks + ", views=" + views
+				+ ", dateInsert=" + dateInsert + "]";
 	}
 }

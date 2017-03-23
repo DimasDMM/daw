@@ -10,9 +10,9 @@ public class SubscriptionService {
     protected SubscriptionRepository subscriptionRepository;
 	
 
-	public void subscribe(String email) {
+	public Subscription subscribe(String email) {
 		Subscription subscription = new Subscription(email);
-		subscriptionRepository.save( subscription );
+		return subscriptionRepository.save( subscription );
 	}
 
 }

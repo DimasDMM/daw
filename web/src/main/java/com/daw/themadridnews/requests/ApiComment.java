@@ -2,14 +2,14 @@ package com.daw.themadridnews.requests;
 
 import com.daw.themadridnews.utils.Message;
 
-public class FormComment extends FormBase {
+public class ApiComment implements ApiBase {
 	
 	protected String comment;
 	
 	
-	public FormComment() {super();}
+	public ApiComment() {super();}
 	
-	public FormComment(String comment) {
+	public ApiComment(String comment) {
 		this.comment = comment;
 	}
 	
@@ -23,14 +23,11 @@ public class FormComment extends FormBase {
 
 	@Override
 	public String toString() {
-		return "FormComment [comment=" + comment + "]";
+		return "ApiComment [comment=" + comment + "]";
 	}
 	
 	public Message validation() {
-		Message message = super.validation();
-		
-		if(message.getCode() != 0)
-			return message;
+		Message message = new Message();
 		
 		if(comment.isEmpty()) {
 			message.setCode(100);

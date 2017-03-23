@@ -9,7 +9,7 @@ import com.daw.themadridnews.user.User;
 
 public interface AdRepository extends JpaRepository<Ad, Long> {
 
-	@Query(nativeQuery=true, value="SELECT * FROM daw.ads WHERE is_lim_clicks AND lim_clicks < n_clicks OR !is_lim_clicks OR is_lim_views AND lim_views < n_views OR !is_lim_views OR is_lim_date_start AND lim_date_start >= NOW() OR !is_lim_date_start OR is_lim_date_end AND lim_date_end < NOW() OR !is_lim_date_end ORDER BY RAND() LIMIT 1;")
+	@Query(nativeQuery=true, value="SELECT * FROM daw.ads WHERE lim_clicks IS NOT NULL AND lim_clicks < clicks OR lim_clicks IS NULL OR lim_views IS NOT NULL AND lim_views < views OR lim_views IS NULL OR lim_date_start IS NOT NULL AND lim_date_start >= NOW() OR lim_date_start IS NULL OR lim_date_end IS NOT NULL AND lim_date_end < NOW() OR lim_date_end IS NULL ORDER BY RAND() LIMIT 1;")
 	public Ad findRandom();
 
 	public Page<Ad> findByAuthor(User author, Pageable page);

@@ -2,7 +2,7 @@ package com.daw.themadridnews.requests;
 
 import com.daw.themadridnews.utils.Message;
 
-public class FormSignupNew extends RequestBase {
+public class FormSignupNew extends FormBase {
 
 	protected boolean terms;
 	protected String name;

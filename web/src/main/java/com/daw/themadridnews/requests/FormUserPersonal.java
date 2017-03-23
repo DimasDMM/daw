@@ -2,7 +2,7 @@ package com.daw.themadridnews.requests;
 
 import com.daw.themadridnews.utils.Message;
 
-public class FormUserPersonal extends RequestBase {
+public class FormUserPersonal extends FormBase {
 
 	protected String name;
 	protected String lastname;

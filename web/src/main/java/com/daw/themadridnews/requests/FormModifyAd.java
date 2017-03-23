@@ -6,8 +6,8 @@ public class FormModifyAd extends FormNewAd {
 		
 	public FormModifyAd() {super();}
 
-	public FormModifyAd(String title, String url, String type, String weight, String datestart, String dateend, String clicks, String views) {
-		super(title, url, type, weight, datestart, dateend, clicks, views);
+	public FormModifyAd(String title, String url, int weight, String limdatestart, String limdateend, Integer limclicks, Integer limviews) {
+		super(title, url, weight, limdatestart, limdateend, limclicks, limviews);
 	}
 
 	public Message validation() {
@@ -18,7 +18,7 @@ public class FormModifyAd extends FormNewAd {
 
 	@Override
 	public String toString() {
-		return "FormModifyAd [title=" + title + ", url=" + url + ", type=" + type + ", weight=" + weight
-				+ ", datestart=" + datestart + ", dateend=" + dateend + ", clicks=" + clicks + ", views=" + views + "]";
+		return "FormModifyAd [title=" + title + ", url=" + url + ", weight=" + weight + ", limdatestart=" + limdatestart
+				+ ", limdateend=" + limdateend + ", limclicks=" + limclicks + ", limviews=" + limviews + "]";
 	}
 }

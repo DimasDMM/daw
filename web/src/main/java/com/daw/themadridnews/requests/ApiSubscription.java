@@ -2,7 +2,7 @@ package com.daw.themadridnews.requests;
 
 import com.daw.themadridnews.utils.Message;
 
-public class ApiSubscription {
+public class ApiSubscription implements ApiBase {
 	
 	protected String email;
 	

@@ -17,13 +17,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 	
 	public Page<Article> findByAuthor(User author, Pageable page);
 	public Page<Article> findByCategory(String category, Pageable page);
-	
-	//@Query(nativeQuery=true, value="SELECT * FROM Article WHERE title LIKE '%title%' LIMIT 10")
-	//public Page<Article> findByTitle(@Param("text") String title, Pageable page);
-	
-//	@Query(value = "SELECT * FROM articles WHERE title LIKE %?1% ")
-//	public Page<Article> findByTitle(String text, Pageable pageable);
-	
 	public Page<Article> findByTitleContaining(String title, Pageable pageable);
 	
 	@Query(nativeQuery=true, value="SELECT * FROM articles ORDER BY RAND() LIMIT 4")

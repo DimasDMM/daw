@@ -5,30 +5,28 @@ import java.util.Date;
 
 import com.daw.themadridnews.utils.Message;
 
-public class FormNewAd extends RequestBase {
+public class FormNewAd extends FormBase {
 	
 	protected String title;
 	protected String url;
-	protected String type;
-	protected String weight;
-	protected String datestart;
-	protected String dateend;
-	protected String clicks;
-	protected String views;
+	protected int weight;
+	protected String limdatestart;
+	protected String limdateend;
+	protected Integer limclicks;
+	protected Integer limviews;
 	
 	
 	public FormNewAd() {super();}
 
-	public FormNewAd(String title, String url, String type, String weight, String datestart, String dateend, String clicks, String views) {
+	public FormNewAd(String title, String url, int weight, String limdatestart, String limdateend, Integer limclicks, Integer limviews) {
 		super();
 		this.title = title;
 		this.url = url;
-		this.type = type;
 		this.weight = weight;
-		this.datestart = datestart;
-		this.dateend = dateend;
-		this.clicks = clicks;
-		this.views = views;
+		this.limdatestart = limdatestart;
+		this.limdateend = limdateend;
+		this.limclicks = limclicks;
+		this.limviews = limviews;
 	}
 
 	public String getTitle() {
@@ -47,76 +45,64 @@ public class FormNewAd extends RequestBase {
 		this.url = url;
 	}
 
-	public int getType() {
-		if(type == null || type.isEmpty()) return 0;
-		
-		return Integer.valueOf( type );
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public int getWeight() {
-		if(weight == null || weight.isEmpty()) return 0;
-		
-		return Integer.valueOf( weight );
+		return weight;
 	}
 
-	public void setWeight(String weight) {
+	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 
-	public Date getDatestart() {
-		if(datestart == null || datestart.isEmpty())
+	public Date getLimdatestart() {
+		if(limdatestart == null || limdatestart.isEmpty())
 			return null;
 		
 		try {
 			SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
-			return ft.parse( this.datestart );
+			return ft.parse( this.limdatestart );
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	public void setDatestart(String datestart) {
-		this.datestart = datestart;
+	public void setLimdatestart(String limdatestart) {
+		this.limdatestart = limdatestart;
 	}
 
-	public Date getDateend() {
-		if(dateend == null || dateend.isEmpty())
+	public Date getLimdateend() {
+		if(limdateend == null || limdateend.isEmpty())
 			return null;
 		
 		try {
 			SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
-			return ft.parse( this.dateend );
+			return ft.parse( this.limdateend );
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	public void setDateend(String dateend) {
-		this.dateend = dateend;
+	public void setLimdateend(String limdateend) {
+		this.limdateend = limdateend;
 	}
 
-	public int getClicks() {
-		if(clicks == null || clicks.isEmpty()) return 0;
+	public int getLimclicks() {
+		if(limclicks == null) return 0;
 		
-		return Integer.valueOf( clicks );
+		return Integer.valueOf( limclicks );
 	}
 
-	public void setClicks(String clicks) {
-		this.clicks = clicks;
+	public void setLimclicks(Integer limclicks) {
+		this.limclicks = limclicks;
 	}
 
-	public int getViews() {
-		if(views == null || views.isEmpty()) return 0;
+	public int getLimviews() {
+		if(limviews == null) return 0;
 		
-		return Integer.valueOf( views );
+		return Integer.valueOf( limviews );
 	}
 
-	public void setViews(String views) {
-		this.views = views;
+	public void setLimviews(Integer limviews) {
+		this.limviews = limviews;
 	}
 
 
@@ -131,10 +117,9 @@ public class FormNewAd extends RequestBase {
 			message.setType("danger");
 			
 		} else if(
-				!Validator.intValidMinMax(this.getType(), 0, 1) ||
 				!Validator.intValidMin(this.getWeight(), 1) ||
-				!Validator.intValidMin(this.getClicks(), 0) ||
-				!Validator.intValidMin(this.getViews(), 0)
+				!Validator.intValidMin(this.getLimclicks(), 0) ||
+				!Validator.intValidMin(this.getLimviews(), 0)
 		) {
 			message.setCode(101);
 			message.setMessage("Hay campos con informacion no valida. Por favor, reviselos antes de continuar");
@@ -146,7 +131,7 @@ public class FormNewAd extends RequestBase {
 
 	@Override
 	public String toString() {
-		return "FormNewAd [title=" + title + ", url=" + url + ", type=" + type + ", weight=" + weight + ", datestart="
-				+ datestart + ", dateend=" + dateend + ", clicks=" + clicks + ", views=" + views + "]";
+		return "FormNewAd [title=" + title + ", url=" + url + ", weight=" + weight + ", limdatestart="
+				+ limdatestart + ", limdateend=" + limdateend + ", limclicks=" + limclicks + ", limviews=" + limviews + "]";
 	}
 }

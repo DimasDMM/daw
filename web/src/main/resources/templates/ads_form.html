@@ -313,18 +313,7 @@
 							<input class="form-control" name="url" id="inp_url" value="{{ad_url}}" placeholder="Ejemplo: http://themadridnews.com">
 						</div>
 
-						<div class="col col-md-6">
-							<label for="inp_ad_type">Tipo de anuncio</label>
-							<label class="select">
-								<select name="type" id="inp_ad_type">
-									<option value="0" {{#ad_type_banner}}selected{{/ad_type_banner}}>Banner</option>
-									<option value="1" {{#ad_type_background}}selected{{/ad_type_background}}>Fondo de la web</option>
-								</select>
-								<i></i>
-							</label>
-						</div>
-
-						<div class="col col-md-6">
+						<div class="col col-12 full-width">
 							<label for="inp_weight">Ponderaci&oacute;n</label>
 							<input class="form-control" name="weight" id="inp_weight" value="{{ad_weight}}" placeholder="Frecuencia de aparici&oacute;n">
 							<small>Introduce un número que represente el "peso" de este anuncio frente a otros</small>
@@ -346,26 +335,26 @@
 						<p>Los datos de expiraci&oacute;n son totalmente opcionales. Rellenar solo aquellos que queramos.</p>
 
 						<section class="col col-md-6">
-							<label for="inp_date_start">Fecha de inicio</label>
-							<input class="form-control" name="datestart" id="inp_date_start" value="{{ad_date_start}}" placeholder="DD-MM-YYYY">
+							<label for="inp_lim_date_start">Fecha de inicio</label>
+							<input class="form-control" name="limdatestart" id="inp_lim_date_start" value="{{ad_lim_date_start}}" placeholder="DD-MM-YYYY">
 							<small>Por defecto: hoy</small>
 						</section>
 
 						<section class="col col-md-6">
-							<label for="inp_date_end">Fecha de finalizaci&oacute;n</label>
-							<input class="form-control" name="dateend" id="inp_date_end" value="{{ad_date_end}}" placeholder="DD-MM-YYYY">
+							<label for="inp_lim_date_end">Fecha de finalizaci&oacute;n</label>
+							<input class="form-control" name="limdateend" id="inp_lim_date_end" value="{{ad_lim_date_end}}" placeholder="DD-MM-YYYY">
 							<small>Por defecto: sin finalizaci&oacute;n</small>
 						</section>
 
 						<section class="col col-md-6">
-							<label for="inp_clicks">Número de clicks</label>
-							<input class="form-control" name="clicks" id="inp_clicks" value="{{ad_clicks}}" placeholder="Ejemplo: 1000">
+							<label for="inp_lim_clicks">Número de clicks</label>
+							<input class="form-control" name="limclicks" id="inp_lim_clicks" value="{{ad_lim_clicks}}" placeholder="Ejemplo: 1000">
 							<small>Número m&aacute;ximo de clicks de usuarios en el anuncio. Por defecto: sin l&iacute;mite</small>
 						</section>
 
 						<section class="col col-md-6">
-							<label for="inp_views">Número de visualizaciones</label>
-							<input class="form-control" name="views" id="inp_views" value="{{ad_views}}" placeholder="Ejemplo: 5000">
+							<label for="inp_lim_views">Número de visualizaciones</label>
+							<input class="form-control" name="limviews" id="inp_lim_views" value="{{ad_lim_views}}" placeholder="Ejemplo: 5000">
 							<small>Número m&aacute;ximo de clicks de usuarios en el anuncio. Por defecto: sin l&iacute;mite</small>
 						</section>
 

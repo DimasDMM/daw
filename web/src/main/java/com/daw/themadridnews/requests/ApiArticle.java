@@ -3,24 +3,36 @@ package com.daw.themadridnews.requests;
 import java.util.List;
 import com.daw.themadridnews.utils.Message;
 
-public class FormNewArticle extends FormBase {
+public class ApiArticle implements ApiBase {
 
+	protected Long id;
 	protected String category;
 	protected String title;
 	protected String content;
 	protected String source;
+	protected boolean visible;
 	protected List<String> tags;
 	
 	
-	public FormNewArticle() {super();}
+	public ApiArticle() {super();}
 	
-	public FormNewArticle(String category, String title, String content, String source, List<String> tags) {
+	public ApiArticle(Long id, String category, String title, String content, String source, boolean visible, List<String> tags) {
 		super();
+		this.id = id;
 		this.category = category;
 		this.title = title;
 		this.content = content;
 		this.source = source;
+		this.visible = visible;
 		this.tags = tags;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getCategory() {
@@ -54,6 +66,14 @@ public class FormNewArticle extends FormBase {
 	public void setSource(String source) {
 		this.source = source;
 	}
+	
+	public boolean getVisible() {
+		return visible;
+	}
+	
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
 
 	public List<String> getTags() {
 		return tags;
@@ -65,15 +85,13 @@ public class FormNewArticle extends FormBase {
 
 	@Override
 	public String toString() {
-		return "FormNewArticle [category=" + category + ", title=" + title + ", content=" + content
-				+ ", source=" + source + ", tags=" + tags + "]";
+		return "ApiArticle [category=" + category + ", title=" + title + ", content=" + content
+				+ ", source=" + source + ", visible=" + visible + ", tags=" + tags + "]";
 	}
 	
 	
 	public Message validation() {
-		Message message = super.validation();
-		if(message.getCode() != 0)
-			return message;
+		Message message = new Message();
 		
 		if(category.isEmpty() || title.isEmpty() || content.isEmpty() || source.isEmpty() || tags.isEmpty()) {
 			message.setCode(100);

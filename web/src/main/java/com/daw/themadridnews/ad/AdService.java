@@ -5,35 +5,34 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdService {
-	
-	public static interface AdBasic extends Ad.Basic {}
 
 	@Autowired
 	protected AdRepository adRepository;
 	
-	
-	public String getAdUrl(long id) {
-		Ad ad = adRepository.findOne(id);
-		
-		if(ad == null) return null;
-		
-		ad.addClick();
-		adRepository.save(ad);
-		
-		String url = ad.getUrl();
-		
-		return url;
-	}
 
 	public Ad getAd(long id) {
 		return adRepository.findOne(id);
 	}
 
-	public void addViewToAd(Ad ad) {
-		if(ad == null) return;
+	// Añadir visualizacion a un anuncio
+	public Ad addView(Ad ad) {
+		if(ad == null) return null;
 		
 		ad.addView();
-		adRepository.save(ad);
+		return adRepository.save(ad);
+	}
+	
+	// Añadir click a un anuncio
+	public Ad addClick(Ad ad) {
+		if(ad == null) return null;
+		
+		ad.addClick();
+		return adRepository.save(ad);
+	}
+
+	public Ad save(Ad ad) {
+		if(ad == null) return null;
+		return adRepository.save(ad);
 	}
 
 }

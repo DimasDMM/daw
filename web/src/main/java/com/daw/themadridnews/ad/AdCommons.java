@@ -14,19 +14,19 @@ public class AdCommons {
 	}
 	
 	public static int getStatus(Ad ad) {
-		if(ad.isLimClicks() && ad.getLimClicks() <= ad.getClicks()) {
+		if(ad.getLimClicks() != null && ad.getLimClicks() <= ad.getClicks()) {
 			return 2;
 		}
 
-		if(ad.isLimViews() && ad.getLimViews() <= ad.getViews()) {
+		if(ad.getLimViews() != null && ad.getLimViews() <= ad.getViews()) {
 			return 2;
 		}
 		
-		if(ad.isLimDateStart() && ad.getLimDateStart().after( new Date() )) {
+		if(ad.getLimDateStart() != null && ad.getLimDateStart().after( new Date() )) {
 			return 0;
 		}
 		
-		if(ad.isLimDateEnd() && ad.getLimDateEnd().before( new Date() )) {
+		if(ad.getLimDateEnd() != null && ad.getLimDateEnd().before( new Date() )) {
 			return 2;
 		}
 

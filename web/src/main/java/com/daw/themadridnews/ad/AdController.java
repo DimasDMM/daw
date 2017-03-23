@@ -17,10 +17,13 @@ public class AdController {
 
 	@RequestMapping(value="/anuncio/{id}", method=RequestMethod.GET)
 	public ModelAndView redirect(@PathVariable long id) {
-		String url = adService.getAdUrl(id);
+		Ad ad = adService.getAd(id);
 		
-		if(url == null)
+		if(ad == null)
 			return new ModelAndView( new RedirectView("/error/404") );
+		
+		String url = ad.getUrl();
+		adService.addClick(ad);
 		
 		return new ModelAndView( new RedirectView(url) );
 	}

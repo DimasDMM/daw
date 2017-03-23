@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.daw.themadridnews.utils.Message;
 
-public class FormUserFavourites extends RequestBase {
+public class FormUserFavourites extends FormBase {
 	
 	protected List<String> favs;
 	

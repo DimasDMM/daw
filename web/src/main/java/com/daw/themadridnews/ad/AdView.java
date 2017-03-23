@@ -14,7 +14,6 @@ public class AdView {
 	protected long id;
 	protected String title;
 	protected String url;
-	protected int type;
 	protected int weight;
 	
 	// Limitaciones de visualizacion
@@ -29,8 +28,8 @@ public class AdView {
 	protected String limViews;
 	
 	// Estadisticas actuales
-	protected int nClicks;
-	protected int nViews;
+	protected int clicks;
+	protected int views;
 
 	protected boolean statusWaiting;
 	protected boolean statusActive;
@@ -47,16 +46,15 @@ public class AdView {
 		this.id = ad.getId();
 		this.title = ad.getTitle();
 		this.url = ad.getUrl();
-		this.type = ad.getType();
 		this.weight = ad.getWeight();
-		this.nClicks = ad.getClicks();
-		this.nViews = ad.getViews();
+		this.clicks = ad.getClicks();
+		this.views = ad.getViews();
 		this.dateInsert = ad.getDateInsert();
 
-		this.isLimDateStart = ad.isLimDateStart();
-		this.isLimDateEnd = ad.isLimDateEnd();
-		this.isLimClicks = ad.isLimClicks();
-		this.isLimViews = ad.isLimViews();
+		this.isLimDateStart = ad.getLimDateStart()!=null;
+		this.isLimDateEnd = ad.getLimDateEnd()!=null;
+		this.isLimClicks = ad.getLimClicks()!=null;
+		this.isLimViews = ad.getLimViews()!=null;
 
 		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy");
 		this.limDateStart = ( this.isLimDateStart ? ft.format( ad.getLimDateStart() ) : "&infin;" );
@@ -86,10 +84,6 @@ public class AdView {
 		return url;
 	}
 
-	public int getType() {
-		return type;
-	}
-
 	public int getWeight() {
 		return weight;
 	}
@@ -116,11 +110,11 @@ public class AdView {
 	public String getLimViewsStr() { return ( this.isLimViews ? String.valueOf( this.ad.getLimViews() ) : "" ); }
 
 	public int getClicks() {
-		return nClicks;
+		return clicks;
 	}
 
 	public int getViews() {
-		return nViews;
+		return views;
 	}
 
 	public Date getDateInsert() {
@@ -134,11 +128,11 @@ public class AdView {
 
 	@Override
 	public String toString() {
-		return "Ad [id=" + id + ", title=" + title + ", url=" + url + ", type=" + type + ", weight=" + weight
+		return "Ad [id=" + id + ", title=" + title + ", url=" + url + ", weight=" + weight
 				+ ", isLimDateStart=" + isLimDateStart + ", isLimDateEnd=" + isLimDateEnd + ", isLimClicks="
 				+ isLimClicks + ", isLimViews=" + isLimViews + ", limDateStart=" + limDateStart + ", limDateEnd="
-				+ limDateEnd + ", limClicks=" + limClicks + ", limViews=" + limViews + ", nClicks=" + nClicks
-				+ ", nViews=" + nViews + ", dateInsert=" + dateInsert + "]";
+				+ limDateEnd + ", limClicks=" + limClicks + ", limViews=" + limViews + ", clicks=" + clicks
+				+ ", views=" + views + ", dateInsert=" + dateInsert + "]";
 	}
 	
 	public static List<AdView> castList(List<Ad> l) {

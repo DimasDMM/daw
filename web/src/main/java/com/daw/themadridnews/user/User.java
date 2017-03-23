@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "users")
 public class User {
 
-	public interface Basic {}
+	public static interface Basic {}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +30,6 @@ public class User {
 
 	@Column(unique = true)
 	@NotNull
-	@JsonView(Basic.class)
 	private String email;
 
 	@NotNull

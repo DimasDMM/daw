@@ -2,7 +2,7 @@ package com.daw.themadridnews.requests;
 
 import com.daw.themadridnews.utils.Message;
 
-public class RequestBase {
+public abstract class FormBase {
 	protected String _csrf;
 	
 	public String get_csrf() {

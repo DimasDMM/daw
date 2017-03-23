@@ -2,7 +2,7 @@ package com.daw.themadridnews.requests;
 
 import com.daw.themadridnews.utils.Message;
 
-public class FormUserPass extends RequestBase {
+public class FormUserPass extends FormBase {
 
 	protected String pass_now;
 	protected String pass_new;

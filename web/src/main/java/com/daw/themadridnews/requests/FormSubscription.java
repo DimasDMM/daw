@@ -2,7 +2,7 @@ package com.daw.themadridnews.requests;
 
 import com.daw.themadridnews.utils.Message;
 
-public class FormSubscription extends RequestBase {
+public class FormSubscription extends FormBase {
 	
 	protected String email;
 	

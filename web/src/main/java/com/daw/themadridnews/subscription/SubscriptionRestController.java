@@ -25,7 +25,7 @@ public class SubscriptionRestController {
 	 * BORRAR ESTE METODO CUANDO SE TERMINE DE TESTEAR
 	 */
 	@RequestMapping(value="/subscripcion", method=RequestMethod.GET)
-	public ResponseEntity<Message> subscribe(HttpServletRequest request) {
+	public ResponseEntity<Object> subscribe(HttpServletRequest request) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		
 		if(token == null && request.getSession() != null)
@@ -41,14 +41,14 @@ public class SubscriptionRestController {
 	}
 	
 	@RequestMapping(value="/subscripcion", method=RequestMethod.POST)
-	public ResponseEntity<Message> subscribe(@RequestBody ApiSubscription r) {
+	public ResponseEntity<Object> subscribe(@RequestBody ApiSubscription r) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		
-		subscriptionService.subscribe(r.getEmail());
+		Subscription s = subscriptionService.subscribe(r.getEmail());
 		
-		return new ResponseEntity<>(message, HttpStatus.OK);
+		return new ResponseEntity<>(s, HttpStatus.OK);
 	}
 	
 }

@@ -42,8 +42,8 @@ public class DataExampleController implements CommandLineRunner {
         userRepository.save(u1); userRepository.save(u2); userRepository.save(u3);
         
         // Anuncio de ejemplo
-        adRepository.save( new Ad(u2, "ZalduaAbogados", "http://www.zgasociados.com/", 0, 40, null, null, 1500, 700) );
-        adRepository.save( new Ad(u2, "HyS", "http://www.hys.es/es-es", 0, 40, null, null, 1500, 700) );
+        adRepository.save( new Ad(u2, "ZalduaAbogados", "http://www.zgasociados.com/", 40, null, null, 1500, 700) );
+        adRepository.save( new Ad(u2, "HyS", "http://www.hys.es/es-es", 40, null, null, 1500, 700) );
         
         // Articulo de ejemplo
         ArrayList<String> tags = new ArrayList<String>();

@@ -1,16 +1,22 @@
 package com.daw.themadridnews.article;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
 import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.user.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name="articles")
 public class Article {
+
+	public static interface Basic {}
+	public static interface Comments {}
+	public static interface Details {}
 	
 	/*
 	 * Lista de posibles categorias:
@@ -28,44 +34,59 @@ public class Article {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basic.class)
 	protected long id;
 	
 	@NotNull
+	@JsonView(Basic.class)
 	protected String category;
 	
 	@NotNull
+	@JsonView(Basic.class)
 	protected String title;
 	
 	@NotNull
 	@Column(columnDefinition="TEXT")
+	@JsonView(Basic.class)
 	protected String content;
 	
 	@ManyToOne
 	@NotNull
-	@JsonBackReference
+	@JsonView(Basic.class)
 	protected User author;
-	
+
+	@NotNull
+	@JsonView(Basic.class)
 	protected String source;
 	
 	@ElementCollection(fetch = FetchType.LAZY)
 	@NotNull
+	@JsonView(Basic.class)
 	protected List<String> tags;
 	
 	@NotNull
+	@JsonView(Details.class)
 	protected boolean visible;
 	
 	@NotNull
+	@JsonView(Basic.class)
 	protected int views;
 	
 	@OneToMany(mappedBy="article", cascade=CascadeType.ALL)
-	@JsonBackReference
+	@ElementCollection(fetch = FetchType.LAZY)
+	@JsonView(Comments.class)
 	protected List<Comment> comments;
 	
 	@NotNull
+	@JsonView(Basic.class)
 	protected Date dateInsert;
 	
 	
-	public Article() {}
+	public Article() {
+		tags = new ArrayList<String>();
+		comments = new ArrayList<Comment>();
+		dateInsert = new Date();
+	}
 	
 	public Article(String category, String title, String content, User author, String source, List<String> tags, List<Comment> comments, boolean visible) {
 		this.category = category;

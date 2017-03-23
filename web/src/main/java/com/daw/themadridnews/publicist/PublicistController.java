@@ -48,13 +48,11 @@ public class PublicistController {
 		
 		model.addAttribute("ad_title", "");
 		model.addAttribute("ad_url", "");
-		model.addAttribute("ad_type_banner", false);
-		model.addAttribute("ad_type_background", false);
 		model.addAttribute("ad_weight", "");
-		model.addAttribute("ad_date_start", "");
-		model.addAttribute("ad_date_end", "");
-		model.addAttribute("ad_clicks", "");
-		model.addAttribute("ad_views", "");
+		model.addAttribute("ad_lim_date_start", "");
+		model.addAttribute("ad_lim_date_end", "");
+		model.addAttribute("ad_lim_clicks", "");
+		model.addAttribute("ad_lim_views", "");
 		
 		model.addAttribute("is_modification", false);
 		
@@ -71,7 +69,7 @@ public class PublicistController {
 		
 		User userLogged = userComponent.getLoggedUser();
 		
-		Ad ad = new Ad( userLogged, r.getTitle(), r.getUrl(), r.getType(), r.getWeight(), r.getDatestart(), r.getDateend(), r.getClicks(), r.getViews() );
+		Ad ad = new Ad( userLogged, r.getTitle(), r.getUrl(), r.getWeight(), r.getLimdatestart(), r.getLimdateend(), r.getLimclicks(), r.getLimviews() );
 		ad = adRepository.save( ad );
 		
 		FileUploadService.saveImage( file, config.getPathImgAds(), String.valueOf(ad.getId()) );
@@ -96,13 +94,11 @@ public class PublicistController {
 		
 		model.addAttribute("ad_title", adv.getTitle());
 		model.addAttribute("ad_url", adv.getUrl());
-		model.addAttribute("ad_type_banner", (adv.getType()==0) );
-		model.addAttribute("ad_type_background", (adv.getType()==1) );
 		model.addAttribute("ad_weight", adv.getWeight());
-		model.addAttribute("ad_date_start", adv.getLimDateStartStr());
-		model.addAttribute("ad_date_end", adv.getLimDateEndStr());
-		model.addAttribute("ad_clicks", adv.getLimClicksStr());
-		model.addAttribute("ad_views", adv.getLimViewsStr());
+		model.addAttribute("ad_lim_date_start", adv.getLimDateStartStr());
+		model.addAttribute("ad_lim_date_end", adv.getLimDateEndStr());
+		model.addAttribute("ad_lim_clicks", adv.getLimClicksStr());
+		model.addAttribute("ad_lim_views", adv.getLimViewsStr());
 		
 		model.addAttribute("is_modification", true);
 		
@@ -128,12 +124,11 @@ public class PublicistController {
 		
 		ad.setTitle(r.getTitle());
 		ad.setUrl(r.getUrl());
-		ad.setType(r.getType());
 		ad.setWeight(r.getWeight());
-		ad.setLimDateStart(r.getDatestart());
-		ad.setLimDateEnd(r.getDateend());
-		ad.setLimClicks(r.getClicks());
-		ad.setLimViews(r.getViews());
+		ad.setLimDateStart(r.getLimdatestart());
+		ad.setLimDateEnd(r.getLimdateend());
+		ad.setLimClicks(r.getLimclicks());
+		ad.setLimViews(r.getLimviews());
 		
 		ad = adRepository.save(ad);
 		

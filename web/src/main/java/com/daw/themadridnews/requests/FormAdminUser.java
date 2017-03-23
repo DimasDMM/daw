@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.daw.themadridnews.utils.Message;
 
-public class FormAdminUser extends RequestBase {
+public class FormAdminUser extends FormBase {
 	
 	protected String name;
 	protected String lastname;
