@@ -28,7 +28,7 @@ public class CommentService {
 		return commentRepository.findByArticle(a);
 	}
 	
-	public List<Comment> getLastComments() {
+	public List<Comment> getLast5() {
 		return commentRepository.findFirst5ByOrderByDateInsertDesc();
 	}
 

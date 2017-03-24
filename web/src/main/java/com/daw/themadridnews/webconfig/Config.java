@@ -3,10 +3,13 @@ package com.daw.themadridnews.webconfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import com.daw.themadridnews.utils.Message;
 
 @Configuration
 @PropertySource("classpath:config.properties")
 public class Config {
+	
+	public static interface Responses extends Message.Basic {}
 
     @Value("${path.img.absolute}") 
 	private String pathImgAbsolute;

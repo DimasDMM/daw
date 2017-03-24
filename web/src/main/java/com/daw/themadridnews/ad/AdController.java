@@ -17,7 +17,7 @@ public class AdController {
 
 	@RequestMapping(value="/anuncio/{id}", method=RequestMethod.GET)
 	public ModelAndView redirect(@PathVariable long id) {
-		Ad ad = adService.getAd(id);
+		Ad ad = adService.get(id);
 		
 		if(ad == null)
 			return new ModelAndView( new RedirectView("/error/404") );

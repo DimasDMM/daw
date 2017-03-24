@@ -10,17 +10,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    protected UserRepositoryAuthenticationProvider authenticationProvider;
+    protected UserRepositoryAuthenticationProvider authProvider;
 
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	
-    	// Api Rest
-        http.authorizeRequests().antMatchers("/api/**").permitAll();
 
     	// Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
@@ -44,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/ajustes/**").hasAnyRole("USER");
         
         http.authorizeRequests().antMatchers("/editor/**").hasAnyRole( "EDITOR", "ADMIN");
-        http.authorizeRequests().antMatchers("/publicista/**").hasAnyRole( "ADVERTISING", "ADMIN");
+        http.authorizeRequests().antMatchers("/publicista/**").hasAnyRole( "PUBLICIST", "ADMIN");
         http.authorizeRequests().antMatchers("/administrador/**").hasAnyRole( "ADMIN");
         
         // Login form
@@ -62,6 +59,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider);
+        auth.authenticationProvider(authProvider);
     }
 }

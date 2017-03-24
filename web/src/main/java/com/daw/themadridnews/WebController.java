@@ -1,6 +1,6 @@
 package com.daw.themadridnews;
 
-import com.daw.themadridnews.ad.AdRepository;
+import com.daw.themadridnews.ad.AdService;
 import com.daw.themadridnews.ad.AdCommons;
 import com.daw.themadridnews.ad.AdView;
 import com.daw.themadridnews.article.ArticleRepository;
@@ -10,14 +10,13 @@ import com.daw.themadridnews.article.CategoryView;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.comment.CommentView;
 import com.daw.themadridnews.favourite.Favourite;
-import com.daw.themadridnews.files.FileUploadService;
+import com.daw.themadridnews.files.FileUploadCommons;
 import com.daw.themadridnews.requests.FormSubscription;
 import com.daw.themadridnews.requests.FormSignupNew;
 import com.daw.themadridnews.requests.FormSignupPreferences;
 import com.daw.themadridnews.subscription.SubscriptionService;
 import com.daw.themadridnews.user.User;
-import com.daw.themadridnews.user.UserComponent;
-import com.daw.themadridnews.user.UserRepository;
+import com.daw.themadridnews.user.UserService;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.webconfig.Config;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +38,8 @@ public class WebController {
     @Autowired protected Config config;
     @Autowired protected ArticleRepository articleRepository;
     @Autowired protected CommentRepository commentRepository;
-    @Autowired protected AdRepository adRepository;
-    @Autowired protected UserRepository userRepository;
-    @Autowired protected UserComponent userComponent;
+    @Autowired protected AdService adService;
+    @Autowired protected UserService userService;
 	@Autowired protected SubscriptionService subscriptionService;
     
 
@@ -54,7 +52,7 @@ public class WebController {
         
         // Seccion: Ultimas noticias favoritas
         String category = null;
-    	User userLogged = userComponent.getLoggedUser();
+    	User userLogged = userService.getLoggedUser();
         if(userLogged != null) {
             Favourite fav = userLogged.getFavourites();
             
@@ -90,7 +88,7 @@ public class WebController {
         model.addAttribute("categories", categories);
         
         // Seccion: Anuncio
-        AdView ad = new AdView( AdCommons.getRandom(adRepository) );
+        AdView ad = new AdView( AdCommons.getRandom(adService) );
         model.addAttribute("ad_banner", ad);
 		
 		return new ModelAndView("index");
@@ -151,18 +149,18 @@ public class WebController {
     	user.setPasswordHash( r.getPass_new1() );
     	user.getRoles().add("ROLE_USER");
         
-        userRepository.save(user);
-        userComponent.setLoggedUser(user);
+    	userService.save(user);
+        userService.setLoggedUser(user);
         
 		return new ModelAndView("signup-preferences");
     }
     
     @RequestMapping(value="/registro/ajustes-iniciales", method=RequestMethod.POST)
     public ModelAndView registerPreferences(Model model, FormSignupPreferences r, @RequestParam("file") MultipartFile file){
-        User userLogged = userComponent.getLoggedUser();
+        User userLogged = userService.getLoggedUser();
         
         if(!file.isEmpty())
-        	FileUploadService.saveImage( file, config.getPathImgUsers(), String.valueOf(userLogged.getId()) );
+        	FileUploadCommons.saveImage( file, config.getPathImgUsers(), String.valueOf(userLogged.getId()) );
     	
     	Favourite favourite = userLogged.getFavourites();
     	favourite.setMadrid( r.get("madrid") );
@@ -173,7 +171,7 @@ public class WebController {
     	favourite.setCulture( r.get("culture") );
     	
     	userLogged.setFavourites(favourite);
-    	userRepository.save(userLogged);
+    	userService.save(userLogged);
     	
     	model.addAttribute("signup_success", true);
 

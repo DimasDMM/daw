@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class AdCommons {
 	
-	public static Ad getRandom(AdRepository rep) {
+	public static Ad getRandom(AdService rep) {
 		Ad ad = rep.findRandom();
 		
 		ad.addView();

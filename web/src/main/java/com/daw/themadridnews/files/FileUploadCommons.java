@@ -9,7 +9,7 @@ import java.io.OutputStream;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class FileUploadService {
+public class FileUploadCommons {
 
 	public static boolean saveImage(MultipartFile file, String path, String name){
 		String filename = name +".jpg";

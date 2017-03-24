@@ -26,9 +26,6 @@ public class ArticleController {
 	protected ArticleService articleService;
 
 	@Autowired
-	protected ArticleRepository articleRepository;
-
-	@Autowired
 	protected CommentService commentService;
 	
 	@Autowired
@@ -49,10 +46,10 @@ public class ArticleController {
 		List<CommentView> comments = CommentView.castList( commentService.get(a) );
 		long nComments = commentService.countByArticle(a);
 
-		List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst5ByVisible(true), commentRepository );
+		List<ArticleView> lastArticles = ArticleView.castList( articleService.findFirst5(), commentRepository );
 		List<CategoryView> categories = CategoryView.castList( CategoryCommons.getCategoryList() );
-		List<CommentView> lastComments = CommentView.castList( commentService.getLastComments() );
-		List<ArticleView> otherArticles = ArticleView.castList( articleRepository.findRandom4() );
+		List<CommentView> lastComments = CommentView.castList( commentService.getLast5() );
+		List<ArticleView> otherArticles = ArticleView.castList( articleService.findRandom4() );
 		
 		ArticleView av = new ArticleView(a);
 
@@ -85,7 +82,7 @@ public class ArticleController {
 			return showArticle(model, id);
 		}
 		
-		Article article = articleRepository.findOne(id);
+		Article article = articleService.get(id);
 		if(article == null)
 			return new ModelAndView( new RedirectView("/error/404") );
 		

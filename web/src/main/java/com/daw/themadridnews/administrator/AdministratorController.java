@@ -4,8 +4,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import com.daw.themadridnews.requests.FormAdminUser;
 import com.daw.themadridnews.user.User;
-import com.daw.themadridnews.user.UserRepository;
+import com.daw.themadridnews.user.UserService;
 import com.daw.themadridnews.user.UserView;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.utils.ModPagination;
@@ -26,9 +24,7 @@ import com.daw.themadridnews.utils.ModPagination.ModPageItem;
 public class AdministratorController {
 	
 	@Autowired
-	protected UserRepository userRepository;
-	
-	protected static final int nItemsList = 20;
+	protected UserService userService;
 	
 	
 	@RequestMapping(value="/administrador", method=RequestMethod.GET)
@@ -39,7 +35,7 @@ public class AdministratorController {
 	@RequestMapping(value="/administrador/usuario/{id}", method=RequestMethod.GET)
 	public ModelAndView showFormModify(Model model, @PathVariable long id) {
 		Message message;
-		User user = userRepository.findOne(id);
+		User user = userService.get(id);
 		
 		if(user == null) {
 			message = new Message(1, "El usuario no existe. Por favor, seleccione uno de la lista.", "danger");
@@ -62,7 +58,7 @@ public class AdministratorController {
 	@RequestMapping(value="/administrador/usuario/{id}", method=RequestMethod.POST)
 	public ModelAndView showFormModify(Model model, FormAdminUser r, @PathVariable long id) {
 		Message message;
-		User user = userRepository.findOne(id);
+		User user = userService.get(id);
 		
 		if(user == null) {
 			message = new Message(1, "El usuario no existe. Por favor, seleccione uno de la lista.", "danger");
@@ -83,14 +79,15 @@ public class AdministratorController {
 		user.setLastname(r.getLastname());
 		user.setAlias(r.getAlias());
 		user.setRoles(roles);
-		userRepository.save(user);
+		userService.save(user);
 		
 		return new ModelAndView( new RedirectView("/administrador/usuario/lista/guardado") );
 	}
 	
 	@RequestMapping(value="/administrador/usuario/{id}/eliminar", method=RequestMethod.GET)
-	public ModelAndView deleteAd(Model model, @PathVariable long id) {
-		userRepository.delete(id);
+	public ModelAndView delete(Model model, @PathVariable long id) {
+		User user = userService.get(id);
+		userService.delete(user);
 		return new ModelAndView( new RedirectView("/administrador/usuario/lista/aliminado") );
 	}
 	
@@ -119,7 +116,7 @@ public class AdministratorController {
 	}
 	
 	private ModelAndView showListAux(Model model, int nPage) {
-		Page<User> page = userRepository.findAll( new PageRequest(nPage, nItemsList, Sort.Direction.DESC, "id") );
+		Page<User> page = userService.listWhenPermission(nPage);
 		
 		List<User> userList = page.getContent();
 		model.addAttribute("fuser_list", UserView.castList(userList) );

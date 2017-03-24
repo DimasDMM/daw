@@ -7,8 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.daw.themadridnews.article.ArticleRepository;
+import com.daw.themadridnews.article.ArticleService;
 import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.article.Category;
 import com.daw.themadridnews.article.CategoryCommons;
@@ -25,7 +24,7 @@ public class CategoryController {
 	protected CategoryService categoryService;
 	
 	@Autowired
-	protected ArticleRepository articleRepository;
+	protected ArticleService articleService;
 	
 	@Autowired
 	protected CommentRepository commentRepository;
@@ -35,10 +34,10 @@ public class CategoryController {
 	public ModelAndView categories(Model model, @PathVariable String categoryId){
 		PageArticlesView pav = categoryService.getPageArticlesView(categoryId, 0);
 		
-		List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst5ByVisible(true), commentRepository );
+		List<ArticleView> lastArticles = ArticleView.castList( articleService.findFirst5(), commentRepository );
 		List<CategoryView> categories = CategoryView.castList( CategoryCommons.getCategoryList() );
 		List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );
-		List<ArticleView> otherArticles = ArticleView.castList( articleRepository.findRandom4() );
+		List<ArticleView> otherArticles = ArticleView.castList( articleService.findRandom4() );
 
 		model.addAttribute("category", new Category(categoryId));
 

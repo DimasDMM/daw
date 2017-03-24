@@ -30,7 +30,7 @@ public class FormUserFavourites extends FormBase {
 	}
 
 	public Message validation() {
-		Message message = new Message();
+		Message message = super.validation();
 		
 		return message;
 	}

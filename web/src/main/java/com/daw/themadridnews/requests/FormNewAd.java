@@ -113,7 +113,7 @@ public class FormNewAd extends FormBase {
 		
 		if(title.isEmpty() || url.isEmpty()) {
 			message.setCode(100);
-			message.setMessage("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
+			message.setMessageHtml("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
 			message.setType("danger");
 			
 		} else if(
@@ -122,7 +122,7 @@ public class FormNewAd extends FormBase {
 				!Validator.intValidMin(this.getLimviews(), 0)
 		) {
 			message.setCode(101);
-			message.setMessage("Hay campos con informacion no valida. Por favor, reviselos antes de continuar");
+			message.setMessageHtml("Hay campos con informacion no valida. Por favor, reviselos antes de continuar");
 			message.setType("danger");	
 		}
 		

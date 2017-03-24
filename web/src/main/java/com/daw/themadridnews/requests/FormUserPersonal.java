@@ -129,7 +129,7 @@ public class FormUserPersonal extends FormBase {
 		
 		if(name.isEmpty() || lastname.isEmpty() || email.isEmpty()) {
 			message.setCode(100);
-			message.setMessage("Hay campos en blanco. Por favor, revisa todo el formulario antes de continuar.");
+			message.setMessageHtml("Hay campos en blanco. Por favor, revisa todo el formulario antes de continuar.");
 			message.setType("danger");
 		}
 		

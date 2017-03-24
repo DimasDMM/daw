@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 public class User {
 
 	public static interface Basic {}
+	public static interface Details {}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +29,7 @@ public class User {
 	@JsonView(Basic.class)
 	private String lastname;
 
+	@JsonView(Details.class)
 	@Column(unique = true)
 	@NotNull
 	private String email;
@@ -43,19 +45,32 @@ public class User {
 	@JsonView(Basic.class)
 	private String alias;
 
+	@JsonView(Details.class)
 	@OneToOne(cascade = CascadeType.ALL)
 	private Favourite favourites;
 
-	private char sex;
+	@JsonView(Details.class)
+	private Character sex;
+	
+	@JsonView(Details.class)
 	private String city;
+	
+	@JsonView(Details.class)
 	private String country;
+	
+	@JsonView(Details.class)
 	private String phoneNumber;
+	
+	@JsonView(Details.class)
 	private String description;
+	
+	@JsonView(Details.class)
 	private String personalWeb;
 
-	// Constructors
+
 	public User() {
 		this.roles = new ArrayList<String>();
+		this.favourites = new Favourite();
 	}
 
 	public User(String name, String lastname, String email, String pass, String... roles) {
@@ -64,15 +79,14 @@ public class User {
 		this.email = email;
 		this.passwordHash = new BCryptPasswordEncoder().encode(pass);
 		this.roles = new ArrayList<String>(Arrays.asList(roles));
+		this.favourites = new Favourite();
 	}
 
-	// Method toString
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", lastname=" + lastname + ", alias=" + alias + "]";
 	}
 
-	// Methods Getters & Setters
 	public long getId() {
 		return this.id;
 	}
@@ -94,9 +108,6 @@ public class User {
 	}
 
 	public List<String> getRoles() {
-		if(this.roles == null)
-			return new ArrayList<String>();
-		
 		return roles;
 	}
 
@@ -105,13 +116,10 @@ public class User {
 	}
 
 	public Favourite getFavourites() {
-		if(this.favourites == null)
-			return new Favourite();
-		
 		return this.favourites;
 	}
 
-	public char getSex() {
+	public Character getSex() {
 		return sex;
 	}
 
@@ -167,7 +175,7 @@ public class User {
 		this.favourites = favourites;
 	}
 
-	public void setSex(char sex) {
+	public void setSex(Character sex) {
 		this.sex = sex;
 	}
 
@@ -195,4 +203,7 @@ public class User {
 		return this.getRoles().contains( role );
 	}
 
+	public boolean equals(User user) {
+		return ( id == user.getId() );
+	}
 }

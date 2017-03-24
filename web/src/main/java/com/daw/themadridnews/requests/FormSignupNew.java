@@ -79,17 +79,17 @@ public class FormSignupNew extends FormBase {
 		
 		if(!terms) {
 			message.setCode(100);
-			message.setMessage("Es necesario que aceptes los términos de uso antes de enviar el formulario.");
+			message.setMessageHtml("Es necesario que aceptes los términos de uso antes de enviar el formulario.");
 			message.setType("danger");
 			
 		} else if(name.isEmpty() || lastname.isEmpty() || email.isEmpty() || pass_new1.isEmpty() || pass_new2.isEmpty()) {
 			message.setCode(101);
-			message.setMessage("Hay campos en blanco. Por favor, revisa todo el formulario antes de continuar.");
+			message.setMessageHtml("Hay campos en blanco. Por favor, revisa todo el formulario antes de continuar.");
 			message.setType("danger");
 			
 		} else if(!pass_new1.equals(pass_new2)) {
 			message.setCode(102);
-			message.setMessage("Las contraseñas no coinciden. Por favor, revisela antes de continuar.");
+			message.setMessageHtml("Las contraseñas no coinciden. Por favor, revisela antes de continuar.");
 			message.setType("danger");
 		}
 		

@@ -1,7 +1,7 @@
 package com.daw.themadridnews.preferences;
 
 import com.daw.themadridnews.favourite.Favourite;
-import com.daw.themadridnews.files.FileUploadService;
+import com.daw.themadridnews.files.FileUploadCommons;
 import com.daw.themadridnews.requests.FormUserFavourites;
 import com.daw.themadridnews.requests.FormUserPass;
 import com.daw.themadridnews.requests.FormUserPersonal;
@@ -87,7 +87,7 @@ public class PreferencesController {
     	userRepository.save(userLogged);
     	
     	message.setCode(0);
-    	message.setMessage("Los cambios han sido guardados correctamente");
+    	message.setMessageHtml("Los cambios han sido guardados correctamente");
     	message.setType("success");
     	model.addAttribute("message", message);
 
@@ -107,7 +107,7 @@ public class PreferencesController {
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
         if(!bcrypt.matches( r.getPass_now(), oldUser.getPasswordHash())){
         	message.setCode(1);
-        	message.setMessage("La contraseña actual no coincide con la que tiene en estos momentos");
+        	message.setMessageHtml("La contraseña actual no coincide con la que tiene en estos momentos");
         	message.setType("danger");
         	model.addAttribute("message", message);
     		return userSettings(model, request);
@@ -118,7 +118,7 @@ public class PreferencesController {
         userRepository.save(oldUser);
         
     	message.setCode(0);
-    	message.setMessage("La nueva contraseña ha sido guardada correctamente");
+    	message.setMessageHtml("La nueva contraseña ha sido guardada correctamente");
     	message.setType("success");
     	model.addAttribute("message", message);
     	
@@ -143,7 +143,7 @@ public class PreferencesController {
     	userRepository.save(userLogged);
 
     	message.setCode(0);
-    	message.setMessage("Los cambios han sido guardados correctamente");
+    	message.setMessageHtml("Los cambios han sido guardados correctamente");
     	message.setType("success");
     	model.addAttribute("message", message);
     	
@@ -155,10 +155,10 @@ public class PreferencesController {
     	Message message = new Message();
 
         User userLogged = userComponent.getLoggedUser();
-    	FileUploadService.saveImage( file, config.getPathImgUsers(), String.valueOf(userLogged.getId()) );
+    	FileUploadCommons.saveImage( file, config.getPathImgUsers(), String.valueOf(userLogged.getId()) );
 
     	message.setCode(0);
-    	message.setMessage("La imagen de perfil ha sido guardada correctamente");
+    	message.setMessageHtml("La imagen de perfil ha sido guardada correctamente");
     	message.setType("success");
     	model.addAttribute("message", message);
     	

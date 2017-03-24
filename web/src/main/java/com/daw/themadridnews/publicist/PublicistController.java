@@ -3,8 +3,6 @@ package com.daw.themadridnews.publicist;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.daw.themadridnews.ad.Ad;
-import com.daw.themadridnews.ad.AdRepository;
+import com.daw.themadridnews.ad.AdService;
 import com.daw.themadridnews.ad.AdView;
-import com.daw.themadridnews.files.FileUploadService;
+import com.daw.themadridnews.files.FileUploadCommons;
 import com.daw.themadridnews.requests.FormModifyAd;
 import com.daw.themadridnews.requests.FormNewAd;
 import com.daw.themadridnews.user.User;
@@ -32,15 +30,13 @@ import com.daw.themadridnews.webconfig.Config;
 public class PublicistController {
 	
 	@Autowired
-	protected AdRepository adRepository;
+	protected AdService adService;
 	
 	@Autowired
 	protected UserComponent userComponent;
 	
 	@Autowired
 	protected Config config;
-	
-	protected static final int nItemsList = 20;
 	
 
 	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.GET)
@@ -70,9 +66,9 @@ public class PublicistController {
 		User userLogged = userComponent.getLoggedUser();
 		
 		Ad ad = new Ad( userLogged, r.getTitle(), r.getUrl(), r.getWeight(), r.getLimdatestart(), r.getLimdateend(), r.getLimclicks(), r.getLimviews() );
-		ad = adRepository.save( ad );
+		ad = adService.save( ad );
 		
-		FileUploadService.saveImage( file, config.getPathImgAds(), String.valueOf(ad.getId()) );
+		FileUploadCommons.saveImage( file, config.getPathImgAds(), String.valueOf(ad.getId()) );
 
 		model.addAttribute("is_modification", true);
 
@@ -82,7 +78,7 @@ public class PublicistController {
 	@RequestMapping(value="/publicista/anuncio/{id}", method=RequestMethod.GET)
 	public ModelAndView showFormModify(Model model, @PathVariable long id) {
 		Message message;
-		Ad ad = adRepository.findOne(id);
+		Ad ad = adService.get(id);
 		
 		if(ad == null) {
 			message = new Message(1, "El anuncio no existe. Por favor, seleccione uno de la lista.", "danger");
@@ -108,7 +104,7 @@ public class PublicistController {
 	@RequestMapping(value="/publicista/anuncio/{id}", method=RequestMethod.POST)
 	public ModelAndView showFormModify(Model model, FormModifyAd r, @PathVariable long id, @RequestParam("file") MultipartFile file) {
 		Message message;
-		Ad ad = adRepository.findOne(id);
+		Ad ad = adService.get(id);
 		
 		if(ad == null) {
 			message = new Message(1, "El anuncio no existe. Por favor, seleccione uno de la lista.", "danger");
@@ -130,16 +126,17 @@ public class PublicistController {
 		ad.setLimClicks(r.getLimclicks());
 		ad.setLimViews(r.getLimviews());
 		
-		ad = adRepository.save(ad);
+		ad = adService.save(ad);
 		
-		FileUploadService.saveImage( file, config.getPathImgAds(), String.valueOf(ad.getId()) );
+		FileUploadCommons.saveImage( file, config.getPathImgAds(), String.valueOf(ad.getId()) );
 
 		return new ModelAndView( new RedirectView("/publicista/anuncio/lista/publicado") );
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/{id}/eliminar", method=RequestMethod.GET)
 	public ModelAndView deleteAd(Model model, @PathVariable long id) {
-		adRepository.delete(id);
+		Ad ad = adService.get(id);
+		adService.delete(ad);
 		return new ModelAndView( new RedirectView("/publicista/anuncio/lista/eliminado") );
 	}
 	
@@ -168,14 +165,7 @@ public class PublicistController {
 	}
 	
 	private ModelAndView showListAux(Model model, int nPage) {
-		Page<Ad> page;
-
-		if(userComponent.hasRole("ADMIN")) {
-			page = adRepository.findAll( new PageRequest(nPage, nItemsList, Sort.Direction.DESC, "id") );
-		} else {
-			User userLogged = userComponent.getLoggedUser();
-			page = adRepository.findByAuthor( userLogged, new PageRequest(nPage, nItemsList, Sort.Direction.DESC, "id") );
-		}
+		Page<Ad> page = adService.listWhenPermission(nPage);
 		
 		List<Ad> adList = page.getContent();
 		model.addAttribute("ad_list", AdView.castList(adList) );

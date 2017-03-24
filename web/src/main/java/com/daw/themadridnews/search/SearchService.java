@@ -11,12 +11,13 @@ import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.comment.CommentRepository;
+import com.daw.themadridnews.webconfig.Config;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Service
 public class SearchService {
 	
-	public static interface SearchBasic extends ArticleView.Basic {}
+	public static interface SearchBasic extends ArticleView.Basic, Config.Responses {}
 	
 	public static final int N_RESULTS = 1;
 	

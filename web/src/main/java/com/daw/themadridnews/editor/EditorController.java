@@ -3,8 +3,6 @@ package com.daw.themadridnews.editor;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,15 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.daw.themadridnews.article.Article;
-import com.daw.themadridnews.article.ArticleRepository;
+import com.daw.themadridnews.article.ArticleService;
 import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.article.CategoryCommons;
 import com.daw.themadridnews.article.CategoryView;
-import com.daw.themadridnews.comment.CommentRepository;
-import com.daw.themadridnews.files.FileUploadService;
+import com.daw.themadridnews.files.FileUploadCommons;
 import com.daw.themadridnews.requests.FormModifyArticle;
 import com.daw.themadridnews.requests.FormNewArticle;
-import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.utils.ModPagination;
@@ -35,18 +31,13 @@ import com.daw.themadridnews.webconfig.Config;
 public class EditorController {
 
 	@Autowired
-	protected ArticleRepository articleRepository;
-
-	@Autowired
-	protected CommentRepository commentRepository;
+	protected ArticleService articleService;
 	
 	@Autowired
 	protected UserComponent userComponent;
 	
 	@Autowired
 	protected Config config;
-	
-	protected static final int nItemsList = 20; // Numero de articulos por pagina
 
 	
 	@RequestMapping(value="/editor/articulo/nuevo", method=RequestMethod.GET)
@@ -80,16 +71,16 @@ public class EditorController {
 		String category = r.getCategory();
 		
 		Article article = new Article( category, r.getTitle(), r.getContent(), userComponent.getLoggedUser(), r.getSource(), r.getTags(), null, false );
-		article = articleRepository.save(article);
+		article = articleService.save(article);
 		
-		FileUploadService.saveImage( file, config.getPathImgArticles(), String.valueOf(article.getId()) );
+		FileUploadCommons.saveImage( file, config.getPathImgArticles(), String.valueOf(article.getId()) );
 
 		return showPreviewAux(model, article, false);
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.GET)
 	public ModelAndView showFormModify(Model model, @PathVariable long id) {
-		Article article = articleRepository.findOne(id);
+		Article article = articleService.get(id);
 		
 		if(article == null) {
 			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
@@ -102,7 +93,7 @@ public class EditorController {
 	
 	@RequestMapping(value="/editor/articulo/{id}/publicar", method=RequestMethod.GET)
 	public ModelAndView publishArticle(Model model, @PathVariable long id) {
-		Article article = articleRepository.findOne(id);
+		Article article = articleService.get(id);
 		
 		if(article == null) {
 			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
@@ -111,14 +102,14 @@ public class EditorController {
 		}
 		
 		article.setVisible(true);
-		articleRepository.save(article);
+		articleService.save(article);
 
 		return new ModelAndView( new RedirectView("/editor/articulo/lista/publicado") );
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}/ocultar", method=RequestMethod.GET)
 	public ModelAndView hideArticle(Model model, @PathVariable long id) {
-		Article article = articleRepository.findOne(id);
+		Article article = articleService.get(id);
 		
 		if(article == null) {
 			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
@@ -127,21 +118,22 @@ public class EditorController {
 		}
 		
 		article.setVisible(false);
-		articleRepository.save(article);
+		articleService.save(article);
 		
 		return new ModelAndView( new RedirectView("/editor/articulo/lista/ocultado") );
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}/eliminar", method=RequestMethod.GET)
 	public ModelAndView deleteArticle(Model model, @PathVariable long id) {
-		articleRepository.delete(id);
+		Article a = articleService.get(id);
+		articleService.delete(a);
 		return new ModelAndView( new RedirectView("/editor/articulo/lista/eliminado") );
 	}
 	
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.POST)
 	public ModelAndView showFormModifyPreview(Model model, FormModifyArticle r, @PathVariable long id, @RequestParam("file") MultipartFile file) {
 		Message message;
-		Article article = articleRepository.findOne(id);
+		Article article = articleService.get(id);
 		
 		if(article == null) {
 			message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
@@ -163,9 +155,9 @@ public class EditorController {
 		article.setSource(r.getSource());
 		article.setTags(r.getTags());
 		
-		article = articleRepository.save(article);
+		article = articleService.save(article);
 		
-		FileUploadService.saveImage( file, config.getPathImgArticles(), String.valueOf(article.getId()) );
+		FileUploadCommons.saveImage( file, config.getPathImgArticles(), String.valueOf(article.getId()) );
 		
 		return showPreviewAux(model, article, true);
 	}
@@ -228,17 +220,10 @@ public class EditorController {
 	}
 	
 	private ModelAndView showListAux(Model model, int nPage) {
-		Page<Article> page;
-		
-		if(userComponent.hasRole("ADMIN")) {
-			page = articleRepository.findAll( new PageRequest(nPage, nItemsList, Sort.Direction.DESC, "id") );
-		} else {
-			User userLogged = userComponent.getLoggedUser();
-			page = articleRepository.findByAuthor( userLogged, new PageRequest(nPage, nItemsList, Sort.Direction.DESC, "id") );
-		}
+		Page<Article> page = articleService.listWhenPermission(nPage);
 		
 		List<Article> articleList = page.getContent();
-		model.addAttribute("article_list", ArticleView.castList(articleList, commentRepository) );
+		model.addAttribute("article_list", ArticleView.castList(articleList) );
 		
 		ModPagination modPagination = new ModPagination();
 		List<ModPageItem> pageList = modPagination.getModPageList(page, "/editor/articulo/lista/");

@@ -1,14 +1,19 @@
 package com.daw.themadridnews.utils;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 /*
  * IMPORTANTE:
  * Establecer primero el codigo del mensaje, antes que el propio mensaje
  * Asi se añadira "<b>Error: </b>" o "<b>OK: </b>" al inicio dependiendo del valor del codigo
  */
 public class Message {
-	protected int code;
-	protected String message;
-	protected String type;
+	public static interface Basic {}
+	
+	@JsonView(Basic.class) protected int code;
+	@JsonView(Basic.class) protected String message;
+	@JsonView(Basic.class) protected String type;
+	
 	
 	public Message() {
 		this.code = 0;
@@ -18,7 +23,7 @@ public class Message {
 	
 	public Message(int code, String message, String type) {
 		this.code = code;
-		setMessage(message);
+		setMessageHtml(message);
 		this.type = type;
 	}
 	
@@ -34,7 +39,20 @@ public class Message {
 		return message;
 	}
 	
-	public void setMessage(String message) {
+	public void setMessageTxt(String message) {
+		StringBuilder sb = new StringBuilder();
+		
+		if(code == 0) {
+			sb.append("OK: ");
+		} else {
+			sb.append("Error: ");
+		}
+		
+		sb.append(message);
+		this.message = sb.toString();
+	}
+	
+	public void setMessageHtml(String message) {
 		StringBuilder sb = new StringBuilder();
 		
 		if(code == 0) {

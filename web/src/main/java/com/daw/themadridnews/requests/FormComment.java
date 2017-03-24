@@ -34,12 +34,12 @@ public class FormComment extends FormBase {
 		
 		if(comment.isEmpty()) {
 			message.setCode(100);
-			message.setMessage("Te has dejado el comentario en blanco. Por favor, escriba.");
+			message.setMessageHtml("Te has dejado el comentario en blanco. Por favor, escriba.");
 			message.setType("danger");
 			
 		} else if(!Validator.strValidLength(comment, 5, 500)) {
 			message.setCode(101);
-			message.setMessage("El comentario no es válido, la longitud debe estar entre 5 y 500 caracteres.");
+			message.setMessageHtml("El comentario no es válido, la longitud debe estar entre 5 y 500 caracteres.");
 			message.setType("danger");
 		}
 		

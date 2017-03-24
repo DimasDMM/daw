@@ -120,7 +120,7 @@ public class ApiAd implements ApiBase {
 		
 		if(title.isEmpty() || url.isEmpty()) {
 			message.setCode(100);
-			message.setMessage("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
+			message.setMessageTxt("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
 			message.setType("danger");
 			
 		} else if(
@@ -129,7 +129,7 @@ public class ApiAd implements ApiBase {
 				!Validator.intValidMin(this.getLimViews(), 0)
 		) {
 			message.setCode(101);
-			message.setMessage("Hay campos con informacion no valida. Por favor, reviselos antes de continuar");
+			message.setMessageTxt("Hay campos con informacion no valida. Por favor, reviselos antes de continuar");
 			message.setType("danger");	
 		}
 		

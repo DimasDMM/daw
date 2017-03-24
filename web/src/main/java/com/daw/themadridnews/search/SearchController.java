@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-import com.daw.themadridnews.article.ArticleRepository;
+import com.daw.themadridnews.article.ArticleService;
 import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.article.CategoryCommons;
 import com.daw.themadridnews.article.CategoryView;
@@ -23,7 +23,7 @@ import com.daw.themadridnews.webconfig.Config;
 public class SearchController {
 	
 	@Autowired
-	protected ArticleRepository articleRepository;
+	protected ArticleService articleService;
 	
 	@Autowired
 	protected CommentRepository commentRepository;
@@ -48,10 +48,10 @@ public class SearchController {
 		model.addAttribute("moreResults", !pav.isLast);
 		
 		// Columna lateral
-		List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst5ByVisible(true), commentRepository );
+		List<ArticleView> lastArticles = ArticleView.castList( articleService.findFirst5(), commentRepository );
 		List<CategoryView> categories = CategoryView.castList( CategoryCommons.getCategoryList() );
 		List<CommentView> lastComments = CommentView.castList( commentRepository.findFirst5ByOrderByDateInsertDesc() );
-		List<ArticleView> otherArticles = ArticleView.castList( articleRepository.findRandom4() );
+		List<ArticleView> otherArticles = ArticleView.castList( articleService.findRandom4() );
 		
 		model.addAttribute("categories", categories);
 		model.addAttribute("last_comments", lastComments);
