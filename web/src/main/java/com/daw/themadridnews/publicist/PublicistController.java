@@ -20,7 +20,7 @@ import com.daw.themadridnews.files.FileUploadCommons;
 import com.daw.themadridnews.requests.FormModifyAd;
 import com.daw.themadridnews.requests.FormNewAd;
 import com.daw.themadridnews.user.User;
-import com.daw.themadridnews.user.UserComponent;
+import com.daw.themadridnews.user.UserService;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.utils.ModPagination;
 import com.daw.themadridnews.utils.ModPagination.ModPageItem;
@@ -33,7 +33,7 @@ public class PublicistController {
 	protected AdService adService;
 	
 	@Autowired
-	protected UserComponent userComponent;
+	protected UserService userService;
 	
 	@Autowired
 	protected Config config;
@@ -63,7 +63,7 @@ public class PublicistController {
 			return showFormNewPreview(model);
 		}
 		
-		User userLogged = userComponent.getLoggedUser();
+		User userLogged = userService.getLoggedUser();
 		
 		Ad ad = new Ad( userLogged, r.getTitle(), r.getUrl(), r.getWeight(), r.getLimdatestart(), r.getLimdateend(), r.getLimclicks(), r.getLimviews() );
 		ad = adService.save( ad );

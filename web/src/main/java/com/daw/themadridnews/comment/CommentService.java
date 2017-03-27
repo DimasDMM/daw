@@ -35,4 +35,11 @@ public class CommentService {
 	public long countByArticle(Article a) {
 		return commentRepository.countByArticle(a);
 	}
+
+	/**
+	 * Obtener ultimos X comentarios
+	 */
+	public List<Comment> findFirst5() {
+		return commentRepository.findFirst5ByOrderByDateInsertDesc();
+	}
 }

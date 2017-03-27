@@ -21,7 +21,7 @@ import com.daw.themadridnews.article.CategoryView;
 import com.daw.themadridnews.files.FileUploadCommons;
 import com.daw.themadridnews.requests.FormModifyArticle;
 import com.daw.themadridnews.requests.FormNewArticle;
-import com.daw.themadridnews.user.UserComponent;
+import com.daw.themadridnews.user.UserService;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.utils.ModPagination;
 import com.daw.themadridnews.utils.ModPagination.ModPageItem;
@@ -34,7 +34,7 @@ public class EditorController {
 	protected ArticleService articleService;
 	
 	@Autowired
-	protected UserComponent userComponent;
+	protected UserService userService;
 	
 	@Autowired
 	protected Config config;
@@ -70,7 +70,7 @@ public class EditorController {
 
 		String category = r.getCategory();
 		
-		Article article = new Article( category, r.getTitle(), r.getContent(), userComponent.getLoggedUser(), r.getSource(), r.getTags(), null, false );
+		Article article = new Article( category, r.getTitle(), r.getContent(), userService.getLoggedUser(), r.getSource(), r.getTags(), null, false );
 		article = articleService.save(article);
 		
 		FileUploadCommons.saveImage( file, config.getPathImgArticles(), String.valueOf(article.getId()) );

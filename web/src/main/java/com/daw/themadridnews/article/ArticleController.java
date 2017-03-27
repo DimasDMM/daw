@@ -16,7 +16,7 @@ import com.daw.themadridnews.comment.CommentService;
 import com.daw.themadridnews.comment.CommentView;
 import com.daw.themadridnews.requests.FormComment;
 import com.daw.themadridnews.user.User;
-import com.daw.themadridnews.user.UserComponent;
+import com.daw.themadridnews.user.UserService;
 import com.daw.themadridnews.utils.Message;
 
 @Controller
@@ -32,7 +32,7 @@ public class ArticleController {
 	protected CommentRepository commentRepository;
 	
 	@Autowired
-	protected UserComponent userComponent;
+	protected UserService userService;
 	
 
 	@RequestMapping(value="/articulo/{id}", method=RequestMethod.GET)
@@ -86,7 +86,7 @@ public class ArticleController {
 		if(article == null)
 			return new ModelAndView( new RedirectView("/error/404") );
 		
-		User user = userComponent.getLoggedUser();
+		User user = userService.getLoggedUser();
         long number = commentRepository.countByArticle(article) + 1;
         Comment comment = new Comment(article, user, number, r.getComment());
 		

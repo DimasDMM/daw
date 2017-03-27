@@ -21,24 +21,6 @@ public class SubscriptionRestController {
 	@Autowired
 	protected SubscriptionService subscriptionService;
 	
-	/*
-	 * BORRAR ESTE METODO CUANDO SE TERMINE DE TESTEAR
-	 */
-	@RequestMapping(value="/subscripcion", method=RequestMethod.GET)
-	public ResponseEntity<Object> subscribe(HttpServletRequest request) {
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		
-		if(token == null && request.getSession() != null)
-			token = (CsrfToken) request.getSession().getAttribute("_csrf");
-		
-		if(token != null) {
-			System.out.println("------------ CSRF: "+ token.getToken());
-		} else {
-			System.out.println("------------ CSRF: nada");
-		}
-		
-		return new ResponseEntity<>( new Message(), HttpStatus.OK );
-	}
 	
 	@RequestMapping(value="/subscripcion", method=RequestMethod.POST)
 	public ResponseEntity<Object> subscribe(@RequestBody ApiSubscription r) {

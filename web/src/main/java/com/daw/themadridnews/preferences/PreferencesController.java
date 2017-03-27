@@ -6,8 +6,8 @@ import com.daw.themadridnews.requests.FormUserFavourites;
 import com.daw.themadridnews.requests.FormUserPass;
 import com.daw.themadridnews.requests.FormUserPersonal;
 import com.daw.themadridnews.user.User;
-import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.user.UserRepository;
+import com.daw.themadridnews.user.UserService;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.webconfig.Config;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class PreferencesController {
     protected UserRepository userRepository;
 
     @Autowired
-    protected UserComponent userComponent;
+    protected UserService userService;
     
     @Autowired
     protected Config config;
@@ -36,7 +36,7 @@ public class PreferencesController {
 
     @RequestMapping(value="/ajustes", method=RequestMethod.GET)
     public ModelAndView userSettings(Model model, HttpServletRequest request) {
-        User userLogged = userComponent.getLoggedUser();
+        User userLogged = userService.getLoggedUser();
         model.addAttribute("user_name", userLogged.getName());
         model.addAttribute("user_lastname", userLogged.getLastname());
         model.addAttribute("user_alias", (userLogged.getAlias() == null ? "" : userLogged.getAlias()) );
@@ -71,7 +71,7 @@ public class PreferencesController {
     		return userSettings(model, request);
     	}
     	
-    	User userLogged = userComponent.getLoggedUser();
+    	User userLogged = userService.getLoggedUser();
         
     	userLogged.setName( r.getName() );
     	userLogged.setLastname( r.getLastname() );
@@ -102,7 +102,7 @@ public class PreferencesController {
     		return userSettings(model, request);
     	}
     	
-        User oldUser = userComponent.getLoggedUser();
+        User oldUser = userService.getLoggedUser();
 
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
         if(!bcrypt.matches( r.getPass_now(), oldUser.getPasswordHash())){
@@ -129,7 +129,7 @@ public class PreferencesController {
     public ModelAndView userSettingsSaveFavourites(Model model, HttpServletRequest request, FormUserFavourites r) {
     	Message message = r.validation();
     	
-    	User userLogged = userComponent.getLoggedUser();
+    	User userLogged = userService.getLoggedUser();
     	Favourite favourite = userLogged.getFavourites();
     	
     	favourite.setMadrid( r.get("madrid") );
@@ -154,7 +154,7 @@ public class PreferencesController {
     public ModelAndView userSettingsSaveFavourites(Model model, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
     	Message message = new Message();
 
-        User userLogged = userComponent.getLoggedUser();
+        User userLogged = userService.getLoggedUser();
     	FileUploadCommons.saveImage( file, config.getPathImgUsers(), String.valueOf(userLogged.getId()) );
 
     	message.setCode(0);

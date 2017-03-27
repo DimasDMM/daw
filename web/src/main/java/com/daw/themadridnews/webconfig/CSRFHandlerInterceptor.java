@@ -21,14 +21,10 @@ public class CSRFHandlerInterceptor extends HandlerInterceptorAdapter {
 			modelAndView.addObject("token", token.getToken());
 			modelAndView.addObject("tokenParam", token.getParameterName());
 			modelAndView.addObject("tokenHeader", token.getHeaderName());
-			
-			System.out.println("------------ CSRF: "+ token.getToken());
 		} else {
 			modelAndView.addObject("token", "");
 			modelAndView.addObject("tokenParam", "");
 			modelAndView.addObject("tokenHeader", "");
-			
-			System.out.println("------------ CSRF: nada");
 		}
     }
 }

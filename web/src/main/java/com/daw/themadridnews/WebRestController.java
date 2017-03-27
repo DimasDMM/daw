@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,27 @@ public class WebRestController {
     @Autowired protected Config config;
     @Autowired protected UserService userService;
     
+    
+    /**
+	 * BORRAR ESTE METODO CUANDO SE TERMINE DE TESTEAR
+	 */
+	@RequestMapping(value="/csrf", method=RequestMethod.GET)
+	public ResponseEntity<Object> subscribe(HttpServletRequest request) {
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		
+		if(token == null && request.getSession() != null)
+			token = (CsrfToken) request.getSession().getAttribute("_csrf");
+		
+		String csrf;
+		if(token != null) {
+			csrf = token.getToken();
+		} else {
+			csrf = "vacio";
+		}
+		
+		return new ResponseEntity<>( csrf, HttpStatus.OK );
+	}
+	/***********/
 
     @RequestMapping(value= {"/logout"})
     public ResponseEntity<Object> logout(HttpServletRequest request) throws ServletException {

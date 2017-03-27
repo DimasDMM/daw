@@ -71,6 +71,9 @@ public class ArticleService {
 		return page;
 	}
 
+	/**
+	 * Ultimos X articulos publicados y que esten marcados como visibles
+	 */
 	public List<Article> findFirst4() {
 		return articleRepository.findFirst4ByVisible(true);
 	}
@@ -83,7 +86,32 @@ public class ArticleService {
 		return articleRepository.findFirst6ByVisible(true);
 	}
 
+	public List<Article> findFirst6ByCategory(String category) {
+		return articleRepository.findFirst6ByCategoryAndVisible(category, true);
+	}
+
+	/**
+	 * Obtener X articulos aleatorios
+	 */
 	public List<Article> findRandom4() {
 		return articleRepository.findRandom4();
+	}
+
+	public List<Article> findRandom4ThisWeek() {
+		return articleRepository.findRandom4ThisWeek();
+	}
+	
+	/**
+	 * Obtener el ultimo articulo publicado de cada categoria
+	 */
+	public List<Article> findFirstEachCategory() {
+		return articleRepository.findFirstEachCategory();
+	}
+
+	/**
+	 * Obtener los 2 articulos mas vistos durante la ultima semana
+	 */
+	public List<Article> find2PopularLastWeek() {
+		return articleRepository.find2PopularLastWeek();
 	}
 }

@@ -27,7 +27,7 @@ $(function () {
                 				"<div class=\"blog-grid\">" +
 		                			"<h3><a href=\"/articulo/{{id}}\">"+article.title+"</a></h3>" +
 		        					"<ul class=\"blog-grid-info\">" +
-		        						"<li>"+article.author.name+' '+ article.author.lastName+"</li>" +
+		        						"<li>"+article.author.name+' '+ article.author.lastname+"</li>" +
 		    							"<li>"+article.dateInsertStrLong+"</li>" +
 		    							"<li><a href=\"/articulo/{{id}}\"><i class=\"fa fa-comments\"></i></a></li>" +
 									"</ul>" +

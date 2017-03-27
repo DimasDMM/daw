@@ -3,7 +3,7 @@ package com.daw.themadridnews;
 import com.daw.themadridnews.ad.AdService;
 import com.daw.themadridnews.ad.AdCommons;
 import com.daw.themadridnews.ad.AdView;
-import com.daw.themadridnews.article.ArticleRepository;
+import com.daw.themadridnews.article.ArticleService;
 import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.article.CategoryCommons;
 import com.daw.themadridnews.article.CategoryView;
@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 public class WebController {
     
     @Autowired protected Config config;
-    @Autowired protected ArticleRepository articleRepository;
+    @Autowired protected ArticleService articleService;
     @Autowired protected CommentRepository commentRepository;
     @Autowired protected AdService adService;
     @Autowired protected UserService userService;
@@ -47,7 +47,7 @@ public class WebController {
     public ModelAndView index(Model model) {
     	
     	// Seccion: Carrousel
-        List<ArticleView> carrousel = ArticleView.castList( articleRepository.findFirstEachCategory() );
+        List<ArticleView> carrousel = ArticleView.castList( articleService.findFirstEachCategory() );
         model.addAttribute("carrousel", carrousel);
         
         // Seccion: Ultimas noticias favoritas
@@ -68,11 +68,11 @@ public class WebController {
         model.addAttribute("last_articles_sec", lastArticlesSec);
         
         // Seccion: Ultimos articulos de todo
-        List<ArticleView> lastArticles = ArticleView.castList( articleRepository.findFirst6ByVisible(true), commentRepository );
+        List<ArticleView> lastArticles = ArticleView.castList( articleService.findFirst6(), commentRepository );
         model.addAttribute("last_articles", lastArticles);
         
         // Seccion: Articulos mas leidos
-        List<ArticleView> popularArticles = ArticleView.castList( articleRepository.find2PopularByVisible(), commentRepository );
+        List<ArticleView> popularArticles = ArticleView.castList( articleService.find2PopularLastWeek(), commentRepository );
         model.addAttribute("popular_articles", popularArticles);
         
         // Seccion: Ultimos comentarios
@@ -80,7 +80,7 @@ public class WebController {
         model.addAttribute("last_comments", lastComments);
         
         // Seccion: Noticias de la semana
-        List<ArticleView> weekArticles = ArticleView.castList( articleRepository.findRandom4ThisWeek() );
+        List<ArticleView> weekArticles = ArticleView.castList( articleService.findRandom4ThisWeek() );
         model.addAttribute("week_articles", weekArticles);
         
         // Seccion: Categorias
@@ -188,11 +188,11 @@ public class WebController {
     	if(category == null) {
         	model.addAttribute("last_articles_category_name", false);
             model.addAttribute("last_articles_category_id", false);
-            lastArticles = ArticleView.castList( articleRepository.findFirst6ByVisible(true), commentRepository );
+            lastArticles = ArticleView.castList( articleService.findFirst6(), commentRepository );
         } else {
             model.addAttribute("last_articles_category_name", "Categoria: "+ CategoryCommons.getName(category));
             model.addAttribute("last_articles_category_id", category);
-            lastArticles = ArticleView.castList( articleRepository.findFirst6ByCategoryAndVisible(category, true), commentRepository );
+            lastArticles = ArticleView.castList( articleService.findFirst6ByCategory(category), commentRepository );
         }
     	
     	if(lastArticles == null || lastArticles.size() == 0)
