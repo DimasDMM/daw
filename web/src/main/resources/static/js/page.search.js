@@ -9,7 +9,7 @@ $(function () {
         $('#spinner').removeClass('hidden');
 
         $.ajax({
-            url: "/api/buscar?item="+ encodeURIComponent(searchItem) +"&page="+nPage
+            url: "/api/buscar?search="+ encodeURIComponent(search) +"&page="+nPage
         }).done(function (data) {
             
             nPage++;
@@ -29,7 +29,7 @@ $(function () {
 			        				"<ul class=\"blog-grid-info\">" +
 				        				"<li>"+article.author.name+' '+ article.author.lastName+"</li>" +
 										"<li>"+article.dateInsertStrLong+"</li>" +
-										"<li><a href=\"/articulo/{{id}}\"><i class=\"fa fa-comments\"></i></a></li>" +
+										"<li><a href=\"/articulo/{{id}}\"><i class=\"fa fa-comments\"></i> "+ article.nComments +"</a></li>" +
 									"</ul>" +
 									"<p>"+article.contentShort+"</p>" +
 									"<a class=\"r-more\" href=\"/articulo/{{id}}\">Leer m&aacute;s</a>" +

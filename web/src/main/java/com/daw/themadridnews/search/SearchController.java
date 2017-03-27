@@ -36,14 +36,14 @@ public class SearchController {
 	
 	
 	@RequestMapping(value="/buscar", method=RequestMethod.GET)
-	public ModelAndView categories(Model model, @RequestParam String item){
-		if(item == null)
+	public ModelAndView categories(Model model, @RequestParam String search){
+		if(search == null)
 			return new ModelAndView( new RedirectView("/portada") );
 		
 		// Resultados de la busqueda
-		PageArticlesView pav = searchService.getPageArticlesViewContaining(item, 0);
+		PageArticlesView pav = searchService.getPageArticlesViewContaining(search, 0);
 		
-		model.addAttribute("searchItem", item);
+		model.addAttribute("search", search);
 		model.addAttribute("searchResult", pav.content);
 		model.addAttribute("moreResults", !pav.isLast);
 		

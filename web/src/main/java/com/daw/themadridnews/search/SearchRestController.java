@@ -21,12 +21,12 @@ public class SearchRestController {
 
 	@JsonView(SearchService.SearchBasic.class) 
 	@RequestMapping(value="/buscar", method=RequestMethod.GET)
-	public ResponseEntity<PageArticlesView> search(Model model, @RequestParam String item, @RequestParam(required=false) Integer page) {
+	public ResponseEntity<PageArticlesView> search(Model model, @RequestParam String search, @RequestParam(required=false) Integer page) {
 		int n = 0;
 		if(page != null)
 			n = page.intValue() - 1;
 		
-		PageArticlesView pav = searchService.getPageArticlesViewContaining(item, n);
+		PageArticlesView pav = searchService.getPageArticlesViewContaining(search, n);
 		return new ResponseEntity<>(pav, HttpStatus.OK);
 	}
 }

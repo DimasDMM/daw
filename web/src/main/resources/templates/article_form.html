@@ -58,7 +58,7 @@
 			<div class="topbar-search-block">
 				<div class="container">
 					<form action="/buscar">
-						<input type="text" class="form-control" name="searchItem" id="search-value" placeholder="Buscar">
+						<input type="text" class="form-control" name="search" id="search-value" placeholder="Buscar">
 						<div class="search-close"><i class="icon-close"></i></div>
 					</form>
 				</div>
@@ -325,7 +325,7 @@
 					<ul class="blog-grid-tags">
 					   <li class="head">Tags</li>
 					   {{#article_tags}}
-					       <li><a href="/buscar?searchItem={{.}}" target="_blank">{{.}}</a></li>
+					       <li><a href="/buscar?search={{.}}" target="_blank">{{.}}</a></li>
 					   {{/article_tags}}
 					</ul>
 					<!-- End Blog Grid Tagds -->

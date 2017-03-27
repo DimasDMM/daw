@@ -52,7 +52,7 @@
 			<div class="topbar-search-block">
 				<div class="container">
 					<form action="/buscar">
-						<input type="text" class="form-control" name="searchItem" id="search-value" placeholder="Buscar">
+						<input type="text" class="form-control" name="search" id="search-value" placeholder="Buscar">
 						<div class="search-close"><i class="icon-close"></i></div>
 					</form>
 				</div>
@@ -226,7 +226,7 @@
 
 	<!--=== Container Part ===-->
 	<div class="container content-sm">
-        <h1 class="title-v4 h1_category">B&uacute;squeda: <span class="search-category">{{searchItem}}</span></h1>
+        <h1 class="title-v4 h1_category">B&uacute;squeda: <span class="search-category">{{search}}</span></h1>
 		<div class="row">
 			<div class="col-md-9 md-margin-bottom-50">
 				<!-- Blog Grid -->
@@ -242,8 +242,8 @@
 								<h3><a href="/articulo/{{id}}">{{title}}</a></h3>
 								<ul class="blog-grid-info">
 									<li>{{author.name}} {{author.lastname}}</li>
-									<li>{{dateInsert}}</li>
-									<li><a href="/articulo/{{id}}"><i class="fa fa-comments"></i> 0</a></li>
+									<li>{{dateInsertStrLong}}</li>
+									<li><a href="/articulo/{{id}}"><i class="fa fa-comments"></i> {{nComments}}</a></li>
 								</ul>
 								<p>{{contentShort}}</p>
 								<a class="r-more" href="/articulo/{{id}}">Leer m&aacute;s</a>
@@ -565,7 +565,7 @@
 		App.initCounter();
 	});
 
-	var searchItem = "{{searchItem}}";
+	var search = "{{search}}";
 </script>
 <!--[if lt IE 9]>
 	<script src="/plugins/respond.js"></script>
