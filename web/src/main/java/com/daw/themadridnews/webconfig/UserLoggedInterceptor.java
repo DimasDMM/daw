@@ -29,7 +29,7 @@ public class UserLoggedInterceptor extends HandlerInterceptorAdapter {
         	modelAndView.addObject("user_logged", true);
         	modelAndView.addObject("user_id", userLogged.getId());
         	
-            if(userLogged.getAlias() != null) {
+            if(userLogged.getAlias() != null && !userLogged.getAlias().isEmpty()) {
             	modelAndView.addObject("user_display", userLogged.getAlias());
             } else {
             	modelAndView.addObject("user_display", userLogged.getName());

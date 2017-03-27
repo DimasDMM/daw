@@ -48,9 +48,9 @@ public class PreferencesController {
         model.addAttribute("user_email", userLogged.getEmail());
         model.addAttribute("user_id", userLogged.getId());
 
-        model.addAttribute("sex_m", (userLogged.getSex() == 'm') );
-        model.addAttribute("sex_f", (userLogged.getSex() == 'f') );
-        model.addAttribute("sex_o", (userLogged.getSex() == 'o') );
+        model.addAttribute("sex_m", (userLogged.getSex() != null && userLogged.getSex() == 'm') );
+        model.addAttribute("sex_f", (userLogged.getSex() != null && userLogged.getSex() == 'f') );
+        model.addAttribute("sex_o", (userLogged.getSex() != null && userLogged.getSex() == 'o') );
         
         Favourite favs = userLogged.getFavourites();
         model.addAttribute("fav_world", favs.getWorld());
