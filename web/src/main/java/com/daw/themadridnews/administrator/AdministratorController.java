@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import com.daw.themadridnews.requests.FormAdminUser;
@@ -40,7 +41,7 @@ public class AdministratorController {
 		if(user == null) {
 			message = new Message(1, "El usuario no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, 1);
 		}
 
 		UserView uv = new UserView(user);
@@ -63,7 +64,7 @@ public class AdministratorController {
 		if(user == null) {
 			message = new Message(1, "El usuario no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, 1);
 		}
 		
 		message = r.validation();
@@ -88,11 +89,17 @@ public class AdministratorController {
 	public ModelAndView delete(Model model, @PathVariable long id) {
 		User user = userService.get(id);
 		userService.delete(user);
-		return new ModelAndView( new RedirectView("/administrador/usuario/lista/aliminado") );
+		return new ModelAndView( new RedirectView("/administrador/usuario/lista/eliminado") );
 	}
 	
 	@RequestMapping(value="/administrador/usuario/lista", method=RequestMethod.GET)
-	public ModelAndView showList(Model model) {
+	public ModelAndView showList(Model model, @RequestParam(required=false) Integer page) {
+		if(page == null || page.intValue() < 0) {
+			page = 0;
+		} else {
+			page--;
+		}
+		
 		return showListAux(model, 0);
 	}
 	
@@ -110,19 +117,14 @@ public class AdministratorController {
 		return showListAux(model, 0);
 	}
 	
-	@RequestMapping(value="/administrador/usuario/lista/{nPage}", method=RequestMethod.GET)
-	public ModelAndView showList(Model model, @PathVariable int nPage) {
-		return showListAux(model, nPage-1);
-	}
-	
-	private ModelAndView showListAux(Model model, int nPage) {
-		Page<User> page = userService.listWhenPermission(nPage);
+	private ModelAndView showListAux(Model model, int page) {
+		Page<User> p = userService.listWhenPermission(page);
 		
-		List<User> userList = page.getContent();
+		List<User> userList = p.getContent();
 		model.addAttribute("fuser_list", UserView.castList(userList) );
 		
 		ModPagination modPagination = new ModPagination();
-		List<ModPageItem> pageList = modPagination.getModPageList(page, "/administrador/usuario/lista/");
+		List<ModPageItem> pageList = modPagination.getModPageList(p, "/administrador/usuario/lista?page=");
 		model.addAttribute("page_list", pageList);
 		
 		return new ModelAndView("admin_user_list");

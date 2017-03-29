@@ -83,7 +83,7 @@ public class PublicistController {
 		if(ad == null) {
 			message = new Message(1, "El anuncio no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, 1);
 		}
 		
 		AdView adv = new AdView(ad);
@@ -109,7 +109,7 @@ public class PublicistController {
 		if(ad == null) {
 			message = new Message(1, "El anuncio no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, 1);
 		}
 		
 		message = r.validation();
@@ -141,7 +141,13 @@ public class PublicistController {
 	}
 	
 	@RequestMapping(value="/publicista/anuncio/lista", method=RequestMethod.GET)
-	public ModelAndView showList(Model model) {
+	public ModelAndView showList(Model model, @RequestParam(required=false) Integer page) {
+		if(page == null || page.intValue() < 0) {
+			page = 0;
+		} else {
+			page--;
+		}
+		
 		return showListAux(model, 0);
 	}
 	
@@ -159,19 +165,14 @@ public class PublicistController {
 		return showListAux(model, 0);
 	}
 	
-	@RequestMapping(value="/publicista/anuncio/lista/{nPage}", method=RequestMethod.GET)
-	public ModelAndView showList(Model model, @PathVariable int nPage) {
-		return showListAux(model, nPage-1);
-	}
-	
-	private ModelAndView showListAux(Model model, int nPage) {
-		Page<Ad> page = adService.listWhenPermission(nPage);
+	private ModelAndView showListAux(Model model, int page) {
+		Page<Ad> p = adService.listWhenPermission(page);
 		
-		List<Ad> adList = page.getContent();
+		List<Ad> adList = p.getContent();
 		model.addAttribute("ad_list", AdView.castList(adList) );
 		
 		ModPagination modPagination = new ModPagination();
-		List<ModPageItem> pageList = modPagination.getModPageList(page, "/publicista/anuncio/lista/");
+		List<ModPageItem> pageList = modPagination.getModPageList(p, "/publicista/anuncio/lista?page=");
 		model.addAttribute("page_list", pageList);
 		
 		return new ModelAndView("ads_list");

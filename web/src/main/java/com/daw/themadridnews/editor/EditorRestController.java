@@ -52,8 +52,8 @@ public class EditorRestController {
 	/**
 	 * Añade un nuevo articulo
 	 */
-	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.POST)
-	public ResponseEntity<Object> save(@PathVariable long id, @RequestBody ApiArticle r, @RequestParam("file") MultipartFile file) {
+	@RequestMapping(value="/editor/articulo", method=RequestMethod.POST)
+	public ResponseEntity<Object> save(@RequestBody ApiArticle r, @RequestParam("file") MultipartFile file) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
@@ -131,10 +131,10 @@ public class EditorRestController {
 	 * Lista de articulos
 	 * El numero de pagina empieza en 1
 	 */
-	@RequestMapping(value="/editor/articulo/lista/{nPage}", method=RequestMethod.GET)
-	public ResponseEntity<Object> list(@PathVariable int nPage) {
-		Page<Article> page = articleService.listWhenPermission(nPage-1);
-		return new ResponseEntity<>(page, HttpStatus.OK);
+	@RequestMapping(value="/editor/articulo/lista", method=RequestMethod.GET)
+	public ResponseEntity<Object> list(@RequestParam(required=false) Integer page) {
+		Page<Article> p = articleService.listWhenPermission(page-1);
+		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 
 }

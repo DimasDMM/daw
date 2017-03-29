@@ -85,7 +85,7 @@ public class EditorController {
 		if(article == null) {
 			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, 1);
 		}
 		
 		return showPreviewAux(model, article, true);
@@ -98,7 +98,7 @@ public class EditorController {
 		if(article == null) {
 			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, 1);
 		}
 		
 		article.setVisible(true);
@@ -114,7 +114,7 @@ public class EditorController {
 		if(article == null) {
 			Message message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, 1);
 		}
 		
 		article.setVisible(false);
@@ -138,7 +138,7 @@ public class EditorController {
 		if(article == null) {
 			message = new Message(1, "El articulo no existe. Por favor, seleccione uno de la lista.", "danger");
 			model.addAttribute("message", message);
-			return showList(model);
+			return showList(model, 1);
 		}
 		
 		message = r.validation();
@@ -163,13 +163,14 @@ public class EditorController {
 	}
 	
 	@RequestMapping(value="/editor/articulo/lista", method=RequestMethod.GET)
-	public ModelAndView showList(Model model) {
-		return showListAux(model, 0);
-	}
-	
-	@RequestMapping(value="/editor/articulo/lista/{nPage}", method=RequestMethod.GET)
-	public ModelAndView showList(Model model, @PathVariable int nPage) {
-		return showListAux(model, nPage-1);
+	public ModelAndView showList(Model model, @RequestParam(required=false) Integer page) {
+		if(page == null || page.intValue() < 0) {
+			page = 0;
+		} else {
+			page--;
+		}
+		
+		return showListAux(model, page);
 	}
 	
 	@RequestMapping(value="/editor/articulo/lista/publicado", method=RequestMethod.GET)
@@ -219,14 +220,14 @@ public class EditorController {
 		return new ModelAndView("article_form");
 	}
 	
-	private ModelAndView showListAux(Model model, int nPage) {
-		Page<Article> page = articleService.listWhenPermission(nPage);
+	private ModelAndView showListAux(Model model, int page) {
+		Page<Article> p = articleService.listWhenPermission(page);
 		
-		List<Article> articleList = page.getContent();
+		List<Article> articleList = p.getContent();
 		model.addAttribute("article_list", ArticleView.castList(articleList) );
 		
 		ModPagination modPagination = new ModPagination();
-		List<ModPageItem> pageList = modPagination.getModPageList(page, "/editor/articulo/lista/");
+		List<ModPageItem> pageList = modPagination.getModPageList(p, "/editor/articulo/lista?page=");
 		model.addAttribute("page_list", pageList);
 		
 		return new ModelAndView("article_list");

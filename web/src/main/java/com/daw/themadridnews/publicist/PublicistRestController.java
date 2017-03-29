@@ -53,7 +53,7 @@ public class PublicistRestController {
 	/**
 	 * Añade un nuevo anuncio
 	 */
-	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.POST)
+	@RequestMapping(value="/publicista/anuncio", method=RequestMethod.POST)
 	public ResponseEntity<Object> newAd(ApiAd r, @RequestParam("file") MultipartFile file) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
@@ -126,9 +126,9 @@ public class PublicistRestController {
 	 * Lista de anuncios
 	 * El numero de pagina empieza en 1
 	 */
-	@RequestMapping(value="/publicista/anuncio/lista/{nPage}", method=RequestMethod.GET)
-	public ResponseEntity<Object> list(@PathVariable int nPage) {
-		Page<Ad> page = adService.listWhenPermission(nPage-1);
-		return new ResponseEntity<>(page, HttpStatus.OK);
+	@RequestMapping(value="/publicista/anuncio/lista", method=RequestMethod.GET)
+	public ResponseEntity<Object> list(@RequestParam(required=false) Integer page) {
+		Page<Ad> p = adService.listWhenPermission(page-1);
+		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 }

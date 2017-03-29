@@ -1,7 +1,7 @@
 $(function () {
 	"use strict";
 	
-	var nPage = 2;
+	var page = 2;
 	
     $("#more-results").click(function () {
 
@@ -9,10 +9,10 @@ $(function () {
         $('#spinner').removeClass('hidden');
 
         $.ajax({
-            url: "/api/categoria/" + categoryId + "?page=" + nPage
+            url: "/api/categoria/" + categoryId + "?page=" + page
         }).done(function (data) {
 
-            nPage++;
+            page++;
             
             for(var i = 0; i < data.content.length; i++){
                 

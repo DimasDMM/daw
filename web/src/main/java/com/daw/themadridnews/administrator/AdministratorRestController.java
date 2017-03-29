@@ -74,7 +74,7 @@ public class AdministratorRestController {
 	/**
 	 * Eliminar usuario
 	 */
-	@RequestMapping(value="/administrador/usuario/{id}/eliminar", method=RequestMethod.DELETE)
+	@RequestMapping(value="/administrador/usuario/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Object> delete(@PathVariable long id) {
 		User u = userService.get(id);
 		userService.delete(u);

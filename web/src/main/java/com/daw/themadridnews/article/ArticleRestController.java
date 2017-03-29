@@ -73,7 +73,7 @@ public class ArticleRestController {
 	/**
 	 * Añade un comentario al articulo
 	 */
-	@RequestMapping(value="/articulo/{id}/comentario", method=RequestMethod.POST)
+	@RequestMapping(value="/articulo/{id}", method=RequestMethod.POST)
 	@JsonView(Comment.Basic.class)
 	public ResponseEntity<Object> sendComment(@PathVariable long id, @RequestBody ApiComment r) {
 		Message message = r.validation();
