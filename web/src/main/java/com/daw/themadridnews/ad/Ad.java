@@ -20,10 +20,6 @@ public class Ad {
 	public static interface Details {}
 	
 	/*
-	 * Posibles tipos de anuncios
-	 * 0: Banner normal, imagen estatica en cualquier parte
-	 * 1: Fondo de la web
-	 * 
 	 * Estado de un anuncio
 	 * 0: Aun no ha empezado a ser publico
 	 * 1: Activo, mostrandose a los usuarios

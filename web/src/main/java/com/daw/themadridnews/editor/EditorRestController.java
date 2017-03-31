@@ -56,7 +56,7 @@ public class EditorRestController {
 	 */
 	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo", method=RequestMethod.POST)
-	public ResponseEntity<Object> save(@RequestBody ApiArticle r, @RequestParam("file") MultipartFile file) {
+	public ResponseEntity<Object> save(@RequestBody ApiArticle r, @RequestParam(name="file", required=false) MultipartFile file) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
