@@ -3,7 +3,6 @@ package com.daw.themadridnews.search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +20,7 @@ public class SearchRestController {
 
 	@JsonView(SearchService.SearchBasic.class) 
 	@RequestMapping(value="/buscar", method=RequestMethod.GET)
-	public ResponseEntity<PageArticlesView> search(Model model, @RequestParam String search, @RequestParam(required=false) Integer page) {
+	public ResponseEntity<PageArticlesView> search(@RequestParam String search, @RequestParam(required=false) Integer page) {
 		int n = 0;
 		if(page != null)
 			n = page.intValue() - 1;

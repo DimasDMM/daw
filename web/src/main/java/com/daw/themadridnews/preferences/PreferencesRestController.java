@@ -1,5 +1,6 @@
 package com.daw.themadridnews.preferences;
 
+import com.daw.themadridnews.files.FileUploadCommons;
 import com.daw.themadridnews.requests.ApiDataUser;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserService;
@@ -10,14 +11,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api")
@@ -35,7 +33,7 @@ public class PreferencesRestController {
      */
     @JsonView(UserService.UserDetails.class)
     @RequestMapping(value="/ajustes", method=RequestMethod.GET)
-    public ResponseEntity<Object> get(Model model, HttpServletRequest request) {
+    public ResponseEntity<Object> get() {
         User u = userService.getLoggedUser();
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
@@ -45,7 +43,7 @@ public class PreferencesRestController {
      */
     @JsonView(UserService.UserDetails.class)
     @RequestMapping(value="/ajustes", method=RequestMethod.PUT)
-    public ResponseEntity<Object> saveData(ApiDataUser r, @RequestParam(name="file", required=false) MultipartFile file) {
+    public ResponseEntity<Object> saveData(ApiDataUser r) {
     	Message message;
         User u = userService.getLoggedUser();
 		
@@ -72,5 +70,17 @@ public class PreferencesRestController {
 		u = userService.save(u);
 		
 		return new ResponseEntity<>(u, HttpStatus.OK);
+    }
+    
+    @JsonView(UserService.UserDetails.class)
+    @RequestMapping(value="/ajustes/imagen", method=RequestMethod.POST)
+    public ResponseEntity<Object> saveImage(@RequestParam(name="file") MultipartFile file) {
+    	User userLogged = userService.getLoggedUser();
+    	
+    	boolean result = FileUploadCommons.saveImage( file, config.getPathImgUsers(), String.valueOf(userLogged.getId()) );
+    	if(!result)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		
+		return new ResponseEntity<>(userLogged, HttpStatus.OK);
     }
 }

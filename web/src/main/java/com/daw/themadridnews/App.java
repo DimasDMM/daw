@@ -2,10 +2,15 @@ package com.daw.themadridnews;
 
 import java.io.IOException;
 
+import javax.servlet.MultipartConfigElement;
+
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
+import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -38,4 +43,17 @@ public class App {
 	        }
 	    });
 	}
+	
+	@Bean
+	public MultipartResolver multipartResolver() {
+		return new StandardServletMultipartResolver();
+	}
+	
+	@Bean
+	public MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize("12MB");
+        factory.setMaxRequestSize("12MB");
+        return factory.createMultipartConfig();
+    }
 }

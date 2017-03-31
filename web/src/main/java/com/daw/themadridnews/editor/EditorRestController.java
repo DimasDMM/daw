@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleService;
+import com.daw.themadridnews.files.FileUploadCommons;
 import com.daw.themadridnews.requests.ApiArticle;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserService;
@@ -56,7 +57,7 @@ public class EditorRestController {
 	 */
 	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo", method=RequestMethod.POST)
-	public ResponseEntity<Object> save(@RequestBody ApiArticle r, @RequestParam(name="file", required=false) MultipartFile file) {
+	public ResponseEntity<Object> save(@RequestBody ApiArticle r) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
@@ -85,7 +86,7 @@ public class EditorRestController {
 	 */
 	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Object> modify(@PathVariable long id, @RequestBody ApiArticle r, @RequestParam(name="file", required=false) MultipartFile file) {
+	public ResponseEntity<Object> modify(@PathVariable long id, @RequestBody ApiArticle r) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
@@ -109,6 +110,26 @@ public class EditorRestController {
 		
         // Guardar
 		a = articleService.save(a);
+		
+		return new ResponseEntity<>(a, HttpStatus.OK);
+	}
+
+	@JsonView(ArticleService.Editor.class)
+	@RequestMapping(value="/editor/articulo/{id}/imagen", method=RequestMethod.POST)
+	public ResponseEntity<Object> modify(@PathVariable long id, @RequestParam("file") MultipartFile file) {
+		Article a = articleService.get(id);
+		if(a == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		// Verificar que el usuario tenga permiso de edicion
+		User user = userService.getLoggedUser();
+		if(!articleService.hasPermission(user, a))
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		
+		// Modificar imagen
+		boolean result = FileUploadCommons.saveImage( file, config.getPathImgArticles(), String.valueOf( a.getId()) );
+		if(!result)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
 		return new ResponseEntity<>(a, HttpStatus.OK);
 	}

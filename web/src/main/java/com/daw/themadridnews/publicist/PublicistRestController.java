@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.daw.themadridnews.ad.Ad;
 import com.daw.themadridnews.ad.AdService;
+import com.daw.themadridnews.files.FileUploadCommons;
 import com.daw.themadridnews.requests.ApiAd;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserService;
@@ -40,7 +40,7 @@ public class PublicistRestController {
 	 */
 	@JsonView(AdService.Publicist.class)
 	@RequestMapping(value="/publicista/anuncio/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Object> get(Model model, @PathVariable long id) {
+	public ResponseEntity<Object> get(@PathVariable long id) {
 		Ad ad = adService.get(id);
 		if(ad == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -57,7 +57,7 @@ public class PublicistRestController {
 	 */
 	@JsonView(AdService.Publicist.class)
 	@RequestMapping(value="/publicista/anuncio", method=RequestMethod.POST)
-	public ResponseEntity<Object> newAd(ApiAd r, @RequestParam(name="file", required=false) MultipartFile file) {
+	public ResponseEntity<Object> newAd(ApiAd r) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
@@ -105,6 +105,20 @@ public class PublicistRestController {
 		ad.setLimViews( r.getLimViews() );
 		adService.save(ad);
 		
+		return new ResponseEntity<>(ad, HttpStatus.OK);
+	}
+
+	@JsonView(AdService.Publicist.class)
+	@RequestMapping(value="/publicista/anuncio/{id}/imagen", method=RequestMethod.POST)
+	public ResponseEntity<Object> modify(@PathVariable long id, @RequestParam(name="file") MultipartFile file) {
+		Ad ad = adService.get(id);
+		if(ad == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		boolean result = FileUploadCommons.saveImage( file, config.getPathImgAds(), String.valueOf(ad.getId()) );
+		if(!result)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
 		return new ResponseEntity<>(ad, HttpStatus.OK);
 	}
 	
