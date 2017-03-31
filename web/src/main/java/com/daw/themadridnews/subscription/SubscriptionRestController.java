@@ -7,18 +7,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.daw.themadridnews.requests.ApiSubscription;
 import com.daw.themadridnews.utils.Message;
+import com.daw.themadridnews.webconfig.Config;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 @RequestMapping("/api")
 public class SubscriptionRestController {
 	
+	public static interface Basic extends Subscription.Basic, Config.Responses {}
+	
 	@Autowired
 	protected SubscriptionService subscriptionService;
 	
 	
+	@JsonView(Basic.class)
 	@RequestMapping(value="/subscripcion", method=RequestMethod.POST)
 	public ResponseEntity<Object> subscribe(@RequestBody ApiSubscription r) {
 		Message message = r.validation();

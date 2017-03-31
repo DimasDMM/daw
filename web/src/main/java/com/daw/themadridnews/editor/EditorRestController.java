@@ -18,6 +18,7 @@ import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserService;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.webconfig.Config;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 @RequestMapping("/api")
@@ -36,6 +37,7 @@ public class EditorRestController {
 	/**
 	 * Obtener datos de un articulo
 	 */
+	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Object> get(@PathVariable long id) {
 		Article a = articleService.get(id);
@@ -52,6 +54,7 @@ public class EditorRestController {
 	/**
 	 * Añade un nuevo articulo
 	 */
+	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo", method=RequestMethod.POST)
 	public ResponseEntity<Object> save(@RequestBody ApiArticle r, @RequestParam("file") MultipartFile file) {
 		Message message = r.validation();
@@ -80,6 +83,7 @@ public class EditorRestController {
 	/**
 	 * Modifica un articulo existente
 	 */
+	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Object> modify(@PathVariable long id, @RequestBody ApiArticle r, @RequestParam("file") MultipartFile file) {
 		Message message = r.validation();

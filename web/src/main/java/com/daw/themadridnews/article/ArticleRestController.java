@@ -59,6 +59,7 @@ public class ArticleRestController {
 	/**
 	 * Añade una visualizacion al articulo
 	 */
+	@JsonView(ArticleService.View.class)
 	@RequestMapping(value="/articulo/{id}/visualizacion", method=RequestMethod.GET)
 	public ResponseEntity<Object> addView(@PathVariable long id) {
 		Article a = articleService.get(id);

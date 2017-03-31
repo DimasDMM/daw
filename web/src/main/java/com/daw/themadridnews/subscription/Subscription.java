@@ -7,15 +7,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name="subscriptions")
 public class Subscription {
 	
+	public static interface Basic {}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@JsonView(Basic.class)
 	@Column(unique = true)
 	@NotNull
 	private String email;

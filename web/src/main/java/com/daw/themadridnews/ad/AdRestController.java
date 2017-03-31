@@ -33,6 +33,7 @@ public class AdRestController {
 	/**
 	 * Añade visualizacion a un anuncio
 	 */
+	@JsonView(AdService.Basic.class)
 	@RequestMapping(value="/anuncio/{id}/visualizacion", method=RequestMethod.GET)
 	public ResponseEntity<Object> addView(@PathVariable long id) {
 		Ad ad = adService.get(id);
@@ -46,6 +47,7 @@ public class AdRestController {
 	/**
 	 * Añade click a un anuncio
 	 */
+	@JsonView(AdService.Basic.class)
 	@RequestMapping(value="/anuncio/{id}/click", method=RequestMethod.GET)
 	public ResponseEntity<Object> addClick(@PathVariable long id) {
 		Ad ad = adService.get(id);

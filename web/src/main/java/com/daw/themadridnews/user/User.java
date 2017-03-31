@@ -47,6 +47,7 @@ public class User {
 
 	@JsonView(Details.class)
 	@OneToOne(cascade = CascadeType.ALL)
+	@NotNull
 	private Favourite favourites;
 
 	@JsonView(Details.class)

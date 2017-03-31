@@ -18,6 +18,7 @@ public class ArticleService {
 
 	public static interface View extends Article.Basic, User.Basic, Config.Responses {}
 	public static interface Comments extends Article.Comments, Comment.Basic, Config.Responses {}
+	public static interface Editor extends Article.Basic, Article.Details, User.Basic, Config.Responses {}
 
 	@Autowired
 	protected ArticleRepository articleRepository;

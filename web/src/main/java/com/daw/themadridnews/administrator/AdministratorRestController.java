@@ -85,6 +85,7 @@ public class AdministratorRestController {
 	 * Lista de usuarios
 	 * La pagina comienza en 1
 	 */
+//	@JsonView(UserService.PageUserDetails.class)
 	@RequestMapping(value="/administrador/usuario/lista/{nPage}", method=RequestMethod.GET)
 	public ResponseEntity<Object> list(@PathVariable int nPage) {
 		Page<User> page = userService.listWhenPermission(nPage-1);
