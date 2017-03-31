@@ -135,6 +135,7 @@ public class EditorRestController {
 	 * Lista de articulos
 	 * El numero de pagina empieza en 1
 	 */
+	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo/lista", method=RequestMethod.GET)
 	public ResponseEntity<Object> list(@RequestParam(required=false) Integer page) {
 		Page<Article> p = articleService.listWhenPermission(page-1);

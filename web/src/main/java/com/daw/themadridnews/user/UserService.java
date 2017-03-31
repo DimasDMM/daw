@@ -13,7 +13,6 @@ import com.daw.themadridnews.webconfig.Config;
 public class UserService {
 
 	public static interface UserDetails extends User.Basic, User.Details, Favourite.Basic, Config.Responses {}
-	public static interface PageUserDetails extends Page<User>, User.Basic, User.Details, Favourite.Basic, Config.Responses {}
 
 	@Autowired
 	protected UserRepository userRepository;

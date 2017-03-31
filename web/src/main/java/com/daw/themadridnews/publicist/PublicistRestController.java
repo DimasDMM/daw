@@ -130,6 +130,7 @@ public class PublicistRestController {
 	 * Lista de anuncios
 	 * El numero de pagina empieza en 1
 	 */
+	@JsonView(AdService.Publicist.class)
 	@RequestMapping(value="/publicista/anuncio/lista", method=RequestMethod.GET)
 	public ResponseEntity<Object> list(@RequestParam(required=false) Integer page) {
 		Page<Ad> p = adService.listWhenPermission(page-1);
