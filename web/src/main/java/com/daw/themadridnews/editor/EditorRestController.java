@@ -85,7 +85,7 @@ public class EditorRestController {
 	 */
 	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Object> modify(@PathVariable long id, @RequestBody ApiArticle r, @RequestParam("file") MultipartFile file) {
+	public ResponseEntity<Object> modify(@PathVariable long id, @RequestBody ApiArticle r, @RequestParam(name="file", required=false) MultipartFile file) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);

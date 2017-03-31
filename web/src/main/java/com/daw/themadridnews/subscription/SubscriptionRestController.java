@@ -33,5 +33,20 @@ public class SubscriptionRestController {
 		
 		return new ResponseEntity<>(s, HttpStatus.OK);
 	}
+
+	@RequestMapping(value="/subscripcion", method=RequestMethod.DELETE)
+	public ResponseEntity<Object> unsubscribe(@RequestBody ApiSubscription r) {
+		Message message = r.validation();
+		if(message.getCode() != 0)
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+		
+		String e = subscriptionService.get(r.getEmail());
+		if(e == null || e.isEmpty())
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		subscriptionService.unsubscribe(r.getEmail());
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 	
 }

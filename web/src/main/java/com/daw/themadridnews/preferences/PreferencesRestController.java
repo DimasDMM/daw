@@ -13,7 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -42,7 +45,7 @@ public class PreferencesRestController {
      */
     @JsonView(UserService.UserDetails.class)
     @RequestMapping(value="/ajustes", method=RequestMethod.PUT)
-    public ResponseEntity<Object> saveData(ApiDataUser r) {
+    public ResponseEntity<Object> saveData(ApiDataUser r, @RequestParam(name="file", required=false) MultipartFile file) {
     	Message message;
         User u = userService.getLoggedUser();
 		

@@ -14,5 +14,12 @@ public class SubscriptionService {
 		Subscription subscription = new Subscription(email);
 		return subscriptionRepository.save( subscription );
 	}
+	
+	public Subscription unsubscribe(String email) {
+		return subscriptionRepository.deleteByEmail(email);
+	}
 
+	public String get(String email) {
+		return subscriptionRepository.findByEmail(email);
+	}
 }

@@ -32,6 +32,7 @@ public class Ad {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basic.class)
 	protected long id;
 	
 	@NotNull
