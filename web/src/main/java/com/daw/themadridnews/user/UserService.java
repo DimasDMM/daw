@@ -6,12 +6,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.daw.themadridnews.favourite.Favourite;
 import com.daw.themadridnews.webconfig.Config;
 
 @Service
 public class UserService {
 	
-	public static interface UserDetails extends User.Basic, User.Details, Config.Responses {}
+	public static interface UserDetails extends User.Basic, User.Details, Favourite.Basic, Config.Responses {}
 
 	@Autowired
 	protected UserRepository userRepository;

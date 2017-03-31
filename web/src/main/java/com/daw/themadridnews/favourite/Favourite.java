@@ -7,25 +7,36 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Favourite {
 
+	public static interface Basic {}
+	public static interface Details {}
+
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Details.class)
     private long id;
     
 	@NotNull
+	@JsonView(Basic.class)
     private boolean madrid;
 	@NotNull
+	@JsonView(Basic.class)
     private boolean spain;
 	@NotNull
+	@JsonView(Basic.class)
     private boolean world;
 	@NotNull
+	@JsonView(Basic.class)
     private boolean sports;
 	@NotNull
+	@JsonView(Basic.class)
     private boolean technology;
 	@NotNull
+	@JsonView(Basic.class)
     private boolean culture;
 
 
