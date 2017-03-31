@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Ad {
 
 	public static interface Basic {}
-	public static interface Author {}
+	public static interface Details {}
 	
 	/*
 	 * Posibles tipos de anuncios
@@ -36,7 +36,7 @@ public class Ad {
 	
 	@NotNull
 	@OneToOne
-	@JsonView(Author.class)
+	@JsonView(Details.class)
 	protected User author;
 	
 	@NotNull
@@ -48,19 +48,37 @@ public class Ad {
 	protected String url;
 	
 	@NotNull
+	@JsonView(Details.class)
 	protected int weight;
 	
 	// Limitaciones de visualizacion
-	@Column(nullable = true) protected Date limDateStart;
-	@Column(nullable = true) protected Date limDateEnd;
-	@Column(nullable = true) protected Integer limClicks;
-	@Column(nullable = true) protected Integer limViews;
+	@Column(nullable = true)
+	@JsonView(Details.class)
+	protected Date limDateStart;
+	
+	@Column(nullable = true)
+	@JsonView(Details.class)
+	protected Date limDateEnd;
+	
+	@Column(nullable = true)
+	@JsonView(Details.class)
+	protected Integer limClicks;
+	
+	@Column(nullable = true)
+	@JsonView(Details.class)
+	protected Integer limViews;
 	
 	// Estadisticas actuales
-	@NotNull protected int clicks;
-	@NotNull protected int views;
+	@NotNull
+	@JsonView(Details.class)
+	protected int clicks;
 	
 	@NotNull
+	@JsonView(Details.class)
+	protected int views;
+	
+	@NotNull
+	@JsonView(Details.class)
 	protected Date dateInsert;
 	
 	

@@ -12,8 +12,9 @@ import com.daw.themadridnews.webconfig.Config;
 
 @Service
 public class AdService {
-	
+
 	public static interface Basic extends Ad.Basic, Config.Responses {}
+	public static interface Publicist extends Ad.Basic, Ad.Details, User.Basic, Config.Responses {}
 
 	@Autowired
 	protected AdRepository adRepository;

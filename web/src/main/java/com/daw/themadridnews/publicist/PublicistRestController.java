@@ -19,6 +19,7 @@ import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserService;
 import com.daw.themadridnews.utils.Message;
 import com.daw.themadridnews.webconfig.Config;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 @RequestMapping("/api")
@@ -37,6 +38,7 @@ public class PublicistRestController {
 	/**
 	 * Obtener datos de un anuncio
 	 */
+	@JsonView(AdService.Publicist.class)
 	@RequestMapping(value="/publicista/anuncio/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Object> get(Model model, @PathVariable long id) {
 		Ad ad = adService.get(id);
@@ -53,6 +55,7 @@ public class PublicistRestController {
 	/**
 	 * Añade un nuevo anuncio
 	 */
+	@JsonView(AdService.Publicist.class)
 	@RequestMapping(value="/publicista/anuncio", method=RequestMethod.POST)
 	public ResponseEntity<Object> newAd(ApiAd r, @RequestParam("file") MultipartFile file) {
 		Message message = r.validation();
@@ -76,6 +79,7 @@ public class PublicistRestController {
 	/**
 	 * Modifica anuncio existente
 	 */
+	@JsonView(AdService.Publicist.class)
 	@RequestMapping(value="/publicista/anuncio/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Object> modify(@PathVariable long id, @RequestBody ApiAd r) {
 		Message message = r.validation();
