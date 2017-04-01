@@ -147,7 +147,7 @@ public class PublicistRestController {
 	@JsonView(AdService.Publicist.class)
 	@RequestMapping(value="/publicista/anuncio/lista", method=RequestMethod.GET)
 	public ResponseEntity<Object> list(@RequestParam(required=false) Integer page) {
-		if(page != null && page < 1)
+		if(page == null || page < 1)
 			page = 1;
 		
 		Page<Ad> p = adService.listWhenPermission(page-1);

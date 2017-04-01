@@ -89,7 +89,7 @@ public class AdministratorRestController {
 	@JsonView(UserService.UserDetails.class)
 	@RequestMapping(value="/administrador/usuario/lista", method=RequestMethod.GET)
 	public ResponseEntity<Object> list(@RequestParam(required=false) Integer page) {
-		if(page != null && page < 1)
+		if(page == null || page < 1)
 			page = 1;
 		
 		Page<User> p = userService.listWhenPermission(page-1);
