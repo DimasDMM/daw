@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.daw.themadridnews.requests.ApiDataUser;
 import com.daw.themadridnews.user.User;
@@ -86,9 +87,12 @@ public class AdministratorRestController {
 	 * La pagina comienza en 1
 	 */
 	@JsonView(UserService.UserDetails.class)
-	@RequestMapping(value="/administrador/usuario/lista/{nPage}", method=RequestMethod.GET)
-	public ResponseEntity<Object> list(@PathVariable int nPage) {
-		Page<User> page = userService.listWhenPermission(nPage-1);
-		return new ResponseEntity<>(page, HttpStatus.OK);
+	@RequestMapping(value="/administrador/usuario/lista", method=RequestMethod.GET)
+	public ResponseEntity<Object> list(@RequestParam(required=false) Integer page) {
+		if(page != null && page < 1)
+			page = 1;
+		
+		Page<User> p = userService.listWhenPermission(page-1);
+		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 }

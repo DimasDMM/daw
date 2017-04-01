@@ -37,6 +37,7 @@ public class User {
 	@NotNull
 	private String passwordHash;
 
+	@JsonView(Details.class)
 	@ElementCollection(fetch = FetchType.EAGER)
 	@NotNull
 	private List<String> roles;
