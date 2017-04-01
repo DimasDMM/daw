@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.ArticleView;
+import com.daw.themadridnews.article.CategoryCommons;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.webconfig.Config;
@@ -30,8 +31,8 @@ public class CategoryService {
 
 	// Devuelve una pagina de articulos para una categoria determinada
 	// Recordar que las paginas empiezan en 0
-	public PageArticlesView getPageArticlesView(String categoryId, int nPage) {
-		Page<Article> pa = articleRepository.findByCategory(categoryId, new PageRequest(nPage, N_RESULTS));
+	public PageArticlesView getPageArticlesView(String categoryId, int page) {
+		Page<Article> pa = articleRepository.findByCategory(categoryId, new PageRequest(page, N_RESULTS));
 		
 		PageArticlesView pav = new PageArticlesView();
 		pav.isLast = pa.isLast();

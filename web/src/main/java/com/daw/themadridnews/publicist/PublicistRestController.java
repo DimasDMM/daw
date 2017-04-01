@@ -81,7 +81,7 @@ public class PublicistRestController {
 	 */
 	@JsonView(AdService.Publicist.class)
 	@RequestMapping(value="/publicista/anuncio/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Object> modify(@PathVariable long id, @RequestBody ApiAd r, @RequestParam(name="file", required=false) MultipartFile file) {
+	public ResponseEntity<Object> modify(@PathVariable long id, @RequestBody ApiAd r) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);

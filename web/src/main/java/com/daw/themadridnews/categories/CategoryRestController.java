@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.daw.themadridnews.article.CategoryCommons;
 import com.daw.themadridnews.categories.CategoryService.PageArticlesView;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -21,6 +23,9 @@ public class CategoryRestController {
 	@JsonView(CategoryService.CategoryBasic.class) 
 	@RequestMapping("/categoria/{categoryId}")
 	public ResponseEntity<PageArticlesView> categories(@PathVariable String categoryId, @RequestParam(required=false) Integer page) {
+		if(CategoryCommons.existsCategory(categoryId))
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			
 		int n = 0;
 		if(page != null)
 			n = page.intValue() - 1;

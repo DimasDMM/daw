@@ -3,7 +3,6 @@ package com.daw.themadridnews.requests;
 import com.daw.themadridnews.favourite.Favourite;
 import com.daw.themadridnews.utils.Message;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ApiDataUser implements ApiBase {
@@ -17,7 +16,7 @@ public class ApiDataUser implements ApiBase {
 	private List<String> roles;
 	private Favourite favourites;
 
-	private char sex;
+	private Character sex;
 	private String city;
 	private String country;
 	private String phoneNumber;
@@ -30,11 +29,28 @@ public class ApiDataUser implements ApiBase {
 		this.favourites = new Favourite();
 	}
 
-	public ApiDataUser(String name, String lastname, String email, String... roles) {
+	public ApiDataUser(String alias, String name, String lastname, String email, List<String> roles,
+			Favourite favourites, Character sex, String city, String country, String phoneNumber, String description,
+			String personalWeb) {
+		this.alias = alias;
 		this.name = name;
 		this.lastname = lastname;
 		this.email = email;
-		this.roles = new ArrayList<String>(Arrays.asList(roles));
+		this.roles = roles;
+		this.favourites = favourites;
+		this.sex = sex;
+		this.city = city;
+		this.country = country;
+		this.phoneNumber = phoneNumber;
+		this.description = description;
+		this.personalWeb = personalWeb;
+	}
+
+	public ApiDataUser(Long id, String alias, String name, String lastname, String email, List<String> roles,
+			Favourite favourites, Character sex, String city, String country, String phoneNumber, String description,
+			String personalWeb) {
+		this(alias, name, lastname, email, roles, favourites, sex, city, country, phoneNumber, description, personalWeb);
+		this.id = id;
 	}
 
 	public Long getId() {
@@ -93,11 +109,11 @@ public class ApiDataUser implements ApiBase {
 		this.favourites = favourites;
 	}
 
-	public char getSex() {
+	public Character getSex() {
 		return sex;
 	}
 
-	public void setSex(char sex) {
+	public void setSex(Character sex) {
 		this.sex = sex;
 	}
 
@@ -148,6 +164,8 @@ public class ApiDataUser implements ApiBase {
 	public Message validation() {
 		Message message = new Message();
 		
+		System.out.print( "#### "+ this.toString() );
+		
 		if(name.isEmpty() || lastname.isEmpty() || email.isEmpty()) {
 			message.setCode(100);
 			message.setMessageTxt("Hay campos en blanco. Por favor, revisa todo el formulario antes de continuar.");
@@ -159,6 +177,9 @@ public class ApiDataUser implements ApiBase {
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", lastname=" + lastname + ", alias=" + alias + "]";
+		return "ApiDataUser [id=" + id + ", alias=" + alias + ", name=" + name + ", lastname=" + lastname + ", email="
+				+ email + ", roles=" + roles + ", favourites=" + favourites.toString() + ", sex=" + sex + ", city=" + city
+				+ ", country=" + country + ", phoneNumber=" + phoneNumber + ", description=" + description
+				+ ", personalWeb=" + personalWeb + "]";
 	}
 }

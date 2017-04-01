@@ -74,4 +74,16 @@ public class CategoryCommons {
 
 		return "Desconocido";
 	}
+	
+	public static boolean existsCategory(String id) {
+		if(listId == null) init();
+		
+		Iterator<String> it_id = getListId().iterator();
+
+		while (it_id.hasNext())
+			if(it_id.next().equals(id))
+				return true;
+
+		return false;
+	}
 }
