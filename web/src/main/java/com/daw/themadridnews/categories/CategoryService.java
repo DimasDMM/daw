@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleRepository;
 import com.daw.themadridnews.article.ArticleView;
-import com.daw.themadridnews.article.CategoryCommons;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.webconfig.Config;

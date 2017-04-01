@@ -23,7 +23,7 @@ public class CategoryRestController {
 	@JsonView(CategoryService.CategoryBasic.class) 
 	@RequestMapping("/categoria/{categoryId}")
 	public ResponseEntity<PageArticlesView> categories(@PathVariable String categoryId, @RequestParam(required=false) Integer page) {
-		if(CategoryCommons.existsCategory(categoryId))
+		if(!CategoryCommons.existsCategory(categoryId))
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			
 		int n = 0;
