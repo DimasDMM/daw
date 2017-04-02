@@ -79,7 +79,9 @@ public class Ad {
 	protected Date dateInsert;
 	
 	
-	public Ad() {}
+	public Ad() {
+		this.dateInsert = new Date();
+	}
 
 	/*
 	 * Para las restricciones que no queramos, introducir NULL o -1
