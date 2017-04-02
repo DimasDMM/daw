@@ -124,12 +124,11 @@ A continuación podemos ver las entidades que tiene nuestra BBDD, así como las 
 Estas son las clases que componen la aplicación. Hemos utilizado los colores para diferenciar las siguientes clases:
  - Blanco  -> Normal
  - Azul    -> Service
- - Naranja -> Controller
+ - Naranja -> Controller, RestController
  - Verde   -> Template
  - Rojo    -> Entity
  
 ![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/Classes.jpg)
-![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/ClassesOpcion.jpg)
 
 ## Cambios respecto a la plantilla
 
