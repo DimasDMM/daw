@@ -79,7 +79,9 @@ public class Ad {
 	protected Date dateInsert;
 	
 	
-	public Ad() {}
+	public Ad() {
+		this.dateInsert = new Date();
+	}
 
 	/*
 	 * Para las restricciones que no queramos, introducir NULL o -1
@@ -106,6 +108,10 @@ public class Ad {
 	
 	public User getAuthor() {
 		return author;
+	}
+	
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
 	public String getTitle() {

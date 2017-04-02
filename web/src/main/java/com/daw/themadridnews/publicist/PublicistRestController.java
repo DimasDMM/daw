@@ -57,13 +57,16 @@ public class PublicistRestController {
 	 */
 	@JsonView(AdService.Publicist.class)
 	@RequestMapping(value="/publicista/anuncio", method=RequestMethod.POST)
-	public ResponseEntity<Object> newAd(ApiAd r) {
+	public ResponseEntity<Object> newAd(@RequestBody ApiAd r) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		
+		User u = userService.getLoggedUser();
+		
 		Ad ad = new Ad();
 		
+		ad.setAuthor(u);
 		ad.setTitle( r.getTitle() );
 		ad.setUrl( r.getUrl() );
 		ad.setWeight( r.getWeight() );
