@@ -62,8 +62,11 @@ public class PublicistRestController {
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		
+		User u = userService.getLoggedUser();
+		
 		Ad ad = new Ad();
 		
+		ad.setAuthor(u);
 		ad.setTitle( r.getTitle() );
 		ad.setUrl( r.getUrl() );
 		ad.setWeight( r.getWeight() );

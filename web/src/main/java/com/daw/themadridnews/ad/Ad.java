@@ -107,6 +107,10 @@ public class Ad {
 	public User getAuthor() {
 		return author;
 	}
+	
+	public void setAuthor(User author) {
+		this.author = author;
+	}
 
 	public String getTitle() {
 		return title;
