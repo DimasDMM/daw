@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { routing } from './app.routing';
+import {ArticleService} from "./services/article.service";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { routing } from './app.routing';
     HttpModule,
     routing
   ],
-  providers: [],
+  providers: [
+    ArticleService
+  ],
   bootstrap: [
     AppComponent
   ]
