@@ -146,7 +146,7 @@ public class EditorRestController {
 		// Comprobar permisos
 		User user = userService.getLoggedUser();
 		if(!articleService.hasPermission(user, a))
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(new Message(), HttpStatus.UNAUTHORIZED);
 		
 		articleService.delete(a);
 		return new ResponseEntity<>(HttpStatus.OK);
