@@ -1,0 +1,73 @@
+<!-- Topbar blog -->
+<div class="blog-topbar">
+  <!-- Search bar -->
+  <div class="topbar-search-block">
+    <div class="container">
+      <form action="/buscar" method="get">
+        <input type="text" class="form-control" name="search" id="search-value" placeholder="Buscar">
+        <div class="search-close"><i class="icon-close"></i></div>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <!-- Date & Contact -->
+      <div class="col-sm-8 col-xs-8">
+        <div class="topbar-time">{{ dateNow | date }}</div>
+        <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
+        <ul class="topbar-list topbar-menu">
+          <li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a></li>
+          <!--{{^user_logged}}-->
+          <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin"
+                                                                          href="javascript:void(0);">Entrar</a></strong>
+          </li>
+          <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup"
+                                                                          href="javascript:void(0);">Registrarse</a></strong>
+          </li>
+          <!--{{/user_logged}}-->
+        </ul>
+      </div>
+      <!-- User options -->
+      <div class="col-sm-4 col-xs-4 clearfix">
+        <i class="fa fa-search search-btn pull-right"></i>
+        <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
+          <!--{{^user_logged}}-->
+          <li class="cd-log_reg home"><a class="cd-signin" href="javascript:void(0);">Entrar</a></li>
+          <li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Registrarse</a></li>
+          <!--{{/user_logged}}-->
+          <!--{{#user_logged}}-->
+          <li>
+            <a href="javascript:void(0);"><!--{{user_display}}--></a>
+            <ul class="topbar-dropdown">
+              <!--{{#user_role_admin}}-->
+              <li><a href="/administrador">Administrador</a></li>
+              <!--{{/user_role_admin}}-->
+              <!--{{#user_role_editor}}-->
+              <li class="topbar-submenu">
+                <a href="javascript:void(0);">Art&iacute;culos</a>
+                <ul class="topbar-submenu-in">
+                  <li><a href="/editor/articulo/lista">Lista</a></li>
+                  <li><a href="/editor/articulo/nuevo">Redactar</a></li>
+                </ul>
+              </li>
+              <!--{{/user_role_editor}}-->
+              <!--{{#user_role_publicist}}-->
+              <li class="topbar-submenu">
+                <a href="javascript:void(0);">Publicidad</a>
+                <ul class="topbar-submenu-in">
+                  <li><a href="/publicista/anuncio/lista">Lista</a></li>
+                  <li><a href="/publicista/anuncio/nuevo">A&ntilde;adir</a></li>
+                </ul>
+              </li>
+              <!--{{/user_role_publicist}}-->
+              <li><a href="/ajustes">Ajustes</a></li>
+            </ul>
+          </li>
+          <li><a href="/logout">Cerrar sesi&oacute;n</a></li>
+          <!--{{/user_logged}}-->
+        </ul>
+      </div>
+    </div><!--/end row-->
+  </div><!--/end container-->
+</div>
+<!-- End Topbar blog -->

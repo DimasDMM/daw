@@ -1,6 +1,6 @@
 {
-  "name": "angular-project",
-  "version": "0.0.0",
+  "name": "the-madrid-times",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
