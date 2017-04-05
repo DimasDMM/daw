@@ -35,7 +35,21 @@
         "assets/css/footer.css",
         "assets/css/custom.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/plugins/jquery/jquery.min.js",
+        "assets/plugins/jquery/jquery-migrate.min.js",
+        "assets/plugins/back-to-top.js",
+        "assets/plugins/smoothScroll.js",
+        "assets/plugins/counter/waypoints.min.js",
+        "assets/plugins/counter/jquery.counterup.min.js",
+        "assets/plugins/bootstrap/js/bootstrap.min.js",
+        "assets/plugins/fancybox/source/jquery.fancybox.pack.js",
+        "assets/plugins/owl-carousel/owl-carousel/owl.carousel.js",
+        "assets/plugins/master-slider/masterslider/masterslider.js",
+        "assets/plugins/master-slider/masterslider/jquery.easing.min.js",
+        "assets/plugins/modernizr.js",
+        "assets/plugins/login-signup-modal-window/js/main.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

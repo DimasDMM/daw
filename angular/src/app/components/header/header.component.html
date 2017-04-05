@@ -18,11 +18,9 @@
         <ul class="topbar-list topbar-menu">
           <li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a></li>
           <!--{{^user_logged}}-->
-          <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin"
-                                                                          href="javascript:void(0);">Entrar</a></strong>
+          <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Entrar</a></strong>
           </li>
-          <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup"
-                                                                          href="javascript:void(0);">Registrarse</a></strong>
+          <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Registrarse</a></strong>
           </li>
           <!--{{/user_logged}}-->
         </ul>
@@ -71,3 +69,70 @@
   </div><!--/end container-->
 </div>
 <!-- End Topbar blog -->
+
+<!-- Navbar -->
+<nav class="navbar mega-menu" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="res-container">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div class="navbar-brand">
+        <a href="/portada">
+          <img src="assets/img/icons/logo-default.png" alt="Logo">
+        </a>
+      </div>
+    </div>
+    <!--/end responsive container-->
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-responsive-collapse">
+      <div class="res-container">
+        <ul class="nav navbar-nav">
+
+          <li *ngFor="let category of categories" class="dropdown mega-menu-fullwidth">
+            <a [routerLink]="['/categoria',category.id]" class="dropdown-toggle">
+              {{category.name}}
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <div class="mega-menu-content">
+                  <div class="container">
+                    <div class="row">
+
+                      <div class="col-md-4 md-margin-bottom-30" *ngFor="let article of last_articles[category.id]">
+                        <!-- Blog Thumb -->
+                        <div class="blog-thumb margin-bottom-20">
+                          <div class="blog-thumb-hover">
+                            <img src="assets/imagen/articulo/{{article.id}}">
+                            <a class="hover-grad" [routerLink]="['/articulo',article.id]"><i class="fa fa-photo"></i></a>
+                          </div>
+                          <div class="blog-thumb-desc">
+                            <h3><a [routerLink]="['/articulo',article.id]">{{title}}</a></h3>
+                            <ul class="blog-thumb-info">
+                              <li>{{ article.date | date }} </li>
+                              <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> {{article.nComments}}</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <!-- End Blog Thumb -->
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </div><!--/responsive container-->
+    </div><!--/navbar-collapse-->
+  </div><!--/end contaoner-->
+</nav>
+<!-- End Navbar -->
