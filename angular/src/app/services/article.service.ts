@@ -1,23 +1,48 @@
 import {Injectable, OnInit} from '@angular/core';
+import { Http, Response } from '@angular/http';
+import 'rxjs/Rx';
+
 import { Category } from '../entity/category.entity';
+import { URL_API } from "../shared/config.service";
+import { Article } from "../entity/article.entity";
 
 @Injectable()
-export class ArticleService implements OnInit {
+export class ArticleService {
 
-  private categories = [
-    { id:"espana", name:"España" }
+  private categories:Category[] = [
+    { id:"madrid",     name:"Madrid" },
+    { id:"espana",     name:"España" },
+    { id:"mundo",      name:"Mundo" },
+    { id:"deportes",   name:"Deportes" },
+    { id:"tecnologia", name:"Tecnologia" },
+    { id:"cultura",    name:"Cultura" }
   ];
 
-  ngOnInit() {
-    console.log("## "+ this.categories);
+  constructor(private http:Http) {
+    console.log("# Init")
   }
 
   public getCategories() {
     return this.categories;
   }
 
-  public getArticlesFromCategory(number:number) {
-    return [];
+  public getArticlesFromCategory(id:string, page:number, number:number) {
+    console.log("# ArticleService: getArticlesFromCategory( "+id+", "+page+", "+number+" )");
+
+    let url = URL_API+"/categoria/"+id+"?page="+page+"&number="+number;
+    this.http.get(url).subscribe(
+      articles => console.log(articles),
+      error => console.error(error)
+    );
+    return true;
+    /*
+    return this.http.get(url).map(
+      response => ArticleService.extractPageContent(response)
+    );*/
+  }
+
+  private static extractPageContent(response: Response) {
+    return response.json().content.map( article => article );
   }
 
 }

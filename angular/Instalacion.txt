@@ -1,0 +1,8 @@
+# Instalar dependencias necesarias
+npm install -g typescript
+npm install -g @angular/cli
+npm install --save @ng-bootstrap/ng-bootstrap
+
+# En caso de error probar los siguientes comandos
+npm update -g typescript
+nom install

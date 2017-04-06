@@ -15,9 +15,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		
 		registry.addInterceptor(userLoggedInterceptor()).excludePathPatterns(
 				"/imagen/**", "/css/**", "/img/**", "/js/**", "/plugins/**");
-
-		registry.addInterceptor(pageParamsInterceptor()).excludePathPatterns(
-				"/imagen/**", "/css/**", "/img/**", "/js/**", "/plugins/**");
 	}
 	
 	@Bean
@@ -28,10 +25,5 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	protected UserLoggedInterceptor userLoggedInterceptor() {
 	    return new UserLoggedInterceptor();
-	}
-	
-	@Bean
-	protected PageParamsInterceptor pageParamsInterceptor() {
-	    return new PageParamsInterceptor();
 	}
 }

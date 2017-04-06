@@ -103,7 +103,7 @@
               <li>
                 <div class="mega-menu-content">
                   <div class="container">
-                    <div class="row">
+                    <div class="row" *ngIf="last_articles[category.id]?.length > 0">
 
                       <div class="col-md-4 md-margin-bottom-30" *ngFor="let article of last_articles[category.id]">
                         <!-- Blog Thumb -->

@@ -2,18 +2,18 @@ package com.daw.themadridnews;
 
 import com.daw.themadridnews.ad.AdService;
 import com.daw.themadridnews.ad.AdCommons;
-import com.daw.themadridnews.ad.AdView;
+//import com.daw.themadridnews.ad.AdView;
 import com.daw.themadridnews.article.ArticleService;
-import com.daw.themadridnews.article.ArticleView;
+//import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.article.CategoryCommons;
-import com.daw.themadridnews.article.CategoryView;
+//import com.daw.themadridnews.article.CategoryView;
 import com.daw.themadridnews.comment.CommentRepository;
-import com.daw.themadridnews.comment.CommentView;
+//import com.daw.themadridnews.comment.CommentView;
 import com.daw.themadridnews.favourite.Favourite;
 import com.daw.themadridnews.files.FileUploadCommons;
-import com.daw.themadridnews.requests.FormSubscription;
-import com.daw.themadridnews.requests.FormSignupNew;
-import com.daw.themadridnews.requests.FormSignupPreferences;
+//import com.daw.themadridnews.requests.FormSubscription;
+//import com.daw.themadridnews.requests.FormSignupNew;
+//import com.daw.themadridnews.requests.FormSignupPreferences;
 import com.daw.themadridnews.subscription.SubscriptionService;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserService;
@@ -42,7 +42,7 @@ public class WebController {
     @Autowired protected UserService userService;
 	@Autowired protected SubscriptionService subscriptionService;
     
-
+/*
     @RequestMapping(value= {"/","/portada"})
     public ModelAndView index(Model model) {
     	
@@ -93,7 +93,7 @@ public class WebController {
 		
 		return new ModelAndView("index");
     }
-
+*/
 	@RequestMapping(value= {"/privacidad"})
     public ModelAndView privacy(Model model) {
 		return new ModelAndView("privacy");
@@ -103,7 +103,7 @@ public class WebController {
     public ModelAndView termsAndConditions(Model model){
 		return new ModelAndView("terms-and-conditions");
     }
-
+/*
 	@RequestMapping(value="/portada/subscripcion", method=RequestMethod.POST)
 	public ModelAndView subscription(Model model, FormSubscription r) {
 		Message message = r.validation();
@@ -130,12 +130,12 @@ public class WebController {
     public ModelAndView login(Model model){
         return index(model);
     }
-    
+    */
     @RequestMapping(value="/loginError")
     public ModelAndView loginError(Model model) {
 		return new ModelAndView("login-error");
     }
-
+/*
     @RequestMapping(value="/registro", method=RequestMethod.POST)
 	public ModelAndView registerNew(Model model, FormSignupNew r) {
     	Message message = r.validation();
@@ -177,11 +177,11 @@ public class WebController {
 
 		return new ModelAndView("signup-preferences");
     }
-
+*/
     /*
      * FUNCIONES AUXILIARES
      */
-    
+    /*
     private List<ArticleView> getLastArticlesByFavourite(Model model, String category) {
     	List<ArticleView> lastArticles;
     	
@@ -199,5 +199,5 @@ public class WebController {
     		lastArticles = getLastArticlesByFavourite(model, null);
     	
 		return lastArticles;
-	}
+	}*/
 }
