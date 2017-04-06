@@ -31,7 +31,7 @@ export class ArticleService {
 
     let url = URL_API+"/categoria/"+id+"?page="+page+"&number="+number;
     this.http.get(url).subscribe(
-      articles => console.log(articles),
+      response => console.log(response),
       error => console.error(error)
     );
     return true;

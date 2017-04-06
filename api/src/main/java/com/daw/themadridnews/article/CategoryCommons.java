@@ -14,7 +14,9 @@ public class CategoryCommons {
 	protected static List<String> listId;
 	protected static List<String> listName;
 
-	private static void init() {
+	private synchronized static void init() {
+		if(listId != null) return;
+		
 		listId = new ArrayList<String>();
 		listId.add("madrid");
 		listId.add("espana");
@@ -33,19 +35,19 @@ public class CategoryCommons {
 	}
 
 	public static List<String> getListId() {
-		if(listId == null) init();
+		init();
 		
 		return listId;
 	}
 
 	public static List<String> getListName() {
-		if(listName == null) init();
+		init();
 		
 		return listName;
 	}
 
 	public static List<Category> getCategoryList() {
-		if(listId == null) init();
+		init();
 		
 		List<Category> list = new ArrayList<Category>();
 		Iterator<String> it_id = getListId().iterator();
@@ -59,7 +61,7 @@ public class CategoryCommons {
 	}
 
 	public static String getName(String id) {
-		if(listId == null) init();
+		init();
 		
 		Iterator<String> it_id = getListId().iterator();
 		Iterator<String> it_name = getListName().iterator();
@@ -76,11 +78,11 @@ public class CategoryCommons {
 	}
 	
 	public static boolean existsCategory(String id) {
-		if(listId == null) init();
+		init();
 		
 		Iterator<String> it_id = getListId().iterator();
 
-		while (it_id.hasNext())
+		while(it_id.hasNext())
 			if(it_id.next().equals(id))
 				return true;
 

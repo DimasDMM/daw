@@ -24,11 +24,13 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.categories = this.articleService.getCategories();
 
+    let that = this;
     this.categories.forEach(function (category) {
-      //this.last_articles[ category.id ] = {};
       console.log("# "+ category.id);
 
-      let tempArticles = this.articleService.getArticlesFromCategory( category.id, 1, 9 );
+      that.last_articles[ category.id ] = {};
+
+      let tempArticles = that.getArticleService().getArticlesFromCategory(category.id, 1, 9);
       /*
       this.articleService.getArticlesFromCategory( category.id, 1, 9 ).subscribe(
         articles => console.log(articles),
@@ -37,5 +39,9 @@ export class HeaderComponent implements OnInit {
     });
 
     this.dateNow = new Date();
+  }
+
+  getArticleService() {
+    return this.articleService;
   }
 }
