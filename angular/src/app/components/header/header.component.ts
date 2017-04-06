@@ -4,12 +4,16 @@ import {ArticleService} from "../../services/article.service";
 import {Article} from "../../entity/article.entity";
 import {Category} from "../../entity/category.entity";
 import {Http} from "@angular/http";
+import {URL_IMAGES} from "../../shared/config.service";
 
 @Component({
   selector: 'header',
   templateUrl: 'header.component.html'
 })
 export class HeaderComponent implements OnInit {
+
+  public urlImages = URL_IMAGES;
+
   public categories:Category[] = [];
   public last_articles = {};
   public dateNow:Date;
@@ -26,16 +30,11 @@ export class HeaderComponent implements OnInit {
 
     let that = this;
     this.categories.forEach(function (category) {
-      console.log("# "+ category.id);
-
       that.last_articles[ category.id ] = {};
-
-      let tempArticles = that.getArticleService().getArticlesFromCategory(category.id, 1, 9);
-      /*
-      this.articleService.getArticlesFromCategory( category.id, 1, 9 ).subscribe(
-        articles => console.log(articles),
+      that.getArticleService().getArticlesFromCategory( category.id, 1, 10 ).subscribe(
+        articles => that.last_articles[ category.id ] = articles,
         error => console.error(error)
-      );*/
+      );
     });
 
     this.dateNow = new Date();

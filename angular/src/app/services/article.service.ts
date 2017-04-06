@@ -19,7 +19,7 @@ export class ArticleService {
   ];
 
   constructor(private http:Http) {
-    console.log("# Init")
+    console.log("# Init ArticleService")
   }
 
   public getCategories() {
@@ -27,18 +27,10 @@ export class ArticleService {
   }
 
   public getArticlesFromCategory(id:string, page:number, number:number) {
-    console.log("# ArticleService: getArticlesFromCategory( "+id+", "+page+", "+number+" )");
-
     let url = URL_API+"/categoria/"+id+"?page="+page+"&number="+number;
-    this.http.get(url).subscribe(
-      response => console.log(response),
-      error => console.error(error)
-    );
-    return true;
-    /*
     return this.http.get(url).map(
       response => ArticleService.extractPageContent(response)
-    );*/
+    );
   }
 
   private static extractPageContent(response: Response) {

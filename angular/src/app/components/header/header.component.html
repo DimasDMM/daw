@@ -105,17 +105,17 @@
                   <div class="container">
                     <div class="row" *ngIf="last_articles[category.id]?.length > 0">
 
-                      <div class="col-md-4 md-margin-bottom-30" *ngFor="let article of last_articles[category.id]">
+                      <div class="col-md-4 md-margin-bottom-30" *ngFor="let article of last_articles[category.id] | slice:0:9">
                         <!-- Blog Thumb -->
                         <div class="blog-thumb margin-bottom-20">
                           <div class="blog-thumb-hover">
-                            <img src="assets/imagen/articulo/{{article.id}}">
+                            <img src="{{urlImages}}/imagen/articulo/{{article.id}}">
                             <a class="hover-grad" [routerLink]="['/articulo',article.id]"><i class="fa fa-photo"></i></a>
                           </div>
                           <div class="blog-thumb-desc">
-                            <h3><a [routerLink]="['/articulo',article.id]">{{title}}</a></h3>
+                            <h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
                             <ul class="blog-thumb-info">
-                              <li>{{ article.date | date }} </li>
+                              <li>{{ article.dateInsert | date:'d-M-y' }} </li>
                               <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> {{article.nComments}}</a></li>
                             </ul>
                           </div>
