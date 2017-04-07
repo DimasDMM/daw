@@ -47,8 +47,7 @@
         "assets/plugins/owl-carousel/owl-carousel/owl.carousel.js",
         "assets/plugins/master-slider/masterslider/masterslider.js",
         "assets/plugins/master-slider/masterslider/jquery.easing.min.js",
-        "assets/plugins/modernizr.js",
-        "assets/plugins/login-signup-modal-window/js/main.js"
+        "assets/plugins/modernizr.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

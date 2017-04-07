@@ -200,3 +200,10 @@
 .search-category {
     text-transform: none !important;
 }
+
+a {
+  cursor: pointer;
+}
+.no-pointer {
+  cursor: default!important;
+}

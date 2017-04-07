@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 
 import { routing } from './app.routing';
 import {ArticleService} from "./services/article.service";
+import {SessionService} from "./services/session.service";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {ArticleService} from "./services/article.service";
     routing
   ],
   providers: [
+    SessionService,
     ArticleService
   ],
   bootstrap: [

@@ -3,7 +3,7 @@
   <!-- Search bar -->
   <div class="topbar-search-block">
     <div class="container">
-      <form action="/buscar" method="get">
+      <form action="/buscar">
         <input type="text" class="form-control" name="search" id="search-value" placeholder="Buscar">
         <div class="search-close"><i class="icon-close"></i></div>
       </form>
@@ -12,30 +12,30 @@
   <div class="container">
     <div class="row">
       <!-- Date & Contact -->
-      <div class="col-sm-8 col-xs-8">
+      <div class="col-sm-6 col-xs-6">
         <div class="topbar-time">{{ dateNow | date }}</div>
         <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
         <ul class="topbar-list topbar-menu">
           <li><a href="mailto:themadridnews@tmn.es?SUBJECT=Contacto">Contactar</a></li>
           <!--{{^user_logged}}-->
-          <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Entrar</a></strong>
+          <li *ngIf="userLogged == null" class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a (click)="toggleModalLogReg()">Entrar</a></strong>
           </li>
-          <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Registrarse</a></strong>
+          <li *ngIf="userLogged == null" class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Registrarse</a></strong>
           </li>
           <!--{{/user_logged}}-->
         </ul>
       </div>
       <!-- User options -->
-      <div class="col-sm-4 col-xs-4 clearfix">
+      <div class="col-sm-6 col-xs-6 clearfix">
         <i class="fa fa-search search-btn pull-right"></i>
         <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
           <!--{{^user_logged}}-->
-          <li class="cd-log_reg home"><a class="cd-signin" href="javascript:void(0);">Entrar</a></li>
-          <li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Registrarse</a></li>
+          <li class="cd-log_reg home" *ngIf="userLogged == null"><a (click)="toggleModalLogReg()">Entrar</a></li>
+          <li class="cd-log_reg" *ngIf="userLogged == null"><a class="cd-signup" href="javascript:void(0);">Registrarse</a></li>
           <!--{{/user_logged}}-->
           <!--{{#user_logged}}-->
-          <li>
-            <a href="javascript:void(0);"><!--{{user_display}}--></a>
+          <li *ngIf="userLogged != null">
+            <a href="javascript:void(0);">Hola {{userLogged.name}}</a>
             <ul class="topbar-dropdown">
               <!--{{#user_role_admin}}-->
               <li><a href="/administrador">Administrador</a></li>
@@ -61,7 +61,7 @@
               <li><a href="/ajustes">Ajustes</a></li>
             </ul>
           </li>
-          <li><a href="/logout">Cerrar sesi&oacute;n</a></li>
+          <li *ngIf="userLogged != null"><a href="/logout">Cerrar sesi&oacute;n</a></li>
           <!--{{/user_logged}}-->
         </ul>
       </div>
@@ -83,7 +83,7 @@
       </button>
 
       <div class="navbar-brand">
-        <a href="/portada">
+        <a [routerLink]="['/portada']">
           <img src="assets/img/icons/logo-default.png" alt="Logo">
         </a>
       </div>
@@ -136,3 +136,103 @@
   </div><!--/end contaoner-->
 </nav>
 <!-- End Navbar -->
+
+<!-- Modal: Login-register -->
+<div [ngClass]="modalLogReg">
+  <div class="cd-user-modal-container">
+    <ul class="cd-switcher">
+      <li><a class="selected">Entrar</a></li>
+      <li><a>Registrarse</a></li>
+    </ul>
+
+    <div id="cd-login" class="is-selected"> <!-- Formulario de login -->
+      <form class="cd-form">
+        <div class="lined-text"><span>Inicia sesi&oacute;n con tu cuenta</span><hr></div>
+
+        <p class="fieldset">
+          <label class="image-replace cd-email" for="signin-email">Correo electr&oacute;nico</label>
+          <input value="justamente@mail.com" class="full-width has-padding has-border" id="signin-email" #loginEmail type="email" placeholder="Correo electr&oacute;nico">
+        </p>
+
+        <p class="fieldset">
+          <label class="image-replace cd-password" for="signin-password">Contrase&ntilde;a</label>
+          <input value="pass" class="full-width has-padding has-border" id="signin-password" #loginPassword type="password"  placeholder="Contrase&ntilde;a">
+          <a href="javascript:void(0);" class="hide-password">Mostrar</a>
+        </p>
+
+        <p class="fieldset">
+          <input type="checkbox" id="remember-me" checked>
+          <label for="remember-me">Recordar</label>
+        </p>
+
+        <p class="fieldset">
+          <input class="full-width cd-submit text-center" (click)="loginForm();" value="Entrar">
+        </p>
+      </form>
+
+      <p class="cd-form-bottom-message"><a href="javascript:void(0);">¿Olvidaste tu contrase&ntilde;a?</a></p>
+      <a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
+    </div> <!-- cd-login -->
+
+    <div id="cd-signup"> <!-- Formulario de registro -->
+      <form class="cd-form">
+        <div class="lined-text"><span>Registra tu nueva cuenta</span><hr></div>
+
+        <p class="fieldset">
+          <label class="image-replace cd-username" for="signup-username">Nombre</label>
+          <input class="full-width has-padding has-border" id="signup-username" name="name" type="text" placeholder="Nombre">
+        </p>
+
+        <p class="fieldset">
+          <label class="image-replace cd-username" for="signup-surnames">Apellidos</label>
+          <input class="full-width has-padding has-border" id="signup-surnames" name="lastname" type="text" placeholder="Apellidos">
+        </p>
+
+        <p class="fieldset">
+          <label class="image-replace cd-email" for="signup-email">Correo electr&oacute;nico</label>
+          <input class="full-width has-padding has-border" id="signup-email" name="email" type="email" placeholder="Correo electr&oacute;nico">
+        </p>
+
+        <p class="fieldset">
+          <label class="image-replace cd-password" for="signup-password">Contrase&ntilde;a</label>
+          <input class="full-width has-padding has-border" id="signup-password" name="pass_new1" type="password"  placeholder="Contrase&ntilde;a">
+          <a href="javascript:void(0);" class="hide-password">Mostrar</a>
+        </p>
+
+        <p class="fieldset">
+          <label class="image-replace cd-password" for="confirm-signup-password">Contrase&ntilde;a</label>
+          <input class="full-width has-padding has-border" id="confirm-signup-password" name="pass_new2" type="password"  placeholder="Confirmar Contrase&ntilde;a">
+          <a href="javascript:void(0);" class="hide-password">Mostrar</a>
+        </p>
+
+        <p class="fieldset">
+          <input type="checkbox" name="terms" id="accept-terms">
+          <label for="accept-terms">Acepto los t&eacute;rminos del <a href="/terminos-de-uso" target="_blank">Contrato</a></label>
+        </p>
+
+        <p class="fieldset">
+          <input class="full-width has-padding" type="submit" value="Crear cuenta">
+        </p>
+      </form>
+
+      <a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
+    </div> <!-- cd-signup -->
+
+    <div id="cd-reset-password"> <!-- Formulario Reset Password -->
+      <p class="cd-form-message">&iquest;Olvidaste tu contraseña? Por favor, introduce tu dirección de correo electr&oacute;nico. Recibir&aacute;s un link en el que podr&aacute;s cambiar tu contrase&ntilde;a.</p>
+
+      <form class="cd-form">
+        <p class="fieldset">
+          <label class="image-replace cd-email" for="reset-email">Correo electr&oacute;nico</label>
+          <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="Correo electr&oacute;nico">
+        </p>
+
+        <p class="fieldset">
+          <input class="full-width has-padding" type="submit" value="Recibir mensaje">
+        </p>
+      </form>
+    </div> <!-- cd-reset-password -->
+
+    <a href="javascript:void(0);" class="cd-close-form">Cerrar</a>
+  </div><!-- cd-user-modal-container -->
+</div> <!-- cd-user-modal -->
