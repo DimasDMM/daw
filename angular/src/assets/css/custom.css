@@ -228,3 +228,7 @@ a {
   width: 100% !important;
   height: 500px !important;
 }
+.carousel-item .carousel-caption h2 {
+  color: #0f0f0f !important;
+  text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
