@@ -207,3 +207,24 @@ a {
 .no-pointer {
   cursor: default!important;
 }
+
+.navbar-nav {
+  display: block!important;
+  float: right!important;
+}
+.navbar-nav-item {
+  float:left!important;
+}
+.navbar-nav-item a {
+  padding: 20px 15px!important;
+}
+
+.no-after:after {
+  display: none!important;
+}
+
+/* Carrousel */
+.carousel-item img {
+  width: 100% !important;
+  height: 500px !important;
+}

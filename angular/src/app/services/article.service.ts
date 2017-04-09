@@ -29,12 +29,14 @@ export class ArticleService {
   public getArticlesFromCategory(id:string, page:number, number:number) {
     let url = URL_API+"/categoria/"+id+"?page="+page+"&number="+number;
     return this.http.get(url).map(
-      response => ArticleService.extractPageContent(response)
+      response => response.json().content.map( article => article )
     );
   }
 
-  private static extractPageContent(response: Response) {
-    return response.json().content.map( article => article );
+  public carrousel() {
+    let url = URL_API+"/carrousel";
+    return this.http.get(url).map(
+      response => response.json()
+    );
   }
-
 }

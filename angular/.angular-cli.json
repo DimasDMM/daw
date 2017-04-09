@@ -19,15 +19,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "assets/plugins/bootstrap/css/bootstrap.min.css",
         "assets/plugins/animate.css",
         "assets/plugins/line-icons/line-icons.css",
         "assets/plugins/fancybox/source/jquery.fancybox.css",
         "assets/plugins/font-awesome/css/font-awesome.min.css",
-        "assets/plugins/owl-carousel/owl-carousel/owl.carousel.css",
-        "assets/plugins/master-slider/masterslider/style/masterslider.css",
-        "assets/plugins/master-slider/masterslider/skins/default/style.css",
         "assets/plugins/login-signup-modal-window/css/style.css",
-        "assets/plugins/bootstrap/css/bootstrap.min.css",
         "assets/css/blog.style.css",
         "assets/css/theme-colors/default.css",
         "assets/css/theme-skins/dark.css",
@@ -35,20 +32,7 @@
         "assets/css/footer.css",
         "assets/css/custom.css"
       ],
-      "scripts": [
-        "assets/plugins/jquery/jquery.min.js",
-        "assets/plugins/jquery/jquery-migrate.min.js",
-        "assets/plugins/back-to-top.js",
-        "assets/plugins/smoothScroll.js",
-        "assets/plugins/counter/waypoints.min.js",
-        "assets/plugins/counter/jquery.counterup.min.js",
-        "assets/plugins/bootstrap/js/bootstrap.min.js",
-        "assets/plugins/fancybox/source/jquery.fancybox.pack.js",
-        "assets/plugins/owl-carousel/owl-carousel/owl.carousel.js",
-        "assets/plugins/master-slider/masterslider/masterslider.js",
-        "assets/plugins/master-slider/masterslider/jquery.easing.min.js",
-        "assets/plugins/modernizr.js"
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -1,8 +1,16 @@
+# FRONTEND CON MUSTACHE
+# Clonar en una carpeta a parte el proyecto de Git, y hacer un checkout:
+git checkout 3fbfa0b826fd8d4adf105ea09dced30a6111b710
+# Cambiar el puerto de /resources/application.properties al 8081 (por ejemplo)
+# Ahora ya tendremos el frontend anterior para poder ir verificando todo con el nuevo de Angular
+
+
 # Instalar dependencias necesarias
 npm install -g typescript
 npm install -g @angular/cli
 npm install --save @ng-bootstrap/ng-bootstrap
+npm install bootstrap@4.0.0-alpha.6
 
 # En caso de error probar los siguientes comandos
 npm update -g typescript
-nom install
+npm install

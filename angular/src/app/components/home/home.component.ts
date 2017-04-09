@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import {Article} from "../../entity/article.entity";
+import {ArticleService} from "../../services/article.service";
 
 @Component({
   selector: 'app',
@@ -8,15 +9,18 @@ import {Article} from "../../entity/article.entity";
   styleUrls: []
 })
 export class HomeComponent implements OnInit {
-  public carrouselArticles:Article[] = [];
+  public carrousel:Article[] = [];
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private articleService:ArticleService) {}
 
   ngOnInit() {
     this.initCarrouselArticles();
   }
 
   private initCarrouselArticles() {
-
+    this.articleService.carrousel().subscribe(
+      response => this.carrousel = response,
+      error => console.error(error)
+    );
   }
 }

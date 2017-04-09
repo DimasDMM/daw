@@ -33,7 +33,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 		// Other URLs can be accessed without authentication
 		http.authorizeRequests().anyRequest().permitAll();
 
-		// Disable CSRF protection (it is difficult to implement with ng2)
+		// CSRF protection
 		http.csrf().disable();
 		//http.csrf();
 

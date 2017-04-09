@@ -1,0 +1,9 @@
+<ngb-carousel *ngIf="slides != null">
+  <template ngbSlide *ngFor="let slide of slides">
+    <img src="{{urlImages}}/imagen/articulo/{{slide.id}}" alt="{{slide.title}}">
+    <div class="carousel-caption">
+      <h3>{{slide.title}}</h3>
+      <p>/Descripcion/</p>
+    </div>
+  </template>
+</ngb-carousel>

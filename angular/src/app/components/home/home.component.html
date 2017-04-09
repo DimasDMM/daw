@@ -1,31 +1,3 @@
-<!DOCTYPE html>
-<!--[if IE 8]>
-<html lang="es" class="ie8"> <![endif]-->
-<!--[if IE 9]>
-<html lang="es" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="es"> <!--<![endif]-->
-<head>
-  <title>The Madrid Times</title>
-
-  <!-- Meta -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <meta name="_csrf" content="{{token}}"/>
-  <meta name="_csrf_header" content="{{tokenHeader}}"/>
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="/img/icons/favicon.ico">
-
-  <!-- Web Fonts -->
-  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700'>
-</head>
-
-<body class="header-fixed header-fixed-space-v2 boxed-layout container">
-
 <div class="wrapper">
   <!--=== Header ===-->
   <header class="header-v8 header-sticky"></header>
@@ -35,47 +7,13 @@
   <section>
     <h1 id="home">Portada</h1>
     <div class="blog-ms-v1 content-sm bg-color-darker margin-bottom-60">
-      <div class="ms-partialview-template" id="partial-view-1">
-        <!-- masterslider -->
-        <div class="master-slider ms-skin-default" id="masterslider">
 
-          <div *ngIf="carrouselArticles?.length > 0">
-            <!--<div class="ms-slide blog-slider" *ngfor="let article of carrouselArticles">
-              <img src="/imagen/articulo/{{article.id}}" />
-              <span class="blog-slider-badge">{{category.name}}</span>
-              <div class="ms-info"></div>
-              <div class="blog-slider-title">
-                <span class="blog-slider-posted">{{ article.dateInsert | date:'d-M-y' }}</span>
-                <h2><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h2>
-              </div>
-            </div>-->
-          </div>
+      <ngbd-carousel-basic></ngbd-carousel-basic>
 
-        </div>
-        <!-- end of masterslider -->
-      </div>
     </div>
   </section>
   <!-- End Master Slider -->
 
   <!-- Meter chicha aqui -->
-
 </div><!--/wrapper-->
 
-
-<script>
-  jQuery(document).ready(function () {
-    App.init();
-    FancyBox.initFancybox();
-    OwlCarousel.initOwlCarousel();
-    OwlCarousel.initOwlCarousel2();
-    MasterSliderShowcase1.initMasterSliderShowcase1();
-  });
-</script>
-<!--[if lt IE 9]>
-<script src="/assets/plugins/respond.js"></script>
-<script src="/assets/plugins/html5shiv.js"></script>
-<script src="/assets/plugins/placeholder-IE-fixes.js"></script>
-<![endif]-->
-</body>
-</html>
