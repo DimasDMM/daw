@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, ViewChild} from "@angular/core";
+import {Component, OnInit, ElementRef, ViewChild, EventEmitter, Output} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Http} from "@angular/http";
 
@@ -17,6 +17,9 @@ import {Category} from "../../entity/category.entity";
 })
 export class HeaderComponent implements OnInit {
 
+  @Output()
+  private login = new EventEmitter<boolean>();
+
   private modalLogReg = { "is-visible": false, "cd-user-modal": true };
   public urlImages = URL_IMAGES;
   public userLogged:User;
@@ -28,6 +31,9 @@ export class HeaderComponent implements OnInit {
   // Variables de formularios
   @ViewChild('loginEmail') loginEmail: ElementRef;
   @ViewChild('loginPassword') loginPassword: ElementRef;
+
+  // Elementos HTML
+  @ViewChild('formLoginInput') formLoginInput: ElementRef;
 
   constructor(
     private router: Router,
@@ -52,30 +58,35 @@ export class HeaderComponent implements OnInit {
     this.dateNow = new Date();
   }
 
-  getArticleService() {
+  public getArticleService() {
     return this.articleService;
   }
 
   // Eventos sobre el header
-  loginForm() {
+  public loginForm(event) {
+    event.stopPropagation();
+
+    this.formLoginInput.nativeElement.value = "Cargando...";
+
     let email = this.loginEmail.nativeElement.value;
     let password = this.loginPassword.nativeElement.value;
 
     this.sessionService.login(email, password).subscribe(
-      response => this.setUserLogged(response),
+      response => this.loginSuccess(),
       error => console.error(error)
     );
   }
 
-  toggleModalLogReg() {
+  public toggleModalLogReg() {
     console.log("# Modal toggle");
     this.modalLogReg["is-visible"] = !this.modalLogReg["is-visible"];
   }
 
-  private setUserLogged(response) {
-    this.userLogged = response;
-    this.sessionService.setUserLogged( this.userLogged );
+  private loginSuccess() {
+    this.userLogged = this.sessionService.getUserLogged();
     this.toggleModalLogReg();
+
+    this.login.emit();
 
     console.log("# Login: "+ this.userLogged.name);
   }

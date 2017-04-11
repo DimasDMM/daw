@@ -8,6 +8,8 @@ import {User} from "../../entity/user.entity";
 import {ArticleFavourites} from "../../entity/article_favourites";
 
 import {URL_IMAGES} from "../../shared/config.service";
+import {EventSession} from "../base/event_session.component";
+import {SessionService} from "../../services/session.service";
 
 
 @Component({
@@ -15,31 +17,37 @@ import {URL_IMAGES} from "../../shared/config.service";
   templateUrl: 'home.component.html',
   styleUrls: []
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends EventSession implements OnInit {
 
   public urlImages = URL_IMAGES;
-  public userLogged:User;
   public carrousel:Article[] = [];
   public sectionFavourite:ArticleFavourites;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private articleService:ArticleService) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private articleService:ArticleService, protected sessionService:SessionService) {super(sessionService)}
 
   ngOnInit() {
-    this.initCarrouselArticles();
-    this.initSectionFavourites();
+    this.carrouselArticles();
+    this.sectionFavourites();
   }
 
-  private initCarrouselArticles() {
+  private carrouselArticles() {
     this.articleService.carrousel().subscribe(
       response => this.carrousel = response,
       error => console.error(error)
     );
   }
 
-  private initSectionFavourites() {
-    this.articleService.favourites(this.userLogged).subscribe(
+  private sectionFavourites() {
+    this.articleService.favourites().subscribe(
       response => this.sectionFavourite = response,
       error => console.error(error)
     );
+  }
+
+  /*
+   * Overwrited
+   */
+  protected onLoginCalls() {
+    this.sectionFavourites();
   }
 }
