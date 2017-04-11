@@ -1,10 +1,11 @@
 import {Injectable, OnInit} from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/Rx';
 
 import { Category } from '../entity/category.entity';
 import { URL_API } from "../shared/config.service";
-import { Article } from "../entity/article.entity";
+import {User} from "../entity/user.entity";
+import {SessionService} from "./session.service";
 
 @Injectable()
 export class ArticleService {
@@ -18,7 +19,7 @@ export class ArticleService {
     { id:"cultura",    name:"Cultura" }
   ];
 
-  constructor(private http:Http) {
+  constructor(private http:Http, private sessionService:SessionService) {
     console.log("# Init ArticleService")
   }
 
@@ -36,6 +37,25 @@ export class ArticleService {
   public carrousel() {
     let url = URL_API+"/carrousel";
     return this.http.get(url).map(
+      response => response.json()
+    );
+  }
+
+  // Devuelve ultimas noticias en categoria de favoritos
+  public favourites() {
+    let headers, options;
+
+    // Verificar si esta logeado
+    if(this.sessionService.isUserLogged()) {
+      headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });
+    } else {
+      headers = new Headers({});
+    }
+
+    options = new RequestOptions({ headers: headers });
+
+    let url = URL_API+"/categoria/favoritos";
+    return this.http.get(url, options).map(
       response => response.json()
     );
   }

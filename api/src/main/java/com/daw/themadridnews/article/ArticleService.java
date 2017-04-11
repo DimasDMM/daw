@@ -1,5 +1,6 @@
 package com.daw.themadridnews.article;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,13 @@ public class ArticleService {
 	}
 
 	// Obtener datos de un articulo
-	public Article get(long id) {
-		return articleRepository.findOne(id);
+	public Article get(long id, boolean contentHtml) {
+		Article a = articleRepository.findOne(id);
+		
+		if(contentHtml)
+			a.setContent( MarkdownConverter.getFormatedHtml( a.getContent() ) );
+		
+		return a;
 	}
 
 	// Guardar cambios
@@ -75,44 +81,72 @@ public class ArticleService {
 	/**
 	 * Ultimos X articulos publicados y que esten marcados como visibles
 	 */
-	public List<Article> findFirst4() {
-		return articleRepository.findFirst4ByVisible(true);
+	public List<Article> findFirst4(boolean contentHtml) {
+		List<Article> l = articleRepository.findFirst4ByVisible(true);
+		if(contentHtml) this.MarkdownFormatedHtml(l);
+		return l;
 	}
 
-	public List<Article> findFirst5() {
-		return articleRepository.findFirst5ByVisible(true);
+	public List<Article> findFirst5(boolean contentHtml) {
+		List<Article> l = articleRepository.findFirst5ByVisible(true);
+		if(contentHtml) this.MarkdownFormatedHtml(l);
+		return l;
 	}
 
-	public List<Article> findFirst6() {
-		return articleRepository.findFirst6ByVisible(true);
+	public List<Article> findFirst6(boolean contentHtml) {
+		List<Article> l = articleRepository.findFirst6ByVisible(true);
+		if(contentHtml) this.MarkdownFormatedHtml(l);
+		return l;
 	}
 
-	public List<Article> findFirst6ByCategory(String category) {
-		return articleRepository.findFirst6ByCategoryAndVisible(category, true);
+	public List<Article> findFirst6ByCategory(String category, boolean contentHtml) {
+		List<Article> l = articleRepository.findFirst6ByCategoryAndVisible(category, true);
+		if(contentHtml) this.MarkdownFormatedHtml(l);
+		return l;
 	}
 
 	/**
 	 * Obtener X articulos aleatorios
 	 */
-	public List<Article> findRandom4() {
-		return articleRepository.findRandom4();
+	public List<Article> findRandom4(boolean contentHtml) {
+		List<Article> l = articleRepository.findRandom4();
+		if(contentHtml) this.MarkdownFormatedHtml(l);
+		return l;
 	}
 
-	public List<Article> findRandom4ThisWeek() {
-		return articleRepository.findRandom4ThisWeek();
+	public List<Article> findRandom4ThisWeek(boolean contentHtml) {
+		List<Article> l = articleRepository.findRandom4ThisWeek();
+		if(contentHtml) this.MarkdownFormatedHtml(l);
+		return l;
 	}
 	
 	/**
 	 * Obtener el ultimo articulo publicado de cada categoria
 	 */
-	public List<Article> findFirstEachCategory() {
-		return articleRepository.findFirstEachCategory();
+	public List<Article> findFirstEachCategory(boolean contentHtml) {
+		List<Article> l = articleRepository.findFirstEachCategory();
+		if(contentHtml) this.MarkdownFormatedHtml(l);
+		return l;
 	}
 
 	/**
 	 * Obtener los 2 articulos mas vistos durante la ultima semana
 	 */
-	public List<Article> find2PopularLastWeek() {
-		return articleRepository.find2PopularLastWeek();
+	public List<Article> find2PopularLastWeek(boolean contentHtml) {
+		List<Article> l = articleRepository.find2PopularLastWeek();
+		if(contentHtml) this.MarkdownFormatedHtml(l);
+		return l;
+	}
+	
+	/*
+	 * FUNCIONES AUXILIARES
+	 */
+	protected void MarkdownFormatedHtml(List<Article> l) {
+		Iterator<Article> it = l.iterator();
+		
+		while(it.hasNext()) {
+			Article a = it.next();
+			a.setContent( MarkdownConverter.getFormatedHtml( a.getContent() ) );
+		}
 	}
 }

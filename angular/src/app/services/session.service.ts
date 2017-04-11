@@ -10,39 +10,49 @@ export class SessionService {
 
   constructor(private http:Http) {}
 
-  login(user:string, password:string) {
-    let headers = new Headers({ 'Authorization': this.generateAuthHeader(user, password) });
+  public login(username:string, password:string) {
+    let headers = new Headers({ 'Authorization': this.generateAuthHeader(username, password) });
     let options = new RequestOptions({ headers: headers });
 
     let url = URL_API+"/login";
     return this.http.get(url, options).map(
-      response => SessionService.extractUser(response)
+      response => this.onLogin(username, password, response)
     );
   }
 
-  getUserLogged() {
+  public isUserLogged() {
+    return (this.userLogged != null);
+  }
+
+  public getUserLogged() {
     return this.userLogged;
   }
 
-  setUserLogged(userLogged: User) {
+  public setUserLogged(userLogged: User) {
     this.userLogged = userLogged;
   }
 
-  getAuthHeader() {
+  public getAuthHeader() {
     return this.session;
   }
 
-  setAuthHeader(user:string, password:string) {
+  public setAuthHeader(user:string, password:string) {
     this.session = this.generateAuthHeader(user, password);
   }
 
-  generateAuthHeader(user:string, password:string) {
+  private generateAuthHeader(user:string, password:string) {
     let session = user + ':' + password;
     session = "Basic " + btoa(session);
     return session;
   }
 
-  private static extractUser(response: Response) {
-    return response.json();
+  private onLogin(username:string, password:string, response: Response) {
+    let user = response.json();
+
+    if(user != null) {
+      this.setAuthHeader( username, password );
+      this.setUserLogged( user );
+    }
+
   }
 }

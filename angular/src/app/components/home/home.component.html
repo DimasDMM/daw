@@ -1,18 +1,88 @@
 <div class="wrapper">
   <!--=== Header ===-->
-  <header class="header-v8 header-sticky"></header>
+  <header class="header-v8 header-sticky" (login)='onLogin()'></header>
   <!--=== End Header ===-->
 
   <!-- Master Slider -->
   <section>
     <h1 id="home">Portada</h1>
     <div class="blog-ms-v1 content-sm bg-color-darker margin-bottom-60">
-
       <ngbd-carousel-basic></ngbd-carousel-basic>
-
     </div>
   </section>
   <!-- End Master Slider -->
+
+  <!--=== Container Part ===-->
+  <div class="container margin-bottom-40">
+    <div class="row">
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <!-- Tab v4 -->
+        <section>
+          <div class="tab-v4 margin-bottom-40">
+            <!-- Tab Heading -->
+            <div class="tab-heading">
+              <h1 class="index-titles" *ngIf="sectionFavourite == null || sectionFavourite?.id == null">Últimas noticias</h1>
+              <h1 class="index-titles" *ngIf="sectionFavourite != null && sectionFavourite.id != null">Novedades en Favoritos</h1>
+
+              <ul class="nav nav-tabs">
+                <li class="home active">
+                  <a *ngIf="sectionFavourite == null || sectionFavourite?.id == null">Todos</a>
+                  <a *ngIf="sectionFavourite != null && sectionFavourite.id != null" [routerLink]="['/categoria',sectionFavourite.id]">{{sectionFavourite.name}}</a>
+                </li>
+              </ul>
+            </div>
+            <!-- End Latest News -->
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+              <div class="tab-pane fade in active">
+                <div class="row" *ngIf="sectionFavourite?.articles.length > 0">
+
+                  <div class="col-sm-7" *ngFor="let article of sectionFavourite.articles | slice:0:1">
+                    <!-- Blog Grid -->
+                    <div class="blog-grid sm-margin-bottom-40">
+                      <img class="img-responsive" src="{{urlImages}}/imagen/articulo/{{article.id}}">
+                      <h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
+                      <ul class="blog-grid-info">
+                        <li>{{article.author.name}} {{article.author.lastname}}</li>
+                        <li>{{ article.dateInsert | date:'d-M-y' }}</li>
+                        <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> 0</a></li>
+                      </ul>
+                      <p>{{ article.content | toText | slice:0:50}}...</p>
+                      <a class="r-more" [routerLink]="['/articulo',article.id]">Leer m&aacute;s</a>
+                    </div>
+                    <!-- End Blog Grid -->
+                  </div>
+
+                  <div class="col-sm-5">
+                    <!-- Blog Thumb -->
+                    <div class="blog-thumb margin-bottom-20" *ngFor="let article of sectionFavourite.articles | slice:1:7">
+                      <div class="blog-thumb-hover">
+                        <img src="{{urlImages}}/imagen/articulo/{{article.id}}">
+                        <a class="hover-grad" [routerLink]="['/articulo',article.id]"><i class="fa fa-camera"></i></a>
+                      </div>
+                      <div class="blog-thumb-desc">
+                        <h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
+                        <ul class="blog-thumb-info">
+                          <li>{{ article.dateInsert | date:'d-M-y' }}</li>
+                          <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> 0</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <!-- End Blog Thumb -->
+                  </div>
+
+                </div><!--/end row-->
+              </div>
+            </div>
+            <!-- End Tab Content -->
+          </div>
+        </section>
+        <!-- End Tab v4 -->
+      </div>
+    </div>
+  </div>
 
   <!-- Meter chicha aqui -->
 </div><!--/wrapper-->

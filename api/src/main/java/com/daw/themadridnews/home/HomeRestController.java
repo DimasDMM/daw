@@ -23,7 +23,7 @@ public class HomeRestController {
 	@JsonView(ArticleService.View.class)
 	@RequestMapping(value="/carrousel", method=RequestMethod.GET)
     public ResponseEntity<Object> carrousel() {
-        List<Article> carrousel = articleService.findFirstEachCategory();
+        List<Article> carrousel = articleService.findFirstEachCategory(false);
         return new ResponseEntity<>(carrousel, HttpStatus.OK);
 	}
 }
