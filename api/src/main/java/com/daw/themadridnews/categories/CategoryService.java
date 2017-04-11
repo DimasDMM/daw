@@ -12,8 +12,9 @@ import com.daw.themadridnews.webconfig.Config;
 
 @Service
 public class CategoryService {
-	
+
 	public static interface CategoryBasic extends Article.Basic, User.Basic, Config.Responses {}
+	public static interface Favourites extends CategoryFavourites.Basic, Article.Basic, User.Basic, Config.Responses {}
 	
 	@Autowired
 	protected ArticleRepository articleRepository;

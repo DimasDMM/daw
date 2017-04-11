@@ -36,7 +36,7 @@ public class ArticleRestController {
 	@RequestMapping(value="/articulo/{id}", method=RequestMethod.GET)
 	@JsonView(ArticleService.View.class)
 	public ResponseEntity<Object> get(@PathVariable long id) {
-		Article a = articleService.get(id);
+		Article a = articleService.get(id, true);
 		
 		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -49,7 +49,7 @@ public class ArticleRestController {
 	@RequestMapping(value="/articulo/{id}/comentarios", method=RequestMethod.GET)
 	@JsonView(ArticleService.Comments.class)
 	public ResponseEntity<Object> getComments(@PathVariable long id) {
-		Article a = articleService.get(id);
+		Article a = articleService.get(id, false);
 		
 		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -62,7 +62,7 @@ public class ArticleRestController {
 	@JsonView(ArticleService.View.class)
 	@RequestMapping(value="/articulo/{id}/visualizacion", method=RequestMethod.GET)
 	public ResponseEntity<Object> addView(@PathVariable long id) {
-		Article a = articleService.get(id);
+		Article a = articleService.get(id, false);
 		
 		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
@@ -81,7 +81,7 @@ public class ArticleRestController {
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		
-		Article article = articleService.get(id);
+		Article article = articleService.get(id, false);
 		if(article == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		

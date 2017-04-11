@@ -21,13 +21,8 @@ export class NgbdCarouselBasic implements OnInit {
 
   private initCarrousel() {
     this.articleService.carrousel().subscribe(
-      response => this.setSlides(response),
+      response => this.slides = response,
       error => console.error(error)
     );
-  }
-
-  private setSlides(slides) {
-    this.slides = slides;
-    console.log(slides);
   }
 }

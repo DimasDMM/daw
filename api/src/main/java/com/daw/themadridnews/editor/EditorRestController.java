@@ -41,7 +41,7 @@ public class EditorRestController {
 	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Object> get(@PathVariable long id) {
-		Article a = articleService.get(id);
+		Article a = articleService.get(id, false);
 		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 		// Verificar que el usuario tenga permiso
@@ -91,7 +91,7 @@ public class EditorRestController {
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		
-		Article a = articleService.get(id);
+		Article a = articleService.get(id, false);
 		if(a == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
@@ -117,7 +117,7 @@ public class EditorRestController {
 	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo/{id}/imagen", method=RequestMethod.POST)
 	public ResponseEntity<Object> modify(@PathVariable long id, @RequestParam("file") MultipartFile file) {
-		Article a = articleService.get(id);
+		Article a = articleService.get(id, false);
 		if(a == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
@@ -140,7 +140,7 @@ public class EditorRestController {
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Object> deleteArticle(@PathVariable long id) {
 		// Comprobar existencia de articulo
-		Article a = articleService.get(id);
+		Article a = articleService.get(id, false);
 		if(a == null) return new ResponseEntity<>(a, HttpStatus.NOT_FOUND);
 		
 		// Comprobar permisos

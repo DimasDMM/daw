@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 import { Category } from '../entity/category.entity';
 import { URL_API } from "../shared/config.service";
 import { Article } from "../entity/article.entity";
+import {User} from "../entity/user.entity";
 
 @Injectable()
 export class ArticleService {
@@ -35,6 +36,14 @@ export class ArticleService {
 
   public carrousel() {
     let url = URL_API+"/carrousel";
+    return this.http.get(url).map(
+      response => response.json()
+    );
+  }
+
+  // Devuelve ultimas noticias en categoria de favoritos, parametro de sesion opcional
+  public favourites(session:User) {
+    let url = URL_API+"/categoria/favoritos";
     return this.http.get(url).map(
       response => response.json()
     );
