@@ -22,7 +22,12 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
   public carrousel:Article[] = [];
   public sectionFavourite:ArticleFavourites;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private articleService:ArticleService, protected sessionService:SessionService) {super(sessionService)}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private articleService:ArticleService,
+    sessionService:SessionService
+  ) { super(sessionService) }
 
   ngOnInit() {
     this.carrouselArticles();
@@ -47,6 +52,10 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
    * Overwrited
    */
   protected onLoginCalls() {
+    this.sectionFavourites();
+  }
+
+  protected onLogoutCalls() {
     this.sectionFavourites();
   }
 }

@@ -7,13 +7,14 @@ import {SessionService} from "../../services/session.service";
 
 import {URL_IMAGES} from "../../shared/config.service";
 import {Category} from "../../entity/category.entity";
+import {EventSessionComponent} from "../base/event_session.component";
 
 
 @Component({
   selector: 'app-footer',
   templateUrl: 'footer.component.html'
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent extends EventSessionComponent implements OnInit {
 
   public urlImages = URL_IMAGES;
 
@@ -26,8 +27,8 @@ export class FooterComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private http: Http,
     private articleService: ArticleService,
-    private sessionService: SessionService
-  ) {}
+    sessionService: SessionService
+  ) { super(sessionService) }
 
   ngOnInit() {
     console.log("# Init Footer");
@@ -41,5 +42,9 @@ export class FooterComponent implements OnInit {
     this.dateNow = new Date();
   }
 
-  private loginSuccess() {}
+  /*
+   * Overwrited
+   */
+  protected onLoginCalls() {}
+  protected onLogoutCalls() {}
 }

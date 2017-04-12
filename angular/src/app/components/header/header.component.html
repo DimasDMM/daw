@@ -61,7 +61,7 @@
               <li><a href="/ajustes">Ajustes</a></li>
             </ul>
           </li>
-          <li *ngIf="userLogged != null"><a href="/logout">Cerrar sesi&oacute;n</a></li>
+          <li *ngIf="userLogged != null"><a (click)="logoutButton()">Cerrar sesi&oacute;n</a></li>
           <!--{{/user_logged}}-->
         </ul>
       </div>
@@ -164,7 +164,7 @@
         </p>
 
         <p class="fieldset">
-          <input class="full-width cd-submit text-center" #formLoginInput (click)="loginForm($event)" value="Entrar">
+          <input class="full-width cd-submit text-center" #formLoginInput (click)="loginButton($event)" value="Entrar">
         </p>
       </form>
 

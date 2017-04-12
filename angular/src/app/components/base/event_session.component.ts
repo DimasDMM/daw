@@ -17,7 +17,13 @@ export abstract class EventSessionComponent {
     this.onLoginCalls();
   }
 
-  // Despues de haber realizado el login, se llamara a este metodo
+  public onLogout() {
+    console.log("# Event Logout");
+    this.onLogoutCalls();
+  }
+
+  // Despues de haber realizado el login o logout, se llamara a este metodo
   // Por ejemplo, si hay que llamar a algun metodo de un componente hijo hay que sobreescribir este metodo
   protected abstract onLoginCalls();
+  protected abstract onLogoutCalls();
 }

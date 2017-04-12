@@ -9,16 +9,20 @@ import {URL_IMAGES} from "../../shared/config.service";
 
 import {User} from "../../entity/user.entity";
 import {Category} from "../../entity/category.entity";
+import {EventSessionComponent} from "../base/event_session.component";
 
 
 @Component({
   selector: 'header',
   templateUrl: 'header.component.html'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent extends EventSessionComponent implements OnInit {
 
   @Output()
   private login = new EventEmitter<boolean>();
+
+  @Output()
+  private logout = new EventEmitter<boolean>();
 
   private modalLogReg = { "is-visible": false, "cd-user-modal": true };
   public urlImages = URL_IMAGES;
@@ -40,8 +44,8 @@ export class HeaderComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private http: Http,
     private articleService: ArticleService,
-    private sessionService: SessionService
-  ) {}
+    sessionService: SessionService
+  ) { super(sessionService) }
 
   ngOnInit() {
     this.categories = this.articleService.getCategories();
@@ -63,7 +67,7 @@ export class HeaderComponent implements OnInit {
   }
 
   // Eventos sobre el header
-  public loginForm(event) {
+  public loginButton(event) {
     event.stopPropagation();
 
     this.formLoginInput.nativeElement.value = "Cargando...";
@@ -73,12 +77,19 @@ export class HeaderComponent implements OnInit {
 
     this.sessionService.login(email, password).subscribe(
       response => this.loginSuccess(),
-      error => console.error(error)
+      error => this.loginError(error)
     );
   }
 
+  public logoutButton() {
+    this.sessionService.logout().subscribe(
+      response => this.logoutSuccess(),
+      error => this.logoutError(error)
+    );
+  }
+
+  // Mostrar/ocultar modal de login-registro
   public toggleModalLogReg() {
-    console.log("# Modal toggle");
     this.modalLogReg["is-visible"] = !this.modalLogReg["is-visible"];
   }
 
@@ -86,8 +97,29 @@ export class HeaderComponent implements OnInit {
     this.userLogged = this.sessionService.getUserLogged();
     this.toggleModalLogReg();
 
-    this.login.emit();
+    this.formLoginInput.nativeElement.value = "Entrar";
 
-    console.log("# Login: "+ this.userLogged.name);
+    this.login.emit(); // Emitir evento de login
   }
+
+  private loginError(error) {
+    console.log(error);
+    this.formLoginInput.nativeElement.value = "Entrar";
+  }
+
+  private logoutSuccess() {
+    this.userLogged = null;
+    this.logout.emit(); // Emitir evento de logout
+  }
+
+  private logoutError(error) {
+    console.log(error);
+    this.formLoginInput.nativeElement.value = "Entrar";
+  }
+
+  /*
+   * Overwrited
+   */
+  protected onLoginCalls() {}
+  protected onLogoutCalls() {}
 }
