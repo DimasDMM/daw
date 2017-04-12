@@ -6,8 +6,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import {HeaderComponent} from "./components/header/header.component";
+import {FooterComponent} from "./components/footer/footer.component";
 import { HomeComponent } from './components/home/home.component';
 import {NgbdCarouselBasic} from "./components/home/carrousel.component";
+import {PrivacyComponent} from "./components/privacy/privacy.component";
 
 import { routing } from './app.routing';
 import {ArticleService} from "./services/article.service";
@@ -19,7 +21,9 @@ import {toText} from "./shared/toText.pipe";
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
     HomeComponent,
+    PrivacyComponent,
     NgbdCarouselBasic,
     toText
   ],

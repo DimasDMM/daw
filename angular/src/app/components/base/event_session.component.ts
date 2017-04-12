@@ -5,7 +5,7 @@
 import {SessionService} from "../../services/session.service";
 import {User} from "../../entity/user.entity";
 
-export abstract class EventSession {
+export abstract class EventSessionComponent {
 
   public userLogged:User;
 

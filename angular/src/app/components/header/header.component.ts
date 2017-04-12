@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
     let that = this;
     this.categories.forEach(function (category) {
       that.last_articles[ category.id ] = {};
-      that.getArticleService().getArticlesFromCategory( category.id, 1, 10 ).subscribe(
+      that.getArticleService().getLastArticlesFromCategory( category.id, 1, 10 ).subscribe(
         articles => that.last_articles[ category.id ] = articles,
         error => console.error(error)
       );
