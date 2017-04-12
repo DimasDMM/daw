@@ -27,13 +27,23 @@ export class ArticleService {
     return this.categories;
   }
 
-  public getArticlesFromCategory(id:string, page:number, number:number) {
+  // Ultimos articulos publicados
+  public getLastArticles(number:number) {
+    let url = URL_API+"/articulos?number="+number;
+    return this.http.get(url).map(
+      response => response.json()
+    );
+  }
+
+    // Ultimos articulos publicados en una categoria determinada
+  public getLastArticlesFromCategory(id:string, page:number, number:number) {
     let url = URL_API+"/categoria/"+id+"?page="+page+"&number="+number;
     return this.http.get(url).map(
       response => response.json().content.map( article => article )
     );
   }
 
+  // Articulos para el carrousel
   public carrousel() {
     let url = URL_API+"/carrousel";
     return this.http.get(url).map(

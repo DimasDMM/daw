@@ -4,11 +4,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 import {ArticleService} from "../../services/article.service";
 
 import {Article} from "../../entity/article.entity";
-import {User} from "../../entity/user.entity";
 import {ArticleFavourites} from "../../entity/article_favourites";
 
 import {URL_IMAGES} from "../../shared/config.service";
-import {EventSession} from "../base/event_session.component";
+import {EventSessionComponent} from "../base/event-session.component";
 import {SessionService} from "../../services/session.service";
 
 
@@ -17,15 +16,21 @@ import {SessionService} from "../../services/session.service";
   templateUrl: 'home.component.html',
   styleUrls: []
 })
-export class HomeComponent extends EventSession implements OnInit {
+export class HomeComponent extends EventSessionComponent implements OnInit {
 
   public urlImages = URL_IMAGES;
   public carrousel:Article[] = [];
   public sectionFavourite:ArticleFavourites;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private articleService:ArticleService, protected sessionService:SessionService) {super(sessionService)}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private articleService:ArticleService,
+    sessionService:SessionService
+  ) { super(sessionService) }
 
   ngOnInit() {
+    console.log("# Init Home");
     this.carrouselArticles();
     this.sectionFavourites();
   }
@@ -48,6 +53,10 @@ export class HomeComponent extends EventSession implements OnInit {
    * Overwrited
    */
   protected onLoginCalls() {
+    this.sectionFavourites();
+  }
+
+  protected onLogoutCalls() {
     this.sectionFavourites();
   }
 }

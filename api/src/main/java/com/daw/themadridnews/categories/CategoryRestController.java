@@ -1,5 +1,7 @@
 package com.daw.themadridnews.categories;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,15 @@ public class CategoryRestController {
 	
 	public static final int N_RESULTS = 10;
 
+
+	@JsonView(CategoryService.CategoryBasic.class) 
+	@RequestMapping("/articulos")
+	public ResponseEntity<Object> lastArticles(@RequestParam(required=false) Integer number) {
+		number =  (number != null) ? number.intValue() : N_RESULTS;
+		
+		List<Article> l = articleService.findFirst5(true);
+		return new ResponseEntity<>(l, HttpStatus.OK);
+	}
 
 	@JsonView(CategoryService.CategoryBasic.class) 
 	@RequestMapping("/categoria/{categoryId}")
