@@ -8,7 +8,9 @@ export class SessionService {
   private session:string;
   private userLogged:User;
 
-  constructor(private http:Http) {}
+  constructor(private http:Http) {
+    console.log("# Init SessionService");
+  }
 
   public login(username:string, password:string) {
     let headers = new Headers({ 'Authorization': this.generateAuthHeader(username, password) });

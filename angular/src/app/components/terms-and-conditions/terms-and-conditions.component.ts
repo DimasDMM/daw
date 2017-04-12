@@ -6,10 +6,10 @@ import {SessionService} from "../../services/session.service";
 
 @Component({
   selector: 'app',
-  templateUrl: 'privacy.component.html',
+  templateUrl: 'terms-and-conditions.component.html',
   styleUrls: []
 })
-export class PrivacyComponent extends EventSessionComponent implements OnInit {
+export class TermsAndConditionsComponent extends EventSessionComponent implements OnInit {
 
   constructor(
     private router: Router,
@@ -17,7 +17,9 @@ export class PrivacyComponent extends EventSessionComponent implements OnInit {
     protected sessionService:SessionService
   ) { super(sessionService) }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("# Init TermsAndConditions");
+  }
 
   /*
    * Overwrited

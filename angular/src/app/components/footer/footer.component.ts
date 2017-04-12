@@ -7,7 +7,7 @@ import {SessionService} from "../../services/session.service";
 
 import {URL_IMAGES} from "../../shared/config.service";
 import {Category} from "../../entity/category.entity";
-import {EventSessionComponent} from "../base/event_session.component";
+import {EventSessionComponent} from "../base/event-session.component";
 
 
 @Component({

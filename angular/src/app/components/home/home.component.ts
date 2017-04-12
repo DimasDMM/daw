@@ -7,7 +7,7 @@ import {Article} from "../../entity/article.entity";
 import {ArticleFavourites} from "../../entity/article_favourites";
 
 import {URL_IMAGES} from "../../shared/config.service";
-import {EventSessionComponent} from "../base/event_session.component";
+import {EventSessionComponent} from "../base/event-session.component";
 import {SessionService} from "../../services/session.service";
 
 
@@ -30,6 +30,7 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
   ) { super(sessionService) }
 
   ngOnInit() {
+    console.log("# Init Home");
     this.carrouselArticles();
     this.sectionFavourites();
   }
