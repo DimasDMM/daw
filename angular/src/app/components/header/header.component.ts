@@ -24,7 +24,13 @@ export class HeaderComponent extends EventSessionComponent implements OnInit {
   @Output()
   private logout = new EventEmitter<boolean>();
 
+  // Estilos CSS
   private modalLogReg = { "is-visible": false, "cd-user-modal": true };
+  private modalBtnLogin = { "selected":false };
+  private modalTabLogin = { "is-selected":false };
+  private modalBtnSignup = { "selected":false };
+  private modalTabSignup = { "is-selected":false };
+
   public urlImages = URL_IMAGES;
   public userLogged:User;
 
@@ -37,12 +43,12 @@ export class HeaderComponent extends EventSessionComponent implements OnInit {
   @ViewChild('loginPassword') loginPassword: ElementRef;
 
   // Elementos HTML
-  @ViewChild('formLoginInput') formLoginInput: ElementRef;
+  @ViewChild('formLoginSubmit') formLoginSubmit: ElementRef;
+  @ViewChild('formSignupSubmit') formSignupSubmit: ElementRef;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private http: Http,
     private articleService: ArticleService,
     sessionService: SessionService
   ) { super(sessionService) }
@@ -55,7 +61,7 @@ export class HeaderComponent extends EventSessionComponent implements OnInit {
     let that = this;
     this.categories.forEach(function (category) {
       that.last_articles[ category.id ] = {};
-      that.getArticleService().getLastArticlesFromCategory( category.id, 1, 10 ).subscribe(
+      that.getArticleService().getArticlesFromCategory( category.id, 1, 10 ).subscribe(
         articles => that.last_articles[ category.id ] = articles,
         error => console.error(error)
       );
@@ -72,7 +78,7 @@ export class HeaderComponent extends EventSessionComponent implements OnInit {
   public loginButton(event) {
     event.stopPropagation();
 
-    this.formLoginInput.nativeElement.value = "Cargando...";
+    this.formLoginSubmit.nativeElement.value = "Cargando...";
 
     let email = this.loginEmail.nativeElement.value;
     let password = this.loginPassword.nativeElement.value;
@@ -90,23 +96,61 @@ export class HeaderComponent extends EventSessionComponent implements OnInit {
     );
   }
 
-  // Mostrar/ocultar modal de login-registro
-  public toggleModalLogReg() {
+  /*
+   * Acciones sobre el popup de login-registro
+   */
+  public modalOpenLogin() {
+    this.modalSelectTabLogin();
+    this.modalOpen();
+  }
+
+  public modalOpenSignup() {
+    this.modalSelectTabSignup();
+    this.modalOpen();
+  }
+
+  public modalSelectTabLogin() {
+    this.modalBtnLogin["selected"] = true;
+    this.modalTabLogin["is-selected"] = true;
+    this.modalBtnSignup["selected"] = false;
+    this.modalTabSignup["is-selected"] = false;
+  }
+
+  public modalSelectTabSignup() {
+    this.modalBtnLogin["selected"] = false;
+    this.modalTabLogin["is-selected"] = false;
+    this.modalBtnSignup["selected"] = true;
+    this.modalTabSignup["is-selected"] = true;
+  }
+
+  // Alternar abrir-cerrar
+  public modalToggle() {
     this.modalLogReg["is-visible"] = !this.modalLogReg["is-visible"];
   }
 
+  public modalOpen() {
+    this.modalLogReg["is-visible"] = true;
+  }
+
+  public modalClose() {
+    this.modalLogReg["is-visible"] = false;
+  }
+
+  /*
+   * Metodos auxiliares para los formularios del popup de login-registro
+   */
   private loginSuccess() {
     this.userLogged = this.sessionService.getUserLogged();
-    this.toggleModalLogReg();
+    this.modalToggle();
 
-    this.formLoginInput.nativeElement.value = "Entrar";
+    this.formLoginSubmit.nativeElement.value = "Entrar";
 
     this.login.emit(); // Emitir evento de login
   }
 
   private loginError(error) {
     console.log(error);
-    this.formLoginInput.nativeElement.value = "Entrar";
+    this.formLoginSubmit.nativeElement.value = "Entrar";
   }
 
   private logoutSuccess() {
@@ -116,7 +160,7 @@ export class HeaderComponent extends EventSessionComponent implements OnInit {
 
   private logoutError(error) {
     console.log(error);
-    this.formLoginInput.nativeElement.value = "Entrar";
+    this.formLoginSubmit.nativeElement.value = "Entrar";
   }
 
   /*

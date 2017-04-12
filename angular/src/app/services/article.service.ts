@@ -27,6 +27,15 @@ export class ArticleService {
     return this.categories;
   }
 
+  public getCategoryById(id:string):Category {
+    for(let i = 0; i < this.categories.length; i++) {
+      if(this.categories[i].id == id)
+        return this.categories[i];
+    }
+
+    return null;
+  }
+
   // Ultimos articulos publicados
   public getLastArticles(number:number) {
     let url = URL_API+"/articulos?number="+number;
@@ -35,9 +44,9 @@ export class ArticleService {
     );
   }
 
-    // Ultimos articulos publicados en una categoria determinada
-  public getLastArticlesFromCategory(id:string, page:number, number:number) {
-    let url = URL_API+"/categoria/"+id+"?page="+page+"&number="+number;
+    // Ultimos articulos publicados en una categoria determinada. Las paginas empiezan en 1
+  public getArticlesFromCategory(id:string, page:number, number:number) {
+    let url = URL_API+"/articulos/"+id+"?page="+page+"&number="+number;
     return this.http.get(url).map(
       response => response.json().content.map( article => article )
     );
@@ -45,7 +54,7 @@ export class ArticleService {
 
   // Articulos para el carrousel
   public carrousel() {
-    let url = URL_API+"/carrousel";
+    let url = URL_API+"/articulos/carrousel";
     return this.http.get(url).map(
       response => response.json()
     );
@@ -64,7 +73,7 @@ export class ArticleService {
 
     options = new RequestOptions({ headers: headers });
 
-    let url = URL_API+"/categoria/favoritos";
+    let url = URL_API+"/articulos/favoritos";
     return this.http.get(url, options).map(
       response => response.json()
     );

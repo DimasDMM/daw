@@ -31,4 +31,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 	@Query(nativeQuery=true, value="SELECT * FROM articles WHERE date_insert > DATE_SUB( NOW(), INTERVAL 1 WEEK ) AND visible = 1 ORDER BY views DESC LIMIT 2")
 	public List<Article> find2PopularLastWeek();
 	
+	@Query(nativeQuery=true, value="SELECT * FROM articles WHERE visible = 1 ORDER BY date_insert ASC LIMIT ?1")
+	public List<Article> findFirstNumber(int number);
 }

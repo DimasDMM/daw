@@ -14,7 +14,7 @@ export class TermsAndConditionsComponent extends EventSessionComponent implement
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    protected sessionService:SessionService
+    sessionService:SessionService
   ) { super(sessionService) }
 
   ngOnInit() {

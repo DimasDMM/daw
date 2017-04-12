@@ -20,6 +20,7 @@ public class ArticleService {
 	public static interface View extends Article.Basic, User.Basic, Config.Responses {}
 	public static interface Comments extends Article.Comments, Comment.Basic, Config.Responses {}
 	public static interface Editor extends Article.Basic, Article.Details, User.Basic, Config.Responses {}
+	public static interface ArticlesFavs extends CategoryFavourites.Basic, Article.Basic, User.Basic, Config.Responses {}
 
 	@Autowired
 	protected ArticleRepository articleRepository;
@@ -46,6 +47,13 @@ public class ArticleService {
 			a.setContent( MarkdownConverter.getFormatedHtml( a.getContent() ) );
 		
 		return a;
+	}
+	
+	// Devuelve una pagina de articulos para una categoria determinada
+	// Recordar que las paginas empiezan en 0
+	public Page<Article> getArticlesByCategory(String categoryId, int page, int number) {
+		Page<Article> p = articleRepository.findByCategory(categoryId, new PageRequest(page, number));
+		return p;
 	}
 
 	// Guardar cambios
@@ -81,26 +89,14 @@ public class ArticleService {
 	/**
 	 * Ultimos X articulos publicados y que esten marcados como visibles
 	 */
-	public List<Article> findFirst4(boolean contentHtml) {
-		List<Article> l = articleRepository.findFirst4ByVisible(true);
-		if(contentHtml) this.MarkdownFormatedHtml(l);
-		return l;
-	}
-
-	public List<Article> findFirst5(boolean contentHtml) {
-		List<Article> l = articleRepository.findFirst5ByVisible(true);
-		if(contentHtml) this.MarkdownFormatedHtml(l);
-		return l;
-	}
-
-	public List<Article> findFirst6(boolean contentHtml) {
-		List<Article> l = articleRepository.findFirst6ByVisible(true);
-		if(contentHtml) this.MarkdownFormatedHtml(l);
-		return l;
-	}
-
 	public List<Article> findFirst6ByCategory(String category, boolean contentHtml) {
 		List<Article> l = articleRepository.findFirst6ByCategoryAndVisible(category, true);
+		if(contentHtml) this.MarkdownFormatedHtml(l);
+		return l;
+	}
+	
+	public List<Article> findFirstNumber(int number, boolean contentHtml) {
+		List<Article> l = articleRepository.findFirstNumber(number);
 		if(contentHtml) this.MarkdownFormatedHtml(l);
 		return l;
 	}

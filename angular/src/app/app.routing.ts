@@ -5,11 +5,14 @@ import { HomeComponent } from './components/home/home.component';
 import {CategoryComponent} from "./components/category/category.component";
 
 const appRoutes = [
-  { path: '', redirectTo: 'portada', pathMatch: 'full' },
-  { path: 'categoria/:category.id', component: CategoryComponent},
   { path: 'portada', component: HomeComponent },
+
+  { path: 'categoria/:categoryId', component: CategoryComponent},
+
   { path: 'privacidad', component: PrivacyComponent },
-  { path: 'terminos-y-condiciones', component: TermsAndConditionsComponent }
-]
+  { path: 'terminos-y-condiciones', component: TermsAndConditionsComponent },
+
+  { path: '', redirectTo: 'portada', pathMatch: 'full' }
+];
 
 export const routing = RouterModule.forRoot(appRoutes);
