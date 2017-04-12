@@ -1,0 +1,34 @@
+<div class="wrapper">
+  <!--=== Header ===-->
+  <header class="header-v8 header-sticky" (login)='onLogin()'></header>
+  <!--=== End Header ===-->
+  <div class="container content-sm">
+    <h1 class="title-v4 h1_category">{{concreteCategory}}</h1>
+    <div class="col-md-9 md-margin-bottom-50">
+      <div class="ms-slide-loading"></div>
+      <div id="category_news">
+        <div *ngFor="let article of articleList" class="row margin-bottom-50">
+          <div class="col-sm-4 sm-margin-bottom-20">
+            <img class="img-responsive" src="/imagen/articulo/{{article.id}}" alt="Imagen del articulo">
+          </div>
+          <div class="col-sm-8">
+            <div class="blog-grid" >
+              <h3><a href="/articulo/{{article.id}}">{{article.title}}</a></h3>
+              <ul class="blog-grid-info">
+                <li>{{article.author.name}} {{article.author.lastname}}</li>
+                <li>{{article.dateInsert}}</li>
+                <li><a href="/articulo/{{article.id}}"><i class="fa fa-comments"></i> 0</a></li>
+              </ul>
+              <p>{{contentShort}}</p>
+              <a class="r-more" href="/articulo/{{id}}">Leer m&aacute;s</a>
+            </div>
+          </div>
+        </div>
+        <!-- End Blog Grid -->
+
+      </div>
+    </div>
+  </div>
+
+
+</div>

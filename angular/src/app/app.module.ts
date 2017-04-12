@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import {HeaderComponent} from "./components/header/header.component";
 import { HomeComponent } from './components/home/home.component';
 import {NgbdCarouselBasic} from "./components/home/carrousel.component";
+import {CategoryComponent} from "./components/category/category.component";
 
 import { routing } from './app.routing';
 import {ArticleService} from "./services/article.service";
@@ -19,6 +20,7 @@ import {toText} from "./shared/toText.pipe";
   declarations: [
     AppComponent,
     HeaderComponent,
+    CategoryComponent,
     HomeComponent,
     NgbdCarouselBasic,
     toText
