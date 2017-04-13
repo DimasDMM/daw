@@ -22,13 +22,13 @@
           <div class="tab-v4 margin-bottom-40">
             <!-- Tab Heading -->
             <div class="tab-heading">
-              <h1 class="index-titles" *ngIf="sectionFavourite == null || sectionFavourite?.id == null">Últimas noticias</h1>
-              <h1 class="index-titles" *ngIf="sectionFavourite != null && sectionFavourite.id != null">Novedades en Favoritos</h1>
+              <h1 class="index-titles" *ngIf="articlesFavourite == null || articlesFavourite?.id == null">Últimas noticias</h1>
+              <h1 class="index-titles" *ngIf="articlesFavourite != null && articlesFavourite.id != null">Novedades en Favoritos</h1>
 
               <ul class="nav nav-tabs">
                 <li class="home active">
-                  <a *ngIf="sectionFavourite == null || sectionFavourite?.id == null">Todos</a>
-                  <a *ngIf="sectionFavourite != null && sectionFavourite.id != null" [routerLink]="['/categoria',sectionFavourite.id]">{{sectionFavourite.name}}</a>
+                  <a *ngIf="articlesFavourite == null || articlesFavourite?.id == null">Todos</a>
+                  <a *ngIf="articlesFavourite?.id != null" [routerLink]="['/categoria',articlesFavourite.id]">{{articlesFavourite.name}}</a>
                 </li>
               </ul>
             </div>
@@ -37,9 +37,9 @@
             <!-- Tab Content -->
             <div class="tab-content">
               <div class="tab-pane fade in active">
-                <div class="row" *ngIf="sectionFavourite?.articles.length > 0">
+                <div class="row" *ngIf="articlesFavourite?.articles.length > 0">
 
-                  <div class="col-sm-7" *ngFor="let article of sectionFavourite.articles | slice:0:1">
+                  <div class="col-sm-7" *ngFor="let article of articlesFavourite.articles | slice:0:1">
                     <!-- Blog Grid -->
                     <div class="blog-grid sm-margin-bottom-40">
                       <img class="img-responsive" src="{{urlImages}}/imagen/articulo/{{article.id}}">
@@ -57,7 +57,7 @@
 
                   <div class="col-sm-5">
                     <!-- Blog Thumb -->
-                    <div class="blog-thumb margin-bottom-20" *ngFor="let article of sectionFavourite.articles | slice:1:7">
+                    <div class="blog-thumb margin-bottom-20" *ngFor="let article of articlesFavourite.articles | slice:1:7">
                       <div class="blog-thumb-hover">
                         <img src="{{urlImages}}/imagen/articulo/{{article.id}}">
                         <a class="hover-grad" [routerLink]="['/articulo',article.id]"><i class="fa fa-camera"></i></a>
@@ -80,7 +80,92 @@
           </div>
         </section>
         <!-- End Tab v4 -->
+
+        <!-- Last articles -->
+        <section *ngIf="articlesFavourite?.id != null">
+          <!-- Blog Carousel Heading -->
+          <div class="blog-cars-heading">
+            <h1 class="index-titles">&Uacute;ltima hora</h1>
+            <div class="owl-navigation">
+              <div class="customNavigation">
+                <a class="owl-btn prev-v3" (click)="lastArticlesPrevious()"><i class="fa fa-angle-left"></i></a>
+                <a class="owl-btn next-v3" (click)="lastArticlesNext()"><i class="fa fa-angle-right"></i></a>
+              </div>
+            </div><!--/navigation-->
+          </div>
+          <!-- End Blog Carousel Heading -->
+
+          <!-- Blog Carousel -->
+          <div class="blog-carousel margin-bottom-50" *ngIf="lastArticles?.length > 0">
+
+            <!-- Article -->
+            <div class="item">
+              <div class="row">
+                <div class="col-sm-5 sm-margin-bottom-20">
+                  <img class="img-responsive" src="{{urlImages}}/imagen/articulo/{{lastArticles[ lastArticlesId ].id}}" title="{{lastArticles[ lastArticlesId ].title}}">
+                </div>
+                <div class="col-sm-7">
+                  <div class="blog-grid">
+                    <h3><a [routerLink]="['/articulo',lastArticles[0].id]">{{lastArticles[ lastArticlesId ].title}}</a></h3>
+                    <ul class="blog-grid-info">
+                      <li>{{lastArticles[ lastArticlesId ].author.name}} {{lastArticles[ lastArticlesId ].author.lastname}}</li>
+                      <li>{{lastArticles[ lastArticlesId ].dateInsert | date:'d-M-y'}}</li>
+                      <li><a [routerLink]="['/articulo',lastArticles[ lastArticlesId ].id]"><i class="fa fa-comments"></i> 0</a></li>
+                    </ul>
+                    <p>{{lastArticles[ lastArticlesId ].content | toText | slice:0:50}}...</p>
+                    <a class="r-more" [routerLink]="['/articulo',lastArticles[ lastArticlesId ].id]">Leer m&aacute;s</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Article -->
+
+          </div>
+        </section>
+        <!-- End Blog Carousel -->
+
+        <!-- Popular articles -->
+        <section *ngIf="articlesPopular?.length > 0">
+          <div class="margin-bottom-50">
+            <h1 class="title-v4">Más leido</h1>
+            <div class="row margin-bottom-50">
+
+              <div class="col-sm-6" *ngFor="let article of articlesPopular">
+                <!-- Blog Grid -->
+                <div class="blog-grid margin-bottom-40">
+                  <img class="img-responsive" src="{{urlImages}}/imagen/articulo/{{article.id}}" title="{{article.title}}">
+                  <h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
+                  <ul class="blog-grid-info">
+                    <li>{{article.author.name}} {{article.author.lastname}}</li>
+                    <li>{{article.dateInsert | date:'d-M-y'}}</li>
+                    <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> 0</a></li>
+                  </ul>
+                  <p>{{article.content | slice:0:100}}...</p>
+                  <a class="r-more" [routerLink]="['/articulo',article.id]">Leer m&aacute;s</a>
+                </div>
+                <!-- End Blog Grid -->
+
+                <!--
+                <div class="blog-thumb-v3">
+                  <small><a href="/articulo/{{id}}">{{author.name}} {{author.lastname}}</a></small>
+                  <h3><a href="/articulo/{{id}}">{{commentShort}}</a></h3>
+                </div>
+                <hr class="hr-xs">
+                -->
+
+              </div>
+
+            </div><!--/end row-->
+          </div>
+        </section>
+        <!-- End Popular Articles -->
+
       </div>
+
+      <!-- Right Sidebar -->
+      <aside class="col-md-3"></aside>
+      <!-- End Right Sidebar -->
+
     </div>
 
   </div>

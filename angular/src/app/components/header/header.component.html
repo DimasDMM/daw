@@ -35,17 +35,17 @@
           <!--{{/user_logged}}-->
           <!--{{#user_logged}}-->
           <li *ngIf="userLogged != null">
-            <a href="javascript:void(0);">Hola {{userLogged.name}}</a>
+            <a>Hola {{userLogged.name}}</a>
             <ul class="topbar-dropdown">
               <!--{{#user_role_admin}}-->
-              <li><a href="/administrador">Administrador</a></li>
+              <li><a [routerLink]="['/administrador']">Administrador</a></li>
               <!--{{/user_role_admin}}-->
               <!--{{#user_role_editor}}-->
               <li class="topbar-submenu">
-                <a href="javascript:void(0);">Art&iacute;culos</a>
+                <a>Art&iacute;culos</a>
                 <ul class="topbar-submenu-in">
-                  <li><a href="/editor/articulo/lista">Lista</a></li>
-                  <li><a href="/editor/articulo/nuevo">Redactar</a></li>
+                  <li><a [routerLink]="['/editor/articulo#lista']">Lista</a></li>
+                  <li><a [routerLink]="['/editor/articulo#nuevo']">Redactar</a></li>
                 </ul>
               </li>
               <!--{{/user_role_editor}}-->
@@ -53,12 +53,12 @@
               <li class="topbar-submenu">
                 <a href="javascript:void(0);">Publicidad</a>
                 <ul class="topbar-submenu-in">
-                  <li><a href="/publicista/anuncio/lista">Lista</a></li>
-                  <li><a href="/publicista/anuncio/nuevo">A&ntilde;adir</a></li>
+                  <li><a [routerLink]="['/publicista/anuncio#lista']">Lista</a></li>
+                  <li><a [routerLink]="['/publicista/anuncio#nuevo']">A&ntilde;adir</a></li>
                 </ul>
               </li>
               <!--{{/user_role_publicist}}-->
-              <li><a href="/ajustes">Ajustes</a></li>
+              <li><a [routerLink]="['/ajustes']">Ajustes</a></li>
             </ul>
           </li>
           <li *ngIf="userLogged != null"><a (click)="logoutButton()">Cerrar sesi&oacute;n</a></li>

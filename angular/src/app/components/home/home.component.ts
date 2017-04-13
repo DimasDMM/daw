@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 
-import {ArticleService} from "../../services/article.service";
-
 import {Article} from "../../entity/article.entity";
 import {ArticleFavourites} from "../../entity/article_favourites";
 
 import {URL_IMAGES} from "../../shared/config.service";
 import {EventSessionComponent} from "../base/event-session.component";
+import {CommentService} from "../../services/comment.service";
+import {ArticleService} from "../../services/article.service";
 import {SessionService} from "../../services/session.service";
 
 
@@ -19,8 +19,12 @@ import {SessionService} from "../../services/session.service";
 export class HomeComponent extends EventSessionComponent implements OnInit {
 
   public urlImages = URL_IMAGES;
-  public carrousel:Article[] = [];
-  public sectionFavourite:ArticleFavourites;
+
+  public lastArticlesId = 0;
+  public lastArticles:Article[] = [];
+
+  public articlesFavourite:ArticleFavourites;
+  public articlesPopular:Article[] = [];
 
   constructor(
     private router: Router,
@@ -31,22 +35,46 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
 
   ngOnInit() {
     console.log("# Init Home");
-    this.carrouselArticles();
     this.sectionFavourites();
+    this.sectionPopularLastWeek();
+    this.sectionLastArticles();
   }
 
-  private carrouselArticles() {
-    this.articleService.carrousel().subscribe(
-      response => this.carrousel = response,
+  // Ultimos articulos publicados
+  private sectionLastArticles() {
+    this.articleService.getLastArticles(10).subscribe(
+      response => this.lastArticles = response,
       error => console.error(error)
     );
   }
 
+  // Carga articulos para seccion de favoritos
   private sectionFavourites() {
     this.articleService.favourites().subscribe(
-      response => this.sectionFavourite = response,
+      response => this.articlesFavourite = response,
       error => console.error(error)
     );
+  }
+
+  // Carga articulos para seccion de articulos mas leidos ultima semana
+  private sectionPopularLastWeek() {
+    this.articleService.popularLastWeek().subscribe(
+      response => this.articlesPopular = response,
+      error => console.error(error)
+    );
+  }
+
+  /*
+   * Efectos
+   */
+  public lastArticlesNext() {
+    this.lastArticlesId++;
+    if(this.lastArticlesId >= this.lastArticles.length) this.lastArticlesId = 0;
+  }
+
+  public lastArticlesPrevious() {
+    this.lastArticlesId--;
+    if(this.lastArticlesId <= 0) this.lastArticlesId = this.lastArticles.length;
   }
 
   /*

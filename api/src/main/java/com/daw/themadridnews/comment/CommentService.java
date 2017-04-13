@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.comment.CommentRepository;
+import com.daw.themadridnews.webconfig.Config;
 
 @Service
 public class CommentService {
+
+	public static interface Basic extends Comment.Basic, Config.Responses {}
 
 	@Autowired
 	protected CommentRepository commentRepository;
@@ -27,10 +30,6 @@ public class CommentService {
 	public List<Comment> get(Article a) {
 		return commentRepository.findByArticle(a);
 	}
-	
-	public List<Comment> getLast5() {
-		return commentRepository.findFirst5ByOrderByDateInsertDesc();
-	}
 
 	public long countByArticle(Article a) {
 		return commentRepository.countByArticle(a);
@@ -39,7 +38,7 @@ public class CommentService {
 	/**
 	 * Obtener ultimos X comentarios
 	 */
-	public List<Comment> findFirst5() {
-		return commentRepository.findFirst5ByOrderByDateInsertDesc();
+	public List<Comment> getLastComments(int number) {
+		return commentRepository.findFirstComments(number);
 	}
 }

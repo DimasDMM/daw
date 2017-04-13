@@ -1,9 +1,8 @@
 import {User} from "./user.entity";
 
-export class Article {
+export class Comment {
   public id:number;
-  public title:string;
   public author:User;
-  public nComments:number;
+  public comment:string;
   public dateInsert:Date;
 }

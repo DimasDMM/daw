@@ -1,10 +1,9 @@
-import {Injectable, OnInit} from '@angular/core';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/Rx';
 
 import { Category } from '../entity/category.entity';
 import { URL_API } from "../shared/config.service";
-import {User} from "../entity/user.entity";
 import {SessionService} from "./session.service";
 
 @Injectable()
@@ -44,7 +43,15 @@ export class ArticleService {
     );
   }
 
-    // Ultimos articulos publicados en una categoria determinada. Las paginas empiezan en 1
+  // Populares durante la ultima semana
+  public popularLastWeek() {
+    let url = URL_API+"/articulos/popular";
+    return this.http.get(url).map(
+      response => response.json()
+    );
+  }
+
+  // Ultimos articulos publicados en una categoria determinada. Las paginas empiezan en 1
   public getArticlesFromCategory(id:string, page:number, number:number) {
     let url = URL_API+"/articulos/"+id+"?page="+page+"&number="+number;
     return this.http.get(url).map(
@@ -52,7 +59,7 @@ export class ArticleService {
     );
   }
 
-  // Articulos para el carrousel
+  // Articulos para el articlesCarrousel
   public carrousel() {
     let url = URL_API+"/articulos/carrousel";
     return this.http.get(url).map(

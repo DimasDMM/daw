@@ -1,0 +1,25 @@
+<!-- Blog Thumb v3 -->
+<section>
+  <div class="margin-bottom-50" *ngIf="lastComments?.length > 0">
+    <h1 class="title-v4">Comentarios</h1>
+
+    <div *ngFor="let comment of lastComments">
+      <div class="blog-thumb-v3">
+        <small><a href="/articulo/"><!--{{article.titleShort}}--></a></small>
+        <h3><a href="/articulo/">{{comment.comment}}</a></h3>
+      </div>
+      <hr class="hr-xs">
+    </div>
+
+  </div>
+</section>
+<!-- End Blog Thumb v3 -->
+
+<!-- Tags -->
+<div class="margin-bottom-50" *ngIf="categories?.length > 0">
+  <h2 class="title-v4">Temas</h2>
+  <ul class="list-inline tags-v3">
+    <li *ngFor="let category of categories"><a class="rounded-3x" [routerLink]="['/categoria',category.id]">{{category.name}}</a></li>
+  </ul>
+</div>
+<!-- End Tags -->

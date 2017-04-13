@@ -46,6 +46,17 @@ public class ArticleRestController {
 	}
 	
 	/**
+	 * Articulos mas leidos esta semana
+	 */
+	@JsonView(ArticleService.View.class) 
+	@RequestMapping("/articulos/popular")
+	public ResponseEntity<Object> popularLastWeek() {
+		List<Article> l = articleService.find2PopularLastWeek(true);
+		return new ResponseEntity<>(l, HttpStatus.OK);
+	}
+	
+	
+	/**
 	 * Devuelve favoritos
 	 */
 	@JsonView(ArticleService.ArticlesFavs.class) 

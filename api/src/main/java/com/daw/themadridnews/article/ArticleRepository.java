@@ -9,9 +9,6 @@ import com.daw.themadridnews.user.User;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-	public List<Article> findFirst6ByVisible(boolean visible);
-	public List<Article> findFirst5ByVisible(boolean visible);
-	public List<Article> findFirst4ByVisible(boolean visible);
 	public List<Article> findFirst6ByCategoryAndVisible(String category, boolean visible);
 	public List<Article> findFirst9ByCategoryAndVisible(String category, boolean visible);
 	

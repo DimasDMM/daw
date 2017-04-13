@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
+import {AsideComponent} from "./components/aside/aside.component";
+
 import { HomeComponent } from './components/home/home.component';
 import {NgbdCarouselBasic} from "./components/home/carrousel.component";
 import {CategoryComponent} from "./components/category/category.component";
@@ -25,6 +27,7 @@ import {TermsAndConditionsComponent} from "./components/terms-and-conditions/ter
 import { routing } from './app.routing';
 import {ArticleService} from "./services/article.service";
 import {SessionService} from "./services/session.service";
+import {CommentService} from "./services/comment.service";
 
 import {toText} from "./shared/toText.pipe";
 
@@ -32,9 +35,11 @@ import {toText} from "./shared/toText.pipe";
   declarations: [
     AppComponent,
     HeaderComponent,
-    CategoryComponent,
     FooterComponent,
+    AsideComponent,
+
     HomeComponent,
+    CategoryComponent,
     PrivacyComponent,
     TermsAndConditionsComponent,
     NgbdCarouselBasic,
@@ -49,7 +54,8 @@ import {toText} from "./shared/toText.pipe";
   ],
   providers: [
     SessionService,
-    ArticleService
+    ArticleService,
+    CommentService
   ],
   bootstrap: [
     AppComponent
