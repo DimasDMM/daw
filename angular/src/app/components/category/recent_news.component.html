@@ -1,0 +1,17 @@
+<div class="margin-bottom-50">
+  <h2 class="title-v4">Noticias recientes</h2>
+
+  <div *ngFor="let article of articles" class="blog-thumb blog-thumb-circle margin-bottom-15">
+    <div class="blog-thumb-hover">
+      <img class="rounded-x" src="{{urlImages}}/imagen/articulo/{{article.id}}">
+      <a class="hover-grad" [routerLink]="['/articulo',article.id]"><i class="fa fa-link"></i></a>
+    </div>
+    <div class="blog-thumb-desc">
+      <h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
+      <ul class="blog-thumb-info">
+        <li>{{ article.dateInsert | date:'d-M-y' }}</li>
+        <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> {{article.nComments}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

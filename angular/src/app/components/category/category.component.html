@@ -8,6 +8,7 @@
     <div class="col-md-9 md-margin-bottom-50">
       <div class="ms-slide-loading"></div>
       <div id="category_news" *ngIf="articles != null && articles.length > 0">
+        <!-- Blog Grid -->
         <div *ngFor="let article of articles" class="row margin-bottom-50">
           <div class="col-sm-4 sm-margin-bottom-20">
             <img class="img-responsive" src="{{urlImages}}/imagen/articulo/{{article.id}}" alt="Imagen del articulo">
@@ -17,10 +18,10 @@
               <h3><a href="/articulo/{{article.id}}">{{article.title}}</a></h3>
               <ul class="blog-grid-info">
                 <li>{{article.author.name}} {{article.author.lastname}}</li>
-                <li>{{article.dateInsert}}</li>
+                <li>{{article.dateInsert | date:'d-M-y'}}</li>
                 <li><a href="/articulo/{{article.id}}"><i class="fa fa-comments"></i> 0</a></li>
               </ul>
-              <p>{{contentShort}}</p>
+              <p>{{ article.content | toText | slice:0:50}}...</p>
               <a class="r-more" href="/articulo/{{id}}">Leer m&aacute;s</a>
             </div>
           </div>
