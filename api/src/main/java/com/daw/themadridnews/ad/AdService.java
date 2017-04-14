@@ -28,6 +28,11 @@ public class AdService {
 	public Ad get(long id) {
 		return adRepository.findOne(id);
 	}
+	
+	// Anuncio al azar
+	public Ad getRandom() {
+		return adRepository.findRandom();
+	}
 
 	// Añadir visualizacion a un anuncio
 	public Ad addView(Ad ad) {

@@ -28,7 +28,9 @@ import { routing } from './app.routing';
 import {ArticleService} from "./services/article.service";
 import {SessionService} from "./services/session.service";
 import {CommentService} from "./services/comment.service";
+import {AdsService} from "./services/ads.service";
 
+import {WindowRef} from "./shared/window.service";
 import {toText} from "./shared/toText.pipe";
 
 @NgModule({
@@ -53,9 +55,11 @@ import {toText} from "./shared/toText.pipe";
     routing
   ],
   providers: [
+    WindowRef,
     SessionService,
     ArticleService,
-    CommentService
+    CommentService,
+    AdsService
   ],
   bootstrap: [
     AppComponent

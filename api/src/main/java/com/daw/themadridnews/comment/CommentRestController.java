@@ -31,7 +31,7 @@ public class CommentRestController {
 	 * Devuelve los ultimos comentarios publicados
 	 */
 	@RequestMapping(value="/comentarios", method=RequestMethod.GET)
-	@JsonView(CommentService.Basic.class)
+	@JsonView(CommentService.ArticleView.class)
 	public ResponseEntity<Object> getLastComments(@RequestParam(required=false) Integer number) {
 		number =  (number != null) ? number.intValue() : N_RESULTS;
 		List<Comment> l = commentService.getLastComments(number);

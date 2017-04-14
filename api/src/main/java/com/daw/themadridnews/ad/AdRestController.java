@@ -16,6 +16,19 @@ public class AdRestController {
 	@Autowired
 	protected AdService adService;
 	
+	
+	/**
+	 * Anuncio al azar
+	 */
+	@JsonView(AdService.Basic.class)
+	@RequestMapping(value="/anuncio", method=RequestMethod.GET)
+	public ResponseEntity<Object> getRandom() {
+		Ad ad = adService.getRandom();
+		
+		if(ad == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		return new ResponseEntity<>(ad, HttpStatus.OK);
+	}
 
 	/**
 	 * Datos basicos de un anuncio

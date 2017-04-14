@@ -18,8 +18,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name="comments")
 public class Comment {
-	
+
 	public interface Basic {}
+	public interface ArticleView {}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +29,7 @@ public class Comment {
 	
 	@NotNull
 	@ManyToOne
+	@JsonView(ArticleView.class)
 	protected Article article;
 	
 	@NotNull

@@ -48,7 +48,7 @@ public class ArticleRestController {
 	/**
 	 * Articulos mas leidos esta semana
 	 */
-	@JsonView(ArticleService.View.class) 
+	@JsonView(ArticleService.Popular.class) 
 	@RequestMapping("/articulos/popular")
 	public ResponseEntity<Object> popularLastWeek() {
 		List<Article> l = articleService.find2PopularLastWeek(true);

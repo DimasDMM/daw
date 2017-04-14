@@ -1,15 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 
-import {Article} from "../../entity/article.entity";
-import {ArticleFavourites} from "../../entity/article_favourites";
-
 import {URL_IMAGES} from "../../shared/config.service";
 import {EventSessionComponent} from "../base/event-session.component";
 import {CommentService} from "../../services/comment.service";
 import {ArticleService} from "../../services/article.service";
+import {AdsService} from "../../services/ads.service";
 import {SessionService} from "../../services/session.service";
+
+import {Article} from "../../entity/article.entity";
 import {Category} from "../../entity/category.entity";
+import {Ad} from "../../entity/ad.entity";
+import {WindowRef} from "../../shared/window.service";
 
 
 @Component({
@@ -19,16 +21,20 @@ import {Category} from "../../entity/category.entity";
 })
 export class AsideComponent extends EventSessionComponent implements OnInit {
 
+  public nativeWindow:any;
   public urlImages = URL_IMAGES;
 
   public categories:Category[] = [];
   public lastComments:Comment[] = [];
+  public adBanner:Ad;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private articleService:ArticleService,
     private commentService:CommentService,
+    private adsService:AdsService,
+    private windowRef:WindowRef,
     sessionService:SessionService
   ) { super(sessionService) }
 
@@ -36,6 +42,8 @@ export class AsideComponent extends EventSessionComponent implements OnInit {
     console.log("# Init Aside");
     this.sectionCategories();
     this.sectionLastComments();
+    this.sectionAds();
+    this.nativeWindow = this.windowRef.getNativeWindow();
   }
 
   // Ultimos articulos publicados
@@ -49,6 +57,25 @@ export class AsideComponent extends EventSessionComponent implements OnInit {
       response => this.lastComments = response,
       error => console.error(error)
     );
+  }
+
+  // Anuncio aleatorio
+  private sectionAds() {
+    this.adsService.getRandom().subscribe(
+      response => this.onLoadAd(response),
+      error => console.error(error)
+    );
+  }
+
+  private onLoadAd(ad:Ad) {
+    this.adBanner = ad;
+    this.adsService.addView(ad.id);
+  }
+
+  // Abrir anuncio en pestaña nueva
+  public openAd(ad:Ad) {
+    this.adsService.addClick(ad.id);
+    this.nativeWindow.open(ad.url);
   }
 
   /*

@@ -4,15 +4,6 @@ import java.util.Date;
 
 public class AdCommons {
 	
-	public static Ad getRandom(AdService rep) {
-		Ad ad = rep.findRandom();
-		
-		ad.addView();
-		rep.save(ad);
-		
-		return ad;
-	}
-	
 	public static int getStatus(Ad ad) {
 		if(ad.getLimClicks() != null && ad.getLimClicks() <= ad.getClicks()) {
 			return 2;

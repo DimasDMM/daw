@@ -140,18 +140,20 @@
                     <li>{{article.dateInsert | date:'d-M-y'}}</li>
                     <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> 0</a></li>
                   </ul>
-                  <p>{{article.content | slice:0:100}}...</p>
+                  <p>{{article.content | toText | slice:0:100}}...</p>
                   <a class="r-more" [routerLink]="['/articulo',article.id]">Leer m&aacute;s</a>
                 </div>
                 <!-- End Blog Grid -->
 
-                <!--
-                <div class="blog-thumb-v3">
-                  <small><a href="/articulo/{{id}}">{{author.name}} {{author.lastname}}</a></small>
-                  <h3><a href="/articulo/{{id}}">{{commentShort}}</a></h3>
+                <div *ngIf="article.comments?.length > 0">
+                  <div *ngFor="let comment of article.comments">
+                    <div class="blog-thumb-v3">
+                      <small><a [routerLink]="['/articulo',article.id]">{{comment.author.name}} {{comment.author.lastname}}</a></small>
+                      <h3><a [routerLink]="['/articulo',article.id]">{{comment.comment}}</a></h3>
+                    </div>
+                    <hr class="hr-xs">
+                  </div>
                 </div>
-                <hr class="hr-xs">
-                -->
 
               </div>
 
@@ -159,6 +161,14 @@
           </div>
         </section>
         <!-- End Popular Articles -->
+
+        <!-- Advertisement -->
+        <section *ngIf="adBanner != null">
+          <div class="ad-banner text-center">
+            <a (click)="openAd(adBanner)"><img width="100%" src="{{urlImages}}/imagen/anuncio/{{adBanner.id}}" alt="{{adBanner.title}}"></a>
+          </div>
+        </section>
+        <!-- End Advertisement -->
 
       </div>
 

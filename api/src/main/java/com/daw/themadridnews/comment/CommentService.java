@@ -13,6 +13,7 @@ import com.daw.themadridnews.webconfig.Config;
 public class CommentService {
 
 	public static interface Basic extends Comment.Basic, Config.Responses {}
+	public static interface ArticleView extends Comment.Basic, Comment.ArticleView, Article.Basic, Config.Responses {}
 
 	@Autowired
 	protected CommentRepository commentRepository;

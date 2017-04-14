@@ -5,8 +5,8 @@
 
     <div *ngFor="let comment of lastComments">
       <div class="blog-thumb-v3">
-        <small><a href="/articulo/"><!--{{article.titleShort}}--></a></small>
-        <h3><a href="/articulo/">{{comment.comment}}</a></h3>
+        <small><a [routerLink]="['/articulo', comment.article.id]">{{comment.article.title}}</a></small>
+        <h3><a [routerLink]="['/articulo', comment.article.id]">{{comment.comment}}</a></h3>
       </div>
       <hr class="hr-xs">
     </div>
@@ -23,3 +23,12 @@
   </ul>
 </div>
 <!-- End Tags -->
+
+<!-- Ads -->
+<section *ngIf="adBanner != null">
+  <h2 class="title-v4">Anuncio</h2>
+  <div class="item">
+    <a (click)="openAd(adBanner)"><img class="full-width" src="{{urlImages}}/imagen/anuncio/{{adBanner.id}}" title="{{adBanner.title}}"></a>
+  </div>
+</section>
+<!-- End Ads -->

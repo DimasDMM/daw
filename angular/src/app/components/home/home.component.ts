@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 
+import {Ad} from "../../entity/ad.entity";
 import {Article} from "../../entity/article.entity";
 import {ArticleFavourites} from "../../entity/article_favourites";
 
 import {URL_IMAGES} from "../../shared/config.service";
 import {EventSessionComponent} from "../base/event-session.component";
-import {CommentService} from "../../services/comment.service";
 import {ArticleService} from "../../services/article.service";
 import {SessionService} from "../../services/session.service";
+import {AdsService} from "../../services/ads.service";
 
 
 @Component({
@@ -25,11 +26,13 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
 
   public articlesFavourite:ArticleFavourites;
   public articlesPopular:Article[] = [];
+  public adBanner:Ad;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private articleService:ArticleService,
+    private adsService:AdsService,
     sessionService:SessionService
   ) { super(sessionService) }
 
@@ -38,6 +41,20 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
     this.sectionFavourites();
     this.sectionPopularLastWeek();
     this.sectionLastArticles();
+    this.sectionAds();
+  }
+
+  // Anuncio aleatorio
+  private sectionAds() {
+    this.adsService.getRandom().subscribe(
+      response => this.onLoadAd(response),
+      error => console.error(error)
+    );
+  }
+
+  private onLoadAd(ad:Ad) {
+    this.adBanner = ad;
+    this.adsService.addView(ad.id);
   }
 
   // Ultimos articulos publicados
