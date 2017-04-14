@@ -55,6 +55,27 @@ public class ArticleRestController {
 		return new ResponseEntity<>(l, HttpStatus.OK);
 	}
 	
+	/**
+	 * Articulos al azar de esta semana
+	 */
+	@JsonView(ArticleService.Popular.class) 
+	@RequestMapping("/articulos/semana")
+	public ResponseEntity<Object> randomLastWeek() {
+		List<Article> l = articleService.findRandom4ThisWeek(true);
+		return new ResponseEntity<>(l, HttpStatus.OK);
+	}
+	
+	/**
+	 * Devuelve varios articulos al azar
+	 */
+	@JsonView(ArticleService.Popular.class) 
+	@RequestMapping("/articulos/aleatorio")
+	public ResponseEntity<Object> randomArticles(@RequestParam(required=false) Integer number) {
+		number =  (number != null) ? number.intValue() : N_RESULTS;
+		
+		List<Article> l = articleService.findRandom(number, true);
+		return new ResponseEntity<>(l, HttpStatus.OK);
+	}
 	
 	/**
 	 * Devuelve favoritos

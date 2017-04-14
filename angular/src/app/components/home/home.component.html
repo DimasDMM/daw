@@ -170,6 +170,26 @@
         </section>
         <!-- End Advertisement -->
 
+        <!-- Articles Week -->
+        <section *ngIf="articlesLastWeek?.length > 0">
+          <div class="margin-bottom-50">
+            <h1 class="title-v4">Noticias de la semana</h1>
+            <div class="row margin-bottom-50">
+
+              <div class="col-sm-3 col-xs-6 sm-margin-bottom-30" *ngFor="let article of articlesLastWeek">
+                <!-- Blog Thumb v4 -->
+                <div class="blog-thumb-v4">
+                  <img class="img-responsive margin-bottom-10" src="{{urlImages}}/imagen/articulo/{{article.id}}" title="{{article.title}}">
+                  <h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
+                </div>
+                <!-- End Blog Thumb v4 -->
+              </div>
+
+            </div><!--/end row-->
+          </div>
+        </section>
+        <!-- End Articles Week -->
+
       </div>
 
       <!-- Right Sidebar -->

@@ -16,8 +16,8 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 	public Page<Article> findByCategory(String category, Pageable page);
 	public Page<Article> findByTitleContaining(String title, Pageable pageable);
 	
-	@Query(nativeQuery=true, value="SELECT * FROM articles ORDER BY RAND() LIMIT 4")
-	public List<Article> findRandom4();
+	@Query(nativeQuery=true, value="SELECT * FROM articles ORDER BY RAND() LIMIT ?1")
+	public List<Article> findRandom(int number);
 	
 	@Query(nativeQuery=true, value="SELECT * FROM articles WHERE date_insert > DATE_SUB( NOW(), INTERVAL 1 WEEK ) AND visible = 1 ORDER BY RAND() LIMIT 4")
 	public List<Article> findRandom4ThisWeek();

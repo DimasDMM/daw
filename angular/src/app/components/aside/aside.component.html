@@ -1,27 +1,25 @@
-<!-- Blog Thumb v3 -->
-<section>
-  <div class="margin-bottom-50" *ngIf="lastComments?.length > 0">
-    <h1 class="title-v4">Comentarios</h1>
+<!-- Last Comments -->
+<section class="margin-bottom-50" *ngIf="lastComments?.length > 0">
+  <h2 class="title-v4">Comentarios</h2>
 
-    <div *ngFor="let comment of lastComments">
-      <div class="blog-thumb-v3">
-        <small><a [routerLink]="['/articulo', comment.article.id]">{{comment.article.title}}</a></small>
-        <h3><a [routerLink]="['/articulo', comment.article.id]">{{comment.comment}}</a></h3>
-      </div>
-      <hr class="hr-xs">
+  <div *ngFor="let comment of lastComments">
+    <div class="blog-thumb-v3">
+      <small><a [routerLink]="['/articulo', comment.article.id]">{{comment.article.title}}</a></small>
+      <h3><a [routerLink]="['/articulo', comment.article.id]">{{comment.comment}}</a></h3>
     </div>
-
+    <hr class="hr-xs">
   </div>
+
 </section>
-<!-- End Blog Thumb v3 -->
+<!-- End Last Comments -->
 
 <!-- Tags -->
-<div class="margin-bottom-50" *ngIf="categories?.length > 0">
+<section class="margin-bottom-50" *ngIf="categories?.length > 0">
   <h2 class="title-v4">Temas</h2>
   <ul class="list-inline tags-v3">
     <li *ngFor="let category of categories"><a class="rounded-3x" [routerLink]="['/categoria',category.id]">{{category.name}}</a></li>
   </ul>
-</div>
+</section>
 <!-- End Tags -->
 
 <!-- Ads -->
@@ -32,3 +30,13 @@
   </div>
 </section>
 <!-- End Ads -->
+
+<!-- Twitter Posts -->
+<div class="margin-bottom-50">
+  <h2 class="title-v4">Twitter</h2>
+
+  <div class="twitter-posts" id="twitter-timeline">
+    <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/themadridnews_">Tweets by themadridnews_</a>
+  </div>
+</div>
+<!-- End Twitter Posts -->

@@ -44,8 +44,24 @@ export class ArticleService {
   }
 
   // Populares durante la ultima semana
-  public popularLastWeek() {
+  public getPopularLastWeek() {
     let url = URL_API+"/articulos/popular";
+    return this.http.get(url).map(
+      response => response.json()
+    );
+  }
+
+  // Devuelve varios articulos al azar
+  public getArticlesRandom(number:number) {
+    let url = URL_API+"/articulos/aleatorio?number="+number;
+    return this.http.get(url).map(
+      response => response.json()
+    );
+  }
+
+  // Devuelve varios articulos al azar
+  public getArticlesLastWeek() {
+    let url = URL_API+"/articulos/semana";
     return this.http.get(url).map(
       response => response.json()
     );
@@ -60,7 +76,7 @@ export class ArticleService {
   }
 
   // Articulos para el articlesCarrousel
-  public carrousel() {
+  public getCarrousel() {
     let url = URL_API+"/articulos/carrousel";
     return this.http.get(url).map(
       response => response.json()
@@ -68,7 +84,7 @@ export class ArticleService {
   }
 
   // Devuelve ultimas noticias en categoria de favoritos
-  public favourites() {
+  public getArticlesFavourites() {
     let headers, options;
 
     // Verificar si esta logeado

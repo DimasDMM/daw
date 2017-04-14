@@ -20,7 +20,7 @@ export class NgbdCarouselBasic implements OnInit {
   }
 
   private initCarrousel() {
-    this.articleService.carrousel().subscribe(
+    this.articleService.getCarrousel().subscribe(
       response => this.slides = response,
       error => console.error(error)
     );

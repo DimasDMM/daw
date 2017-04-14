@@ -26,6 +26,8 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
 
   public articlesFavourite:ArticleFavourites;
   public articlesPopular:Article[] = [];
+  public articlesRandom:Article[] = [];
+  public articlesLastWeek:Article[] = [];
   public adBanner:Ad;
 
   constructor(
@@ -42,6 +44,8 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
     this.sectionPopularLastWeek();
     this.sectionLastArticles();
     this.sectionAds();
+    this.sectionArticlesRandom();
+    this.sectionArticlesLastWeek();
   }
 
   // Anuncio aleatorio
@@ -57,6 +61,22 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
     this.adsService.addView(ad.id);
   }
 
+  // Varios articulos al azar
+  private sectionArticlesRandom() {
+    this.articleService.getArticlesRandom(4).subscribe(
+      response => this.articlesRandom = response,
+      error => console.error(error)
+    );
+  }
+
+  // Varios articulos al azar
+  private sectionArticlesLastWeek() {
+    this.articleService.getArticlesLastWeek().subscribe(
+      response => this.articlesLastWeek = response,
+      error => console.error(error)
+    );
+  }
+
   // Ultimos articulos publicados
   private sectionLastArticles() {
     this.articleService.getLastArticles(10).subscribe(
@@ -67,7 +87,7 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
 
   // Carga articulos para seccion de favoritos
   private sectionFavourites() {
-    this.articleService.favourites().subscribe(
+    this.articleService.getArticlesFavourites().subscribe(
       response => this.articlesFavourite = response,
       error => console.error(error)
     );
@@ -75,7 +95,7 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
 
   // Carga articulos para seccion de articulos mas leidos ultima semana
   private sectionPopularLastWeek() {
-    this.articleService.popularLastWeek().subscribe(
+    this.articleService.getPopularLastWeek().subscribe(
       response => this.articlesPopular = response,
       error => console.error(error)
     );

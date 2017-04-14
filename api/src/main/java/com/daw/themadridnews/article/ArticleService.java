@@ -105,8 +105,8 @@ public class ArticleService {
 	/**
 	 * Obtener X articulos aleatorios
 	 */
-	public List<Article> findRandom4(boolean contentHtml) {
-		List<Article> l = articleRepository.findRandom4();
+	public List<Article> findRandom(int number, boolean contentHtml) {
+		List<Article> l = articleRepository.findRandom(number);
 		if(contentHtml) this.MarkdownFormatedHtml(l);
 		return l;
 	}

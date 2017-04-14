@@ -43,6 +43,7 @@ export class AsideComponent extends EventSessionComponent implements OnInit {
     this.sectionCategories();
     this.sectionLastComments();
     this.sectionAds();
+    this.sectionTwitterScript();
     this.nativeWindow = this.windowRef.getNativeWindow();
   }
 
@@ -76,6 +77,17 @@ export class AsideComponent extends EventSessionComponent implements OnInit {
   public openAd(ad:Ad) {
     this.adsService.addClick(ad.id);
     this.nativeWindow.open(ad.url);
+  }
+
+  // Cargar script de Twitter
+  public sectionTwitterScript() {
+    console.log('preparing to load...')
+    let node = document.createElement('script');
+    node.src = "https://platform.twitter.com/widgets.js";
+    node.type = 'text/javascript';
+    node.async = true;
+    node.charset = 'utf-8';
+    document.getElementById('twitter-timeline')[0].appendChild(node);
   }
 
   /*
