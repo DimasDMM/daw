@@ -234,6 +234,10 @@
       </form>
     </div> <!-- cd-reset-password -->
 
+    <div [ngClass]="modalErrorDiv" #modalErrorMessage>
+      <p><b>Error:</b> Ha ocurrido un error, no se ha podido iniciar sesi&oacute;n.</p>
+    </div>
+
     <a (click)="modalClose()" class="cd-close-form">Cerrar</a>
   </div><!-- cd-user-modal-container -->
 </div> <!-- cd-user-modal -->

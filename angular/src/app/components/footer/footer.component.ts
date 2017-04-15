@@ -1,6 +1,4 @@
 import {Component, OnInit} from "@angular/core";
-import {Router, ActivatedRoute} from "@angular/router";
-import {Http} from "@angular/http";
 
 import {ArticleService} from "../../services/article.service";
 import {SessionService} from "../../services/session.service";
@@ -22,9 +20,6 @@ export class FooterComponent extends BaseSessionComponent implements OnInit {
   public dateNow:Date;
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private http: Http,
     private articleService: ArticleService,
     sessionService: SessionService
   ) { super(sessionService) }

@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
+import {Component, OnInit, ViewChild, ElementRef, Output, EventEmitter} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Http} from "@angular/http";
 
+import {PaginationComponent} from "../../pagination/pagination.component";
 import {AsideOptionsComponent} from "../../aside-options/aside-options.component";
 import {SessionService} from "../../../services/session.service";
 
@@ -17,31 +18,59 @@ export class AdministratorListComponent extends BaseSessionComponent implements 
 
   // Vistas
   @ViewChild('appAsideOptions') appAsideOptions: AsideOptionsComponent;
+  @ViewChild('pagination') pagination: PaginationComponent;
 
   // Variables
-  public optionActiveStr = "administrator";
+  private optionActiveStr = "administrator";
   private userList:User[] = [];
+
+  // Paginacion
+  private currentPage = 1;
+  private displayPages = 7;
+  private numberItemsPage = 1;
+  private numberItemsTotal = 0;
+  @Output() private paginationChange = new EventEmitter<number>();
+
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private http: Http,
     private administratorService: AdministratorService,
     sessionService: SessionService
   ) { super(sessionService) }
 
   ngOnInit() {
     super.ngOnInit();
+    if(!this.hasRole(["ROLE_ADMIN"]))
+      this.router.navigate(['/']);
+
     console.log("# Init AdministratorListComponent");
-    this.sectionUserList(1);
+    this.sectionUserList();
   }
 
   // Cargar lista de usuarios
-  private sectionUserList(page:number) {
-    this.administratorService.getUserList(page).subscribe(
-      response => this.userList = response,
+  private sectionUserList() {
+    this.administratorService.getUserList( this.currentPage ).subscribe(
+      response => this.setUserList(response),
       error => console.error(error)
     );
+  }
+
+  // Cargar lista y paginacion
+  private setUserList(response:any) {
+    this.userList = response.content;
+    this.numberItemsPage = response.size;
+    this.numberItemsTotal = response.totalElements;
+    this.pagination.init(this.currentPage, this.displayPages, this.numberItemsPage, this.numberItemsTotal);
+  }
+
+  // Evento de cambio de pagina
+  public onPageChange(page:number) {
+    page = this.currentPage + page;
+    console.log("# Event Page Change: "+ page);
+
+    this.currentPage = page;
+    this.sectionUserList();
   }
 
   /*
@@ -50,5 +79,7 @@ export class AdministratorListComponent extends BaseSessionComponent implements 
   protected onLoginCalls() {
     this.appAsideOptions.onLogin();
   }
-  protected onLogoutCalls() {}
+  protected onLogoutCalls() {
+    this.router.navigate(['/']);
+  }
 }

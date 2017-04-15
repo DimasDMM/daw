@@ -20,7 +20,7 @@ public class UserService {
 	@Autowired
 	protected UserComponent userComponent;
 	
-	protected static final int ITEMS_LIST = 20;
+	protected static final int ITEMS_LIST = 1;
 	
 	
 	// Devuelve un usuario concreto

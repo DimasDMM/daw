@@ -15,8 +15,10 @@ import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {AsideComponent} from "./components/aside/aside.component";
 import {AsideOptionsComponent} from "./components/aside-options/aside-options.component";
+import {PaginationComponent} from "./components/pagination/pagination.component";
 
 import {AdministratorListComponent} from "./components/administrator/list/list.component";
+import {AdministratorFormComponent} from "./components/administrator/form/form.component";
 
 import { HomeComponent } from './components/home/home.component';
 import {NgbdCarouselBasic} from "./components/home/carrousel.component";
@@ -45,8 +47,10 @@ import {listRolesToText} from "./shared/listRolesToText.pipe";
     FooterComponent,
     AsideComponent,
     AsideOptionsComponent,
+    PaginationComponent,
 
     AdministratorListComponent,
+    AdministratorFormComponent,
 
     HomeComponent,
     CategoryComponent,

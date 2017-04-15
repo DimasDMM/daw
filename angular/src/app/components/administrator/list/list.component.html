@@ -32,27 +32,19 @@
           </tr>
           </thead>
           <tbody>
-            <template ngFor let-user [ngForOf]="userList">
+            <template ngFor let-user [ngForOf]="userList | slice:paginationItemStart:paginationItemEnd">
               <tr *ngIf="user != null">
                 <td>{{user.name}}</td>
                 <td>{{user.lastname}}</td>
                 <td>{{user.alias}}</td>
                 <td>{{user.roles | listRolesToText}}</td>
-                <td><a [routerLink]="['/administrador/usuario',user.id]" class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></a></td>
+                <td><a [routerLink]="['/administrador/usuario',{'id':user.id}]" class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></a></td>
               </tr>
             </template>
           </tbody>
         </table>
 
-        <!--
-        <div class="text-right">
-          <ul class="pagination">
-            {{#page_list}}
-            <li{{#isActive}} class="active"{{/isActive}}><a href="{{url}}">{{{text}}}</a></li>
-            {{/page_list}}
-          </ul>
-        </div>
-        -->
+        <app-pagination #pagination (pageChange)="onPageChange($event)"></app-pagination>
 
       </section>
     </div>

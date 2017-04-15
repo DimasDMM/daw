@@ -1,13 +1,11 @@
 import {Component, OnInit, ElementRef, ViewChild, EventEmitter, Output} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
-import {Http} from "@angular/http";
 
 import {ArticleService} from "../../services/article.service";
 import {SessionService} from "../../services/session.service";
 
 import {URL_IMAGES} from "../../shared/config.service";
 
-import {User} from "../../entity/user.entity";
 import {Category} from "../../entity/category.entity";
 import {BaseSessionComponent} from "../base/base-session.component";
 
@@ -30,13 +28,13 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   private modalTabLogin = { "is-selected":false };
   private modalBtnSignup = { "selected":false };
   private modalTabSignup = { "is-selected":false };
+  private modalErrorDiv = { "alert":true, "alert-danger":true, "hide":true };
 
-  public urlImages = URL_IMAGES;
-  public userLogged:User;
+  private urlImages = URL_IMAGES;
 
-  public categories:Category[] = [];
-  public last_articles = {};
-  public dateNow:Date;
+  private categories:Category[] = [];
+  private last_articles = {};
+  private dateNow:Date;
 
   // Variables de formularios
   @ViewChild('loginEmail') loginEmail: ElementRef;
@@ -47,8 +45,6 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   @ViewChild('formSignupSubmit') formSignupSubmit: ElementRef;
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
     sessionService: SessionService
   ) { super(sessionService) }
@@ -76,6 +72,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
     event.stopPropagation();
 
     this.formLoginSubmit.nativeElement.value = "Cargando...";
+    this.modalErrorDiv["hide"] = true;
 
     let email = this.loginEmail.nativeElement.value;
     let password = this.loginPassword.nativeElement.value;
@@ -142,22 +139,22 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
 
     this.formLoginSubmit.nativeElement.value = "Entrar";
 
-    this.login.emit(); // Emitir evento de login
+    this.login.emit(true); // Emitir evento de login
   }
 
   private loginError(error) {
     console.log(error);
     this.formLoginSubmit.nativeElement.value = "Entrar";
+    this.modalErrorDiv["hide"] = false;
   }
 
   private logoutSuccess() {
     this.userLogged = null;
-    this.logout.emit(); // Emitir evento de logout
+    this.logout.emit(true); // Emitir evento de logout
   }
 
   private logoutError(error) {
     console.log(error);
-    this.formLoginSubmit.nativeElement.value = "Entrar";
   }
 
   /*

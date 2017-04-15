@@ -8,12 +8,27 @@ import {OnInit} from "@angular/core";
 
 export abstract class BaseSessionComponent implements OnInit {
 
-  public userLogged:User;
+  protected userLogged:User;
 
   constructor(protected sessionService:SessionService) {}
 
   ngOnInit() {
     this.userLogged = this.sessionService.getUserLogged();
+  }
+
+  private redirect() {
+
+  }
+
+  public hasRole(roles:string[]) {
+    if(this.userLogged == null) return false;
+
+    for(let j = 0; j < roles.length; j++)
+      for(let i = 0; i < this.userLogged.roles.length; i++)
+        if(this.userLogged.roles[i] == roles[j])
+          return true;
+
+    return false;
   }
 
   public onLogin() {

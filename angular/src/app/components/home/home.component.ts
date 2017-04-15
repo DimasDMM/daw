@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
 
 import {Ad} from "../../entity/ad.entity";
 import {Article} from "../../entity/article.entity";
@@ -31,8 +30,6 @@ export class HomeComponent extends BaseSessionComponent implements OnInit {
   public adBanner:Ad;
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     private articleService:ArticleService,
     private adsService:AdsService,
     sessionService:SessionService

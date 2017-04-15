@@ -6,6 +6,7 @@ import {PrivacyComponent} from "./components/privacy/privacy.component";
 import {TermsAndConditionsComponent} from "./components/terms-and-conditions/terms-and-conditions.component";
 
 import {AdministratorListComponent} from "./components/administrator/list/list.component";
+import {AdministratorFormComponent} from "./components/administrator/form/form.component";
 
 const appRoutes = [
   { path: 'portada', component: HomeComponent },
@@ -15,6 +16,7 @@ const appRoutes = [
 
   { path: 'administrador', redirectTo: '/administrador/usuarios', pathMatch: 'full' },
   { path: 'administrador/usuarios', component: AdministratorListComponent },
+  { path: 'administrador/usuario', component: AdministratorFormComponent },
 
   { path: '', redirectTo: 'portada', pathMatch: 'full' }
 ];
