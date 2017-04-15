@@ -6,7 +6,7 @@ import {Article} from "../../entity/article.entity";
 import {ArticleFavourites} from "../../entity/article_favourites";
 
 import {URL_IMAGES} from "../../shared/config.service";
-import {EventSessionComponent} from "../base/event-session.component";
+import {BaseSessionComponent} from "../base/base-session.component";
 import {ArticleService} from "../../services/article.service";
 import {SessionService} from "../../services/session.service";
 import {AdsService} from "../../services/ads.service";
@@ -17,7 +17,7 @@ import {AdsService} from "../../services/ads.service";
   templateUrl: 'home.component.html',
   styleUrls: []
 })
-export class HomeComponent extends EventSessionComponent implements OnInit {
+export class HomeComponent extends BaseSessionComponent implements OnInit {
 
   public urlImages = URL_IMAGES;
 
@@ -39,6 +39,7 @@ export class HomeComponent extends EventSessionComponent implements OnInit {
   ) { super(sessionService) }
 
   ngOnInit() {
+    super.ngOnInit();
     console.log("# Init Home");
     this.sectionFavourites();
     this.sectionPopularLastWeek();

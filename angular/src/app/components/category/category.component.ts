@@ -6,7 +6,7 @@ import {URL_IMAGES} from "../../shared/config.service";
 
 import {Article} from "../../entity/article.entity";
 import {Category} from "../../entity/category.entity";
-import {EventSessionComponent} from "../base/event-session.component";
+import {BaseSessionComponent} from "../base/base-session.component";
 
 import {ArticleService} from "../../services/article.service";
 import {SessionService} from "../../services/session.service";
@@ -17,7 +17,7 @@ import {SessionService} from "../../services/session.service";
   templateUrl: 'category.component.html',
   styleUrls: []
 })
-export class CategoryComponent extends EventSessionComponent implements OnInit {
+export class CategoryComponent extends BaseSessionComponent implements OnInit {
 
   public urlImages = URL_IMAGES;
   public category:Category;
@@ -32,7 +32,9 @@ export class CategoryComponent extends EventSessionComponent implements OnInit {
   ) { super(sessionService) }
 
   ngOnInit() {
+    super.ngOnInit();
     console.log("# Init Category");
+
     this.category = this.articleService.getCategoryById( this.activatedRoute.snapshot.params['categoryId'] );
 
     this.articleService.getArticlesFromCategory(this.category.id, 1,10).subscribe(
@@ -40,7 +42,6 @@ export class CategoryComponent extends EventSessionComponent implements OnInit {
       error => console.error(error)
     );
   }
-
 
   /*
    * Overwrited

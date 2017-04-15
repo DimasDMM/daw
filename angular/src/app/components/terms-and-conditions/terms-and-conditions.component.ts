@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 
-import {EventSessionComponent} from "../base/event-session.component";
+import {BaseSessionComponent} from "../base/base-session.component";
 import {SessionService} from "../../services/session.service";
 
 @Component({
@@ -9,7 +9,7 @@ import {SessionService} from "../../services/session.service";
   templateUrl: 'terms-and-conditions.component.html',
   styleUrls: []
 })
-export class TermsAndConditionsComponent extends EventSessionComponent implements OnInit {
+export class TermsAndConditionsComponent extends BaseSessionComponent implements OnInit {
 
   constructor(
     private router: Router,
@@ -18,6 +18,7 @@ export class TermsAndConditionsComponent extends EventSessionComponent implement
   ) { super(sessionService) }
 
   ngOnInit() {
+    super.ngOnInit();
     console.log("# Init TermsAndConditions");
   }
 

@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import com.daw.themadridnews.user.UserRepositoryAuthenticationProvider;
 
@@ -21,6 +22,8 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.antMatcher("/api/**");
+
+		http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll();
 		
 		// URLs that need authentication to access to it
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/articulo/{id}/comentario").hasAnyRole("USER");
@@ -34,14 +37,13 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().anyRequest().permitAll();
 
 		// CSRF protection
-		http.csrf().disable();
-		//http.csrf();
+		//http.csrf().disable();
+		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
 		// Use Http Basic Authentication
 		http.httpBasic();
 		
 		// Login configuration
-		http.formLogin().loginProcessingUrl("/api/login");
 		http.formLogin().successHandler((rq, rs, a) -> {});
 
 		// Logout configuration

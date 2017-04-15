@@ -10,8 +10,6 @@ import {Ad} from "../entity/ad.entity";
 @Injectable()
 export class AdsService {
 
-  private ad:Ad;
-
   // Para no sumar visitas 'de mas' se guarda en un array
   // los identificadores de los anuncios a los que se ha sumado la visita
   private adView = {};

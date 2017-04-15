@@ -87,7 +87,7 @@ public class AdministratorRestController {
 	 * La pagina comienza en 1
 	 */
 	@JsonView(UserService.UserDetails.class)
-	@RequestMapping(value="/administrador/usuario/lista", method=RequestMethod.GET)
+	@RequestMapping(value="/administrador/usuarios", method=RequestMethod.GET)
 	public ResponseEntity<Object> list(@RequestParam(required=false) Integer page) {
 		if(page == null || page < 1)
 			page = 1;

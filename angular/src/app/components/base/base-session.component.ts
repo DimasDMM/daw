@@ -4,12 +4,17 @@
 
 import {SessionService} from "../../services/session.service";
 import {User} from "../../entity/user.entity";
+import {OnInit} from "@angular/core";
 
-export abstract class EventSessionComponent {
+export abstract class BaseSessionComponent implements OnInit {
 
   public userLogged:User;
 
   constructor(protected sessionService:SessionService) {}
+
+  ngOnInit() {
+    this.userLogged = this.sessionService.getUserLogged();
+  }
 
   public onLogin() {
     console.log("# Event Login");

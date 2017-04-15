@@ -9,14 +9,14 @@ import {URL_IMAGES} from "../../shared/config.service";
 
 import {User} from "../../entity/user.entity";
 import {Category} from "../../entity/category.entity";
-import {EventSessionComponent} from "../base/event-session.component";
+import {BaseSessionComponent} from "../base/base-session.component";
 
 
 @Component({
   selector: 'header',
   templateUrl: 'header.component.html'
 })
-export class HeaderComponent extends EventSessionComponent implements OnInit {
+export class HeaderComponent extends BaseSessionComponent implements OnInit {
 
   @Output()
   private login = new EventEmitter<boolean>();
@@ -54,6 +54,7 @@ export class HeaderComponent extends EventSessionComponent implements OnInit {
   ) { super(sessionService) }
 
   ngOnInit() {
+    super.ngOnInit();
     console.log("# Init Header");
 
     this.categories = this.articleService.getCategories();

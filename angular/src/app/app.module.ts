@@ -14,6 +14,9 @@ import { AppComponent } from './app.component';
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {AsideComponent} from "./components/aside/aside.component";
+import {AsideOptionsComponent} from "./components/aside-options/aside-options.component";
+
+import {AdministratorListComponent} from "./components/administrator/list/list.component";
 
 import { HomeComponent } from './components/home/home.component';
 import {NgbdCarouselBasic} from "./components/home/carrousel.component";
@@ -29,6 +32,7 @@ import {ArticleService} from "./services/article.service";
 import {SessionService} from "./services/session.service";
 import {CommentService} from "./services/comment.service";
 import {AdsService} from "./services/ads.service";
+import {AdministratorService} from "./services/administrator.service";
 
 import {WindowRef} from "./shared/window.service";
 import {toText} from "./shared/toText.pipe";
@@ -39,6 +43,9 @@ import {toText} from "./shared/toText.pipe";
     HeaderComponent,
     FooterComponent,
     AsideComponent,
+    AsideOptionsComponent,
+
+    AdministratorListComponent,
 
     HomeComponent,
     CategoryComponent,
@@ -59,7 +66,8 @@ import {toText} from "./shared/toText.pipe";
     SessionService,
     ArticleService,
     CommentService,
-    AdsService
+    AdsService,
+    AdministratorService
   ],
   bootstrap: [
     AppComponent

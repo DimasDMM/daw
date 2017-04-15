@@ -1,0 +1,67 @@
+<div class="wrapper">
+  <!--=== Header ===-->
+  <header class="header-v8 header-sticky" (login)='onLogin()' (logout)='onLogout()'></header>
+  <!--=== End Header ===-->
+
+  <!-- Container Part -->
+  <div class="container content">
+    <div class="row">
+      <app-aside-options #appAsideOptions [optionActiveStr]="optionActiveStr" (logout)='onLogout()' class="col-md-3 md-margin-bottom-50"></app-aside-options>
+
+      <section class="col-md-9">
+        <h1 class="blog-grid-title-lg">Listado de usuarios</h1>
+
+        <!--
+        {{#message}}
+        <div class="alert alert-{{type}} fade in text-center">
+          <p>
+            {{{message}}}
+          </p>
+        </div>
+        {{/message}}
+        -->
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Alias</th>
+            <th>Roles</th>
+            <th>&nbsp;</th>
+          </tr>
+          </thead>
+          <tbody>
+            <template ngFor let-user [ngForOf]="userList">
+              <tr *ngIf="user != null">
+                <td>{{user.name}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.alias}}</td>
+                <td><!--{{rolesStr}}--></td>
+                <td><a [routerLink]="['/administrador/usuario',user.id]" class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></a></td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+
+        <!--
+        <div class="text-right">
+          <ul class="pagination">
+            {{#page_list}}
+            <li{{#isActive}} class="active"{{/isActive}}><a href="{{url}}">{{{text}}}</a></li>
+            {{/page_list}}
+          </ul>
+        </div>
+        -->
+
+      </section>
+    </div>
+  </div>
+  <!--=== End Container Part ===-->
+
+  <!--=== Footer ===-->
+  <app-footer class="footer-v8"></app-footer>
+  <!--=== End Footer ===-->
+
+</div><!--/wrapper-->
+

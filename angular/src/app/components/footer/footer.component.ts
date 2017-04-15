@@ -7,14 +7,13 @@ import {SessionService} from "../../services/session.service";
 
 import {URL_IMAGES} from "../../shared/config.service";
 import {Category} from "../../entity/category.entity";
-import {EventSessionComponent} from "../base/event-session.component";
-
+import {BaseSessionComponent} from "../base/base-session.component";
 
 @Component({
   selector: 'app-footer',
   templateUrl: 'footer.component.html'
 })
-export class FooterComponent extends EventSessionComponent implements OnInit {
+export class FooterComponent extends BaseSessionComponent implements OnInit {
 
   public urlImages = URL_IMAGES;
 
@@ -31,7 +30,9 @@ export class FooterComponent extends EventSessionComponent implements OnInit {
   ) { super(sessionService) }
 
   ngOnInit() {
+    super.ngOnInit();
     console.log("# Init Footer");
+
     this.categories = this.articleService.getCategories();
 
     this.articleService.getLastArticles(5).subscribe(

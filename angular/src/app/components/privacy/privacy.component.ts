@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 
-import {EventSessionComponent} from "../base/event-session.component";
+import {BaseSessionComponent} from "../base/base-session.component";
 import {SessionService} from "../../services/session.service";
 
 @Component({
@@ -9,7 +9,7 @@ import {SessionService} from "../../services/session.service";
   templateUrl: 'privacy.component.html',
   styleUrls: []
 })
-export class PrivacyComponent extends EventSessionComponent implements OnInit {
+export class PrivacyComponent extends BaseSessionComponent implements OnInit {
 
   constructor(
     private router: Router,
@@ -17,7 +17,9 @@ export class PrivacyComponent extends EventSessionComponent implements OnInit {
     sessionService:SessionService
   ) { super(sessionService) }
 
-  ngOnInit() {}
+  ngOnInit() {
+    super.ngOnInit();
+  }
 
   /*
    * Overwrited

@@ -4,7 +4,7 @@ import {Component, OnInit} from '@angular/core';
 import {URL_IMAGES} from "../../shared/config.service";
 
 import {Article} from "../../entity/article.entity";
-import {EventSessionComponent} from "../base/event-session.component";
+import {BaseSessionComponent} from "../base/base-session.component";
 
 import {ArticleService} from "../../services/article.service";
 import {SessionService} from "../../services/session.service";
@@ -16,10 +16,11 @@ import {SessionService} from "../../services/session.service";
   styleUrls: []
 })
 
-export class RecentNewsComponent extends EventSessionComponent implements OnInit {
+export class RecentNewsComponent extends BaseSessionComponent implements OnInit {
 
 
-  ngOnInit(): void {
+  ngOnInit() {
+    super.ngOnInit();
   }
 
   public articles: Article[];

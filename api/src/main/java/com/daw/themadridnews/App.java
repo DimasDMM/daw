@@ -6,7 +6,7 @@ import javax.servlet.MultipartConfigElement;
 
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
-import org.springframework.boot.context.embedded.MultipartConfigFactory;
+//import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartResolver;
@@ -51,7 +51,7 @@ public class App {
 	public MultipartResolver multipartResolver() {
 		return new StandardServletMultipartResolver();
 	}
-	
+	/*
 	@Bean
 	public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
@@ -59,7 +59,7 @@ public class App {
         factory.setMaxRequestSize("12MB");
         return factory.createMultipartConfig();
     }
-	
+	*/
 	@Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {

@@ -10,6 +10,12 @@ export class SessionService {
 
   constructor(private http:Http) {
     console.log("# Init SessionService");
+
+    // Recuperar usuario logeado
+    if(localStorage.getItem("userLogged") && localStorage.getItem("session")) {
+      this.userLogged = JSON.parse( localStorage.getItem("userLogged") );
+      this.session = localStorage.getItem("session");
+    }
   }
 
   public login(username:string, password:string) {
@@ -46,6 +52,7 @@ export class SessionService {
 
   // Establecer usuario logeado
   public setUserLogged(userLogged: User) {
+    localStorage.setItem("userLogged", JSON.stringify(userLogged));
     this.userLogged = userLogged;
   }
 
@@ -57,6 +64,7 @@ export class SessionService {
   // Establecer cabecera Auth-basic
   public setAuthHeader(user:string, password:string) {
     this.session = this.generateAuthHeader(user, password);
+    localStorage.setItem("session", this.session);
   }
 
   // Generar cabecera Auth-basic a partir de un usuario y contraseña
@@ -64,11 +72,6 @@ export class SessionService {
     let session = user + ':' + password;
     session = "Basic " + btoa(session);
     return session;
-  }
-
-  // Limpiar cabecera Auth-basic
-  private clearAuthHeader() {
-    this.session = null;
   }
 
   // Metodo ejecutado cuando se logea
@@ -84,6 +87,18 @@ export class SessionService {
   // Metodo ejecutado cuando se cierra sesion
   private onLogout() {
     this.clearAuthHeader();
-    this.setUserLogged(null);
+    this.clearUserLogged();
+  }
+
+  // Limpiar cabecera Auth-basic
+  private clearAuthHeader() {
+    localStorage.removeItem("session");
+    this.session = null;
+  }
+
+  // Limpiar usuario logeado
+  private clearUserLogged() {
+    localStorage.removeItem("userLogged");
+    this.session = null;
   }
 }
