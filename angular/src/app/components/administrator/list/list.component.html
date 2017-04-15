@@ -37,7 +37,7 @@
                 <td>{{user.name}}</td>
                 <td>{{user.lastname}}</td>
                 <td>{{user.alias}}</td>
-                <td><!--{{rolesStr}}--></td>
+                <td>{{user.roles | listRolesToText}}</td>
                 <td><a [routerLink]="['/administrador/usuario',user.id]" class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></a></td>
               </tr>
             </template>

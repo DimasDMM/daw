@@ -7,7 +7,7 @@ import {PipeTransform, Pipe} from "@angular/core";
 @Pipe({name: 'toText'})
 export class toText implements PipeTransform {
   transform(value: string, args: string[]): any {
-    if (!value) return value;
+    if (!value) return '';
 
     return value.replace(/<(?:.|\n)*?>/gm, '');
   }

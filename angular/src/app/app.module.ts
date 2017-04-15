@@ -36,6 +36,7 @@ import {AdministratorService} from "./services/administrator.service";
 
 import {WindowRef} from "./shared/window.service";
 import {toText} from "./shared/toText.pipe";
+import {listRolesToText} from "./shared/listRolesToText.pipe";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {toText} from "./shared/toText.pipe";
     PrivacyComponent,
     TermsAndConditionsComponent,
     NgbdCarouselBasic,
-    toText
+    toText,
+    listRolesToText
   ],
   imports: [
     NgbModule.forRoot(),

@@ -64,7 +64,7 @@ public class PreferencesRestController {
 		u.setSex(r.getSex());
 		u.setCity(r.getCity());
 		u.setCountry(r.getCountry());
-		u.setPhoneNumber(r.getPhoneNumber());
+		u.setPhone(r.getPhoneNumber());
 		u.setDescription(r.getDescription());
 		u.setPersonalWeb(r.getPersonalWeb());
 		
