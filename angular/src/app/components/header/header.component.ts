@@ -51,7 +51,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("# Init Header");
+    console.log("Init Header");
 
     this.categories = this.articleService.getCategories();
 

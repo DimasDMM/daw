@@ -6,21 +6,21 @@ import {URL_API} from "../shared/config.service";
 import {SessionService} from "./session.service";
 
 @Injectable()
-export class AdministratorService {
+export class EditorService {
 
   constructor(
     private http:Http,
     private sessionService:SessionService
   ) {
-    console.log("Init AdministratorService")
+    console.log("Init EditorService")
   }
 
-  // Obtener lista de usuarios
-  public getUserList(page:number) {
+  // Obtener lista de anuncios
+  public getArticlesList(page:number) {
     let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });
     let options = new RequestOptions({ headers: headers });
 
-    let url = URL_API+"/administrador/usuarios?page="+page;
+    let url = URL_API+"/editor/articulos?page="+page;
     return this.http.get(url, options).map(
       response => response.json()
     );

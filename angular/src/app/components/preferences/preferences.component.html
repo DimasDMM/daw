@@ -1,0 +1,195 @@
+<div class="wrapper">
+  <!--=== Header ===-->
+  <header class="header-v8 header-sticky" (login)='onLogin()' (logout)='onLogout()'></header>
+  <!--=== End Header ===-->
+
+  <!--=== Content Part ===-->
+  <div class="container content">
+    <div class="row">
+      <!--
+      {{#message}}
+      <div class="col-md-12 md-margin-bottom-50">
+        <div class="alert alert-{{type}} fade in text-center">
+          <p>
+            {{{message}}}
+          </p>
+        </div>
+      </div>
+      {{/message}}
+      -->
+
+      <app-aside-options #appAsideOptions [optionActiveStr]="optionActiveStr" (logout)='onLogout()' class="col-md-3 md-margin-bottom-50"></app-aside-options>
+
+      <!-- Begin Content -->
+      <div class="col-md-9">
+        <!-- Tabs -->
+        <div class="tab-v1">
+          <ul class="nav nav-tabs">
+            <li [class.active]="tab['personalData']['active']"><a (click)="tabSwitch('personalData')">Datos personales</a></li>
+            <li [class.active]="tab['password']['active']"><a (click)="tabSwitch('password')">Contraseña</a></li>
+            <li [class.active]="tab['favourites']['active']"><a (click)="tabSwitch('favourites')">Mis noticias</a></li>
+            <li [class.active]="tab['photo']['active']"><a (click)="tabSwitch('photo')">Mi foto de perfil</a></li>
+          </ul>
+          <div class="tab-content">
+
+            <!-- Personal Data Forms -->
+            <div class="tab-pane fade" [ngClass]="tab['personalData']">
+              <form class="margin-bottom-20 sky-form no-border">
+                <section class="row">
+                  <div class="col col-12 full-width">
+                    <label for="inp_name">Nombre</label>
+                    <input type="text" name="name" id="inp_name" class="form-control" value="{{userLogged?.name}}" required>
+                    <div class="note note-success-compulsory">Campo obligatorio</div>
+                  </div>
+                  <div class="col col-12 full-width">
+                    <label for="inp_surname">Apellidos</label>
+                    <input type="text" name="lastname" id="inp_surname" class="form-control" value="{{userLogged?.lastname}}" required>
+                    <div class="note note-success-compulsory">Campo obligatorio</div>
+                  </div>
+                  <div class="col col-12 full-width">
+                    <label for="inp_alias">Alias</label>
+                    <input type="text" name="alias" id="inp_alias" class="form-control" value="{{userLogged?.alias}}">
+                  </div>
+                  <div class="col col-12 full-width">
+                    <label for="inp_email">Correo electr&oacute;nico</label>
+                    <input type="text" name="email" id="inp_email" class="form-control" value="{{userLogged?.email}}" required>
+                  </div>
+                  <div class="col col-12 full-width">
+                    <label>Sexo</label>
+                    <div class="row">
+                      <div class="col col-4">
+                        <label class="radio"><input type="radio" name="sex" value="m" checked><i class="rounded-x"></i>Hombre</label>
+                      </div>
+                      <div class="col col-4">
+                        <label class="radio"><input type="radio" name="sex" value="f"><i class="rounded-x"></i>Mujer</label>
+                      </div>
+                      <div class="col col-4">
+                        <label class="radio"><input type="radio" name="sex" value="o"><i class="rounded-x"></i>Otro</label>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <hr>
+                <section class="row">
+                  <div class="col col-12 full-width">
+                    <label for="inp_city">Ciudad</label>
+                    <input type="text" name="city" id="inp_city" class="form-control" value="{{userLogged?.city}}">
+                  </div>
+                  <div class="col col-12 full-width">
+                    <label for="inp_country">Pa&iacute;s de residencia</label>
+                    <input type="text" name="country" id="inp_country" class="form-control" value="{{userLogged?.country}}">
+                  </div>
+                  <div class="col col-12 full-width">
+                    <label for="inp_phone">Tel&eacute;fono</label>
+                    <input type="text" name="phone" id="inp_phone" class="form-control" value="{{userLogged?.phone}}"> </div>
+                  <hr>
+                  <div class="col col-12 full-width">
+                    <label for="inp_description">Descripci&oacute;n personal</label>
+                    <textarea class="form-control" name="description" id="inp_description" rows="10" >{{userLogged?.description}}</textarea>
+                  </div>
+                  <div class="col col-12 full-width">
+                    <label for="inp_url">URL blog o p&aacute;gina personal</label>
+                    <input type="text" name="url" id="inp_url" class="form-control" value="{{userLogged?.personalWeb}}" placeholder="http://..."> </div>
+                </section>
+                <footer>
+                  <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                </footer>
+              </form>
+            </div>
+            <!-- End Personal Data Forms -->
+
+            <!-- Password Forms -->
+            <div class="tab-pane fade" [ngClass]="tab['password']">
+              <form class="margin-bottom-20 sky-form no-border">
+                <div class="alert alert-info fade in"> <i class="fa fa-info-circle"></i> <strong>Cambio de contrase&ntilde;a:</strong> Recuerde que para cambiar su contrase&ntilde;a primero debe introducir su contrase&ntilde;a actual. Despu&eacute;s deber&aacute; introducir dos veces su nueva contrase&ntilde;a</div>
+                <section class="row">
+                  <div class="col col-12 full-width">
+                    <label for="inp_pass_now">Contrase&ntilde;a actual</label>
+                    <input type="password" name="pass_now" id="inp_pass_now" class="form-control"> </div>
+                </section>
+                <section class="row">
+                  <div class="col col-12 full-width">
+                    <label for="inp_pass_new">Nueva contrase&ntilde;a</label>
+                    <input type="password" name="pass_new" id="inp_pass_new" class="form-control"> </div>
+                  <div class="col col-12 full-width">
+                    <label for="inp_pass_new2">Confirmar nueva contrase&ntilde;a</label>
+                    <input type="password" name="pass_new2" id="inp_pass_new2" class="form-control"> </div>
+                </section>
+                <footer>
+                  <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                </footer>
+              </form>
+              <!--/ Error states for elements -->
+            </div>
+            <!-- End Password Form -->
+
+            <!-- My News Forms -->
+            <div class="tab-pane fade" [ngClass]="tab['favourites']">
+              <form class="margin-bottom-20 sky-form no-border">
+                <div class="alert alert-info fade in">
+                  <i class="fa fa-info-circle"></i>
+                  <strong>Mis Noticias:</strong>
+                  Seleccione las casillas que desee para ordenar las noticias de acuerdo a sus preferencias
+                </div>
+                <section class="row">
+                  <div class="col col-4">
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs" checked value="world"><i></i>Mundo</label>
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs" checked value="madrid"><i></i>Madrid</label>
+                  </div>
+                  <div class="col col-4">
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs" checked value="spain"><i></i>España</label>
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs" checked value="sports"><i></i>Deportes</label>
+                  </div>
+                  <div class="col col-4">
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs" checked value="culture"><i></i>Cultura
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs" checked value="technology"><i></i>Tecnolog&iacute;a
+                    </label>
+                  </div>
+                </section>
+                <footer>
+                  <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                </footer>
+              </form>
+            </div>
+            <!-- End My news Forms -->
+
+            <!-- My Photo Form -->
+            <div class="tab-pane fade" [ngClass]="tab['photo']">
+              <form class="margin-bottom-20 sky-form no-border" enctype="multipart/form-data">
+                <section class="row">
+                  <div class="col col-12 full-width">
+                    <label for="inp_file">Foto de perfil</label>
+                    <div class="input input-file">
+                      <div class="button"><input type="file" id="inp_file" name="file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
+                    </div>
+                  </div>
+                </section>
+                <footer>
+                  <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                </footer>
+              </form>
+            </div>
+            <!-- End My Photo Form -->
+          </div>
+        </div>
+        <!-- End Tabs-->
+      </div>
+      <!-- End Content -->
+    </div>
+  </div>
+  <!--/container-->
+  <!--=== End Content Part ===-->
+
+  <!--=== Footer ===-->
+  <app-footer class="footer-v8"></app-footer>
+  <!--=== End Footer ===-->
+
+</div><!--/wrapper-->
+

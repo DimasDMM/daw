@@ -28,7 +28,7 @@ export class PaginationComponent extends BaseSessionComponent implements OnInit 
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("# Init PaginationComponent");
+    console.log("Init PaginationComponent");
   }
 
   // Configuracion de la paginacion: pagina actual, numero de paginas a mostrar, numero de elementos por pagina, total de elementos

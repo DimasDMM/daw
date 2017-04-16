@@ -19,7 +19,7 @@ export class TermsAndConditionsComponent extends BaseSessionComponent implements
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("# Init TermsAndConditions");
+    console.log("Init TermsAndConditions");
   }
 
   /*

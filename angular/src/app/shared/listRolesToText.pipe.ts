@@ -5,7 +5,7 @@ import {PipeTransform, Pipe} from "@angular/core";
  */
 
 @Pipe({name: 'listRolesToText'})
-export class listRolesToText implements PipeTransform {
+export class pipeListRolesToText implements PipeTransform {
   transform(value: string, args: string[]): any {
     if(!value) return '';
 

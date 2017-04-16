@@ -32,13 +32,13 @@ export abstract class BaseSessionComponent implements OnInit {
   }
 
   public onLogin() {
-    console.log("# Event Login");
+    console.log("Event Login");
     this.userLogged = this.sessionService.getUserLogged();
     this.onLoginCalls();
   }
 
   public onLogout() {
-    console.log("# Event Logout");
+    console.log("Event Logout");
     this.onLogoutCalls();
   }
 

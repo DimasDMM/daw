@@ -9,7 +9,7 @@ export class SessionService {
   private userLogged:User;
 
   constructor(private http:Http) {
-    console.log("# Init SessionService");
+    console.log("Init SessionService");
 
     // Recuperar usuario logeado
     if(localStorage.getItem("userLogged") && localStorage.getItem("session")) {

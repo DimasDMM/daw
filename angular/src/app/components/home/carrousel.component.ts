@@ -21,7 +21,7 @@ export class NgbdCarouselBasic extends BaseSessionComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("# Init Carrousel");
+    console.log("Init Carrousel");
 
     this.initCarrousel();
   }

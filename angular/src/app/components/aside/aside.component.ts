@@ -40,7 +40,7 @@ export class AsideComponent extends BaseSessionComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("# Init Aside");
+    console.log("Init Aside");
     this.nativeWindow = this.windowRef.getNativeWindow();
     this.sectionCategories();
     this.sectionLastComments();

@@ -15,7 +15,7 @@ export class AdsService {
   private adView = {};
 
   constructor(private http:Http) {
-    console.log("# Init AdsService")
+    console.log("Init AdsService")
   }
 
   // Obtener datos de un anuncio en concreto

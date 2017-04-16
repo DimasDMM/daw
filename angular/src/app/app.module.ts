@@ -19,6 +19,11 @@ import {PaginationComponent} from "./components/pagination/pagination.component"
 
 import {AdministratorListComponent} from "./components/administrator/list/list.component";
 import {AdministratorFormComponent} from "./components/administrator/form/form.component";
+import {PublicistListComponent} from "./components/publicist/list/list.component";
+import {PublicistFormComponent} from "./components/publicist/form/form.component";
+import {EditorListComponent} from "./components/editor/list/list.component";
+import {EditorFormComponent} from "./components/editor/form/form.component";
+import {PreferencesComponent} from "./components/preferences/preferences.component";
 
 import { HomeComponent } from './components/home/home.component';
 import {NgbdCarouselBasic} from "./components/home/carrousel.component";
@@ -34,11 +39,17 @@ import {ArticleService} from "./services/article.service";
 import {SessionService} from "./services/session.service";
 import {CommentService} from "./services/comment.service";
 import {AdsService} from "./services/ads.service";
+
 import {AdministratorService} from "./services/administrator.service";
+import {PublicistService} from "./services/publicist.service";
+import {EditorService} from "./services/editor.service";
 
 import {WindowRef} from "./shared/window.service";
-import {toText} from "./shared/toText.pipe";
-import {listRolesToText} from "./shared/listRolesToText.pipe";
+import {pipeToText} from "./shared/toText.pipe";
+import {pipeListRolesToText} from "./shared/listRolesToText.pipe";
+import {pipeInfinOnEmpty} from "./shared/infinOnEmpty.pipe";
+import {pipeAdStatus} from "./components/publicist/list/ad-status.pipe";
+import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
 
 @NgModule({
   declarations: [
@@ -51,14 +62,23 @@ import {listRolesToText} from "./shared/listRolesToText.pipe";
 
     AdministratorListComponent,
     AdministratorFormComponent,
+    PublicistListComponent,
+    PublicistFormComponent,
+    EditorListComponent,
+    EditorFormComponent,
+    PreferencesComponent,
 
     HomeComponent,
+    NgbdCarouselBasic,
     CategoryComponent,
     PrivacyComponent,
     TermsAndConditionsComponent,
-    NgbdCarouselBasic,
-    toText,
-    listRolesToText
+
+    pipeToText,
+    pipeInfinOnEmpty,
+    pipeListRolesToText,
+    pipeAdStatus,
+    pipeArticleStatus
   ],
   imports: [
     NgbModule.forRoot(),
@@ -73,7 +93,10 @@ import {listRolesToText} from "./shared/listRolesToText.pipe";
     ArticleService,
     CommentService,
     AdsService,
-    AdministratorService
+
+    AdministratorService,
+    PublicistService,
+    EditorService
   ],
   bootstrap: [
     AppComponent

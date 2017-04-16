@@ -1,6 +1,8 @@
 package com.daw.themadridnews;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
@@ -49,7 +51,7 @@ public class DataExampleController implements CommandLineRunner {
         
         // Anuncio de ejemplo
         adRepository.save( new Ad(u2, "ZalduaAbogados", "http://www.zgasociados.com/", 40, null, null, 1500, 700) );
-        adRepository.save( new Ad(u2, "HyS", "http://www.hys.es/es-es", 40, null, null, 1500, 700) );
+        adRepository.save( new Ad(u2, "HyS", "http://www.hys.es/es-es", 40, new Date(), null, 1200, null) );
         
         // Articulo de ejemplo
         ArrayList<String> tags = new ArrayList<String>();

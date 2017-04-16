@@ -29,7 +29,7 @@ public class ArticleService {
 	@Autowired
 	protected UserComponent userComponent;
 	
-	protected static final int ITEMS_LIST = 20; // Numero de articulos por pagina
+	protected static final int ITEMS_LIST = 10; // Numero de articulos por pagina
 	
 	
 	// Añadir visualizacion al contador

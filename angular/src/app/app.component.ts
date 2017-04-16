@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, NavigationEnd} from "@angular/router";
+import {Router, NavigationEnd, NavigationStart} from "@angular/router";
 
 @Component({
   selector: 'app',
@@ -11,8 +11,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.subscribe((val) => {
-      if(val instanceof NavigationEnd)
-        console.log("########## ROUTER NAVIGATION END ##########")
+      if(val instanceof NavigationEnd) {
+        console.log("########## ROUTER NAVIGATION ##########");
+      }
     });
   }
 }

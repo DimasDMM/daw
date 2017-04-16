@@ -6,22 +6,23 @@ import {AsideOptionsComponent} from "../../aside-options/aside-options.component
 import {SessionService} from "../../../services/session.service";
 
 import {BaseSessionComponent} from "../../base/base-session.component";
-import {User} from "../../../entity/user.entity";
-import {AdministratorService} from "../../../services/administrator.service";
+import {EditorService} from "../../../services/editor.service";
+import {ArticleService} from "../../../services/article.service";
+import {Article} from "../../../entity/article.entity";
 
 @Component({
   selector: 'app',
   templateUrl: 'list.component.html'
 })
-export class AdministratorListComponent extends BaseSessionComponent implements OnInit {
+export class EditorListComponent extends BaseSessionComponent implements OnInit {
 
   // Vistas
   @ViewChild('appAsideOptions') appAsideOptions: AsideOptionsComponent;
   @ViewChild('pagination') pagination: PaginationComponent;
 
   // Variables
-  private optionActiveStr = "administrator";
-  private userList:User[] = [];
+  private optionActiveStr = "editor-list";
+  private articlesList:Article[] = [];
 
   // Paginacion
   private currentPage = 1;
@@ -34,30 +35,31 @@ export class AdministratorListComponent extends BaseSessionComponent implements 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private administratorService: AdministratorService,
+    private articleService: ArticleService,
+    private editorService: EditorService,
     sessionService: SessionService
   ) { super(sessionService) }
 
   ngOnInit() {
     super.ngOnInit();
-    if(!this.hasRole(["ROLE_ADMIN"]))
+    if(!this.hasRole(["ROLE_EDITOR", "ROLE_ADMIN"]))
       this.router.navigate(['/']);
 
-    console.log("Init AdministratorListComponent");
-    this.sectionUserList();
+    console.log("Init EditorListComponent");
+    this.sectionArticlesList();
   }
 
-  // Cargar lista de usuarios
-  private sectionUserList() {
-    this.administratorService.getUserList( this.currentPage ).subscribe(
-      response => this.setUserList(response),
+  // Cargar lista de articulos
+  private sectionArticlesList() {
+    this.editorService.getArticlesList( this.currentPage ).subscribe(
+      response => this.setArticlesList(response),
       error => console.error(error)
     );
   }
 
   // Cargar lista y paginacion
-  private setUserList(response:any) {
-    this.userList = response.content;
+  private setArticlesList(response:any) {
+    this.articlesList = response.content;
     this.numberItemsPage = response.size;
     this.numberItemsTotal = response.totalElements;
     this.pagination.init(this.currentPage, this.displayPages, this.numberItemsPage, this.numberItemsTotal);
@@ -69,7 +71,7 @@ export class AdministratorListComponent extends BaseSessionComponent implements 
     console.log("Event Page Change: "+ page);
 
     this.currentPage = page;
-    this.sectionUserList();
+    this.sectionArticlesList();
   }
 
   /*

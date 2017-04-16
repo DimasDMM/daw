@@ -9,7 +9,7 @@ import {SessionService} from "./session.service";
 export class CommentService {
 
   constructor(private http:Http, private sessionService:SessionService) {
-    console.log("# Init CommentService")
+    console.log("Init CommentService")
   }
 
   // Ultimos articulos publicados

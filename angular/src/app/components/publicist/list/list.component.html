@@ -9,7 +9,7 @@
       <app-aside-options #appAsideOptions [optionActiveStr]="optionActiveStr" (logout)='onLogout()' class="col-md-3 md-margin-bottom-50"></app-aside-options>
 
       <section class="col-md-9">
-        <h1 class="blog-grid-title-lg">Listado de usuarios</h1>
+        <h1 class="blog-grid-title-lg">Listado de anuncios</h1>
 
         <!--
         {{#message}}
@@ -24,21 +24,25 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Nombre</th>
-              <th>Apellidos</th>
-              <th>Alias</th>
-              <th>Roles</th>
+              <th>Anunciante</th>
+              <th>Fecha inicio</th>
+              <th>Fecha fin</th>
+              <th>Clicks</th>
+              <th>Visualizaciones</th>
+              <th>Estado</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
-            <template ngFor let-user [ngForOf]="userList">
-              <tr *ngIf="user != null">
-                <td>{{user.name}}</td>
-                <td>{{user.lastname}}</td>
-                <td>{{user.alias}}</td>
-                <td>{{user.roles | listRolesToText}}</td>
-                <td><a [routerLink]="['/administrador/usuarios',{'id':user.id}]" class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></a></td>
+            <template ngFor let-ad [ngForOf]="adsList">
+              <tr *ngIf="ad != null">
+                <td>{{ad.title}}</td>
+                <td [innerHTML]="ad.limDateStart | date:'d-M-y' | infinOnEmpty"></td>
+                <td [innerHTML]="ad.limDateEnd | date:'d-M-y' | infinOnEmpty"></td>
+                <td>{{ad.clicks}} / <span [innerHTML]="ad.limClicks | infinOnEmpty"></span></td>
+                <td>{{ad.views}} / <span [innerHTML]="ad.limViews | infinOnEmpty"></span></td>
+                <td [innerHtml]="ad | adStatus"></td>
+                <td><a [routerLink]="['/publicista/anuncios',{'id':ad.id}]" class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></a></td>
               </tr>
             </template>
           </tbody>

@@ -1,6 +1,5 @@
 import {Component, OnInit, Input} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
-import {Http} from "@angular/http";
 
 import {SessionService} from "../../services/session.service";
 import {BaseSessionComponent} from "../base/base-session.component";
@@ -19,21 +18,23 @@ export class AsideOptionsComponent extends BaseSessionComponent implements OnIni
 
   private optionActiveList = {
     "administrator": {"active": false, "list-group-item": true },
-    "articles-list": {"active": false, "list-group-item": true },
-    "articles-form": {"active": false, "list-group-item": true }
+    "editor-list": {"active": false, "list-group-item": true },
+    "editor-form": {"active": false, "list-group-item": true },
+    "publicist-list": {"active": false, "list-group-item": true },
+    "publicist-form": {"active": false, "list-group-item": true },
+    "preferences": {"active": false, "list-group-item": true }
   };
 
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private http: Http,
     sessionService: SessionService
   ) { super(sessionService) }
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("# Init AsideOptionsComponent");
+    console.log("Init AsideOptionsComponent");
     this.setAsideActiveOption();
   }
 

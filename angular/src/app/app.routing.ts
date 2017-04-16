@@ -7,6 +7,11 @@ import {TermsAndConditionsComponent} from "./components/terms-and-conditions/ter
 
 import {AdministratorListComponent} from "./components/administrator/list/list.component";
 import {AdministratorFormComponent} from "./components/administrator/form/form.component";
+import {PublicistListComponent} from "./components/publicist/list/list.component";
+import {PublicistFormComponent} from "./components/publicist/form/form.component";
+import {EditorListComponent} from "./components/editor/list/list.component";
+import {EditorFormComponent} from "./components/editor/form/form.component";
+import {PreferencesComponent} from "./components/preferences/preferences.component";
 
 const appRoutes = [
   { path: 'portada', component: HomeComponent },
@@ -16,7 +21,17 @@ const appRoutes = [
 
   { path: 'administrador', redirectTo: '/administrador/usuarios', pathMatch: 'full' },
   { path: 'administrador/usuarios', component: AdministratorListComponent },
-  { path: 'administrador/usuario', component: AdministratorFormComponent },
+  { path: 'administrador/usuarios/:id', component: AdministratorFormComponent },
+
+  { path: 'publicista', redirectTo: '/publicista/anuncios', pathMatch: 'full' },
+  { path: 'publicista/anuncios', component: PublicistListComponent },
+  { path: 'publicista/anuncios/:id', component: PublicistFormComponent },
+
+  { path: 'editor', redirectTo: '/editor/articulos', pathMatch: 'full' },
+  { path: 'editor/articulos', component: EditorListComponent },
+  { path: 'editor/articulos/:id', component: EditorFormComponent },
+
+  { path: 'ajustes', component: PreferencesComponent },
 
   { path: '', redirectTo: 'portada', pathMatch: 'full' }
 ];

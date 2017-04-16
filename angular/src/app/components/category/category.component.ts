@@ -33,7 +33,7 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("# Init Category");
+    console.log("Init Category");
 
     this.category = this.articleService.getCategoryById( this.activatedRoute.snapshot.params['categoryId'] );
 

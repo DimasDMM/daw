@@ -37,7 +37,7 @@ export class HomeComponent extends BaseSessionComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("# Init Home");
+    console.log("Init Home");
     this.sectionFavourites();
     this.sectionPopularLastWeek();
     this.sectionLastArticles();

@@ -5,7 +5,7 @@ import {PipeTransform, Pipe} from "@angular/core";
  */
 
 @Pipe({name: 'toText'})
-export class toText implements PipeTransform {
+export class pipeToText implements PipeTransform {
   transform(value: string, args: string[]): any {
     if (!value) return '';
 

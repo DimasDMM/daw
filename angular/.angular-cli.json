@@ -19,6 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "assets/css/sky-forms.css",
+        "assets/css/custom-sky-forms.css",
         "assets/css/bootstrap/css/bootstrap.min.css",
         "assets/css/line-icons/line-icons.css",
         "assets/css/font-awesome/css/font-awesome.min.css",

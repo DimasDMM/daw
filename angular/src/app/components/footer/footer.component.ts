@@ -26,7 +26,7 @@ export class FooterComponent extends BaseSessionComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("# Init Footer");
+    console.log("Init Footer");
 
     this.categories = this.articleService.getCategories();
 

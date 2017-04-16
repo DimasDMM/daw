@@ -3,6 +3,7 @@ export class User {
   alias:string;
   name:string;
   lastname:string;
+  sex:string;
 
   email:string;
   roles:string[];

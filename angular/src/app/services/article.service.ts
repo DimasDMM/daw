@@ -19,7 +19,7 @@ export class ArticleService {
   ];
 
   constructor(private http:Http, private sessionService:SessionService) {
-    console.log("# Init ArticleService")
+    console.log("Init ArticleService")
   }
 
   public getCategories() {

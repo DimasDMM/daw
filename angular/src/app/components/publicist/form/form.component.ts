@@ -5,35 +5,34 @@ import {AsideOptionsComponent} from "../../aside-options/aside-options.component
 import {SessionService} from "../../../services/session.service";
 
 import {BaseSessionComponent} from "../../base/base-session.component";
-import {User} from "../../../entity/user.entity";
-import {AdministratorService} from "../../../services/administrator.service";
+import {PublicistService} from "../../../services/publicist.service";
 
 @Component({
   selector: 'app',
   templateUrl: 'form.component.html'
 })
-export class AdministratorFormComponent extends BaseSessionComponent implements OnInit {
+export class PublicistFormComponent extends BaseSessionComponent implements OnInit {
 
   // Vistas
   @ViewChild('appAsideOptions') appAsideOptions: AsideOptionsComponent;
 
   // Variables
-  private optionActiveStr = "administrator";
+  private optionActiveStr = "publicist-form";
 
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private administratorService: AdministratorService,
+    private publicistService: PublicistService,
     sessionService: SessionService
   ) { super(sessionService) }
 
   ngOnInit() {
     super.ngOnInit();
-    if(!this.hasRole(["ROLE_ADMIN"]))
+    if(!this.hasRole(["ROLE_PUBLICIST", "ROLE_ADMIN"]))
       this.router.navigate(['/']);
 
-    console.log("Init AdministratorFormComponent");
+    console.log("Init PublicistFormComponent");
 
     let id = this.activatedRoute.snapshot.params['id'];
   }
