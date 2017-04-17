@@ -4,7 +4,7 @@ import {Ad} from "../../entity/ad.entity";
 import {Article} from "../../entity/article.entity";
 import {ArticleFavourites} from "../../entity/article_favourites";
 
-import {URL_IMAGES} from "../../shared/config.service";
+import {URL_IMAGES} from "../../shared/config.object";
 import {BaseSessionComponent} from "../base/base-session.component";
 import {ArticleService} from "../../services/article.service";
 import {SessionService} from "../../services/session.service";

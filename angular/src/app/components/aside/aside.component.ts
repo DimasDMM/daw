@@ -1,7 +1,7 @@
 import {Component, OnInit, AfterViewInit, AfterViewChecked} from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 
-import {URL_IMAGES} from "../../shared/config.service";
+import {URL_IMAGES} from "../../shared/config.object";
 import {BaseSessionComponent} from "../base/base-session.component";
 import {CommentService} from "../../services/comment.service";
 import {ArticleService} from "../../services/article.service";

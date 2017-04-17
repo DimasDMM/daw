@@ -39,6 +39,7 @@ import {ArticleService} from "./services/article.service";
 import {SessionService} from "./services/session.service";
 import {CommentService} from "./services/comment.service";
 import {AdsService} from "./services/ads.service";
+import {MessageService} from "./services/message.service";
 
 import {AdministratorService} from "./services/administrator.service";
 import {PublicistService} from "./services/publicist.service";
@@ -93,6 +94,7 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
     ArticleService,
     CommentService,
     AdsService,
+    MessageService,
 
     AdministratorService,
     PublicistService,

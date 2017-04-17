@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../entity/article.entity";
-import {URL_IMAGES} from "../../shared/config.service";
+import {URL_IMAGES} from "../../shared/config.object";
 import {BaseSessionComponent} from "../base/base-session.component";
 import {SessionService} from "../../services/session.service";
 

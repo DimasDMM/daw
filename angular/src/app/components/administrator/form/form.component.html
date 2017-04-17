@@ -9,13 +9,13 @@
       <app-aside-options #appAsideOptions [optionActiveStr]="optionActiveStr" (logout)='onLogout()' class="col-md-3 md-margin-bottom-50"></app-aside-options>
 
       <section class="col-md-9">
-        <!--
-        <div class="alert alert-{{type}} fade in text-center">
-          <p>
-            {{{message}}}
-          </p>
+        <div *ngIf="message">
+          <div class="alert fade in text-center" [class.alert-danger]="message.isError">
+            <p>
+              {{message.message}}
+            </p>
+          </div>
         </div>
-        -->
 
         <div class="alert alert-warning fade in text-center">
           <h4>Eliminar usuario</h4>

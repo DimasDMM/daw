@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http, RequestOptions, Headers, Response} from "@angular/http";
-import {URL_API} from "../shared/config.service";
+import {URL_API} from "../shared/config.object";
 import {User} from "../entity/user.entity";
 
 @Injectable()

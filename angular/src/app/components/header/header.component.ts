@@ -4,7 +4,7 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
 import {SessionService} from "../../services/session.service";
 
-import {URL_IMAGES} from "../../shared/config.service";
+import {URL_IMAGES} from "../../shared/config.object";
 
 import {Category} from "../../entity/category.entity";
 import {BaseSessionComponent} from "../base/base-session.component";

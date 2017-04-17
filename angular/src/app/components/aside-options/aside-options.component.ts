@@ -3,7 +3,7 @@ import {Router, ActivatedRoute} from "@angular/router";
 
 import {SessionService} from "../../services/session.service";
 import {BaseSessionComponent} from "../base/base-session.component";
-import {URL_IMAGES} from "../../shared/config.service";
+import {URL_IMAGES} from "../../shared/config.object";
 
 @Component({
   selector: 'app-aside-options',
@@ -11,7 +11,7 @@ import {URL_IMAGES} from "../../shared/config.service";
 })
 export class AsideOptionsComponent extends BaseSessionComponent implements OnInit {
 
-  public urlImages = URL_IMAGES;
+  private urlImages = URL_IMAGES;
 
   @Input()
   private optionActiveStr:string;

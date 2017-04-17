@@ -1,13 +1,15 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter} from "@angular/core";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute, Params} from "@angular/router";
 
 import {PaginationComponent} from "../../pagination/pagination.component";
 import {AsideOptionsComponent} from "../../aside-options/aside-options.component";
 import {SessionService} from "../../../services/session.service";
 
+import {MessageObject} from "../../../shared/message.object";
 import {BaseSessionComponent} from "../../base/base-session.component";
 import {User} from "../../../entity/user.entity";
 import {AdministratorService} from "../../../services/administrator.service";
+import {MessageService} from "../../../services/message.service";
 
 @Component({
   selector: 'app',
@@ -22,6 +24,7 @@ export class AdministratorListComponent extends BaseSessionComponent implements 
   // Variables
   private optionActiveStr = "administrator";
   private userList:User[] = [];
+  private message:MessageObject;
 
   // Paginacion
   private currentPage = 1;
@@ -34,6 +37,7 @@ export class AdministratorListComponent extends BaseSessionComponent implements 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private messageService: MessageService,
     private administratorService: AdministratorService,
     sessionService: SessionService
   ) { super(sessionService) }
@@ -45,6 +49,15 @@ export class AdministratorListComponent extends BaseSessionComponent implements 
 
     console.log("Init AdministratorListComponent");
     this.sectionUserList();
+    this.sectionMessage();
+  }
+
+  // Cargar mensaje
+  private sectionMessage() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      if(params['msg'])
+        this.message = this.messageService.getMessage( params['msg'] );
+    });
   }
 
   // Cargar lista de usuarios

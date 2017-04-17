@@ -2,7 +2,7 @@ import {Http} from "@angular/http";
 import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 
-import {URL_IMAGES} from "../../shared/config.service";
+import {URL_IMAGES} from "../../shared/config.object";
 
 import {Article} from "../../entity/article.entity";
 import {Category} from "../../entity/category.entity";

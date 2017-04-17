@@ -3,7 +3,7 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/Rx';
 
 import { Category } from '../entity/category.entity';
-import { URL_API } from "../shared/config.service";
+import { URL_API } from "../shared/config.object";
 import {SessionService} from "./session.service";
 
 @Injectable()

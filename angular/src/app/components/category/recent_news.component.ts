@@ -1,7 +1,7 @@
 import {Http} from "@angular/http";
 import {Component, OnInit} from '@angular/core';
 
-import {URL_IMAGES} from "../../shared/config.service";
+import {URL_IMAGES} from "../../shared/config.object";
 
 import {Article} from "../../entity/article.entity";
 import {BaseSessionComponent} from "../base/base-session.component";
