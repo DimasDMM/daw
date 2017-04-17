@@ -1,1 +1,77 @@
-<p>Hola</p>
+<div class="wrapper">
+  <!--=== Header ===-->
+  <header class="header-v8 header-sticky" (login)='onLogin()' (logout)='onLogout()'></header>
+  <!--=== End Header ===-->
+
+  <!-- Container Part -->
+  <div class="container content">
+    <div class="row">
+      <app-aside-options #appAsideOptions [optionActiveStr]="optionActiveStr" (logout)='onLogout()' class="col-md-3 md-margin-bottom-50"></app-aside-options>
+
+      <section class="col-md-9">
+        <!--
+        <div class="alert alert-{{type}} fade in text-center">
+          <p>
+            {{{message}}}
+          </p>
+        </div>
+        -->
+
+        <div class="alert alert-warning fade in text-center">
+          <h4>Eliminar usuario</h4>
+          <p>
+            Si quieres eliminar el usuario haz click en el siguiente bot&oacute;n.
+            Recuerda que esta acci&oacute;n es irreversible.
+          </p>
+          <p>
+            <button class="btn btn-danger btn-delete">Eliminar</button>
+          </p>
+        </div>
+
+        <h1>Modificar usuario</h1>
+
+        <p *ngIf="fUser == null">Cargando...</p>
+
+        <form class="margin-bottom-20 sky-form no-border" *ngIf="fUser?.id">
+
+          <section class="row">
+            <div class="col col-md-12 full-width">
+              <label for="inp_name">Nombre</label>
+              <input class="form-control" name="name" id="inp_name" [(ngModel)]="fUser.name" placeholder="Nombre del usuario">
+            </div>
+
+            <div class="col col-md-12 full-width">
+              <label for="inp_lastname">Apellidos</label>
+              <input class="form-control" name="lastname" id="inp_lastname" [(ngModel)]="fUser.lastname" placeholder="Apellidos del usuario">
+            </div>
+
+            <div class="col col-md-12 full-width">
+              <label for="inp_alias">Alias</label>
+              <input class="form-control" name="alias" id="inp_alias" [(ngModel)]="fUser.alias" placeholder="Alias del usuario">
+            </div>
+          </section>
+
+          <section class="row">
+            <div class="col col-4">
+              <label class="checkbox"><input type="checkbox" name="role_editor" [ngModel]="hasRoleForm('ROLE_EDITOR')" value="ROLE_EDITOR"><i></i>Editor</label>
+              <label class="checkbox"><input type="checkbox" name="role_publicist" [ngModel]="hasRoleForm('ROLE_PUBLICIST')" value="ROLE_PUBLICIST"><i></i>Publicista</label>
+              <label class="checkbox"><input type="checkbox" name="role_admin" [ngModel]="hasRoleForm('ROLE_ADMIN')" (change)="toggleRole('ROLE_ADMIN')" /><i></i>Administrador</label>
+            </div>
+          </section>
+
+          <footer>
+            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-floppy-o"></i> Guardar</button>
+          </footer>
+
+        </form>
+
+      </section>
+    </div>
+  </div>
+  <!--=== End Container Part ===-->
+
+  <!--=== Footer ===-->
+  <app-footer class="footer-v8"></app-footer>
+  <!--=== End Footer ===-->
+
+</div><!--/wrapper-->

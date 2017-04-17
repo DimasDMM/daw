@@ -15,6 +15,17 @@ export class AdministratorService {
     console.log("Init AdministratorService")
   }
 
+  // Obtener usuario concreto
+  public getUser(id:number) {
+    let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });
+    let options = new RequestOptions({ headers: headers });
+
+    let url = URL_API+"/administrador/usuario/"+id;
+    return this.http.get(url, options).map(
+      response => response.json()
+    );
+  }
+
   // Obtener lista de usuarios
   public getUserList(page:number) {
     let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });

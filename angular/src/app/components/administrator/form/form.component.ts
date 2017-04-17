@@ -19,6 +19,7 @@ export class AdministratorFormComponent extends BaseSessionComponent implements 
 
   // Variables
   private optionActiveStr = "administrator";
+  private fUser:User;
 
 
   constructor(
@@ -35,7 +36,47 @@ export class AdministratorFormComponent extends BaseSessionComponent implements 
 
     console.log("Init AdministratorFormComponent");
 
+    this.sectionForm();
+  }
+
+  private sectionForm() {
     let id = this.activatedRoute.snapshot.params['id'];
+    this.administratorService.getUser(id).subscribe(
+      response => this.fUser = response,
+      error => this.userNotFound(error)
+    );
+  }
+
+  // Caso de no existir ningun usuario con el 'id' dado por URL
+  private userNotFound(error:any) {
+    console.error(error);
+    this.redirectToList();
+  }
+
+  private redirectToList() {
+    this.router.navigate(['/administrador/usuarios']);
+  }
+
+  // Verificar si role esta activo
+  private hasRoleForm(role:string):boolean {
+    return this.sessionService.hasRole([role], this.fUser);
+  }
+
+  // Marcar/desmarcar checkbox
+  private toggleRole(role:string) {
+    if(this.fUser == null) return;
+
+    console.log("Toggle Role: "+ role);
+
+    // Comprobar si esta activado
+    let i = this.fUser.roles.indexOf(role);
+    if(i > -1) {
+      this.fUser.roles.splice(i, 1);
+      return;
+    }
+
+    // Activarlo en caso contrario
+    this.fUser.roles.push(role);
   }
 
   /*

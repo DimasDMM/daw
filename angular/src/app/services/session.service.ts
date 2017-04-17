@@ -101,4 +101,18 @@ export class SessionService {
     localStorage.removeItem("userLogged");
     this.session = null;
   }
+
+  // Verificar roles
+  public hasRole(roles:string[], user?:User) {
+    user = (user == null ? this.userLogged : user);
+
+    if(user == null) return false;
+
+    for(let j = 0; j < roles.length; j++)
+      for(let i = 0; i < user.roles.length; i++)
+        if(user.roles[i] == roles[j])
+          return true;
+
+    return false;
+  }
 }
