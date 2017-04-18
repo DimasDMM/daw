@@ -42,7 +42,7 @@ public class DataExampleController implements CommandLineRunner {
         User u2 = userRepository.save(new User("Jorge", "Injusto", "justamente@mail.com", "pass", "ROLE_USER", "ROLE_ADMIN", "ROLE_PUBLICIST","ROLE_EDITOR"));
         User u3 = userRepository.save(new User("admin", "1", "admin@mail.com", "adminpass", "ROLE_USER", "ROLE_ADMIN"));
         
-        u3.setAlias("Administrador"); userRepository.save(u3);
+        u3.setAlias("Administrador"); u3.setSex('f'); userRepository.save(u3);
 
         // Favorito de ejemplo
 		Favourite fav = new Favourite(true, false, true, false, false, false);

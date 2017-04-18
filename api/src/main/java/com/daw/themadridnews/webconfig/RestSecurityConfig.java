@@ -21,9 +21,11 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.antMatcher("/api/**");
-
 		http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE).permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.POST).permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.PUT).permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.GET).permitAll();
 		
 		// URLs that need authentication to access to it
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/articulo/{id}/comentario").hasAnyRole("USER");
@@ -37,8 +39,8 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().anyRequest().permitAll();
 
 		// CSRF protection
-		//http.csrf().disable();
-		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+		http.csrf().disable();
+		//http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
 		// Use Http Basic Authentication
 		http.httpBasic();

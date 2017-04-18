@@ -36,7 +36,7 @@ export class SessionService {
 
     let url = URL_API+"/logout";
     return this.http.get(url, options).map(
-      response => this.onLogout()
+      response => this.onLogout(response)
     );
   }
 
@@ -82,12 +82,15 @@ export class SessionService {
       this.setAuthHeader( username, password );
       this.setUserLogged( user );
     }
+
+    return response;
   }
 
   // Metodo ejecutado cuando se cierra sesion
-  private onLogout() {
+  private onLogout(response:any) {
     this.clearAuthHeader();
     this.clearUserLogged();
+    return response;
   }
 
   // Limpiar cabecera Auth-basic
@@ -99,7 +102,7 @@ export class SessionService {
   // Limpiar usuario logeado
   private clearUserLogged() {
     localStorage.removeItem("userLogged");
-    this.session = null;
+    this.userLogged = null;
   }
 
   // Verificar roles

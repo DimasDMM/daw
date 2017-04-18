@@ -86,7 +86,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   public logoutButton() {
     this.sessionService.logout().subscribe(
       response => this.logoutSuccess(),
-      error => this.logoutError(error)
+      error => this.logoutSuccess()
     );
   }
 
@@ -151,10 +151,6 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   private logoutSuccess() {
     this.userLogged = null;
     this.logout.emit(true); // Emitir evento de logout
-  }
-
-  private logoutError(error) {
-    console.log(error);
   }
 
   /*

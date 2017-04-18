@@ -90,12 +90,10 @@ public class ApiSignup implements ApiBase {
 		if(!terms) {
 			message.setCode(100);
 			message.setMessageTxt("Es necesario que aceptes los términos de uso antes.");
-			message.setType("danger");
 			
 		} else if(name.isEmpty() || lastname.isEmpty() || email.isEmpty() || password.isEmpty()) {
 			message.setCode(101);
 			message.setMessageTxt("Hay campos obligatorios sin rellenar.");
-			message.setType("danger");
 		}
 		
 		return message;
