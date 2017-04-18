@@ -128,7 +128,7 @@ Estas son las clases que componen la aplicación. Hemos utilizado los colores pa
  - Verde   -> Template
  - Rojo    -> Entity
  
-![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/Classes.jpg)
+![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/Classes.png)
 
 ## Cambios respecto a la plantilla
 

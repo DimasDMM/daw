@@ -61,7 +61,7 @@ public class User {
 	private String country;
 	
 	@JsonView(Details.class)
-	private String phoneNumber;
+	private String phone;
 	
 	@JsonView(Details.class)
 	private String description;
@@ -133,8 +133,8 @@ public class User {
 		return country;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getPhone() {
+		return phone;
 	}
 
 	public String getDescription() {
@@ -189,8 +189,8 @@ public class User {
 		this.country = country;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public void setDescription(String description) {

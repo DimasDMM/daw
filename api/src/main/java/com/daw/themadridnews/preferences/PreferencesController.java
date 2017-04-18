@@ -42,7 +42,7 @@ public class PreferencesController {
         model.addAttribute("user_alias", (userLogged.getAlias() == null ? "" : userLogged.getAlias()) );
         model.addAttribute("user_country", (userLogged.getCountry() == null ? "" : userLogged.getCountry()) );
         model.addAttribute("user_city", (userLogged.getCity() == null ? "" : userLogged.getCity()) );
-        model.addAttribute("user_phone", (userLogged.getPhoneNumber() == null ? "" : userLogged.getPhoneNumber()) );
+        model.addAttribute("user_phone", (userLogged.getPhone() == null ? "" : userLogged.getPhone()) );
         model.addAttribute("user_description", (userLogged.getDescription() == null ? "" : userLogged.getDescription()) );
         model.addAttribute("user_url", (userLogged.getPersonalWeb() == null ? "" : userLogged.getPersonalWeb()) );
         model.addAttribute("user_email", userLogged.getEmail());
@@ -78,7 +78,7 @@ public class PreferencesController {
     	userLogged.setAlias( r.getAlias() );
     	userLogged.setEmail( r.getEmail() );
     	userLogged.setSex( r.getSex() );
-    	userLogged.setPhoneNumber( r.getPhone() );
+    	userLogged.setPhone( r.getPhone() );
     	userLogged.setCity( r.getCity() );
     	userLogged.setCountry( r.getCountry() );
     	userLogged.setDescription( r.getDescription() );
