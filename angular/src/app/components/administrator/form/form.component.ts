@@ -9,6 +9,7 @@ import {BaseSessionComponent} from "../../base/base-session.component";
 import {User} from "../../../entity/user.entity";
 import {AdministratorService} from "../../../services/administrator.service";
 import {MessageObject} from "../../../shared/message.object";
+import {SimplePageScrollService} from "ng2-simple-page-scroll";
 
 @Component({
   selector: 'app',
@@ -31,6 +32,7 @@ export class AdministratorFormComponent extends BaseSessionComponent implements 
     private activatedRoute: ActivatedRoute,
     private administratorService: AdministratorService,
     private messageService: MessageService,
+    private simplePageScrollService: SimplePageScrollService,
     sessionService: SessionService
   ) { super(sessionService) }
 
@@ -119,6 +121,7 @@ export class AdministratorFormComponent extends BaseSessionComponent implements 
     }
 
     this.buttonSubmitEnable();
+    this.simplePageScrollService.scrollToElement("#message", 0);
   }
 
   // Desactivar/Activar boton submit
