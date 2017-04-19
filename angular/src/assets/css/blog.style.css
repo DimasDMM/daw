@@ -1129,7 +1129,7 @@ img.blog-grid-img-v1 {
 }
 
 .blog-grid-tags li a {
-	color: #fff;
+	color: #fff !important;
 	font-size: 12px;
 	background: #999;
 	padding: 3px 10px;

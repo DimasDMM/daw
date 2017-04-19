@@ -34,7 +34,12 @@ export class MessageService {
 
     // 100-199: AdministratorListComponent y AdministratorFormComponent
     '100': { "code":100, "message":"Los datos del usuario han sido guardados correctamente", "isError":false },
-    '102': { "code":101, "message":"Ha ocurrido un error cuando se intentaba guardar los datos", "isError":true },
-    '101': { "code":102, "message":"No se ha podido encontrar el usuario en la base de datos", "isError":true }
+    '101': { "code":101, "message":"Ha ocurrido un error cuando se intentaban guardar los datos del usuario", "isError":true },
+    '102': { "code":102, "message":"No se ha podido encontrar el usuario en la base de datos", "isError":true },
+
+    // 200-299: EditorListComponent y EditorFormComponent
+    '200': { "code":200, "message":"El articulo ha sido guardado correctamente", "isError":false },
+    '201': { "code":201, "message":"Ha ocurrido un error cuando se intentaba guardar el articulo", "isError":true },
+    '202': { "code":202, "message":"No se ha podido encontrar el articulo en la base de datos", "isError":true }
   };
 }

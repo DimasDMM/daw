@@ -1,14 +1,16 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter} from "@angular/core";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute, Params} from "@angular/router";
 
 import {PaginationComponent} from "../../pagination/pagination.component";
 import {AsideOptionsComponent} from "../../aside-options/aside-options.component";
 import {SessionService} from "../../../services/session.service";
+import {MessageService} from "../../../services/message.service";
 
 import {BaseSessionComponent} from "../../base/base-session.component";
 import {EditorService} from "../../../services/editor.service";
 import {ArticleService} from "../../../services/article.service";
 import {Article} from "../../../entity/article.entity";
+import {MessageObject} from "../../../shared/message.object";
 
 @Component({
   selector: 'app',
@@ -23,6 +25,7 @@ export class EditorListComponent extends BaseSessionComponent implements OnInit 
   // Variables
   private optionActiveStr = "editor-list";
   private articlesList:Article[] = [];
+  private message:MessageObject;
 
   // Paginacion
   private currentPage = 1;
@@ -37,6 +40,7 @@ export class EditorListComponent extends BaseSessionComponent implements OnInit 
     private activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
     private editorService: EditorService,
+    private messageService: MessageService,
     sessionService: SessionService
   ) { super(sessionService) }
 
@@ -47,6 +51,15 @@ export class EditorListComponent extends BaseSessionComponent implements OnInit 
 
     console.log("Init EditorListComponent");
     this.sectionArticlesList();
+    this.sectionMessage();
+  }
+
+  // Cargar mensaje
+  private sectionMessage() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      if(params['msg'])
+        this.message = this.messageService.getMessage( params['msg'] );
+    });
   }
 
   // Cargar lista de articulos

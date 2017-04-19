@@ -108,30 +108,27 @@ export class AdministratorFormComponent extends BaseSessionComponent implements 
   }
 
   private submitFormError(error:any) {
-    let message:MessageObject;
-
     if(error.code) {
-      message = {
+      this.message = {
         "code": error.code,
         "message": error.message,
         "isError": true
       };
     } else {
-      message = this.messageService.getMessage(101);
+      this.message = this.messageService.getMessage(101);
     }
 
     this.buttonSubmitEnable();
-    this.message = message;
   }
 
   // Desactivar/Activar boton submit
-  private buttonSubmitEnable() {
-    this.buttonSubmit.nativeElement.value = "<i class='fa fa-spinner'></i> Cargando...";
+  private buttonSubmitDisable() {
+    this.buttonSubmit.nativeElement.innerHTML = "<i class='fa fa-spinner'></i> Cargando...";
     this.buttonSubmit.nativeElement.disabled = true;
   }
 
-  private buttonSubmitDisable() {
-    this.buttonSubmit.nativeElement.value = "<i class='fa fa-floppy-o'></i> Guardar";
+  private buttonSubmitEnable() {
+    this.buttonSubmit.nativeElement.innerHTML = "<i class='fa fa-floppy-o'></i> Guardar";
     this.buttonSubmit.nativeElement.disabled = false;
   }
 
