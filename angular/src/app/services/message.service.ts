@@ -40,6 +40,7 @@ export class MessageService {
     // 200-299: EditorListComponent y EditorFormComponent
     '200': { "code":200, "message":"El articulo ha sido guardado correctamente", "isError":false },
     '201': { "code":201, "message":"Ha ocurrido un error cuando se intentaba guardar el articulo", "isError":true },
-    '202': { "code":202, "message":"No se ha podido encontrar el articulo en la base de datos", "isError":true }
+    '202': { "code":202, "message":"No se ha podido encontrar el articulo en la base de datos", "isError":true },
+    '203': { "code":203, "message":"Se han guardado los datos del articulo pero no se pudo subir la imagen", "isError":true }
   };
 }

@@ -117,7 +117,10 @@
             <div class="col col-12 full-width">
               <label for="inp_file">Imagen principal</label>
               <div class="input input-file">
-                <div class="button"><input type="file" name="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
+                <div class="button">
+                  <input type="file" name="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value" (change)="onChangeFile($event)">Buscar...
+                </div>
+                <input type="text" name="file_aux" placeholder="Imagen JPG" [ngModel]="formImage?.name" />
               </div>
             </div>
 

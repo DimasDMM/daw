@@ -27,6 +27,7 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   // Variables
   private urlImages = URL_IMAGES;
   private categories:Category[] = [];
+  private formImage:File;
   private fArticle:Article;
   private fArticlePreview:Article;
   private optionActiveStr = "editor-form";
@@ -128,6 +129,8 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
     event.preventDefault();
 
     console.log("Submit Form");
+
+    this.fArticle.visible = false;
     this.buttonSubmitDisable();
     this.editorService.saveArticle(this.fArticle).subscribe(
       response => this.submitFormSuccess(response),
@@ -136,8 +139,15 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   }
 
   // Resultado de guardar formulario
-  private submitFormSuccess(response:any) {
-    this.fArticlePreview = response;
+  private submitFormSuccess(article:Article) {
+    this.editorService.saveImage(article.id, this.formImage).subscribe(
+      response => this.submitImageFormSuccess(article),
+      error => this.submitImageFormError(error, article)
+    );
+  }
+
+  private submitImageFormSuccess(article:Article) {
+    this.fArticlePreview = article;
     this.fArticle.id = this.fArticlePreview.id;
 
     this.buttonSubmitEnable();
@@ -160,6 +170,24 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
     this.simplePageScrollService.scrollToElement("#message", 0);
   }
 
+  private submitImageFormError(error:any, article:Article) {
+    if(error.code) {
+      this.message = {
+        "code": error.code,
+        "message": error.message,
+        "isError": true
+      };
+    } else {
+      this.message = this.messageService.getMessage(203);
+    }
+
+    this.fArticlePreview = article;
+    this.fArticle.id = this.fArticlePreview.id;
+
+    this.buttonSubmitEnable();
+    this.simplePageScrollService.scrollToElement("#message", 0);
+  }
+
   // Desactivar/Activar boton submit
   private buttonSubmitDisable() {
     this.buttonSubmit.nativeElement.innerHTML = "<i class='fa fa-spinner'></i> Cargando...";
@@ -169,6 +197,11 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   private buttonSubmitEnable() {
     this.buttonSubmit.nativeElement.innerHTML = "<i class='fa fa-floppy-o'></i> Guardar y previsualizar";
     this.buttonSubmit.nativeElement.disabled = false;
+  }
+
+  // Input para imagen
+  private onChangeFile(event) {
+    this.formImage = event.srcElement.files.item(0);
   }
 
   /*

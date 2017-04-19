@@ -65,4 +65,19 @@ export class EditorService {
       );
     }
   }
+
+  // Guardar imagen
+  public saveImage(id:number, file: File) {
+    let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });
+    let options = new RequestOptions({ headers: headers });
+
+    let formData:FormData = new FormData();
+    formData.append('file', file, file.name);
+
+    let url = URL_API+"/editor/articulo/"+id+"/imagen";
+
+    return this.http.post(url, formData, options).map(
+      response => response.json()
+    );
+  }
 }
