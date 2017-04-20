@@ -71,23 +71,18 @@
             <!-- End Blog Grid Tagds -->
           </article>
 
-          <div class="alert alert-warning fade in text-center">
+          <div class="alert alert-warning fade in text-center" *ngIf="fArticle?.id">
             <h4>Previsualizaci&oacute;n</h4>
 
-            <div *ngIf="fArticlePreview?.visible">
-              <p>ASi quieres ocultar temporalmente la noticia haz click en el bot&oacute;n "Ocultar"</p>
+            <div>
+              <p *ngIf="fArticle.visible">As&iacute; quieres ocultar temporalmente la noticia haz click en el bot&oacute;n "Ocultar"</p>
+              <p *ngIf="!fArticle.visible">Ahora mismo este art&iacute;culo est&eacute; oculto. Cuando la noticia est&eacute; lista haz click en el bot&oacute;n "Publicar"</p>
               <p>
-                <button class="btn btn-warning">Ocultar</button>
-              </p>
-            </div>
-
-            <div *ngIf="!fArticlePreview?.visible">
-              <p>hora mismo este art&iacute;culo est&eacute; oculto. Cuando la noticia est&eacute; lista haz click en el bot&oacute;n "Publicar"</p>
-              <p>
-                <button class="btn btn-primary">Publicar</button>
+                <button class="btn" [class.btn-warning]="fArticle.visible" [class.btn-primary]="!fArticle.visible" #buttonArticleVisible (click)="toggleArticleVisible()" [disabled]="buttonArticleVisibleDisabled" [innerHtml]="buttonArticleVisibleHtml"></button>
               </p>
             </div>
           </div>
+
         </div>
 
         <form class="margin-bottom-20 sky-form no-border" *ngIf="fArticle">

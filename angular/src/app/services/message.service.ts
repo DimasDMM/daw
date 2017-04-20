@@ -41,6 +41,7 @@ export class MessageService {
     '200': { "code":200, "message":"El articulo ha sido guardado correctamente", "isError":false },
     '201': { "code":201, "message":"Ha ocurrido un error cuando se intentaba guardar el articulo", "isError":true },
     '202': { "code":202, "message":"No se ha podido encontrar el articulo en la base de datos", "isError":true },
-    '203': { "code":203, "message":"Se han guardado los datos del articulo pero no se pudo subir la imagen", "isError":true }
+    '203': { "code":203, "message":"Se han guardado los datos del articulo pero no se pudo subir la imagen", "isError":true },
+    '204': { "code":204, "message":"No se ha podido cambiar el estado del articulo", "isError":true }
   };
 }

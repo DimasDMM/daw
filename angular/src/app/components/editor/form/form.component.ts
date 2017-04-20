@@ -22,7 +22,10 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
 
   // Vistas
   @ViewChild('appAsideOptions') appAsideOptions: AsideOptionsComponent;
+  @ViewChild('buttonArticleVisible') buttonArticleVisible: ElementRef;
   @ViewChild('buttonSubmit') buttonSubmit: ElementRef;
+  private buttonArticleVisibleHtml:string;
+  private buttonArticleVisibleDisabled:boolean;
 
   // Variables
   private urlImages = URL_IMAGES;
@@ -67,7 +70,10 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
 
     if(id && id != "nuevo") {
       this.editorService.getArticlePreview(id).subscribe(
-        response => this.fArticlePreview = response,
+        response => {
+          this.fArticlePreview = response;
+          this.buttonArticleVisibleEnable(this.fArticlePreview.visible);
+        },
         error => console.log(error)
       );
     }
@@ -150,6 +156,8 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
     this.fArticlePreview = article;
     this.fArticle.id = this.fArticlePreview.id;
 
+    this.buttonArticleVisibleEnable(this.fArticle.visible);
+
     this.buttonSubmitEnable();
     this.message = this.messageService.getMessage(200);
     this.simplePageScrollService.scrollToElement("#message", 0);
@@ -184,6 +192,8 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
     this.fArticlePreview = article;
     this.fArticle.id = this.fArticlePreview.id;
 
+    this.buttonArticleVisibleEnable(this.fArticle.visible);
+
     this.buttonSubmitEnable();
     this.simplePageScrollService.scrollToElement("#message", 0);
   }
@@ -197,6 +207,36 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   private buttonSubmitEnable() {
     this.buttonSubmit.nativeElement.innerHTML = "<i class='fa fa-floppy-o'></i> Guardar y previsualizar";
     this.buttonSubmit.nativeElement.disabled = false;
+  }
+
+  // Publicar/ocultar articulo
+  private toggleArticleVisible() {
+    this.buttonArticleVisibleHtml = "<i class='fa fa-spinner'></i> Cargando...";
+    this.buttonArticleVisibleDisabled = true;
+
+    this.fArticle.visible = !this.fArticle.visible;
+    this.editorService.saveArticle(this.fArticle).subscribe(
+      response => {
+        this.fArticle.visible = response.visible;
+        this.fArticlePreview.visible = response.visible;
+        this.buttonArticleVisibleEnable(this.fArticle.visible);
+      },
+      error => {
+        console.log(error);
+        this.message = this.messageService.getMessage(204);
+        this.simplePageScrollService.scrollToElement("#message", 0);
+        this.buttonArticleVisibleEnable(this.fArticle.visible);
+      }
+    );
+  }
+
+  private buttonArticleVisibleEnable(visible:boolean) {
+    this.buttonArticleVisibleDisabled = false;
+    if(visible) {
+      this.buttonArticleVisibleHtml = "Ocultar";
+    } else {
+      this.buttonArticleVisibleHtml = "Publicar";
+    }
   }
 
   // Input para imagen
