@@ -22,10 +22,11 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
 
   // Vistas
   @ViewChild('appAsideOptions') appAsideOptions: AsideOptionsComponent;
-  @ViewChild('buttonArticleVisible') buttonArticleVisible: ElementRef;
   @ViewChild('buttonSubmit') buttonSubmit: ElementRef;
   private buttonArticleVisibleHtml:string;
+  private buttonDeleteArticleHtml:string;
   private buttonArticleVisibleDisabled:boolean;
+  private buttonDeleteArticleDisabled:boolean;
 
   // Variables
   private urlImages = URL_IMAGES;
@@ -59,6 +60,7 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
     this.sectionAsideOption();
     this.sectionPreview();
     this.sectionForm();
+    this.buttonDeleteArticle(true);
   }
 
   private sectionAsideOption() {
@@ -134,6 +136,35 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   // Eliminar articulo
   private deleteArticle() {
     console.log("Delete Article");
+
+    this.buttonDeleteArticle(false);/*
+    this.editorService.saveArticle(this.fArticle).subscribe(
+      response => this.deleteArticleSuccess(),
+      error => this.deleteArticleError(error)
+    );*/
+  }
+
+  private deleteArticleSuccess() {
+    this.buttonDeleteArticle(true);
+    this.message = this.messageService.getMessage(200);
+    this.simplePageScrollService.scrollToElement("#message", 0);
+  }
+
+  private deleteArticleError(article:Article) {
+    this.buttonDeleteArticle(true);
+    this.message = this.messageService.getMessage(200);
+    this.simplePageScrollService.scrollToElement("#message", 0);
+  }
+
+  private buttonDeleteArticle(enable:boolean) {
+    if(enable) {
+      this.buttonDeleteArticleDisabled = false;
+      this.buttonDeleteArticleHtml = "<i class='fa fa-trash'></i> Eliminar";
+    } else {
+      this.buttonDeleteArticleDisabled = true;
+      this.buttonDeleteArticleHtml = "Cargando...";
+    }
+    console.log(this.buttonDeleteArticleHtml);
   }
 
   // Guardar cambios

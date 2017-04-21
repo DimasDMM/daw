@@ -166,7 +166,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-default" (click)="closeModal()">Cancelar</button>
-        <button class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar</button>
+        <button class="btn" [class.btn-danger]="!buttonDeleteArticleDisabled" (click)="deleteArticle()" [innerHtml]="buttonDeleteArticleHtml" [disabled]="buttonDeleteArticleDisabled"></button>
       </div>
     </div>
   </div>
