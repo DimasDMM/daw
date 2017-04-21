@@ -13,6 +13,8 @@
         <div *ngIf="message">
           <div class="alert fade in text-center" [class.alert-danger]="message.isError" [class.alert-success]="!message.isError">
             <p>
+              <b *ngIf="message.isError">Error: </b>
+              <b *ngIf="!message.isError">Ok: </b>
               {{message.message}}
             </p>
           </div>

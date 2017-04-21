@@ -2,8 +2,6 @@ package com.daw.themadridnews;
 
 import java.io.IOException;
 
-import javax.servlet.MultipartConfigElement;
-
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 //import org.springframework.boot.context.embedded.MultipartConfigFactory;
@@ -65,7 +63,9 @@ public class App {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*");
+            	registry.addMapping("/**").allowedMethods("GET", "POST", "OPTIONS", "PUT", "DELETE")
+            		.exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
+            		.allowCredentials(true).maxAge(3600);
             }
         };
     }

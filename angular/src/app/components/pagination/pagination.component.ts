@@ -45,7 +45,7 @@ export class PaginationComponent extends BaseSessionComponent implements OnInit 
   private initAux() {
     this.pagination = [];
 
-    let lastPage = Math.floor( this.numberItemsTotal / this.numberItemsPage );
+    let lastPage = Math.ceil( this.numberItemsTotal / this.numberItemsPage );
     let middle = Math.floor( this.displayPages / 2 );
 
     // Flecha lateral izquierda

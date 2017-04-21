@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleService;
+import com.daw.themadridnews.article.MarkdownConverter;
 import com.daw.themadridnews.files.FileUploadCommons;
 import com.daw.themadridnews.requests.ApiArticle;
 import com.daw.themadridnews.user.User;
@@ -40,8 +41,8 @@ public class EditorRestController {
 	 */
 	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Object> get(@PathVariable long id) {
-		Article a = articleService.get(id, false);
+	public ResponseEntity<Object> get(@PathVariable long id, @RequestParam(required=false) boolean preview) {
+		Article a = articleService.get(id, preview);
 		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 		// Verificar que el usuario tenga permiso
@@ -56,7 +57,7 @@ public class EditorRestController {
 	 * Añade un nuevo articulo
 	 */
 	@JsonView(ArticleService.Editor.class)
-	@RequestMapping(value="/editor/articulo", method=RequestMethod.POST)
+	@RequestMapping(value="/editor/articulo/nuevo", method=RequestMethod.POST)
 	public ResponseEntity<Object> save(@RequestBody ApiArticle r) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
@@ -77,6 +78,9 @@ public class EditorRestController {
 		
         // Guardar
 		a = articleService.save(a);
+		
+		// Devolver Html
+		a.setContent( MarkdownConverter.getFormatedHtml( a.getContent() ) );
 		
 		return new ResponseEntity<>(a, HttpStatus.OK);
 	}
@@ -111,9 +115,16 @@ public class EditorRestController {
         // Guardar
 		a = articleService.save(a);
 		
+		// Devolver Html
+		a.setContent( MarkdownConverter.getFormatedHtml( a.getContent() ) );
+		
 		return new ResponseEntity<>(a, HttpStatus.OK);
 	}
 
+	/**
+	 * Modifica la imagen de un articulo existente
+	 * Necesario que el articulo haya sido guardado previamente
+	 */
 	@JsonView(ArticleService.Editor.class)
 	@RequestMapping(value="/editor/articulo/{id}/imagen", method=RequestMethod.POST)
 	public ResponseEntity<Object> modify(@PathVariable long id, @RequestParam("file") MultipartFile file) {

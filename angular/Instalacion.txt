@@ -10,6 +10,7 @@ npm install -g typescript
 npm install -g @angular/cli
 npm install --save @ng-bootstrap/ng-bootstrap
 npm install bootstrap@4.0.0-alpha.6
+npm install ng2-simple-page-scroll --save
 
 # En caso de error probar los siguientes comandos
 npm update -g typescript

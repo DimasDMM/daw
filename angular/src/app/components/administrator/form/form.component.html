@@ -9,9 +9,11 @@
       <app-aside-options #appAsideOptions [optionActiveStr]="optionActiveStr" (logout)='onLogout()' class="col-md-3 md-margin-bottom-50"></app-aside-options>
 
       <section class="col-md-9">
-        <div *ngIf="message">
-          <div class="alert fade in text-center" [class.alert-danger]="message.isError">
+        <div id="message">
+          <div *ngIf="message" class="alert fade in text-center" [class.alert-danger]="message.isError" [class.alert-success]="!message.isError">
             <p>
+              <b *ngIf="message.isError">Error: </b>
+              <b *ngIf="!message.isError">Ok: </b>
               {{message.message}}
             </p>
           </div>
@@ -60,11 +62,10 @@
           </section>
 
           <footer>
-            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-floppy-o"></i> Guardar</button>
+            <button (click)="submitForm($event)" class="btn btn-primary pull-right" #buttonSubmit><i class='fa fa-floppy-o'></i> Guardar</button>
           </footer>
 
         </form>
-
       </section>
     </div>
   </div>

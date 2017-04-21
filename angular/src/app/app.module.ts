@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2SimplePageScrollModule } from "ng2-simple-page-scroll";
 
 /*
  * Componentes de la aplicacion
@@ -82,6 +83,7 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
     pipeArticleStatus
   ],
   imports: [
+    Ng2SimplePageScrollModule.forRoot(),
     NgbModule.forRoot(),
     BrowserModule,
     FormsModule,

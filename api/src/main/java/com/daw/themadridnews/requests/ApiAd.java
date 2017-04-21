@@ -121,7 +121,6 @@ public class ApiAd implements ApiBase {
 		if(title.isEmpty() || url.isEmpty()) {
 			message.setCode(100);
 			message.setMessageTxt("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
-			message.setType("danger");
 			
 		} else if(
 				!Validator.intValidMin(this.getWeight(), 1) ||
@@ -130,7 +129,6 @@ public class ApiAd implements ApiBase {
 		) {
 			message.setCode(101);
 			message.setMessageTxt("Hay campos con informacion no valida. Por favor, reviselos antes de continuar");
-			message.setType("danger");	
 		}
 		
 		return message;
