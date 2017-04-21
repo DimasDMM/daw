@@ -1,17 +1,17 @@
 /*
  * Componentes de Angular y librerias adicionales
  */
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Ng2SimplePageScrollModule } from "ng2-simple-page-scroll";
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {Ng2SimplePageScrollModule} from "ng2-simple-page-scroll";
 
 /*
  * Componentes de la aplicacion
  */
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {AsideComponent} from "./components/aside/aside.component";
@@ -26,7 +26,7 @@ import {EditorListComponent} from "./components/editor/list/list.component";
 import {EditorFormComponent} from "./components/editor/form/form.component";
 import {PreferencesComponent} from "./components/preferences/preferences.component";
 
-import { HomeComponent } from './components/home/home.component';
+import {HomeComponent} from './components/home/home.component';
 import {NgbdCarouselBasic} from "./components/home/carrousel.component";
 import {CategoryComponent} from "./components/category/category.component";
 import {PrivacyComponent} from "./components/privacy/privacy.component";
@@ -35,7 +35,7 @@ import {TermsAndConditionsComponent} from "./components/terms-and-conditions/ter
 /*
  * Servicios, pipes y componentes adicionales
  */
-import { routing } from './app.routing';
+import {routing} from './app.routing';
 import {ArticleService} from "./services/article.service";
 import {SessionService} from "./services/session.service";
 import {CommentService} from "./services/comment.service";
@@ -70,8 +70,9 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
     EditorFormComponent,
     PreferencesComponent,
 
-    HomeComponent,
     NgbdCarouselBasic,
+
+    HomeComponent,
     CategoryComponent,
     PrivacyComponent,
     TermsAndConditionsComponent,
@@ -106,4 +107,4 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
     AppComponent
   ]
 })
-export class AppModule { }
+export class AppModule {}
