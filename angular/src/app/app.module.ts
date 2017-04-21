@@ -26,6 +26,7 @@ import {EditorListComponent} from "./components/editor/list/list.component";
 import {EditorFormComponent} from "./components/editor/form/form.component";
 import {PreferencesComponent} from "./components/preferences/preferences.component";
 import {PreferencesPersonalComponent} from "./components/preferences/preferences-personal.component";
+import {PreferencesImageComponent} from "./components/preferences/preferences-image.component";
 import {SearchComponent} from "./components/search/search.component";
 
 import {HomeComponent} from './components/home/home.component';
@@ -43,7 +44,7 @@ import {SessionService} from "./services/session.service";
 import {CommentService} from "./services/comment.service";
 import {AdsService} from "./services/ads.service";
 import {MessageService} from "./services/message.service";
-import { SearchService } from "app/services/search.service";
+import {SearchService} from "app/services/search.service";
 
 import {AdministratorService} from "./services/administrator.service";
 import {PublicistService} from "./services/publicist.service";
@@ -74,6 +75,7 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
     EditorFormComponent,
     PreferencesComponent,
     PreferencesPersonalComponent,
+    PreferencesImageComponent,
     SearchComponent,
 
     NgbdCarouselBasic,

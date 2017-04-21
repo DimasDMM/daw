@@ -22,8 +22,6 @@ export class PreferencesComponent extends BaseSessionComponent implements OnInit
   @ViewChild('appAsideOptions') appAsideOptions: AsideOptionsComponent;
 
   private optionActiveStr = "preferences";
-  private message:MessageObject;
-
   private fUser:User;
 
   private tab = {
@@ -48,7 +46,7 @@ export class PreferencesComponent extends BaseSessionComponent implements OnInit
 
     console.log("Init PreferencesComponent");
 
-    this.preferencesService.getPreferences( this.sessionService.getUserLogged() ).subscribe(
+    this.preferencesService.getPreferences().subscribe(
       response => this.fUser = response,
       error => console.log(error)
     );

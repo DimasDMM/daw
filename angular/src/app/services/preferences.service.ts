@@ -17,9 +17,7 @@ export class PreferencesService {
   }
 
   // Preferencias
-  public getPreferences(user:User) {
-    if(!user.id) return;
-
+  public getPreferences() {
     let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });
     let options = new RequestOptions({ headers: headers });
 
@@ -38,6 +36,21 @@ export class PreferencesService {
 
     let url = URL_API+"/ajustes";
     return this.http.put(url, user, options).map(
+      response => response.json()
+    );
+  }
+
+  // Guardar imagen
+  public saveImage(file: File) {
+    let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });
+    let options = new RequestOptions({ headers: headers });
+
+    let formData:FormData = new FormData();
+    formData.append('file', file, file.name);
+
+    let url = URL_API+"/ajustes/imagen";
+
+    return this.http.post(url, formData, options).map(
       response => response.json()
     );
   }

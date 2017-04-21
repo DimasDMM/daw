@@ -91,19 +91,7 @@
 
             <!-- My Photo Form -->
             <div class="tab-pane fade" [ngClass]="tab['photo']">
-              <form class="margin-bottom-20 sky-form no-border" enctype="multipart/form-data">
-                <section class="row">
-                  <div class="col col-12 full-width">
-                    <label for="inp_file">Foto de perfil</label>
-                    <div class="input input-file">
-                      <div class="button"><input type="file" id="inp_file" name="file" onchange="this.parentNode.nextSibling.value=this.value">Buscar...</div><input type="text" placeholder="Imagen JPG" readonly>
-                    </div>
-                  </div>
-                </section>
-                <footer>
-                  <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                </footer>
-              </form>
+              <app-preferences-image [fUser]="fUser" (relogin)='onRelogin()'></app-preferences-image>
             </div>
             <!-- End My Photo Form -->
           </div>

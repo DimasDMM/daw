@@ -49,6 +49,8 @@ export class MessageService {
 
     // 300-399: PreferencesComponent y derivados
     '300': { "code":300, "message":"Tus datos han sido guardados correctamente", "isError":false },
-    '301': { "code":301, "message":"Ha ocurrido un error cuando se intentaba guardar tus datos", "isError":true }
+    '301': { "code":301, "message":"Ha ocurrido un error cuando se intentaba guardar tus datos", "isError":true },
+    '302': { "code":302, "message":"Se ha subido la imagen correctamente", "isError":false },
+    '303': { "code":303, "message":"Ha ocurrido un error cuando se intentaba actualizar la imagen", "isError":true }
   };
 }

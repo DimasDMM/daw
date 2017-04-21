@@ -11,6 +11,7 @@ import {URL_IMAGES} from "../../shared/config.object";
 })
 export class AsideOptionsComponent extends BaseSessionComponent implements OnInit {
 
+  private timestamp:number;
   private urlImages = URL_IMAGES;
 
   @Input()
@@ -35,6 +36,8 @@ export class AsideOptionsComponent extends BaseSessionComponent implements OnIni
   ngOnInit() {
     super.ngOnInit();
     console.log("Init AsideOptionsComponent");
+
+    this.timestamp = new Date().getTime();
     this.setAsideActiveOption();
   }
 
@@ -48,6 +51,8 @@ export class AsideOptionsComponent extends BaseSessionComponent implements OnIni
    * Overwrited
    */
   protected onLoginCalls() {}
-  protected onReloginCalls() {}
+  protected onReloginCalls() {
+    this.timestamp = new Date().getTime();
+  }
   protected onLogoutCalls() {}
 }

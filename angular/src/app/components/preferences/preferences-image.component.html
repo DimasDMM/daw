@@ -1,0 +1,28 @@
+<div id="message_image">
+  <div *ngIf="message" class="alert fade in text-center" [class.alert-danger]="message.isError" [class.alert-success]="!message.isError">
+    <p>
+      <b *ngIf="message.isError">Error: </b>
+      <b *ngIf="!message.isError">Ok: </b>
+      {{message.message}}
+    </p>
+  </div>
+</div>
+
+
+<form class="margin-bottom-20 sky-form no-border" *ngIf="fUser?.id">
+  <section class="row">
+    <div class="col col-12 full-width">
+      <label for="inp_file">Imagen principal</label>
+      <div class="input input-file">
+        <div class="button">
+          <input type="file" name="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value" (change)="onChangeFile($event)">Buscar...
+        </div>
+        <input type="text" name="file_aux" placeholder="Imagen JPG" [ngModel]="formImage?.name" />
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <button type="button" (click)="onSubmit($event)" class="btn pull-right" [class.btn-primary]="!submitButtonDisabled" [disabled]="submitButtonDisabled" [innerHtml]="submitButtonHtml"></button>
+  </footer>
+</form>
