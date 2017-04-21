@@ -1,0 +1,46 @@
+<div id="message_favourites">
+  <div *ngIf="message" class="alert fade in text-center" [class.alert-danger]="message.isError" [class.alert-success]="!message.isError">
+    <p>
+      <b *ngIf="message.isError">Error: </b>
+      <b *ngIf="!message.isError">Ok: </b>
+      {{message.message}}
+    </p>
+  </div>
+</div>
+
+<form class="margin-bottom-20 sky-form no-border" *ngIf="fUser?.id">
+  <div class="alert alert-info fade in">
+    <i class="fa fa-info-circle"></i>
+    <strong>Mis Noticias:</strong>
+    Seleccione las casillas que desee para ordenar las noticias de acuerdo a sus preferencias
+  </div>
+  <section class="row">
+    <div class="col col-4">
+      <label class="checkbox">
+        <input type="checkbox" name="favs_world" [(ngModel)]="fUser.favourites.world" value="world"><i></i>Mundo
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" name="favs_madrid" [(ngModel)]="fUser.favourites.madrid" value="madrid"><i></i>Madrid
+      </label>
+    </div>
+    <div class="col col-4">
+      <label class="checkbox">
+        <input type="checkbox" name="favs_spain" [(ngModel)]="fUser.favourites.spain" value="spain"><i></i>España
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" name="favs_sports" [(ngModel)]="fUser.favourites.sports" value="sports"><i></i>Deportes
+      </label>
+    </div>
+    <div class="col col-4">
+      <label class="checkbox">
+        <input type="checkbox" name="favs_culture" [(ngModel)]="fUser.favourites.culture" value="culture"><i></i>Cultura
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" name="favs_technology" [(ngModel)]="fUser.favourites.technology" value="technology"><i></i>Tecnolog&iacute;a
+      </label>
+    </div>
+  </section>
+  <footer>
+    <button type="button" (click)="onSubmit($event)" class="btn pull-right" [class.btn-primary]="!submitButtonDisabled" [disabled]="submitButtonDisabled" [innerHtml]="submitButtonHtml"></button>
+  </footer>
+</form>

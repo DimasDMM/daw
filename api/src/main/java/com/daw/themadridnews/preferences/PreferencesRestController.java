@@ -1,5 +1,6 @@
 package com.daw.themadridnews.preferences;
 
+import com.daw.themadridnews.favourite.Favourite;
 import com.daw.themadridnews.files.FileUploadCommons;
 import com.daw.themadridnews.requests.ApiDataUser;
 import com.daw.themadridnews.user.User;
@@ -59,7 +60,10 @@ public class PreferencesRestController {
 		u.setEmail(r.getEmail());
 		
 		u.setRoles(r.getRoles());
-		u.setFavourites(u.getFavourites());
+		
+		Favourite fav = r.getFavourites();
+		fav.setId( u.getFavourites().getId() );
+		u.setFavourites(fav);
 		
 		u.setSex(r.getSex());
 		u.setCity(r.getCity());

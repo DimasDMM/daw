@@ -52,42 +52,11 @@
             </div>
             <!-- End Password Form -->
 
-            <!-- My News Forms -->
+            <!-- Favourites Form -->
             <div class="tab-pane fade" [ngClass]="tab['favourites']">
-              <form class="margin-bottom-20 sky-form no-border">
-                <div class="alert alert-info fade in">
-                  <i class="fa fa-info-circle"></i>
-                  <strong>Mis Noticias:</strong>
-                  Seleccione las casillas que desee para ordenar las noticias de acuerdo a sus preferencias
-                </div>
-                <section class="row">
-                  <div class="col col-4">
-                    <label class="checkbox">
-                      <input type="checkbox" name="favs" checked value="world"><i></i>Mundo</label>
-                    <label class="checkbox">
-                      <input type="checkbox" name="favs" checked value="madrid"><i></i>Madrid</label>
-                  </div>
-                  <div class="col col-4">
-                    <label class="checkbox">
-                      <input type="checkbox" name="favs" checked value="spain"><i></i>España</label>
-                    <label class="checkbox">
-                      <input type="checkbox" name="favs" checked value="sports"><i></i>Deportes</label>
-                  </div>
-                  <div class="col col-4">
-                    <label class="checkbox">
-                      <input type="checkbox" name="favs" checked value="culture"><i></i>Cultura
-                    </label>
-                    <label class="checkbox">
-                      <input type="checkbox" name="favs" checked value="technology"><i></i>Tecnolog&iacute;a
-                    </label>
-                  </div>
-                </section>
-                <footer>
-                  <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                </footer>
-              </form>
+              <app-preferences-favourites [fUser]="fUser" (relogin)='onRelogin()'></app-preferences-favourites>
             </div>
-            <!-- End My news Forms -->
+            <!-- End Favourites Forms -->
 
             <!-- My Photo Form -->
             <div class="tab-pane fade" [ngClass]="tab['photo']">

@@ -127,4 +127,10 @@ public class Favourite {
 		
 		return list.get(random);
 	}
+
+	@Override
+	public String toString() {
+		return "Favourite [id=" + id + ", madrid=" + madrid + ", spain=" + spain + ", world=" + world + ", sports="
+				+ sports + ", technology=" + technology + ", culture=" + culture + "]";
+	}
 }

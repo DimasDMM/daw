@@ -45,8 +45,9 @@ public class DataExampleController implements CommandLineRunner {
         u3.setAlias("Administrador"); u3.setSex('f'); userRepository.save(u3);
 
         // Favorito de ejemplo
-		Favourite fav = new Favourite(true, false, true, false, false, false);
-        u1.setFavourites(fav); u2.setFavourites(fav); u3.setFavourites(fav);
+		Favourite fav = u2.getFavourites();
+		fav.setCulture(true);
+        u2.setFavourites( fav );
         userRepository.save(u1); userRepository.save(u2); userRepository.save(u3);
         
         // Anuncio de ejemplo

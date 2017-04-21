@@ -1,3 +1,5 @@
+import {Favourite} from "./Favourite";
+
 export class User {
   id:number;
   alias:string;
@@ -7,6 +9,7 @@ export class User {
 
   email:string;
   roles:string[];
+  favourites:Favourite;
 
   city:string;
   country:string;

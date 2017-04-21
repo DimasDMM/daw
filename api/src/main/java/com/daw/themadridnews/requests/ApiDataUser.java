@@ -164,8 +164,6 @@ public class ApiDataUser implements ApiBase {
 	public Message validation() {
 		Message message = new Message();
 		
-		System.out.print( "#### "+ this.toString() );
-		
 		if(name.isEmpty() || lastname.isEmpty() || email.isEmpty()) {
 			message.setCode(100);
 			message.setMessageTxt("Hay campos en blanco. Por favor, revisa todo el formulario antes de continuar.");
