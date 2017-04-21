@@ -33,14 +33,14 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("Init Category");
-
-    this.category = this.articleService.getCategoryById( this.activatedRoute.snapshot.params['categoryId'] );
-
-    this.articleService.getArticlesFromCategory(this.category.id, 1,10).subscribe(
-      articles => this.articles = articles,
-      error => console.error(error)
-    );
+    this.activatedRoute.params.subscribe(res => {
+      this.category = this.articleService.getCategoryById(res['categoryId']);
+      this.articleService.getArticlesFromCategory(res['categoryId'], 1,10).subscribe(
+        articles => this.articles = articles,
+        error => console.error(error)
+      );
+    });
+    console.log("Init Category"+this.category);
   }
 
   /*
