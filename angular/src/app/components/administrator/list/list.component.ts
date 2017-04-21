@@ -89,6 +89,7 @@ export class AdministratorListComponent extends BaseSessionComponent implements 
    * Overwrited
    */
   protected onLoginCalls() {}
+  protected onReloginCalls() {}
   protected onLogoutCalls() {
     this.router.navigate(['/']);
   }

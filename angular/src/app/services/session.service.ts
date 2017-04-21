@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, setTestabilityGetter} from "@angular/core";
 import {Http, RequestOptions, Headers, Response} from "@angular/http";
 import {URL_API} from "../shared/config.object";
 import {User} from "../entity/user.entity";
@@ -18,13 +18,23 @@ export class SessionService {
     }
   }
 
+  public relogin() {
+    let headers = new Headers({ 'Authorization': this.getAuthHeader() });
+    let options = new RequestOptions({ headers: headers });
+
+    let url = URL_API+"/login";
+    return this.http.get(url, options).map(
+      response => this.onLogin( this.getAuthHeader(), response )
+    );
+  }
+
   public login(username:string, password:string) {
     let headers = new Headers({ 'Authorization': this.generateAuthHeader(username, password) });
     let options = new RequestOptions({ headers: headers });
 
     let url = URL_API+"/login";
     return this.http.get(url, options).map(
-      response => this.onLogin(username, password, response)
+      response => this.onLogin( this.generateAuthHeader(username, password), response)
     );
   }
 
@@ -62,8 +72,8 @@ export class SessionService {
   }
 
   // Establecer cabecera Auth-basic
-  public setAuthHeader(user:string, password:string) {
-    this.session = this.generateAuthHeader(user, password);
+  public setAuthHeader(authHeader:string) {
+    this.session = authHeader;
     localStorage.setItem("session", this.session);
   }
 
@@ -75,15 +85,15 @@ export class SessionService {
   }
 
   // Metodo ejecutado cuando se logea
-  private onLogin(username:string, password:string, response: Response) {
+  private onLogin(authHeader:string, response) {
     let user = response.json();
 
     if(user != null) {
-      this.setAuthHeader( username, password );
+      this.setAuthHeader( authHeader );
       this.setUserLogged( user );
     }
 
-    return response;
+    return response.json();
   }
 
   // Metodo ejecutado cuando se cierra sesion

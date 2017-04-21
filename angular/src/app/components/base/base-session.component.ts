@@ -16,10 +16,6 @@ export abstract class BaseSessionComponent implements OnInit {
     this.userLogged = this.sessionService.getUserLogged();
   }
 
-  private redirect() {
-
-  }
-
   public hasRole(roles:string[]) {
     if(this.userLogged == null) return false;
 
@@ -32,18 +28,22 @@ export abstract class BaseSessionComponent implements OnInit {
   }
 
   public onLogin() {
-    console.log("Event Login");
     this.userLogged = this.sessionService.getUserLogged();
     this.onLoginCalls();
   }
 
+  public onRelogin() {
+    this.userLogged = this.sessionService.getUserLogged();
+    this.onReloginCalls();
+  }
+
   public onLogout() {
-    console.log("Event Logout");
     this.onLogoutCalls();
   }
 
   // Despues de haber realizado el login o logout, se llamara a este metodo
   // Por ejemplo, si hay que llamar a algun metodo de un componente hijo hay que sobreescribir este metodo
   protected abstract onLoginCalls();
+  protected abstract onReloginCalls();
   protected abstract onLogoutCalls();
 }

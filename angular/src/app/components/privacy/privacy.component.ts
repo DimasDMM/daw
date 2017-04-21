@@ -25,5 +25,6 @@ export class PrivacyComponent extends BaseSessionComponent implements OnInit {
    * Overwrited
    */
   protected onLoginCalls() {}
+  protected onReloginCalls() {}
   protected onLogoutCalls() {}
 }

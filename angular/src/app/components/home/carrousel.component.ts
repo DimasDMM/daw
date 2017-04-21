@@ -37,6 +37,6 @@ export class NgbdCarouselBasic extends BaseSessionComponent implements OnInit {
    * Overwrited
    */
   protected onLoginCalls() {}
-
+  protected onReloginCalls() {}
   protected onLogoutCalls() {}
 }

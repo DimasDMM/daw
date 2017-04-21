@@ -76,6 +76,7 @@ export class PublicistListComponent extends BaseSessionComponent implements OnIn
    * Overwrited
    */
   protected onLoginCalls() {}
+  protected onReloginCalls() {}
   protected onLogoutCalls() {
     this.router.navigate(['/']);
   }

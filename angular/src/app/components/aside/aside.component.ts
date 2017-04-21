@@ -94,5 +94,6 @@ export class AsideComponent extends BaseSessionComponent implements OnInit {
    * Overwrited
    */
   protected onLoginCalls() {}
+  protected onReloginCalls() {}
   protected onLogoutCalls() {}
 }

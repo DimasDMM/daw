@@ -46,5 +46,9 @@ export class MessageService {
 
     '205': { "code":205, "message":"El articulo ha sido borrado correctamente", "isError":false },
     '206': { "code":206, "message":"Ha ocurrido un error cuando se intentaba eliminar el articulo", "isError":true },
+
+    // 300-399: PreferencesComponent y derivados
+    '300': { "code":300, "message":"Tus datos han sido guardados correctamente", "isError":false },
+    '301': { "code":301, "message":"Ha ocurrido un error cuando se intentaba guardar tus datos", "isError":true }
   };
 }

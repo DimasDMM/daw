@@ -48,5 +48,6 @@ export class AsideOptionsComponent extends BaseSessionComponent implements OnIni
    * Overwrited
    */
   protected onLoginCalls() {}
+  protected onReloginCalls() {}
   protected onLogoutCalls() {}
 }

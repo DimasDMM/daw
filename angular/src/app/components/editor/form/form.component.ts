@@ -293,6 +293,7 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
    * Overwrited
    */
   protected onLoginCalls() {}
+  protected onReloginCalls() {}
   protected onLogoutCalls() {
     this.router.navigate(['/']);
   }

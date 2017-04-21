@@ -47,5 +47,6 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
    * Overwrited
    */
   protected onLoginCalls() {}
+  protected onReloginCalls() {}
   protected onLogoutCalls() {}
 }

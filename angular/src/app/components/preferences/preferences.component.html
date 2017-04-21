@@ -1,24 +1,13 @@
 <div class="wrapper">
   <!--=== Header ===-->
-  <header class="header-v8 header-sticky" (login)='onLogin()' (logout)='onLogout()'></header>
+  <header class="header-v8 header-sticky" (login)='onLogin()' (logout)='onLogout()' #appHeader></header>
   <!--=== End Header ===-->
 
   <!--=== Content Part ===-->
   <div class="container content">
     <div class="row">
-      <!--
-      {{#message}}
-      <div class="col-md-12 md-margin-bottom-50">
-        <div class="alert alert-{{type}} fade in text-center">
-          <p>
-            {{{message}}}
-          </p>
-        </div>
-      </div>
-      {{/message}}
-      -->
 
-      <app-aside-options #appAsideOptions [optionActiveStr]="optionActiveStr" (logout)='onLogout()' class="col-md-3 md-margin-bottom-50"></app-aside-options>
+      <app-aside-options #appAsideOptions [optionActiveStr]="optionActiveStr" (logout)='onLogout()' (relogin)='onRelogin()' class="col-md-3 md-margin-bottom-50"></app-aside-options>
 
       <!-- Begin Content -->
       <div class="col-md-9">
@@ -34,67 +23,7 @@
 
             <!-- Personal Data Forms -->
             <div class="tab-pane fade" [ngClass]="tab['personalData']">
-              <form class="margin-bottom-20 sky-form no-border">
-                <section class="row">
-                  <div class="col col-12 full-width">
-                    <label for="inp_name">Nombre</label>
-                    <input type="text" name="name" id="inp_name" class="form-control" value="{{userLogged?.name}}" required>
-                    <div class="note note-success-compulsory">Campo obligatorio</div>
-                  </div>
-                  <div class="col col-12 full-width">
-                    <label for="inp_surname">Apellidos</label>
-                    <input type="text" name="lastname" id="inp_surname" class="form-control" value="{{userLogged?.lastname}}" required>
-                    <div class="note note-success-compulsory">Campo obligatorio</div>
-                  </div>
-                  <div class="col col-12 full-width">
-                    <label for="inp_alias">Alias</label>
-                    <input type="text" name="alias" id="inp_alias" class="form-control" value="{{userLogged?.alias}}">
-                  </div>
-                  <div class="col col-12 full-width">
-                    <label for="inp_email">Correo electr&oacute;nico</label>
-                    <input type="text" name="email" id="inp_email" class="form-control" value="{{userLogged?.email}}" required>
-                  </div>
-                  <div class="col col-12 full-width">
-                    <label>Sexo</label>
-                    <div class="row">
-                      <div class="col col-4">
-                        <label class="radio"><input type="radio" name="sex" value="m" checked><i class="rounded-x"></i>Hombre</label>
-                      </div>
-                      <div class="col col-4">
-                        <label class="radio"><input type="radio" name="sex" value="f"><i class="rounded-x"></i>Mujer</label>
-                      </div>
-                      <div class="col col-4">
-                        <label class="radio"><input type="radio" name="sex" value="o"><i class="rounded-x"></i>Otro</label>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                <hr>
-                <section class="row">
-                  <div class="col col-12 full-width">
-                    <label for="inp_city">Ciudad</label>
-                    <input type="text" name="city" id="inp_city" class="form-control" value="{{userLogged?.city}}">
-                  </div>
-                  <div class="col col-12 full-width">
-                    <label for="inp_country">Pa&iacute;s de residencia</label>
-                    <input type="text" name="country" id="inp_country" class="form-control" value="{{userLogged?.country}}">
-                  </div>
-                  <div class="col col-12 full-width">
-                    <label for="inp_phone">Tel&eacute;fono</label>
-                    <input type="text" name="phone" id="inp_phone" class="form-control" value="{{userLogged?.phone}}"> </div>
-                  <hr>
-                  <div class="col col-12 full-width">
-                    <label for="inp_description">Descripci&oacute;n personal</label>
-                    <textarea class="form-control" name="description" id="inp_description" rows="10" >{{userLogged?.description}}</textarea>
-                  </div>
-                  <div class="col col-12 full-width">
-                    <label for="inp_url">URL blog o p&aacute;gina personal</label>
-                    <input type="text" name="url" id="inp_url" class="form-control" value="{{userLogged?.personalWeb}}" placeholder="http://..."> </div>
-                </section>
-                <footer>
-                  <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                </footer>
-              </form>
+              <app-preferences-personal [fUser]="fUser" (relogin)='onRelogin()'></app-preferences-personal>
             </div>
             <!-- End Personal Data Forms -->
 

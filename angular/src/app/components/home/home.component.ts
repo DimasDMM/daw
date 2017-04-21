@@ -119,6 +119,8 @@ export class HomeComponent extends BaseSessionComponent implements OnInit {
     this.sectionFavourites();
   }
 
+  protected onReloginCalls() {}
+
   protected onLogoutCalls() {
     this.sectionFavourites();
   }

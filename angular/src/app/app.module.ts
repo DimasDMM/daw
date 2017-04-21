@@ -25,6 +25,7 @@ import {PublicistFormComponent} from "./components/publicist/form/form.component
 import {EditorListComponent} from "./components/editor/list/list.component";
 import {EditorFormComponent} from "./components/editor/form/form.component";
 import {PreferencesComponent} from "./components/preferences/preferences.component";
+import {PreferencesPersonalComponent} from "./components/preferences/preferences-personal.component";
 import {SearchComponent} from "./components/search/search.component";
 
 import {HomeComponent} from './components/home/home.component';
@@ -47,13 +48,14 @@ import { SearchService } from "app/services/search.service";
 import {AdministratorService} from "./services/administrator.service";
 import {PublicistService} from "./services/publicist.service";
 import {EditorService} from "./services/editor.service";
+import {PreferencesService} from "./services/preferences.service";
 
 import {WindowRef} from "./shared/window.service";
 import {pipeToText} from "./shared/toText.pipe";
 import {pipeListRolesToText} from "./shared/listRolesToText.pipe";
 import {pipeInfinOnEmpty} from "./shared/infinOnEmpty.pipe";
 import {pipeAdStatus} from "./components/publicist/list/ad-status.pipe";
-import { pipeArticleStatus } from "./components/editor/list/article-status.pipe";
+import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { pipeArticleStatus } from "./components/editor/list/article-status.pipe"
     EditorListComponent,
     EditorFormComponent,
     PreferencesComponent,
+    PreferencesPersonalComponent,
     SearchComponent,
 
     NgbdCarouselBasic,
@@ -105,7 +108,8 @@ import { pipeArticleStatus } from "./components/editor/list/article-status.pipe"
 
     AdministratorService,
     PublicistService,
-    EditorService
+    EditorService,
+    PreferencesService
   ],
   bootstrap: [
     AppComponent

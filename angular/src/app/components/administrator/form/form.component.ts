@@ -10,6 +10,7 @@ import {User} from "../../../entity/user.entity";
 import {AdministratorService} from "../../../services/administrator.service";
 import {MessageObject} from "../../../shared/message.object";
 import {SimplePageScrollService} from "ng2-simple-page-scroll";
+import {HeaderComponent} from "../../header/header.component";
 
 @Component({
   selector: 'app',
@@ -18,6 +19,7 @@ import {SimplePageScrollService} from "ng2-simple-page-scroll";
 export class AdministratorFormComponent extends BaseSessionComponent implements OnInit {
 
   // Elementos HTML
+  @ViewChild('appHeader') appHeader: HeaderComponent;
   @ViewChild('appAsideOptions') appAsideOptions: AsideOptionsComponent;
   @ViewChild('buttonSubmit') buttonSubmit: ElementRef;
 
@@ -139,6 +141,14 @@ export class AdministratorFormComponent extends BaseSessionComponent implements 
    * Overwrited
    */
   protected onLoginCalls() {}
+  protected onReloginCalls() {
+    this.sessionService.relogin().subscribe(
+      response => {
+        this.userLogged = response;
+        this.appHeader.onRelogin();
+      }, error => console.log(error)
+    );
+  }
   protected onLogoutCalls() {
     this.router.navigate(['/']);
   }

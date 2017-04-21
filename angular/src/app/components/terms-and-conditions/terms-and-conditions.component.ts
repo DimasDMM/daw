@@ -26,5 +26,6 @@ export class TermsAndConditionsComponent extends BaseSessionComponent implements
    * Overwrited
    */
   protected onLoginCalls() {}
+  protected onReloginCalls() {}
   protected onLogoutCalls() {}
 }

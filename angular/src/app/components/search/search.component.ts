@@ -49,5 +49,6 @@ private searchSuccess(response:any){
    * Overwrited
    */
   protected onLoginCalls() {}
+  protected onReloginCalls() {}
   protected onLogoutCalls() {}
 }
