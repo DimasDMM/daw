@@ -48,6 +48,17 @@ export class EditorService {
     );
   }
 
+  // Eliminar articulo
+  public deleteArticle(article:Article) {
+    let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });
+    let options = new RequestOptions({ headers: headers });
+
+    let url = URL_API+"/editor/articulo/"+article.id;
+    return this.http.delete(url, options).map(
+      response => response
+    );
+  }
+
   // Guardar articulo
   public saveArticle(article:Article) {
     let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });

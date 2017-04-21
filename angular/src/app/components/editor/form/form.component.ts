@@ -137,22 +137,21 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   private deleteArticle() {
     console.log("Delete Article");
 
-    this.buttonDeleteArticle(false);/*
-    this.editorService.saveArticle(this.fArticle).subscribe(
+    this.buttonDeleteArticle(false);
+    this.editorService.deleteArticle(this.fArticle).subscribe(
       response => this.deleteArticleSuccess(),
       error => this.deleteArticleError(error)
-    );*/
+    );
   }
 
   private deleteArticleSuccess() {
-    this.buttonDeleteArticle(true);
-    this.message = this.messageService.getMessage(200);
-    this.simplePageScrollService.scrollToElement("#message", 0);
+    this.router.navigate(['/editor/articulos', {'msg': 205}]);
   }
 
-  private deleteArticleError(article:Article) {
+  private deleteArticleError(error:any) {
     this.buttonDeleteArticle(true);
-    this.message = this.messageService.getMessage(200);
+    this.closeModal();
+    this.message = this.messageService.getMessage(206);
     this.simplePageScrollService.scrollToElement("#message", 0);
   }
 
@@ -164,7 +163,6 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
       this.buttonDeleteArticleDisabled = true;
       this.buttonDeleteArticleHtml = "Cargando...";
     }
-    console.log(this.buttonDeleteArticleHtml);
   }
 
   // Guardar cambios
