@@ -25,6 +25,7 @@ import {PublicistFormComponent} from "./components/publicist/form/form.component
 import {EditorListComponent} from "./components/editor/list/list.component";
 import {EditorFormComponent} from "./components/editor/form/form.component";
 import {PreferencesComponent} from "./components/preferences/preferences.component";
+import {SearchComponent} from "./components/search/search.component";
 
 import { HomeComponent } from './components/home/home.component';
 import {NgbdCarouselBasic} from "./components/home/carrousel.component";
@@ -41,6 +42,7 @@ import {SessionService} from "./services/session.service";
 import {CommentService} from "./services/comment.service";
 import {AdsService} from "./services/ads.service";
 import {MessageService} from "./services/message.service";
+import { SearchService } from "app/services/search.service";
 
 import {AdministratorService} from "./services/administrator.service";
 import {PublicistService} from "./services/publicist.service";
@@ -51,7 +53,7 @@ import {pipeToText} from "./shared/toText.pipe";
 import {pipeListRolesToText} from "./shared/listRolesToText.pipe";
 import {pipeInfinOnEmpty} from "./shared/infinOnEmpty.pipe";
 import {pipeAdStatus} from "./components/publicist/list/ad-status.pipe";
-import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
+import { pipeArticleStatus } from "./components/editor/list/article-status.pipe";
 
 @NgModule({
   declarations: [
@@ -69,6 +71,7 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
     EditorListComponent,
     EditorFormComponent,
     PreferencesComponent,
+    SearchComponent,
 
     HomeComponent,
     NgbdCarouselBasic,
@@ -97,6 +100,7 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
     CommentService,
     AdsService,
     MessageService,
+    SearchService,
 
     AdministratorService,
     PublicistService,

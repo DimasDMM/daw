@@ -30,6 +30,9 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   private modalTabSignup = { "is-selected":false };
   private modalErrorDiv = { "alert":true, "alert-danger":true, "hide":true };
 
+  private searchDisplay = false;
+  private searchInput:string;
+
   private urlImages = URL_IMAGES;
 
   private categories:Category[] = [];
@@ -45,6 +48,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   @ViewChild('formSignupSubmit') formSignupSubmit: ElementRef;
 
   constructor(
+    private router:Router,
     private articleService: ArticleService,
     sessionService: SessionService
   ) { super(sessionService) }
@@ -151,6 +155,10 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   private logoutSuccess() {
     this.userLogged = null;
     this.logout.emit(true); // Emitir evento de logout
+  }
+
+  private onSubmit(){
+    this.router.navigate(["/buscar",{'search':this.searchInput}]);
   }
 
   /*
