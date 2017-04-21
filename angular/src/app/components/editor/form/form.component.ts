@@ -35,6 +35,7 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   private fArticlePreview:Article;
   private optionActiveStr = "editor-form";
   private message:MessageObject;
+  private showModal = false;
 
 
   constructor(
@@ -128,6 +129,11 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
     } else {
       this.fArticle.tags = event.target.value.split(",");
     }
+  }
+
+  // Eliminar articulo
+  private deleteArticle() {
+    console.log("Delete Article");
   }
 
   // Guardar cambios
@@ -242,6 +248,16 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   // Input para imagen
   private onChangeFile(event) {
     this.formImage = event.srcElement.files.item(0);
+  }
+
+  /*
+   * Modal
+   */
+  private openModal() {
+    this.showModal = true;
+  }
+  private closeModal() {
+    this.showModal = false;
   }
 
   /*
