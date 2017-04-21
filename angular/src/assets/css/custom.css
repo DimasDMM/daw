@@ -235,3 +235,22 @@ a {
 .carousel-caption h2 a {
   color: #0f0f0f !important;
 }
+
+/* Modal */
+.show {
+  display: block;
+}
+.modal-dialog {
+  height: 100% !important;
+  margin: 50px auto !important;
+}
+.modal-header {
+  -webkit-box-align: start !important;
+  -webkit-align-items: flex-start !important;
+  -ms-flex-align: start !important;
+  align-items: flex-start !important;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: flex-start !important;
+  -ms-flex-pack: justify;
+  justify-content: flex-start !important;
+}

@@ -22,10 +22,11 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
 
   // Vistas
   @ViewChild('appAsideOptions') appAsideOptions: AsideOptionsComponent;
-  @ViewChild('buttonArticleVisible') buttonArticleVisible: ElementRef;
   @ViewChild('buttonSubmit') buttonSubmit: ElementRef;
   private buttonArticleVisibleHtml:string;
+  private buttonDeleteArticleHtml:string;
   private buttonArticleVisibleDisabled:boolean;
+  private buttonDeleteArticleDisabled:boolean;
 
   // Variables
   private urlImages = URL_IMAGES;
@@ -35,6 +36,7 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   private fArticlePreview:Article;
   private optionActiveStr = "editor-form";
   private message:MessageObject;
+  private showModal = false;
 
 
   constructor(
@@ -58,6 +60,7 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
     this.sectionAsideOption();
     this.sectionPreview();
     this.sectionForm();
+    this.buttonDeleteArticle(true);
   }
 
   private sectionAsideOption() {
@@ -128,6 +131,40 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
     } else {
       this.fArticle.tags = event.target.value.split(",");
     }
+  }
+
+  // Eliminar articulo
+  private deleteArticle() {
+    console.log("Delete Article");
+
+    this.buttonDeleteArticle(false);/*
+    this.editorService.saveArticle(this.fArticle).subscribe(
+      response => this.deleteArticleSuccess(),
+      error => this.deleteArticleError(error)
+    );*/
+  }
+
+  private deleteArticleSuccess() {
+    this.buttonDeleteArticle(true);
+    this.message = this.messageService.getMessage(200);
+    this.simplePageScrollService.scrollToElement("#message", 0);
+  }
+
+  private deleteArticleError(article:Article) {
+    this.buttonDeleteArticle(true);
+    this.message = this.messageService.getMessage(200);
+    this.simplePageScrollService.scrollToElement("#message", 0);
+  }
+
+  private buttonDeleteArticle(enable:boolean) {
+    if(enable) {
+      this.buttonDeleteArticleDisabled = false;
+      this.buttonDeleteArticleHtml = "<i class='fa fa-trash'></i> Eliminar";
+    } else {
+      this.buttonDeleteArticleDisabled = true;
+      this.buttonDeleteArticleHtml = "Cargando...";
+    }
+    console.log(this.buttonDeleteArticleHtml);
   }
 
   // Guardar cambios
@@ -242,6 +279,16 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   // Input para imagen
   private onChangeFile(event) {
     this.formImage = event.srcElement.files.item(0);
+  }
+
+  /*
+   * Modal
+   */
+  private openModal() {
+    this.showModal = true;
+  }
+  private closeModal() {
+    this.showModal = false;
   }
 
   /*
