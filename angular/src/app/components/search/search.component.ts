@@ -5,6 +5,7 @@ import {BaseSessionComponent} from "../base/base-session.component";
 import { SessionService } from "../../services/session.service";
 import { Article } from "app/entity/article.entity";
 import { SearchService } from "app/services/search.service";
+import { URL_IMAGES } from "app/shared/config.object";
 
 @Component({
   selector: 'app',
@@ -16,6 +17,9 @@ export class SearchComponent extends BaseSessionComponent implements OnInit {
 private search:string;
 private results : Article[] = [];
 private page = 1;
+private searchLoading : boolean;
+private lastPage:boolean;
+private urlImages = URL_IMAGES;
 
   constructor(
     private router: Router,
@@ -30,10 +34,12 @@ private page = 1;
     this.activatedRoute.params.subscribe((params: Params) => {
       this.search = params["search"];
       this.sectionSearch();
+      console.log("search es:", this.search);
     });
   }
 
   private sectionSearch() {
+    this.searchLoading=true;
     this.searchService.getSearch(this.search, this.page).subscribe(
       response => this.searchSuccess(response),
       error => console.log(error)
@@ -41,8 +47,16 @@ private page = 1;
   }
 
 private searchSuccess(response:any){
-    this.results=response.content;
+    this.results= this.results.concat(response.content);
+    this.lastPage=response.last;
+    this.searchLoading = !this.searchLoading;
     console.log(this.results);
+    console.log(this.page);
+}
+
+private moreResults(){
+    this.page=this.page+1;
+    this.sectionSearch();
 }
 
   /*

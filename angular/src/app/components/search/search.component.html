@@ -8,21 +8,21 @@
         <h1 class="title-v4 h1_category">B&uacute;squeda: <span class="search-category">{{search}}</span></h1>
 		<div class="row">
 			<div class="col-md-9 md-margin-bottom-50">
-				<p>Cargando...</p>
+				<p *ngIf="searchLoading">Cargando...</p>
 
                 <!-- Blog Grid -->
 				<div class="ms-slide-loading"></div>
 				<div id="search_result" *ngIf="results?.length>0">
 					<div class="row margin-bottom-50" *ngFor="let article of results">
 						<div class="col-sm-4 sm-margin-bottom-20">
-							<img class="img-responsive" src="/imagen/articulo/{{article.id}}" alt="">
+							<img class="img-responsive" src="{{urlImages}}/imagen/articulo/{{article.id}}" title="{{article.title}}">
 						</div>
 						<div class="col-sm-8">
 							<div class="blog-grid">
 								<h3><a>{{article.title}}</a></h3>
 								<ul class="blog-grid-info">
 									<li>{{article.author.name}} {{article.author.lastname}}</li>
-									<li>{{article.dateInsert}}</li>
+									<li>{{article.dateInsert | date:'d-M-y'}}</li>
 									<li><a ><i class="fa fa-comments"></i> 0</a></li>
 								</ul>
 								<p>{{content | slice:0:50}}</p>
@@ -32,7 +32,13 @@
 					</div>
 					<!-- End Blog Grid -->
                 </div>
-
+				 <div id="spinner" class="hidden text-center">
+               		<img src='/img/spinner.gif'/>
+                </div>
+				
+                <div class="button-more-results" *ngIf="!lastPage">
+				    <button class="more-results" id="more-results" (click)="moreResults()">M&aacute;s resultados</button>
+                </div>
 			</div>
 			
             <!-- Right Sidebar -->
