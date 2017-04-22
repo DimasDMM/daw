@@ -56,7 +56,7 @@ public class PublicistRestController {
 	 * Añade un nuevo anuncio
 	 */
 	@JsonView(AdService.Publicist.class)
-	@RequestMapping(value="/publicista/anuncio", method=RequestMethod.POST)
+	@RequestMapping(value="/publicista/anuncio/nuevo", method=RequestMethod.POST)
 	public ResponseEntity<Object> newAd(@RequestBody ApiAd r) {
 		Message message = r.validation();
 		if(message.getCode() != 0)

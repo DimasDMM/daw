@@ -49,6 +49,14 @@ export class MessageService {
     '302': { "code":302, "message":"Se ha subido la imagen correctamente", "isError":false },
     '303': { "code":303, "message":"Ha ocurrido un error cuando se intentaba actualizar la imagen", "isError":true },
     '304': { "code":304, "message":"Se ha cambiado la contraseña correctamente", "isError":false },
-    '305': { "code":305, "message":"Ha ocurrido un error cuando se intentaba cambiar la contraseña", "isError":true }
+    '305': { "code":305, "message":"Ha ocurrido un error cuando se intentaba cambiar la contraseña", "isError":true },
+
+    // 400-499: PublicistListComponent y PublicistFormComponent
+    '400': { "code":400, "message":"El anuncio ha sido guardado correctamente", "isError":false },
+    '401': { "code":401, "message":"Ha ocurrido un error cuando se intentaba guardar el anuncio", "isError":true },
+    '402': { "code":402, "message":"No se ha podido encontrar el anuncio en la base de datos", "isError":true },
+    '403': { "code":403, "message":"Se han guardado los datos del anuncio pero no se pudo subir la imagen", "isError":true },
+    '404': { "code":404, "message":"El anuncio ha sido borrado correctamente", "isError":false },
+    '405': { "code":405, "message":"Ha ocurrido un error cuando se intentaba eliminar el anuncio", "isError":true },
   };
 }

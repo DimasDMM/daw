@@ -1,1 +1,143 @@
-<p>Hola</p>
+<div class="wrapper">
+  <!--=== Header ===-->
+  <header class="header-v8 header-sticky" (login)='onLogin()' (logout)='onLogout()'></header>
+  <!--=== End Header ===-->
+
+  <!-- Container Part -->
+  <div class="container content">
+    <div class="row">
+      <app-aside-options #appAsideOptions [optionActiveStr]="optionActiveStr" (logout)='onLogout()' class="col-md-3 md-margin-bottom-50"></app-aside-options>
+
+      <section class="col-md-9">
+        <div id="message">
+          <div *ngIf="message" class="alert fade in text-center" [class.alert-danger]="message.isError" [class.alert-success]="!message.isError">
+            <p>
+              <b *ngIf="message.isError">Error: </b>
+              <b *ngIf="!message.isError">Ok: </b>
+              {{message.message}}
+            </p>
+          </div>
+        </div>
+
+        <div class="alert alert-warning fade in text-center" *ngIf="fAd?.id">
+          <h4>Eliminar anuncio</h4>
+          <p>
+            Si quieres eliminar el anuncio haz click en el siguiente bot&oacute;n.
+            Recuerda que esta acci&oacute;n es irreversible.
+          </p>
+          <p>
+            <button class="btn btn-danger btn-delete" (click)="openModal()">Eliminar</button>
+          </p>
+        </div>
+
+        <h1 *ngIf="fAd?.id">Modificar anuncio</h1>
+        <h1 *ngIf="!fAd?.id">A&ntilde;adir anuncio</h1>
+
+        <form class="margin-bottom-20 sky-form no-border" *ngIf="fAd">
+          <section class="row">
+            <div class="col col-md-12 full-width">
+              <label for="inp_title">T&iacute;tulo</label>
+              <input class="form-control" name="title" id="inp_title" [(ngModel)]="fAd.title" placeholder="Nombre/titulo del anuncio">
+            </div>
+
+            <div class="col col-md-12 full-width">
+              <label for="inp_url">URL del anunciante</label>
+              <input class="form-control" name="url" id="inp_url" [(ngModel)]="fAd.url" placeholder="Ejemplo: http://themadridnews.com">
+            </div>
+
+            <div class="col col-12 full-width">
+              <label for="inp_weight">Ponderaci&oacute;n</label>
+              <input class="form-control" name="weight" id="inp_weight" [(ngModel)]="fAd.weight" placeholder="Frecuencia de aparici&oacute;n">
+              <small>Introduce un número que represente el "peso" de este anuncio frente a otros</small>
+            </div>
+
+            <div class="col col-12 full-width">
+              <label for="inp_file">Imagen principal</label>
+              <div class="input input-file">
+                <div class="button">
+                  <input type="file" name="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value" (change)="onChangeFile($event)">Buscar...
+                </div>
+                <input type="text" name="file_aux" placeholder="Imagen JPG" [ngModel]="formImage?.name" />
+              </div>
+            </div>
+
+          </section>
+
+          <hr>
+
+          <section class="row">
+            <h1>Expiraci&oacute;n del anuncio</h1>
+            <p>Los datos de expiraci&oacute;n son totalmente opcionales. Rellenar solo aquellos que queramos.</p>
+
+            <section class="col col-md-6">
+              <label for="inp_lim_date_start">Fecha de inicio</label>
+              <input class="form-control" name="limdatestart" id="inp_lim_date_start" [ngModel]="getLimDateStart()" placeholder="DD-MM-YYYY">
+              <small>Por defecto: hoy</small>
+            </section>
+
+            <section class="col col-md-6">
+              <label for="inp_lim_date_end">Fecha de finalizaci&oacute;n</label>
+              <input class="form-control" name="limdateend" id="inp_lim_date_end" [(ngModel)]="fAd.limDateEnd" placeholder="DD-MM-YYYY">
+              <small>Por defecto: sin finalizaci&oacute;n</small>
+            </section>
+
+            <section class="col col-md-6">
+              <label for="inp_lim_clicks">Número de clicks</label>
+              <input class="form-control" name="limclicks" id="inp_lim_clicks" [(ngModel)]="fAd.limClicks" placeholder="Ejemplo: 1000">
+              <small>Número m&aacute;ximo de clicks de usuarios en el anuncio. Por defecto: sin l&iacute;mite</small>
+            </section>
+
+            <section class="col col-md-6">
+              <label for="inp_lim_views">Número de visualizaciones</label>
+              <input class="form-control" name="limviews" id="inp_lim_views" [(ngModel)]="fAd.limViews" placeholder="Ejemplo: 5000">
+              <small>Número m&aacute;ximo de clicks de usuarios en el anuncio. Por defecto: sin l&iacute;mite</small>
+            </section>
+
+          </section>
+
+          <footer>
+            <button class="btn btn-primary pull-right" (click)="saveAd($event)" #buttonSubmit>
+              <i class="fa fa-floppy-o"></i> Guardar
+            </button>
+          </footer>
+
+        </form>
+
+        <h1 *ngIf="fAd?.id">Previsualizaci&oacute;n</h1>
+        <section *ngIf="fAd?.id">
+          <div class="ad-banner text-center">
+            <img width="100%" src="{{urlImages}}/imagen/anuncio/{{fAd.id}}?{{timestamp}}" alt="{{fAd.title}}">
+          </div>
+        </section>
+
+      </section>
+    </div>
+  </div>
+  <!--=== End Container Part ===-->
+
+  <!--=== Footer ===-->
+  <app-footer class="footer-v8"></app-footer>
+  <!--=== End Footer ===-->
+
+</div><!--/wrapper-->
+
+<div class="modal-backdrop fade in" [class.show]="showModal" [class.hide]="!showModal"></div>
+
+<!-- ModalDeleteAd -->
+<div class="modal fade in" [class.show]="showModal" id="modalDeleteAd" tabindex="-1" role="dialog" aria-labelledby="modalDeleteAdLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmaci&oacute;n</h4>
+      </div>
+      <div class="modal-body">
+        <p><b>Importante: </b> Esta acci&oacute;n es irreversible, el anunciante ser&aacute; eliminado sin posibilidad de ser recuperado.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" (click)="closeModal()">Cancelar</button>
+        <button class="btn" [class.btn-danger]="!buttonDeleteAdDisabled" (click)="deleteAd()" [innerHtml]="buttonDeleteAdHtml" [disabled]="buttonDeleteAdDisabled"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /ModalDeleteAd -->
