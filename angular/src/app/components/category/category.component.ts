@@ -37,9 +37,10 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
     super.ngOnInit();
 
     this.activatedRoute.params.subscribe(res => {
+      this.page = 1;
       this.category = this.articleService.getCategoryById(res['categoryId']);
       this.articleService.getArticlesFromCategory(res['categoryId'], 1,10).subscribe(
-        articles => {this.articles = articles,
+        articles => {this.articles = articles.content,
                     this.lastPage = articles.last},
         error => console.error(error)
     );
@@ -49,7 +50,7 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
 
   private loadMoreArticles(){
     this.articleService.getArticlesFromCategory(this.category.id, this.page,10).subscribe(
-        articles => {this.articles = this.articles.concat(articles),
+        articles => {this.articles = this.articles.concat(articles.content),
                     this.lastPage=articles.last},
         error => console.error(error)
     );

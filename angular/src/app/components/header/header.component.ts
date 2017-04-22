@@ -63,7 +63,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
     this.categories.forEach(function (category) {
       that.last_articles[ category.id ] = {};
       that.articleService.getArticlesFromCategory( category.id, 1, 10 ).subscribe(
-        articles => that.last_articles[ category.id ] = articles,
+        articles => that.last_articles[ category.id ] = articles.content,
         error => console.error(error)
       );
     });
