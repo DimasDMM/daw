@@ -199,6 +199,7 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   }
 
   private submitFormError(error:any) {
+    error = JSON.parse( error._body );
     if(error.code) {
       this.message = {
         "code": error.code,

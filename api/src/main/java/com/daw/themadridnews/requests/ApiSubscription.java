@@ -34,10 +34,10 @@ public class ApiSubscription implements ApiBase {
 		
 		if(email == null || email.isEmpty()) {
 			message.setCode(100);
-			message.setMessageTxt("Por favor, introduzca un correo electronico para poder subscribirse a nuestro boletin.");
+			message.setMessage("Por favor, introduzca un correo electronico para poder subscribirse a nuestro boletin.");
 		} else if(Validator.strValidMail(email)) {
 			message.setCode(101);
-			message.setMessageTxt("Por favor, introduzca un correo electronico valido.");
+			message.setMessage("Por favor, introduzca un correo electronico valido.");
 		}
 		
 		return message;

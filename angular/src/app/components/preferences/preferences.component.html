@@ -29,26 +29,7 @@
 
             <!-- Password Forms -->
             <div class="tab-pane fade" [ngClass]="tab['password']">
-              <form class="margin-bottom-20 sky-form no-border">
-                <div class="alert alert-info fade in"> <i class="fa fa-info-circle"></i> <strong>Cambio de contrase&ntilde;a:</strong> Recuerde que para cambiar su contrase&ntilde;a primero debe introducir su contrase&ntilde;a actual. Despu&eacute;s deber&aacute; introducir dos veces su nueva contrase&ntilde;a</div>
-                <section class="row">
-                  <div class="col col-12 full-width">
-                    <label for="inp_pass_now">Contrase&ntilde;a actual</label>
-                    <input type="password" name="pass_now" id="inp_pass_now" class="form-control"> </div>
-                </section>
-                <section class="row">
-                  <div class="col col-12 full-width">
-                    <label for="inp_pass_new">Nueva contrase&ntilde;a</label>
-                    <input type="password" name="pass_new" id="inp_pass_new" class="form-control"> </div>
-                  <div class="col col-12 full-width">
-                    <label for="inp_pass_new2">Confirmar nueva contrase&ntilde;a</label>
-                    <input type="password" name="pass_new2" id="inp_pass_new2" class="form-control"> </div>
-                </section>
-                <footer>
-                  <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                </footer>
-              </form>
-              <!--/ Error states for elements -->
+              <app-preferences-password [fUser]="fUser" (relogin)='onRelogin()'></app-preferences-password>
             </div>
             <!-- End Password Form -->
 

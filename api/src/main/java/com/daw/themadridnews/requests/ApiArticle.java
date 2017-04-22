@@ -95,15 +95,15 @@ public class ApiArticle implements ApiBase {
 		
 		if(category.isEmpty() || title.isEmpty() || content.isEmpty() || source.isEmpty() || tags.isEmpty()) {
 			message.setCode(100);
-			message.setMessageTxt("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
+			message.setMessage("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
 			
 		} else if(!Validator.strValidLength(title, 5, -1)) {
 			message.setCode(101);
-			message.setMessageTxt("El titulo del articulo no es válido, es demasiado corto.");
+			message.setMessage("El titulo del articulo no es válido, es demasiado corto.");
 			
 		} else if(!Validator.strValidList(tags)) {
 			message.setCode(102);
-			message.setMessageTxt("La lista de etiquetas no es valida.");
+			message.setMessage("La lista de etiquetas no es valida.");
 		}
 		
 		return message;

@@ -22,10 +22,6 @@ export class MessageService {
     return message;
   }
 
-  public getMessageFromApi(message:string) {
-    return { "code":1, "message":message, "isError":true };
-  }
-
   /**
    * LISTA DE MENSAJES
    */
@@ -51,6 +47,8 @@ export class MessageService {
     '300': { "code":300, "message":"Tus datos han sido guardados correctamente", "isError":false },
     '301': { "code":301, "message":"Ha ocurrido un error cuando se intentaba guardar tus datos", "isError":true },
     '302': { "code":302, "message":"Se ha subido la imagen correctamente", "isError":false },
-    '303': { "code":303, "message":"Ha ocurrido un error cuando se intentaba actualizar la imagen", "isError":true }
+    '303': { "code":303, "message":"Ha ocurrido un error cuando se intentaba actualizar la imagen", "isError":true },
+    '304': { "code":304, "message":"Se ha cambiado la contraseña correctamente", "isError":false },
+    '305': { "code":305, "message":"Ha ocurrido un error cuando se intentaba cambiar la contraseña", "isError":true }
   };
 }

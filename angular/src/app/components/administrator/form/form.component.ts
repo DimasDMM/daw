@@ -112,6 +112,7 @@ export class AdministratorFormComponent extends BaseSessionComponent implements 
   }
 
   private submitFormError(error:any) {
+    error = JSON.parse( error._body );
     if(error.code) {
       this.message = {
         "code": error.code,

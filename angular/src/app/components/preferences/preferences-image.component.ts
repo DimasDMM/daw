@@ -67,6 +67,7 @@ export class PreferencesImageComponent extends BaseSessionComponent implements O
 
   private submitFormError(error:any) {
     this.submitButton(true);
+    error = JSON.parse( error._body );
     if(error.code) {
       this.message = {
         "code": error.code,

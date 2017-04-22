@@ -21,7 +21,7 @@ public class Message {
 	
 	public Message(int code, String message, String type) {
 		this.code = code;
-		setMessageHtml(message);
+		setMessage(message);
 	}
 	
 	public int getCode() {
@@ -36,30 +36,8 @@ public class Message {
 		return message;
 	}
 	
-	public void setMessageTxt(String message) {
-		StringBuilder sb = new StringBuilder();
-		
-		if(code == 0) {
-			sb.append("OK: ");
-		} else {
-			sb.append("Error: ");
-		}
-		
-		sb.append(message);
-		this.message = sb.toString();
-	}
-	
-	public void setMessageHtml(String message) {
-		StringBuilder sb = new StringBuilder();
-		
-		if(code == 0) {
-			sb.append("<b>OK: </b>");
-		} else {
-			sb.append("<b>Error: </b>");
-		}
-		
-		sb.append(message);
-		this.message = sb.toString();
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	@Override
