@@ -16,7 +16,7 @@ export class SearchComponent extends BaseSessionComponent implements OnInit {
 
 private search:string;
 private results : Article[] = [];
-private page = 1;
+private page : number;
 private searchLoading : boolean;
 private lastPage:boolean;
 private urlImages = URL_IMAGES;
@@ -32,6 +32,8 @@ private urlImages = URL_IMAGES;
     super.ngOnInit();
 
     this.activatedRoute.params.subscribe((params: Params) => {
+      this.results = [];
+      this.page = 1;
       this.search = params["search"];
       this.sectionSearch();
       console.log("search es:", this.search);

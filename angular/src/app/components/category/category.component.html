@@ -27,6 +27,13 @@
           </div>
         </div>
         <!-- End Blog Grid -->
+        <div id="spinner" class="hidden text-center">
+          <img src='/img/spinner.gif'/>
+        </div>
+				
+        <div class="button-more-results" *ngIf="!lastPage">
+				    <button class="more-results" id="more-results" (click)="moreResults()">M&aacute;s resultados</button>
+        </div>
 
       </div>
     </div>

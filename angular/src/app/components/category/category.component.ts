@@ -22,6 +22,8 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
   public urlImages = URL_IMAGES;
   public category:Category;
   public articles: Article[];
+  private page = 1;
+  private lastPage:boolean;
 
   constructor(
     private http: Http,
@@ -33,14 +35,30 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
+
     this.activatedRoute.params.subscribe(res => {
       this.category = this.articleService.getCategoryById(res['categoryId']);
       this.articleService.getArticlesFromCategory(res['categoryId'], 1,10).subscribe(
-        articles => this.articles = articles,
+        articles => {this.articles = articles,
+                    this.lastPage = articles.last},
         error => console.error(error)
-      );
+    );
     });
     console.log("Init Category"+this.category);
+  }
+
+  private loadMoreArticles(){
+    this.articleService.getArticlesFromCategory(this.category.id, this.page,10).subscribe(
+        articles => {this.articles = this.articles.concat(articles),
+                    this.lastPage=articles.last},
+        error => console.error(error)
+    );
+  }
+
+  private moreResults(){
+    this.page=this.page+1;
+    this.loadMoreArticles();
+    console.log("lastPage",this.lastPage);
   }
 
   /*
