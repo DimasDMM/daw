@@ -78,7 +78,7 @@ export class ArticleService {
   public getArticlesFromCategory(id:string, page:number, number:number) {
     let url = URL_API+"/articulos/"+id+"?page="+page+"&number="+number;
     return this.http.get(url).map(
-      response => response.json().content.map( article => article )
+      response => response.json()
     );
   }
 
