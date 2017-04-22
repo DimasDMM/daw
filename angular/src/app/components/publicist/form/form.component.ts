@@ -33,6 +33,9 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
   private showModal = false;
   private timestamp:number;
 
+  private limDateStart:string;
+  private limDateEnd:string;
+
 
   constructor(
     private router: Router,
@@ -61,7 +64,17 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
 
     if(id && id != "nuevo") {
       this.publicistService.getAd(id).subscribe(
-        response => this.fAd = response,
+        response => {
+          this.fAd = response;
+
+          if(this.fAd.limDateStart)
+            this.fAd.limDateStart = new Date( this.fAd.limDateStart );
+
+          if(this.fAd.limDateEnd)
+            this.fAd.limDateEnd = new Date( this.fAd.limDateEnd );
+
+          console.log( this.fAd.limDateStart );
+        },
         error => this.adNotFound(error)
       );
     } else {
@@ -121,6 +134,7 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
     event.preventDefault();
 
     console.log("Submit Form");
+    console.log(this.fAd.limDateStart.toISOString());
 
     this.buttonSubmitDisable();
     this.publicistService.saveAd(this.fAd).subscribe(
@@ -131,30 +145,51 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
 
   // Inputs de fechas
   private getLimDateStart() {
-    if(this.fAd.limDateStart) {
+    if(this.fAd.limDateStart == null) {
       return "";
     } else {
-      let date = this.fAd.limDateStart;
-      let day = (date.getDay() > 9 ? date.getDay() : "0"+date.getDay());
-      let month = (date.getMonth() > 9 ? date.getMonth() : "0"+date.getMonth());
+      let date = new Date( this.fAd.limDateStart );
+      let day = (date.getDate() > 9 ? date.getDate() : "0"+(date.getDate()));
+      let month = (date.getMonth()+1 > 9 ? date.getMonth()+1 : "0"+(date.getMonth()+1));
       return day+"-"+month+"-"+date.getFullYear();
+    }
+  }
+  private changeLimDateStart(event:any) {
+    if(event.target.value != "") {
+      let tmp = event.target.value.split("-");
+
+      let day = Number(tmp[0]);
+      let month = Number(tmp[1]) - 1;
+      let year = Number(tmp[2]);
+
+      let date = new Date();
+      date.setFullYear(year);
+      date.setMonth(month);
+      date.setDate(day);
+
+      console.log("//"+date);
+      this.fAd.limDateStart = date;
     }
   }
 
   // Resultado de guardar formulario
   private submitFormSuccess(ad:Ad) {
+    this.fAd = ad;
+
+    if(this.fAd.limDateStart) this.fAd.limDateStart = new Date( this.fAd.limDateStart );
+    if(this.fAd.limDateEnd) this.fAd.limDateEnd = new Date( this.fAd.limDateEnd );
+
     if(this.formImage != null) {
       this.publicistService.saveImage(ad, this.formImage).subscribe(
-        response => this.submitImageFormSuccess(ad),
-        error => this.submitImageFormError(error, ad)
+        response => this.submitImageFormSuccess(),
+        error => this.submitImageFormError(error)
       );
     } else {
-      this.submitImageFormSuccess(ad);
+      this.submitImageFormSuccess();
     }
   }
 
-  private submitImageFormSuccess(ad:Ad) {
-    this.fAd = ad;
+  private submitImageFormSuccess() {
     this.timestamp = new Date().getTime();
 
     this.buttonSubmitEnable();
@@ -178,7 +213,7 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
     this.simplePageScrollService.scrollToElement("#message", 0);
   }
 
-  private submitImageFormError(error:any, ad:Ad) {
+  private submitImageFormError(error:any) {
     if(error.code) {
       this.message = {
         "code": error.code,
@@ -188,8 +223,6 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
     } else {
       this.message = this.messageService.getMessage(403);
     }
-
-    this.fAd = ad;
 
     this.buttonSubmitEnable();
     this.simplePageScrollService.scrollToElement("#message", 0);
