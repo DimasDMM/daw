@@ -9,6 +9,7 @@ import { URL_IMAGES } from "app/shared/config.object";
 
 import {ArticleService} from "../../services/article.service";
 import { BaseSessionComponent } from "../base/base-session.component";
+import { MessageObject } from "app/shared/message.object";
 
 @Component({
   selector: 'app',
@@ -19,8 +20,8 @@ export class ArticleComponent extends BaseSessionComponent implements OnInit {
 
 private article : Article;
 private articleLoading = false;
-private id : number;
 private urlImages = URL_IMAGES;
+private message : MessageObject;
 
   constructor(
     private http: Http,
@@ -33,22 +34,22 @@ private urlImages = URL_IMAGES;
   ngOnInit() {
     super.ngOnInit();
 
-    this.activatedRoute.params.subscribe(article => {
-      this.id = article["id"];
-      this.articlePetition();
-    });
+    this.sectionArticle();
+
   }
 
-  private articlePetition() {
+  private sectionArticle() {
+    let id = this.activatedRoute.snapshot.params['id'];
+
     this.articleLoading=true;
-    this.articleService.getArticleByID(this.id).subscribe(
+    this.articleService.getArticleByID(id).subscribe(
       article => this.articleSuccess(article),
       error => console.log(error)
     );
   }
 
 private articleSuccess(response:any){
-    this.article= response;
+    this.article = response;
     this.articleLoading = !this.articleLoading;
     console.log(this.article);
 }

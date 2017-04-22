@@ -4,19 +4,87 @@
   <!--=== End Header ===-->
 
   <!--=== Container Part ===-->
-	<div class="container content-sm">
-        <h1 class="title-v4 h1_category">B&uacute;squeda: <span class="search-category"></span></h1>
+  <div class="container content">
 		<div class="row">
-			<div class="col-md-9 md-margin-bottom-50">
-				<p *ngIf="articleLoading">Cargando...</p>
-
+			<section class="col-md-9">
+                <p *ngIf="articleLoading">Cargando...</p>
                 
-                </div>
-				 
+				<article *ngIf="!articleLoading">
+					<!-- Article Header -->
+					<div class="blog-grid margin-bottom-30">
+						<h1 class="blog-grid-title-lg">{{article.title}}</h1>
+						<div class="overflow-h margin-bottom-10">
+							<ul class="blog-grid-info pull-left">
+								<li>{{article.author.name}} {{article.author.lastname}}</li>
+								<li>{{article.dateInsert | date:'d-M-y'}}</li>
+							</ul>
+							<div class="pull-right">
+								<div class="addthis_sharing_toolbox"></div>
+							</div>
+						</div>
+						<div class="text-center">
+							<img class="img-responsive" src="{{urlImages}}/imagen/articulo/{{article.id}}" title="{{article.title}}">
+						</div>
+					</div>
+					<!-- End Article Header -->
+                    
+                    <div [innerHtml]="article.content"></div>
+
+                    <div class="clearfix"></div>
+	
+					<ul class="source-list">
+						<li><strong>Fuente:</strong> <a href="{{article.source}}" target="_blank">{{article.source}}</a></li>
+						<li><strong>Autor:</strong> <a>{{article.author.name}} {{article.author.lastname}}</a></li>
+					</ul>
+	
+					<!-- Blog Grid Tags -->
+					<!--<ul class="blog-grid-tags">
+					   <li class="head">Tags</li>
+					       <li><a href="/buscar?search={{.}}" target="_blank">{{.}}</a></li>
+					</ul>-->
+					<!-- End Blog Grid Tagds -->
+				 </article>
 			
-            <!-- Right Sidebar -->
+
+           <!-- Form -->
+            <section>
+                <h1 class="title-v4">Deja un comentario</h1>                
+
+                <div id="message">
+                    <div *ngIf="message" class="alert fade in text-center" [class.alert-danger]="message.isError" [class.alert-success]="!message.isError">
+                        <p>
+                        <b *ngIf="message.isError">Error: </b>
+                        <b *ngIf="!message.isError">Ok: </b>
+                        {{message.message}}
+                        </p>
+                    </div>
+                </div>               
+                
+                <form class="sky-form comment-style-v2 margin-bottom-30">
+                    <fieldset>
+                        <div class="margin-bottom-10">
+                            <div>
+                                <textarea rows="4" name="comment" placeholder="Escribe tu comentario aqui..." class="form-control bg-color-light"></textarea>
+                            </div>
+                        </div>
+
+                        <p><button type="submit" class="btn-u btn-u-default pull-right">Enviar</button></p>
+                    </fieldset>
+                </form>
+                <div class="alert alert-info fade in text-center">
+                    <p>
+                        <i class="fa fa-info"></i> Para publicar comentarios debes iniciar sesi&oacute;n primero
+                    </p>
+                </div>
+            </section>
+            <!-- End Form -->
+        </section>			
+            
+        
+        <!-- Right Sidebar -->
             <app-aside class="col-md-3"></app-aside>
             <!-- End Right Sidebar -->
+        </div>
 	</div>
 	<!--=== End Container Part ===-->
 

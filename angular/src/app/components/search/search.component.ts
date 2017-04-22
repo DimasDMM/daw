@@ -15,8 +15,8 @@ import { URL_IMAGES } from "app/shared/config.object";
 export class SearchComponent extends BaseSessionComponent implements OnInit {
 
 private search:string;
-private results : Article[] = [];
-private page : number;
+private results : Article[];
+private page:number;
 private searchLoading : boolean;
 private lastPage:boolean;
 private urlImages = URL_IMAGES;

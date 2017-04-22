@@ -36,7 +36,7 @@ export class ArticleService {
   }
 
   public getArticleByID(id:number){
-    let url = URL_API+"/articulos?id="+id;
+    let url = URL_API+"/articulo/"+id;
     return this.http.get(url).map(
       response => response.json()
     );
