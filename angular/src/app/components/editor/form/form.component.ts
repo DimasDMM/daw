@@ -98,16 +98,12 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   // Caso de no existir ningun articulo con el 'id' dado por URL
   private articleNotFound(error:any) {
     console.error(error);
-    this.redirectToList();
+    this.router.navigate(['/editor/articulos', {'msg':202}]);
   }
 
-  private redirectToList() {
-    this.router.navigate(['/editor/articulos']);
-  }
-
-  private redirectToListWithMsg(msg:number) {
-    this.router.navigate(['/editor/articulos', {'msg':msg}]);
-  }
+  /*
+   * Formularios
+   */
 
   // Tags del articulo en formato string separadas por comas
   private getArticleTagsStr() {
@@ -181,7 +177,7 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
 
   // Resultado de guardar formulario
   private submitFormSuccess(article:Article) {
-    this.editorService.saveImage(article.id, this.formImage).subscribe(
+    this.editorService.saveImage(article, this.formImage).subscribe(
       response => this.submitImageFormSuccess(article),
       error => this.submitImageFormError(error, article)
     );
@@ -199,6 +195,7 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   }
 
   private submitFormError(error:any) {
+    error = JSON.parse( error._body );
     if(error.code) {
       this.message = {
         "code": error.code,

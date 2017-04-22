@@ -1,4 +1,4 @@
-import {Favourite} from "./Favourite";
+import {Favourite} from "./favourite.entity";
 
 export class User {
   id:number;

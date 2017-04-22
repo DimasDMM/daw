@@ -31,11 +31,11 @@ public class ApiComment implements ApiBase {
 		
 		if(comment.isEmpty()) {
 			message.setCode(100);
-			message.setMessageTxt("Te has dejado el comentario en blanco. Por favor, escriba.");
+			message.setMessage("Te has dejado el comentario en blanco. Por favor, escriba.");
 			
 		} else if(!Validator.strValidLength(comment, 5, 500)) {
 			message.setCode(101);
-			message.setMessageTxt("El comentario no es válido, la longitud debe estar entre 5 y 500 caracteres.");
+			message.setMessage("El comentario no es válido, la longitud debe estar entre 5 y 500 caracteres.");
 		}
 		
 		return message;

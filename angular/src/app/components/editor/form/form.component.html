@@ -28,6 +28,7 @@
               <span *ngIf="!fArticlePreview.visible">"Publicar"</span>
               y el formulario para modificar los detalles de la noticia.
             </p>
+            <p>As&iacute; mismo, puedes eliminar este art&iacute;culo haciendo click en el siguiente bot&oacute;n.</p>
             <p>
               <button class="btn btn-danger btn-delete" (click)="openModal()">Eliminar</button>
             </p>
@@ -85,6 +86,7 @@
 
         </div>
 
+        <h1 *ngIf="!fArticle?.id">A&ntilde;adir art&iacute;culo</h1>
         <form class="margin-bottom-20 sky-form no-border" *ngIf="fArticle">
           <input type="hidden" name="id" [(ngModel)]="fArticle.id" />
 

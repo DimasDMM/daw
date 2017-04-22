@@ -42,7 +42,7 @@
                 <td>{{ad.clicks}} / <span [innerHTML]="ad.limClicks | infinOnEmpty"></span></td>
                 <td>{{ad.views}} / <span [innerHTML]="ad.limViews | infinOnEmpty"></span></td>
                 <td [innerHtml]="ad | adStatus"></td>
-                <td><a [routerLink]="['/publicista/anuncios',{'id':ad.id}]" class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></a></td>
+                <td><a [routerLink]="['/publicista/anuncios',ad.id]" class="btn-u btn-u-xs btn-u-blue"><i class="fa fa-pencil"></i></a></td>
               </tr>
             </template>
           </tbody>

@@ -11,10 +11,10 @@ import {PreferencesService} from "../../services/preferences.service";
 import {SimplePageScrollService} from "ng2-simple-page-scroll";
 
 @Component({
-  selector: 'app-preferences-personal',
-  templateUrl: 'preferences-personal.component.html'
+  selector: 'app-preferences-password',
+  templateUrl: 'preferences-password.component.html'
 })
-export class PreferencesPersonalComponent extends BaseSessionComponent implements OnInit {
+export class PreferencesPasswordComponent extends BaseSessionComponent implements OnInit {
 
   @Output()
   private relogin = new EventEmitter<boolean>();
@@ -24,6 +24,9 @@ export class PreferencesPersonalComponent extends BaseSessionComponent implement
   private submitButtonDisabled = false;
   private submitButtonHtml = "Guardar";
 
+  private newPassword1:string;
+  private newPassword2:string;
+  private oldPassword:string;
 
   constructor(
     private router: Router,
@@ -36,7 +39,7 @@ export class PreferencesPersonalComponent extends BaseSessionComponent implement
 
   ngOnInit() {
     super.ngOnInit();
-    console.log("Init PreferencesPersonalComponent");
+    console.log("Init PreferencesPasswordComponent");
   }
 
   /*
@@ -47,26 +50,19 @@ export class PreferencesPersonalComponent extends BaseSessionComponent implement
     console.log("Submit");
 
     this.submitButton(false);
-    this.preferencesService.savePreferences(this.fUser).subscribe(
+    this.preferencesService.savePassword(this.oldPassword, this.newPassword1, this.newPassword2).subscribe(
       response => this.submitFormSuccess(response),
       error => this.submitFormError(error)
     );
   }
 
   private submitFormSuccess(user:User) {
-    this.fUser = user;
-    this.sessionService.relogin().subscribe(
-      respone => this.relogin.emit(true),
-      error => console.log(error)
-    );
-
     this.submitButton(true);
-    this.message = this.messageService.getMessage(300);
-    this.simplePageScrollService.scrollToElement("#message_personal", 0);
+    this.message = this.messageService.getMessage(304);
+    this.simplePageScrollService.scrollToElement("#message_password", 0);
   }
 
   private submitFormError(error:any) {
-    this.submitButton(true);
     error = JSON.parse( error._body );
     if(error.code) {
       this.message = {
@@ -75,10 +71,11 @@ export class PreferencesPersonalComponent extends BaseSessionComponent implement
         "isError": true
       };
     } else {
-      this.message = this.messageService.getMessage(301);
+      this.message = this.messageService.getMessage(305);
     }
 
-    this.simplePageScrollService.scrollToElement("#message_personal", 0);
+    this.submitButton(true);
+    this.simplePageScrollService.scrollToElement("#message_password", 0);
   }
 
   // Estado del boton submit

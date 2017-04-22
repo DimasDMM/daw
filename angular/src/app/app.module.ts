@@ -27,6 +27,7 @@ import {EditorFormComponent} from "./components/editor/form/form.component";
 import {PreferencesComponent} from "./components/preferences/preferences.component";
 import {PreferencesPersonalComponent} from "./components/preferences/preferences-personal.component";
 import {PreferencesFavouritesComponent} from "./components/preferences/preferences-favourites.component";
+import {PreferencesPasswordComponent} from "./components/preferences/preferences-password.component";
 import {PreferencesImageComponent} from "./components/preferences/preferences-image.component";
 import {SearchComponent} from "./components/search/search.component";
 
@@ -77,6 +78,7 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
     PreferencesComponent,
     PreferencesPersonalComponent,
     PreferencesFavouritesComponent,
+    PreferencesPasswordComponent,
     PreferencesImageComponent,
     SearchComponent,
 

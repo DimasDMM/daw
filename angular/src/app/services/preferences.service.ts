@@ -40,6 +40,23 @@ export class PreferencesService {
     );
   }
 
+  // Guardar contraseña
+  public savePassword(oldPassword:string, newPassword1:string, newPassword2:string) {
+    let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });
+    let options = new RequestOptions({ headers: headers });
+
+    let vars = {
+      'pass_now': oldPassword,
+      'pass_new': newPassword1,
+      'pass_new2': newPassword2
+    };
+
+    let url = URL_API+"/ajustes/contrasena";
+    return this.http.put(url, vars, options).map(
+      response => response.json()
+    );
+  }
+
   // Guardar imagen
   public saveImage(file: File) {
     let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });
