@@ -20,6 +20,7 @@ import {PaginationComponent} from "./components/pagination/pagination.component"
 
 import {AdministratorListComponent} from "./components/administrator/list/list.component";
 import {AdministratorFormComponent} from "./components/administrator/form/form.component";
+import {ArticleComponent} from "./components/article/article.component";
 import {PublicistListComponent} from "./components/publicist/list/list.component";
 import {PublicistFormComponent} from "./components/publicist/form/form.component";
 import {EditorListComponent} from "./components/editor/list/list.component";
@@ -71,6 +72,7 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
 
     AdministratorListComponent,
     AdministratorFormComponent,
+    ArticleComponent,
     PublicistListComponent,
     PublicistFormComponent,
     EditorListComponent,

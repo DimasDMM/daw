@@ -35,6 +35,13 @@ export class ArticleService {
     return null;
   }
 
+  public getArticleByID(id:number){
+    let url = URL_API+"/articulos?id="+id;
+    return this.http.get(url).map(
+      response => response.json()
+    );
+  }
+
   // Ultimos articulos publicados
   public getLastArticles(number:number) {
     let url = URL_API+"/articulos?number="+number;

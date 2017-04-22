@@ -8,6 +8,7 @@ import {TermsAndConditionsComponent} from "./components/terms-and-conditions/ter
 
 import {AdministratorListComponent} from "./components/administrator/list/list.component";
 import {AdministratorFormComponent} from "./components/administrator/form/form.component";
+import {ArticleComponent} from "./components/article/article.component";
 import {PublicistListComponent} from "./components/publicist/list/list.component";
 import {PublicistFormComponent} from "./components/publicist/form/form.component";
 import {EditorListComponent} from "./components/editor/list/list.component";
@@ -20,6 +21,8 @@ const appRoutes = [
   { path: 'buscar', component: SearchComponent },
   { path: 'privacidad', component: PrivacyComponent },
   { path: 'terminos-y-condiciones', component: TermsAndConditionsComponent },
+
+  { path: 'articulo/:id', component: ArticleComponent },
 
   { path: 'administrador', redirectTo: '/administrador/usuarios', pathMatch: 'full' },
   { path: 'administrador/usuarios', component: AdministratorListComponent },
