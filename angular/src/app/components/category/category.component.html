@@ -15,14 +15,14 @@
           </div>
           <div class="col-sm-8">
             <div class="blog-grid" >
-              <h3><a href="/articulo/{{article.id}}">{{article.title}}</a></h3>
+              <h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
               <ul class="blog-grid-info">
                 <li>{{article.author.name}} {{article.author.lastname}}</li>
                 <li>{{article.dateInsert | date:'d-M-y'}}</li>
-                <li><a href="/articulo/{{article.id}}"><i class="fa fa-comments"></i> 0</a></li>
+                <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> 0</a></li>
               </ul>
               <p>{{ article.content | toText | slice:0:50}}...</p>
-              <a class="r-more" href="/articulo/{{id}}">Leer m&aacute;s</a>
+              <a class="r-more" [routerLink]="['/articulo',article.id]">Leer m&aacute;s</a>
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
         <div id="spinner" class="hidden text-center">
           <img src='/img/spinner.gif'/>
         </div>
-				
+
         <div class="button-more-results" *ngIf="!lastPage">
 				    <button class="more-results" id="more-results" (click)="moreResults()">M&aacute;s resultados</button>
         </div>

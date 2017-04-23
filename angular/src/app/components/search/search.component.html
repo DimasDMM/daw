@@ -21,14 +21,14 @@
 						</div>
 						<div class="col-sm-8">
 							<div class="blog-grid">
-								<h3><a>{{article.title}}</a></h3>
+								<h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
 								<ul class="blog-grid-info">
 									<li>{{article.author.name}} {{article.author.lastname}}</li>
 									<li>{{article.dateInsert | date:'d-M-y'}}</li>
-									<li><a ><i class="fa fa-comments"></i> 0</a></li>
+									<li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> 0</a></li>
 								</ul>
 								<p>{{content | slice:0:50}}</p>
-								<a class="r-more" >Leer m&aacute;s</a>
+								<a class="r-more" [routerLink]="['/articulo',article.id]">Leer m&aacute;s</a>
 							</div>
 						</div>
 					</div>
