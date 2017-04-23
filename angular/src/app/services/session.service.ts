@@ -116,7 +116,7 @@ export class SessionService {
   private onLogout(response:any) {
     this.clearAuthHeader();
     this.clearUserLogged();
-    return response.json();
+    return response;
   }
 
   /*

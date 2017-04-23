@@ -1,5 +1,5 @@
 import {Component, OnInit, ElementRef, ViewChild, EventEmitter, Output} from "@angular/core";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router} from "@angular/router";
 
 import {ArticleService} from "../../services/article.service";
 import {SessionService} from "../../services/session.service";
@@ -87,6 +87,10 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
       response => this.logoutSuccess(),
       error => this.logoutSuccess()
     );
+  }
+  private logoutSuccess() {
+    this.userLogged = null;
+    this.logout.emit(true); // Emitir evento de logout
   }
 
   /*
@@ -228,14 +232,6 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
     }
     if(this.message == null)
       this.message = this.messageService.getMessage(701);
-  }
-
-  /*
-   * Logout
-   */
-  private logoutSuccess() {
-    this.userLogged = null;
-    this.logout.emit(true); // Emitir evento de logout
   }
 
   /*
