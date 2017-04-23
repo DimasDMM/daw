@@ -29,6 +29,13 @@ public class SubscriptionRestController {
 		if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		
+		String e = subscriptionService.get(r.getEmail());
+		if(e != null && !e.isEmpty()) {
+			message.setCode(100);
+			message.setMessage("Parece que el email que has introducido ya se encuentra en nuestra base de datos");
+			return new ResponseEntity<>(message, HttpStatus.CONFLICT);
+		}
+		
 		Subscription s = subscriptionService.subscribe(r.getEmail());
 		
 		return new ResponseEntity<>(s, HttpStatus.OK);

@@ -55,9 +55,9 @@
 
         <!-- Form Group -->
         <form class="input-group margin-bottom-50">
-          <input class="form-control" type="email" name="email" placeholder="Introduzca su correo">
+          <input class="form-control" type="email" name="email" [(ngModel)]="formEmail" placeholder="Introduzca su correo">
           <div class="input-group-btn">
-            <button type="submit" class="btn-u input-btn">Subscribirse</button>
+            <button (click)="submitFormSubscription($event)" class="btn-u input-btn">Subscribirse</button>
           </div>
         </form>
         <!-- End Form Group -->
@@ -88,3 +88,27 @@
     </ul>
   </div><!--/end container-->
 </footer>
+
+<!-- modalSubscription -->
+<div class="modal fade in" [class.show]="showModal" id="modalSubscription" tabindex="-1" role="dialog" aria-labelledby="modalSubscriptionLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Subscripci&oacute;n</h4>
+      </div>
+      <div class="modal-body" *ngIf="message != null">
+        <div class="alert fade in" [class.alert-danger]="message.isError" [class.alert-success]="!message.isError">
+          <h4 *ngIf="!message.isError">Perfecto</h4>
+          <h4 *ngIf="message.isError">Ups!</h4>
+          <p [innerHtml]="message.message"></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" (click)="closeModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /modalSubscription -->
+
+<div class="modal-backdrop fade in" [class.show]="showModal" [class.hide]="!showModal"></div>

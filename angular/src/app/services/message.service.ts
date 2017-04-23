@@ -63,9 +63,12 @@ export class MessageService {
     '601': { "code":601, "message":"Ha ocurrido un error cuando se intentaban guardar los datos del usuario", "isError":true },
     '602': { "code":602, "message":"No se ha podido encontrar el usuario en la base de datos", "isError":true },
 
-    // 700-599: Registro y Login
+    // 700-799: Registro, Login y Subscripcion
     '700': { "code":700, "message":"No se ha podido iniciar sesion", "isError":true },
     '701': { "code":701, "message":"Ha ocurrido un error al intentar completar el registro", "isError":true },
-    '702': { "code":72, "message":"Ha ocurrido un error al intentar subir la imagen", "isError":true }
+    '702': { "code":702, "message":"Ha ocurrido un error al intentar subir la imagen", "isError":true },
+
+    '750': { "code":750, "message":"Te has subscrito correctamente a nuestro boletin. Pronto comenzarás a recibir noticias en tu correo electrónico.", "isError":false },
+    '751': { "code":751, "message":"Ha ocurrido un error al intentar subscribirte a nuestro boletin", "isError":true },
   };
 }
