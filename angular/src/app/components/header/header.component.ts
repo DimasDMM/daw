@@ -36,6 +36,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
 
   private urlImages = URL_IMAGES;
   private message:MessageObject;
+  private navigationCollapse:boolean;
 
   private categories:Category[] = [];
   private last_articles = {};
@@ -68,6 +69,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
     console.log("Init Header");
 
     this.categories = this.articleService.getCategories();
+    this.navigationCollapse = true;
 
     let that = this;
     this.categories.forEach(function (category) {
@@ -91,6 +93,10 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   private logoutSuccess() {
     this.userLogged = null;
     this.logout.emit(true); // Emitir evento de logout
+  }
+
+  private toggleNavigation() {
+    this.navigationCollapse = !this.navigationCollapse;
   }
 
   /*
