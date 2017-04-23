@@ -111,12 +111,14 @@ public class ApiAd implements ApiBase {
 		return limViews;
 	}
 
-	public void setViews(Integer limViews) {
+	public void setLimViews(Integer limViews) {
 		this.limViews = limViews;
 	}
 
 	public Message validation() {
 		Message message = new Message();
+		
+		System.out.println(toString());
 		
 		if(title.isEmpty() || url.isEmpty()) {
 			message.setCode(100);
@@ -132,5 +134,12 @@ public class ApiAd implements ApiBase {
 		}
 		
 		return message;
+	}
+
+	@Override
+	public String toString() {
+		return "ApiAd [id=" + id + ", title=" + title + ", url=" + url + ", weight=" + weight + ", limDateStart="
+				+ limDateStart + ", limDateEnd=" + limDateEnd + ", limClicks=" + limClicks + ", limViews=" + limViews
+				+ "]";
 	}
 }

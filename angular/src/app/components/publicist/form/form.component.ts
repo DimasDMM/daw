@@ -10,7 +10,7 @@ import {Ad} from "../../../entity/ad.entity";
 import {MessageObject} from "../../../shared/message.object";
 import {MessageService} from "../../../services/message.service";
 import {SimplePageScrollService} from "ng2-simple-page-scroll";
-import {URL_IMAGES} from "../../../shared/config.object";
+import {URL_IMAGES, TIMEZONE} from "../../../shared/config.object";
 
 @Component({
   selector: 'app',
@@ -33,8 +33,8 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
   private showModal = false;
   private timestamp:number;
 
-  private limDateStart:string;
-  private limDateEnd:string;
+  // Zona horaria
+  private timezone = TIMEZONE;
 
 
   constructor(
@@ -65,15 +65,7 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
     if(id && id != "nuevo") {
       this.publicistService.getAd(id).subscribe(
         response => {
-          this.fAd = response;
-
-          if(this.fAd.limDateStart)
-            this.fAd.limDateStart = new Date( this.fAd.limDateStart );
-
-          if(this.fAd.limDateEnd)
-            this.fAd.limDateEnd = new Date( this.fAd.limDateEnd );
-
-          console.log( this.fAd.limDateStart );
+          this.loadAd(response, this.timezone);
         },
         error => this.adNotFound(error)
       );
@@ -91,6 +83,23 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
   private adNotFound(error:any) {
     console.error(error);
     this.router.navigate(['/publicista/anuncios', {'msg':402}]);
+  }
+
+  // Cargar anunciante en la variable. Tener en cuenta la zona horaria
+  private loadAd(ad:Ad, timezone:number) {
+    this.fAd = ad;
+
+    if(this.fAd.limDateStart != null)
+      this.fAd.limDateStart = this.loadDate(this.fAd.limDateStart, timezone);
+
+    if(this.fAd.limDateEnd != null)
+      this.fAd.limDateEnd = this.loadDate(this.fAd.limDateEnd, timezone);
+  }
+
+  private loadDate(date:Date, timezone:number) {
+    let tmp = ( new Date(date) ).getTime();
+    tmp = tmp + timezone * 3600 * 1000;
+    return new Date(tmp);
   }
 
   /*
@@ -134,7 +143,6 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
     event.preventDefault();
 
     console.log("Submit Form");
-    console.log(this.fAd.limDateStart.toISOString());
 
     this.buttonSubmitDisable();
     this.publicistService.saveAd(this.fAd).subscribe(
@@ -144,14 +152,14 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
   }
 
   // Inputs de fechas
-  private getLimDateStart() {
-    if(this.fAd.limDateStart == null) {
+  private getFormDate(date:Date) {
+    if(date == null) {
       return "";
     } else {
-      let date = new Date( this.fAd.limDateStart );
-      let day = (date.getDate() > 9 ? date.getDate() : "0"+(date.getDate()));
-      let month = (date.getMonth()+1 > 9 ? date.getMonth()+1 : "0"+(date.getMonth()+1));
-      return day+"-"+month+"-"+date.getFullYear();
+      let tmp = new Date( date );
+      let day = (tmp.getDate() > 9 ? tmp.getDate() : "0"+(tmp.getDate()));
+      let month = (tmp.getMonth()+1 > 9 ? tmp.getMonth()+1 : "0"+(tmp.getMonth()+1));
+      return day+"-"+month+"-"+tmp.getFullYear();
     }
   }
   private changeLimDateStart(event:any) {
@@ -159,25 +167,29 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
       let tmp = event.target.value.split("-");
 
       let day = Number(tmp[0]);
-      let month = Number(tmp[1]) - 1;
+      let month = Number(tmp[1]) - 1; // El mes empieza en 0
       let year = Number(tmp[2]);
+      let date = new Date(year, month, day);
 
-      let date = new Date();
-      date.setFullYear(year);
-      date.setMonth(month);
-      date.setDate(day);
+      this.fAd.limDateStart = this.loadDate(date, this.timezone);
+    }
+  }
+  private changeLimDateEnd(event:any) {
+    if(event.target.value != "") {
+      let tmp = event.target.value.split("-");
 
-      console.log("//"+date);
-      this.fAd.limDateStart = date;
+      let day = Number(tmp[0]);
+      let month = Number(tmp[1]) - 1; // El mes empieza en 0
+      let year = Number(tmp[2]);
+      let date = new Date(year, month, day);
+
+      this.fAd.limDateEnd = this.loadDate(date, this.timezone);
     }
   }
 
   // Resultado de guardar formulario
   private submitFormSuccess(ad:Ad) {
-    this.fAd = ad;
-
-    if(this.fAd.limDateStart) this.fAd.limDateStart = new Date( this.fAd.limDateStart );
-    if(this.fAd.limDateEnd) this.fAd.limDateEnd = new Date( this.fAd.limDateEnd );
+    this.loadAd(ad, this.timezone);
 
     if(this.formImage != null) {
       this.publicistService.saveImage(ad, this.formImage).subscribe(

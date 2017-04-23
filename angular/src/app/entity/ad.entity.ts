@@ -9,8 +9,8 @@ export class Ad {
 
   public limDateStart:Date;
   public limDateEnd:Date;
-  public limClicks:number;
   public limViews:number;
+  public limClicks:number;
   public clicks:number;
   public views:number;
 

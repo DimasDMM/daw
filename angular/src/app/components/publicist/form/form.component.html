@@ -71,26 +71,26 @@
 
             <section class="col col-md-6">
               <label for="inp_lim_date_start">Fecha de inicio</label>
-              <input class="form-control" name="limdatestart" id="inp_lim_date_start" [ngModel]="getLimDateStart()" (change)="changeLimDateStart($event)" placeholder="DD-MM-YYYY">
+              <input class="form-control" name="limdatestart" id="inp_lim_date_start" [ngModel]="getFormDate(fAd.limDateStart)" (change)="changeLimDateStart($event)" placeholder="DD-MM-YYYY" type="text">
               <small>Por defecto: hoy</small>
             </section>
 
             <section class="col col-md-6">
               <label for="inp_lim_date_end">Fecha de finalizaci&oacute;n</label>
-              <input class="form-control" name="limdateend" id="inp_lim_date_end" placeholder="DD-MM-YYYY">
+              <input class="form-control" name="limdateend" id="inp_lim_date_end" placeholder="DD-MM-YYYY" [ngModel]="getFormDate(fAd.limDateEnd)" (change)="changeLimDateEnd($event)" type="text">
               <small>Por defecto: sin finalizaci&oacute;n</small>
             </section>
 
             <section class="col col-md-6">
               <label for="inp_lim_clicks">Número de clicks</label>
-              <input class="form-control" name="limclicks" id="inp_lim_clicks" [(ngModel)]="fAd.limClicks" placeholder="Ejemplo: 1000">
+              <input class="form-control" name="limclicks" id="inp_lim_clicks" [(ngModel)]="fAd.limClicks" placeholder="Ejemplo: 1000" type="number">
               <small>Número m&aacute;ximo de clicks de usuarios en el anuncio. Por defecto: sin l&iacute;mite</small>
             </section>
 
             <section class="col col-md-6">
               <label for="inp_lim_views">Número de visualizaciones</label>
-              <input class="form-control" name="limviews" id="inp_lim_views" [(ngModel)]="fAd.limViews" placeholder="Ejemplo: 5000">
-              <small>Número m&aacute;ximo de clicks de usuarios en el anuncio. Por defecto: sin l&iacute;mite</small>
+              <input class="form-control" name="limviews" id="inp_lim_views" [(ngModel)]="fAd.limViews" placeholder="Ejemplo: 5000" type="number">
+              <small>Número m&aacute;ximo de visualizaciones de usuarios en el anuncio. Por defecto: sin l&iacute;mite</small>
             </section>
 
           </section>
