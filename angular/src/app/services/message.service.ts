@@ -58,5 +58,9 @@ export class MessageService {
     '403': { "code":403, "message":"Se han guardado los datos del anuncio pero no se pudo subir la imagen", "isError":true },
     '404': { "code":404, "message":"El anuncio ha sido borrado correctamente", "isError":false },
     '405': { "code":405, "message":"Ha ocurrido un error cuando se intentaba eliminar el anuncio", "isError":true },
+
+    // 500-599: ArticleComponent
+    '500': { "code":500, "message":"Se ha publicado tu comentario correctamente", "isError":false },
+    '501': { "code":501, "message":"Ha ocurrido un error al intentar publicar tu comentario", "isError":true },
   };
 }

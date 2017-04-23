@@ -129,35 +129,24 @@ public class ArticleRestController {
 	 * Devuelve los comentarios de un articulo
 	 */
 	@RequestMapping(value="/articulo/{id}/comentarios", method=RequestMethod.GET)
-	@JsonView(ArticleService.Comments.class)
-	public ResponseEntity<Object> getComments(@PathVariable long id) {
-		Article a = articleService.get(id, false);
+	@JsonView(CommentService.Basic.class)
+	public ResponseEntity<Object> getComments(@PathVariable long id, @RequestParam(required=false) Integer page) {
+		if(page == null || page < 1)
+			page = 1;
 		
-		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-		return new ResponseEntity<>(a, HttpStatus.OK);
-	}
-
-	/**
-	 * Añade una visualizacion al articulo
-	 */
-	@JsonView(ArticleService.View.class)
-	@RequestMapping(value="/articulo/{id}/visualizacion", method=RequestMethod.GET)
-	public ResponseEntity<Object> addView(@PathVariable long id) {
 		Article a = articleService.get(id, false);
-		
 		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		a = articleService.addView(a);
+		Page<Comment> p = commentService.getByArticle(a, page-1);
 
-		return new ResponseEntity<>(a, HttpStatus.OK);
+		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 
 	/**
 	 * Añade un comentario al articulo
 	 */
-	@RequestMapping(value="/articulo/{id}", method=RequestMethod.POST)
-	@JsonView(Comment.Basic.class)
+	@RequestMapping(value="/articulo/{id}/comentarios", method=RequestMethod.POST)
+	@JsonView(CommentService.Basic.class)
 	public ResponseEntity<Object> sendComment(@PathVariable long id, @RequestBody ApiComment r) {
 		Message message = r.validation();
 		if(message.getCode() != 0)
@@ -176,6 +165,21 @@ public class ArticleRestController {
 		comment = commentService.save(comment);
 		
 		return new ResponseEntity<>(comment, HttpStatus.OK);
+	}
+
+	/**
+	 * Añade una visualizacion al articulo
+	 */
+	@JsonView(ArticleService.View.class)
+	@RequestMapping(value="/articulo/{id}/visualizacion", method=RequestMethod.GET)
+	public ResponseEntity<Object> addView(@PathVariable long id) {
+		Article a = articleService.get(id, false);
+		
+		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		a = articleService.addView(a);
+
+		return new ResponseEntity<>(a, HttpStatus.OK);
 	}
 	
 	/**

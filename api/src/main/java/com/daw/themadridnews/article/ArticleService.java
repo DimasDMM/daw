@@ -8,8 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import com.daw.themadridnews.comment.Comment;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserComponent;
 import com.daw.themadridnews.webconfig.Config;
@@ -18,8 +16,7 @@ import com.daw.themadridnews.webconfig.Config;
 public class ArticleService {
 
 	public static interface View extends Article.Basic, User.Basic, Config.Responses {}
-	public static interface Popular extends Article.Basic, Article.Comments, Comment.Basic, User.Basic, Config.Responses {}
-	public static interface Comments extends Article.Comments, Comment.Basic, Config.Responses {}
+	public static interface Popular extends Article.Basic, User.Basic, Config.Responses {}
 	public static interface Editor extends Article.Basic, Article.Details, User.Basic, Config.Responses {}
 	public static interface ArticlesFavs extends CategoryFavourites.Basic, Article.Basic, User.Basic, Config.Responses {}
 

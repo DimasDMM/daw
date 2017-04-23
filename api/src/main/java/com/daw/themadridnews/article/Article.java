@@ -15,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Article {
 
 	public static interface Basic {}
-	public static interface Comments {}
 	public static interface Details {}
 	
 	/*
@@ -74,7 +73,6 @@ public class Article {
 	
 	@OneToMany(mappedBy="article", cascade=CascadeType.ALL)
 	@ElementCollection(fetch = FetchType.LAZY)
-	@JsonView(Comments.class)
 	protected List<Comment> comments;
 	
 	@NotNull

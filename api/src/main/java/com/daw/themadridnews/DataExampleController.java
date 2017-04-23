@@ -103,8 +103,17 @@ public class DataExampleController implements CommandLineRunner {
         User user = userRepository.findByName("pepe");
         Article article = articleRepository.findOne(1L);
         long number = commentRepository.countByArticle(article) + 1;
+        
         Comment comment = new Comment(article, user, number, "Este es un comentario de remero raso");
         commentRepository.save(comment);
         
+        comment = new Comment(article, user, ++number, "Este es un comentario");
+        commentRepository.save(comment);
+        
+        comment = new Comment(article, user, ++number, "Aqui otro comentario");
+        commentRepository.save(comment);
+        
+        comment = new Comment(article, user, ++number, "Los comentarios aqui");
+        commentRepository.save(comment);
 	}
 }

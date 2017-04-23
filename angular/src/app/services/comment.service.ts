@@ -4,6 +4,7 @@ import 'rxjs/Rx';
 
 import { URL_API } from "../shared/config.object";
 import {SessionService} from "./session.service";
+import {Article} from "../entity/article.entity";
 
 @Injectable()
 export class CommentService {

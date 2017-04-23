@@ -3,20 +3,26 @@ package com.daw.themadridnews.comment;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.comment.CommentRepository;
+import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.webconfig.Config;
 
 @Service
 public class CommentService {
 
-	public static interface Basic extends Comment.Basic, Config.Responses {}
+	public static interface Basic extends Comment.Basic, User.Basic, Config.Responses {}
 	public static interface ArticleView extends Comment.Basic, Comment.ArticleView, Article.Basic, Config.Responses {}
 
 	@Autowired
 	protected CommentRepository commentRepository;
+	
+	protected static final int ITEMS_LIST = 1;
 	
 
 	public Comment save(Comment comment) {
@@ -28,8 +34,8 @@ public class CommentService {
 		return commentRepository.findOne(id);
 	}
 
-	public List<Comment> get(Article a) {
-		return commentRepository.findByArticle(a);
+	public Page<Comment> getByArticle(Article a, int nPage) {
+		return commentRepository.findByArticle(a, new PageRequest(nPage, ITEMS_LIST, Sort.Direction.DESC, "id"));
 	}
 
 	public long countByArticle(Article a) {

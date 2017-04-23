@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 import { Category } from '../entity/category.entity';
 import { URL_API } from "../shared/config.object";
 import {SessionService} from "./session.service";
+import {Article} from "../entity/article.entity";
 
 @Injectable()
 export class ArticleService {
@@ -104,6 +105,28 @@ export class ArticleService {
     options = new RequestOptions({ headers: headers });
 
     let url = URL_API+"/articulos/favoritos";
+    return this.http.get(url, options).map(
+      response => response.json()
+    );
+  }
+
+  // Publicar un comentario en un articulo
+  saveComment(article: Article, comment: string) {
+    let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });
+    let options = new RequestOptions({ headers: headers });
+
+    let url = URL_API+"/articulo/"+article.id+"/comentarios";
+    return this.http.post(url, {'comment':comment}, options).map(
+      response => response.json()
+    );
+  }
+
+  // Devuelve los comentarios de un articulo
+  public getCommentsFromArticle(article:Article, page:number) {
+    let headers = new Headers();
+    let options = new RequestOptions({ headers: headers });
+
+    let url = URL_API+"/articulo/"+article.id+"/comentarios?page="+page;
     return this.http.get(url, options).map(
       response => response.json()
     );
