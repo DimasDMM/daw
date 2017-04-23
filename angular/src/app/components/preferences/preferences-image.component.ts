@@ -66,18 +66,20 @@ export class PreferencesImageComponent extends BaseSessionComponent implements O
   }
 
   private submitFormError(error:any) {
-    this.submitButton(true);
-    error = JSON.parse( error._body );
-    if(error.code) {
-      this.message = {
-        "code": error.code,
-        "message": error.message,
-        "isError": true
-      };
-    } else {
-      this.message = this.messageService.getMessage(303);
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
     }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(303);
 
+    this.submitButton(true);
     this.simplePageScrollService.scrollToElement("#message_image", 0);
   }
 

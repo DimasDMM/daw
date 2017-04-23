@@ -9,7 +9,9 @@
 
 		<div class="row">
 			<div class="col-md-9 md-margin-bottom-50">
-				<p *ngIf="searchLoading">Cargando...</p>
+        <div id="spinner" class="text-center" *ngIf="searchLoading">
+          <img src="/assets/img/spinner.gif" />
+        </div>
 
         <!-- Blog Grid -->
 				<div class="ms-slide-loading"></div>
@@ -34,10 +36,6 @@
 					</div>
         </div>
         <!-- End Blog Grid -->
-
-        <div id="spinner" class="hidden text-center">
-          <img src='/img/spinner.gif'/>
-        </div>
 
         <div class="button-more-results" *ngIf="!lastPage">
           <button class="more-results" id="more-results" (click)="moreResults()">M&aacute;s resultados</button>

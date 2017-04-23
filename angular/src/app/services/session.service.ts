@@ -2,6 +2,7 @@ import {Injectable, setTestabilityGetter} from "@angular/core";
 import {Http, RequestOptions, Headers, Response} from "@angular/http";
 import {URL_API} from "../shared/config.object";
 import {User} from "../entity/user.entity";
+import {Favourite} from "../entity/favourite.entity";
 
 @Injectable()
 export class SessionService {
@@ -18,6 +19,9 @@ export class SessionService {
     }
   }
 
+  /*
+   * ReLogin
+   */
   public relogin() {
     let headers = new Headers({ 'Authorization': this.getAuthHeader() });
     let options = new RequestOptions({ headers: headers });
@@ -28,6 +32,11 @@ export class SessionService {
     );
   }
 
+  /*
+   * Login
+   */
+
+  // Iniciar sesion
   public login(username:string, password:string) {
     let headers = new Headers({ 'Authorization': this.generateAuthHeader(username, password) });
     let options = new RequestOptions({ headers: headers });
@@ -38,6 +47,59 @@ export class SessionService {
     );
   }
 
+  // Metodo ejecutado cuando se logea
+  private onLogin(authHeader:string, response) {
+    let user = response.json();
+
+    if(user != null) {
+      this.setAuthHeader( authHeader );
+      this.setUserLogged( user );
+    }
+
+    return response.json();
+  }
+
+  /*
+   * Registro
+   */
+
+  // Registrar nuevo usuario
+  public signupStep1(name:string, lastname:string, email:string, password1:string, password2:string, terms:boolean) {
+    let headers = new Headers();
+    let options = new RequestOptions({ headers: headers });
+
+    let data = {
+      'name': name,
+      'lastname': lastname,
+      'email': email,
+      'password1': password1,
+      'password2': password2,
+      'terms': terms
+    };
+
+    let url = URL_API+"/registro";
+    return this.http.post(url, data, options).map(
+      response => this.onSignup(data, response)
+    );
+  }
+
+  // Metodo ejecutado cuando se logea
+  private onSignup(data:any, response) {
+    let user:User = response.json();
+
+    if(user != null) {
+      this.setAuthHeader( this.generateAuthHeader( data.email, data.password1 ) );
+      this.setUserLogged( user );
+    }
+
+    return response.json();
+  }
+
+  /*
+   * Logout
+   */
+
+  // Cerrar sesion
   public logout() {
     if(!this.isUserLogged()) return;
 
@@ -49,6 +111,17 @@ export class SessionService {
       response => this.onLogout(response)
     );
   }
+
+  // Metodo ejecutado cuando se cierra sesion
+  private onLogout(response:any) {
+    this.clearAuthHeader();
+    this.clearUserLogged();
+    return response.json();
+  }
+
+  /*
+   * Otras funciones
+   */
 
   // Devuelve true si hay una sesion iniciada
   public isUserLogged() {
@@ -82,25 +155,6 @@ export class SessionService {
     let session = user + ':' + password;
     session = "Basic " + btoa(session);
     return session;
-  }
-
-  // Metodo ejecutado cuando se logea
-  private onLogin(authHeader:string, response) {
-    let user = response.json();
-
-    if(user != null) {
-      this.setAuthHeader( authHeader );
-      this.setUserLogged( user );
-    }
-
-    return response.json();
-  }
-
-  // Metodo ejecutado cuando se cierra sesion
-  private onLogout(response:any) {
-    this.clearAuthHeader();
-    this.clearUserLogged();
-    return response;
   }
 
   // Limpiar cabecera Auth-basic

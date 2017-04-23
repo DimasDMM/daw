@@ -63,16 +63,18 @@ export class PreferencesPasswordComponent extends BaseSessionComponent implement
   }
 
   private submitFormError(error:any) {
-    error = JSON.parse( error._body );
-    if(error.code) {
-      this.message = {
-        "code": error.code,
-        "message": error.message,
-        "isError": true
-      };
-    } else {
-      this.message = this.messageService.getMessage(305);
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
     }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(305);
 
     this.submitButton(true);
     this.simplePageScrollService.scrollToElement("#message_password", 0);

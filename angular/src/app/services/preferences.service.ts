@@ -16,7 +16,7 @@ export class PreferencesService {
     console.log("Init PreferencesService")
   }
 
-  // Preferencias
+  // Obtener preferencias
   public getPreferences() {
     let headers = new Headers({ 'Authorization': this.sessionService.getAuthHeader() });
     let options = new RequestOptions({ headers: headers });

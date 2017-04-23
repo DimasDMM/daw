@@ -31,6 +31,7 @@ import {PreferencesFavouritesComponent} from "./components/preferences/preferenc
 import {PreferencesPasswordComponent} from "./components/preferences/preferences-password.component";
 import {PreferencesImageComponent} from "./components/preferences/preferences-image.component";
 import {SearchComponent} from "./components/search/search.component";
+import {RegisterComponent} from "./components/register/register.component";
 
 import {HomeComponent} from './components/home/home.component';
 import {NgbdCarouselBasic} from "./components/home/carrousel.component";
@@ -48,6 +49,7 @@ import {CommentService} from "./services/comment.service";
 import {AdsService} from "./services/ads.service";
 import {MessageService} from "./services/message.service";
 import {SearchService} from "app/services/search.service";
+import {SubscriptionService} from "./services/subscription.service";
 
 import {AdministratorService} from "./services/administrator.service";
 import {PublicistService} from "./services/publicist.service";
@@ -83,6 +85,7 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
     PreferencesPasswordComponent,
     PreferencesImageComponent,
     SearchComponent,
+    RegisterComponent,
 
     NgbdCarouselBasic,
 
@@ -113,6 +116,7 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
     AdsService,
     MessageService,
     SearchService,
+    SubscriptionService,
 
     AdministratorService,
     PublicistService,

@@ -122,9 +122,21 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
   }
 
   private deleteAdError(error:any) {
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
+    }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(405);
+
     this.buttonDeleteAd(true);
     this.closeModal();
-    this.message = this.messageService.getMessage(405);
     this.simplePageScrollService.scrollToElement("#message", 0);
   }
 
@@ -210,31 +222,36 @@ export class PublicistFormComponent extends BaseSessionComponent implements OnIn
   }
 
   private submitFormError(error:any) {
-    error = JSON.parse( error._body );
-    if(error.code) {
-      this.message = {
-        "code": error.code,
-        "message": error.message,
-        "isError": true
-      };
-    } else {
-      this.message = this.messageService.getMessage(401);
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
     }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(401);
 
     this.buttonSubmitEnable();
     this.simplePageScrollService.scrollToElement("#message", 0);
   }
 
   private submitImageFormError(error:any) {
-    if(error.code) {
-      this.message = {
-        "code": error.code,
-        "message": error.message,
-        "isError": true
-      };
-    } else {
-      this.message = this.messageService.getMessage(403);
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
     }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(403);
 
     this.buttonSubmitEnable();
     this.simplePageScrollService.scrollToElement("#message", 0);

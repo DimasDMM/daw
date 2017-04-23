@@ -26,12 +26,7 @@ export class MessageService {
    * LISTA DE MENSAJES
    */
   private messagesList = {
-    // 1-99: Errores devueltos por la API
-
-    // 100-199: AdministratorListComponent y AdministratorFormComponent
-    '100': { "code":100, "message":"Los datos del usuario han sido guardados correctamente", "isError":false },
-    '101': { "code":101, "message":"Ha ocurrido un error cuando se intentaban guardar los datos del usuario", "isError":true },
-    '102': { "code":102, "message":"No se ha podido encontrar el usuario en la base de datos", "isError":true },
+    // 1-199: Errores devueltos por la API
 
     // 200-299: EditorListComponent y EditorFormComponent
     '200': { "code":200, "message":"El articulo ha sido guardado correctamente", "isError":false },
@@ -62,5 +57,15 @@ export class MessageService {
     // 500-599: ArticleComponent
     '500': { "code":500, "message":"Se ha publicado tu comentario correctamente", "isError":false },
     '501': { "code":501, "message":"Ha ocurrido un error al intentar publicar tu comentario", "isError":true },
+
+    // 600-699: AdministratorListComponent y AdministratorFormComponent
+    '600': { "code":600, "message":"Los datos del usuario han sido guardados correctamente", "isError":false },
+    '601': { "code":601, "message":"Ha ocurrido un error cuando se intentaban guardar los datos del usuario", "isError":true },
+    '602': { "code":602, "message":"No se ha podido encontrar el usuario en la base de datos", "isError":true },
+
+    // 700-599: Registro y Login
+    '700': { "code":700, "message":"No se ha podido iniciar sesion", "isError":false },
+    '701': { "code":701, "message":"Ha ocurrido un error al intentar completar el registro", "isError":true },
+    '702': { "code":72, "message":"Ha ocurrido un error al intentar subir la imagen", "isError":true }
   };
 }

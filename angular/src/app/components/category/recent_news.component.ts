@@ -18,7 +18,6 @@ import {SessionService} from "../../services/session.service";
 
 export class RecentNewsComponent extends BaseSessionComponent implements OnInit {
 
-
   ngOnInit() {
     super.ngOnInit();
   }
@@ -32,7 +31,7 @@ export class RecentNewsComponent extends BaseSessionComponent implements OnInit 
     sessionService:SessionService
   ) { super(sessionService) }
 
-  protected onLoginCalls() {  }
-
-  protected onLogoutCalls() {  }
+  protected onLoginCalls() {}
+  protected onReloginCalls() {}
+  protected onLogoutCalls() {}
 }

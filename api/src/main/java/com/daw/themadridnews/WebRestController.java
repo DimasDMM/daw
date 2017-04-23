@@ -1,6 +1,8 @@
 package com.daw.themadridnews;
 
-import com.daw.themadridnews.requests.ApiSignup;
+import com.daw.themadridnews.favourite.Favourite;
+import com.daw.themadridnews.requests.ApiSignupStep1;
+import com.daw.themadridnews.requests.ApiSignupStep2;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserService;
 import com.daw.themadridnews.utils.Message;
@@ -65,18 +67,16 @@ public class WebRestController {
 
     @JsonView(UserService.UserDetails.class)
     @RequestMapping(value="/registro", method=RequestMethod.POST)
-	public ResponseEntity<Object> registerNew(@RequestBody ApiSignup r) {
+	public ResponseEntity<Object> registerStep1(@RequestBody ApiSignupStep1 r) {
     	Message message = r.validation();
     	if(message.getCode() != 0)
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     	
     	User user = new User();
-    	user.setAlias(r.getAlias());
     	user.setName( r.getName() );
     	user.setLastname( r.getLastname() );
     	user.setEmail( r.getEmail() );
-    	user.setFavourites( r.getFavourites() );
-    	user.setPasswordHash( r.getPassword() );
+    	user.setPasswordHash( r.getPassword1() );
     	user.getRoles().add("ROLE_USER");
         
     	user = userService.save(user);

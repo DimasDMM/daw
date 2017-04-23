@@ -14,6 +14,7 @@ import {PublicistFormComponent} from "./components/publicist/form/form.component
 import {EditorListComponent} from "./components/editor/list/list.component";
 import {EditorFormComponent} from "./components/editor/form/form.component";
 import {PreferencesComponent} from "./components/preferences/preferences.component";
+import {RegisterComponent} from "./components/register/register.component";
 
 const appRoutes = [
   { path: 'portada', component: HomeComponent },
@@ -21,6 +22,7 @@ const appRoutes = [
   { path: 'buscar', component: SearchComponent },
   { path: 'privacidad', component: PrivacyComponent },
   { path: 'terminos-y-condiciones', component: TermsAndConditionsComponent },
+  { path: 'registro', component: RegisterComponent },
 
   { path: 'articulo/:id', component: ArticleComponent },
 

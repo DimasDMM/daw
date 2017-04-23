@@ -3,7 +3,7 @@
   <!-- Search bar -->
   <div class="topbar-search-block" [class.show]="searchDisplay">
     <div class="container">
-      <form (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="onSearch()">
         <input type="text" class="form-control" [(ngModel)]="searchInput" name="search" placeholder="Buscar">
         <div class="search-close"><i class="icon-close" (click)="searchDisplay=!searchDisplay"></i></div>
       </form>
@@ -165,7 +165,7 @@
         </p>
 
         <p class="fieldset">
-          <input class="full-width cd-submit text-center" #formLoginSubmit (click)="loginButton($event)" value="Entrar">
+          <input class="full-width cd-submit text-center" #formLoginSubmit (click)="submitFormLogin($event)" value="Entrar">
         </p>
       </form>
 
@@ -181,38 +181,38 @@
 
         <p class="fieldset">
           <label class="image-replace cd-username" for="signup-username">Nombre</label>
-          <input class="full-width has-padding has-border" id="signup-username" name="name" type="text" placeholder="Nombre">
+          <input class="full-width has-padding has-border" id="signup-username" #signupName type="text" value="Dimas" placeholder="Nombre">
         </p>
 
         <p class="fieldset">
           <label class="image-replace cd-username" for="signup-surnames">Apellidos</label>
-          <input class="full-width has-padding has-border" id="signup-surnames" name="lastname" type="text" placeholder="Apellidos">
+          <input class="full-width has-padding has-border" id="signup-surnames" #signupLastname value="Apellido" type="text" placeholder="Apellidos">
         </p>
 
         <p class="fieldset">
           <label class="image-replace cd-email" for="signup-email">Correo electr&oacute;nico</label>
-          <input class="full-width has-padding has-border" id="signup-email" name="email" type="email" placeholder="Correo electr&oacute;nico">
+          <input class="full-width has-padding has-border" id="signup-email" #signupEmail type="email" value="Email" placeholder="Correo electr&oacute;nico">
         </p>
 
         <p class="fieldset">
           <label class="image-replace cd-password" for="signup-password">Contrase&ntilde;a</label>
-          <input class="full-width has-padding has-border" id="signup-password" name="pass_new1" type="password"  placeholder="Contrase&ntilde;a">
+          <input class="full-width has-padding has-border" id="signup-password" #signupPassword1 value="121" type="password"  placeholder="Contrase&ntilde;a">
           <a href="javascript:void(0);" class="hide-password">Mostrar</a>
         </p>
 
         <p class="fieldset">
           <label class="image-replace cd-password" for="confirm-signup-password">Contrase&ntilde;a</label>
-          <input class="full-width has-padding has-border" id="confirm-signup-password" name="pass_new2" type="password"  placeholder="Confirmar Contrase&ntilde;a">
+          <input class="full-width has-padding has-border" id="confirm-signup-password" #signupPassword2 value="121"  type="password"  placeholder="Confirmar Contrase&ntilde;a">
           <a href="javascript:void(0);" class="hide-password">Mostrar</a>
         </p>
 
         <p class="fieldset">
-          <input type="checkbox" name="terms" id="accept-terms">
+          <input type="checkbox" #signupTerms id="accept-terms" checked>
           <label for="accept-terms">Acepto los t&eacute;rminos del <a [routerLink]="['/terminos-y-condiciones']">Contrato</a></label>
         </p>
 
         <p class="fieldset">
-          <input class="full-width cd-submit text-center" #formSignupSubmit value="Crear cuenta">
+          <input class="full-width cd-submit text-center" #formSignupSubmit (click)="submitFormSignup($event)" value="Crear cuenta">
         </p>
       </form>
 
@@ -234,8 +234,12 @@
       </form>
     </div> <!-- cd-reset-password -->
 
-    <div [ngClass]="modalErrorDiv" #modalErrorMessage>
-      <p><b>Error:</b> Ha ocurrido un error, no se ha podido iniciar sesi&oacute;n.</p>
+    <div class="alert" *ngIf="message" [class.alert-danger]="message.isError" [class.alert-success]="!message.isError">
+      <p>
+        <b *ngIf="message.isError">Error: </b>
+        <b *ngIf="!message.isError">Ok: </b>
+        {{message.message}}
+      </p>
     </div>
 
     <a (click)="modalClose()" class="cd-close-form">Cerrar</a>

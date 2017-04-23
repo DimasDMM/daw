@@ -136,16 +136,18 @@ export class ArticleComponent extends BaseSessionComponent implements OnInit {
   }
 
   private submitFormError(error:any) {
-    error = JSON.parse( error._body );
-    if(error.code) {
-      this.message = {
-        "code": error.code,
-        "message": error.message,
-        "isError": true
-      };
-    } else {
-      this.message = this.messageService.getMessage(501);
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
     }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(501);
 
     this.buttonSubmitEnable();
     this.simplePageScrollService.scrollToElement("#message", 0);
@@ -165,12 +167,7 @@ export class ArticleComponent extends BaseSessionComponent implements OnInit {
   /*
    * Overwrited
    */
-  protected onLoginCalls() {
-  }
-
-  protected onReloginCalls() {
-  }
-
-  protected onLogoutCalls() {
-  }
+  protected onLoginCalls() {}
+  protected onReloginCalls() {}
+  protected onLogoutCalls() {}
 }

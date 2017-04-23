@@ -22,7 +22,7 @@ public class CommentService {
 	@Autowired
 	protected CommentRepository commentRepository;
 	
-	protected static final int ITEMS_LIST = 1;
+	protected static final int ITEMS_LIST = 10;
 	
 
 	public Comment save(Comment comment) {

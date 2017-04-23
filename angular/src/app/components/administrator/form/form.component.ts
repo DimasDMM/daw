@@ -59,11 +59,7 @@ export class AdministratorFormComponent extends BaseSessionComponent implements 
   // Caso de no existir ningun usuario con el 'id' dado por URL
   private userNotFound(error:any) {
     console.error(error);
-    this.redirectToList();
-  }
-
-  private redirectToList() {
-    this.router.navigate(['/administrador/usuarios']);
+    this.redirectToListWithMsg(602);
   }
 
   private redirectToListWithMsg(msg:number) {
@@ -108,20 +104,22 @@ export class AdministratorFormComponent extends BaseSessionComponent implements 
   // Resultado de guardar formulario
   private submitFormSuccess() {
     this.buttonSubmitEnable();
-    this.redirectToListWithMsg(100);
+    this.redirectToListWithMsg(600);
   }
 
   private submitFormError(error:any) {
-    error = JSON.parse( error._body );
-    if(error.code) {
-      this.message = {
-        "code": error.code,
-        "message": error.message,
-        "isError": true
-      };
-    } else {
-      this.message = this.messageService.getMessage(101);
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
     }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(601);
 
     this.buttonSubmitEnable();
     this.simplePageScrollService.scrollToElement("#message", 0);

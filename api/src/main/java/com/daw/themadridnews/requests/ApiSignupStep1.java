@@ -1,31 +1,28 @@
 package com.daw.themadridnews.requests;
 
-import com.daw.themadridnews.favourite.Favourite;
 import com.daw.themadridnews.utils.Message;
 
-public class ApiSignup implements ApiBase {
+public class ApiSignupStep1 implements ApiBase {
 
 	protected boolean terms;
-
-	protected String alias;
 	protected String name;
 	protected String lastname;
 	protected String email;
-	protected Favourite favourites;
-	protected String password;
+	protected String password1;
+	protected String password2;
 	
 	
-	public ApiSignup() {}
+	public ApiSignupStep1() {}
 
-	public ApiSignup(boolean terms, String alias, String name, String lastname, String email, Favourite favourites, String password) {
+	public ApiSignupStep1(boolean terms, String name, String lastname, String email, String password1,
+			String password2) {
 		super();
 		this.terms = terms;
-		this.alias = alias;
 		this.name = name;
 		this.lastname = lastname;
 		this.email = email;
-		this.favourites = favourites;
-		this.password = password;
+		this.password1 = password1;
+		this.password2 = password2;
 	}
 
 	public boolean isTerms() {
@@ -34,14 +31,6 @@ public class ApiSignup implements ApiBase {
 
 	public void setTerms(boolean terms) {
 		this.terms = terms;
-	}
-	
-	public String getAlias() {
-		return alias;
-	}
-	
-	public void setAlias(String alias) {
-		this.alias = alias;
 	}
 
 	public String getName() {
@@ -67,21 +56,21 @@ public class ApiSignup implements ApiBase {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public Favourite getFavourites() {
-		return this.favourites;
-	}
-	
-	public void setFavourites(Favourite favourites) {
-		this.favourites = favourites;
+
+	public String getPassword1() {
+		return password1;
 	}
 
-	public String getPassword() {
-		return password;
+	public void setPassword1(String password1) {
+		this.password1 = password1;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public String getPassword2() {
+		return password2;
+	}
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
 	}
 
 	public Message validation() {
@@ -91,9 +80,13 @@ public class ApiSignup implements ApiBase {
 			message.setCode(100);
 			message.setMessage("Es necesario que aceptes los términos de uso antes.");
 			
-		} else if(name.isEmpty() || lastname.isEmpty() || email.isEmpty() || password.isEmpty()) {
+		} else if(name.isEmpty() || lastname.isEmpty() || email.isEmpty() || password1.isEmpty() || password2.isEmpty()) {
 			message.setCode(101);
 			message.setMessage("Hay campos obligatorios sin rellenar.");
+			
+		} else if(!password1.equals( password2 )) {
+			message.setCode(102);
+			message.setMessage("Las contraseñas no coinciden. Por favor, revise los datos antes de continuar.");
 		}
 		
 		return message;
@@ -101,7 +94,7 @@ public class ApiSignup implements ApiBase {
 
 	@Override
 	public String toString() {
-		return "ApiSignup [terms=" + terms + ", name=" + name + ", lastname=" + lastname + ", email=" + email
-				+ ", password=" + password + "]";
+		return "ApiSignupStep1 [terms=" + terms + ", name=" + name + ", lastname=" + lastname + ", email=" + email
+				+ ", password1=" + password1 + ", password2=" + password2 + "]";
 	}
 }

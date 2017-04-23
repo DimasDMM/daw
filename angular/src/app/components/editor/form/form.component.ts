@@ -145,9 +145,21 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   }
 
   private deleteArticleError(error:any) {
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
+    }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(206);
+
     this.buttonDeleteArticle(true);
     this.closeModal();
-    this.message = this.messageService.getMessage(206);
     this.simplePageScrollService.scrollToElement("#message", 0);
   }
 
@@ -195,31 +207,36 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   }
 
   private submitFormError(error:any) {
-    error = JSON.parse( error._body );
-    if(error.code) {
-      this.message = {
-        "code": error.code,
-        "message": error.message,
-        "isError": true
-      };
-    } else {
-      this.message = this.messageService.getMessage(201);
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
     }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(201);
 
     this.buttonSubmitEnable();
     this.simplePageScrollService.scrollToElement("#message", 0);
   }
 
   private submitImageFormError(error:any, article:Article) {
-    if(error.code) {
-      this.message = {
-        "code": error.code,
-        "message": error.message,
-        "isError": true
-      };
-    } else {
-      this.message = this.messageService.getMessage(203);
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
     }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(203);
 
     this.fArticlePreview = article;
     this.fArticle.id = this.fArticlePreview.id;
@@ -253,13 +270,26 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
         this.fArticlePreview.visible = response.visible;
         this.buttonArticleVisibleEnable(this.fArticle.visible);
       },
-      error => {
-        console.log(error);
-        this.message = this.messageService.getMessage(204);
-        this.simplePageScrollService.scrollToElement("#message", 0);
-        this.buttonArticleVisibleEnable(this.fArticle.visible);
-      }
+      error => this.onArticleVisibleError(error)
     );
+  }
+
+  private onArticleVisibleError(error:any) {
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
+    }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(204);
+
+    this.simplePageScrollService.scrollToElement("#message", 0);
+    this.buttonArticleVisibleEnable(this.fArticle.visible);
   }
 
   private buttonArticleVisibleEnable(visible:boolean) {

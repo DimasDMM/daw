@@ -1,0 +1,117 @@
+<div class="wrapper">
+  <!--=== Header ===-->
+  <header class="header-v8 header-sticky" (login)='onLogin()' (logout)='onLogout()'></header>
+  <!--=== End Header ===-->
+
+  <!--=== Breadcrumbs ===-->
+  <div class="breadcrumbs breadcrumbs-light margin-bottom-50">
+    <div class="container">
+      <h1 class="pull-left">Ajustes iniciales</h1>
+    </div>
+  </div><!--/breadcrumbs-->
+  <!--=== End Breadcrumbs ===-->
+
+  <!-- Container Part -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <p *ngIf="fUser == null">Cargando...</p>
+
+        <div id="message">
+          <div *ngIf="message" class="alert fade in text-center" [class.alert-danger]="message.isError" [class.alert-success]="!message.isError">
+            <p>
+              <b *ngIf="message.isError">Error: </b>
+              <b *ngIf="!message.isError">Ok: </b>
+              {{message.message}}
+            </p>
+          </div>
+        </div>
+
+        <div class="alert alert-success fade in text-center margin-bottom-20" *ngIf="signupFinish">
+          <h4>Enhorabuena</h4>
+          <p>
+            Hemos guardado tus preferencias correctamente. Ya puedes empezar a disfrutar de las ventajas
+            de estar registrado en The Madrid Times.
+          </p>
+          <p>
+            <a class="btn-u" [routerLink]="['/']">Ir a la portada</a>
+          </p>
+        </div>
+
+        <form class="margin-bottom-20 sky-form" *ngIf="fUser?.id && !signupFinish">
+
+          <section>
+            <div class="row">
+              <div class="col col-12 full-width">
+                <label for="inp_file">Imagen principal</label>
+                <div class="input input-file">
+                  <div class="button">
+                    <input type="file" name="file" id="inp_file" onchange="this.parentNode.nextSibling.value=this.value" (change)="onChangeFile($event)">Buscar...
+                  </div>
+                  <input type="text" name="file_aux" placeholder="Imagen JPG" [ngModel]="formImage?.name" />
+                </div>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+              <div class="col col-12 full-width">
+                <label>(Opcional) Temas de inter&eacute;s</label>
+                <div class="row">
+                  <div class="col col-4">
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs_world" [(ngModel)]="fUser.favourites.world" value="world"><i></i>Mundo
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs_madrid" [(ngModel)]="fUser.favourites.madrid" value="madrid"><i></i>Madrid
+                    </label>
+                  </div>
+                  <div class="col col-4">
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs_spain" [(ngModel)]="fUser.favourites.spain" value="spain"><i></i>España
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs_sports" [(ngModel)]="fUser.favourites.sports" value="sports"><i></i>Deportes
+                    </label>
+                  </div>
+                  <div class="col col-4">
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs_culture" [(ngModel)]="fUser.favourites.culture" value="culture"><i></i>Cultura
+                    </label>
+                    <label class="checkbox">
+                      <input type="checkbox" name="favs_technology" [(ngModel)]="fUser.favourites.technology" value="technology"><i></i>Tecnolog&iacute;a
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+              <div class="col col-6">
+                <label class="checkbox">
+                  <input type="checkbox" name="subscription" [(ngModel)]="formSubscription" checked>
+                  <i></i> Quiero recibir noticias y ofertas especiales
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <footer>
+            <button (click)="submitFormFavourites($event)" class="btn-u" [disabled]="submitButtonDisabled" [innerHtml]="submitButtonHtml"></button>
+            <a [routerLink]="['/']" class="btn-u">Omitir</a>
+          </footer>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--=== End Container Part ===-->
+
+  <!--=== Footer ===-->
+  <app-footer class="footer-v8"></app-footer>
+  <!--=== End Footer ===-->
+
+</div>

@@ -8,6 +8,8 @@ import {URL_IMAGES} from "../../shared/config.object";
 
 import {Category} from "../../entity/category.entity";
 import {BaseSessionComponent} from "../base/base-session.component";
+import {MessageObject} from "../../shared/message.object";
+import {MessageService} from "../../services/message.service";
 
 
 @Component({
@@ -28,12 +30,12 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   private modalTabLogin = { "is-selected":false };
   private modalBtnSignup = { "selected":false };
   private modalTabSignup = { "is-selected":false };
-  private modalErrorDiv = { "alert":true, "alert-danger":true, "hide":true };
 
   private searchDisplay = false;
   private searchInput:string;
 
   private urlImages = URL_IMAGES;
+  private message:MessageObject;
 
   private categories:Category[] = [];
   private last_articles = {};
@@ -43,6 +45,13 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   @ViewChild('loginEmail') loginEmail: ElementRef;
   @ViewChild('loginPassword') loginPassword: ElementRef;
 
+  @ViewChild('signupName') signupName: ElementRef;
+  @ViewChild('signupLastname') signupLastname: ElementRef;
+  @ViewChild('signupEmail') signupEmail: ElementRef;
+  @ViewChild('signupPassword1') signupPassword1: ElementRef;
+  @ViewChild('signupPassword2') signupPassword2: ElementRef;
+  @ViewChild('signupTerms') signupTerms: ElementRef;
+
   // Elementos HTML
   @ViewChild('formLoginSubmit') formLoginSubmit: ElementRef;
   @ViewChild('formSignupSubmit') formSignupSubmit: ElementRef;
@@ -50,6 +59,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   constructor(
     private router:Router,
     private articleService: ArticleService,
+    private messageService: MessageService,
     sessionService: SessionService
   ) { super(sessionService) }
 
@@ -72,21 +82,6 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   }
 
   // Eventos sobre el header
-  public loginButton(event) {
-    event.stopPropagation();
-
-    this.formLoginSubmit.nativeElement.value = "Cargando...";
-    this.modalErrorDiv["hide"] = true;
-
-    let email = this.loginEmail.nativeElement.value;
-    let password = this.loginPassword.nativeElement.value;
-
-    this.sessionService.login(email, password).subscribe(
-      response => this.loginSuccess(),
-      error => this.loginError(error)
-    );
-  }
-
   public logoutButton() {
     this.sessionService.logout().subscribe(
       response => this.logoutSuccess(),
@@ -122,10 +117,6 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   }
 
   // Alternar abrir-cerrar
-  public modalToggle() {
-    this.modalLogReg["is-visible"] = !this.modalLogReg["is-visible"];
-  }
-
   public modalOpen() {
     this.modalLogReg["is-visible"] = true;
   }
@@ -135,29 +126,122 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   }
 
   /*
-   * Metodos auxiliares para los formularios del popup de login-registro
+   * Formulario del login
    */
+  public submitFormLogin(event) {
+    event.stopPropagation();
+
+    this.buttonLogin(false);
+    let email = this.loginEmail.nativeElement.value;
+    let password = this.loginPassword.nativeElement.value;
+
+    this.sessionService.login(email, password).subscribe(
+      response => this.loginSuccess(),
+      error => this.loginError(error)
+    );
+  }
+
+  private buttonLogin(enable:boolean) {
+    if(enable) {
+      this.formLoginSubmit.nativeElement.value = "Cargando...";
+      this.formLoginSubmit.nativeElement.disabled = false;
+    } else {
+      this.formLoginSubmit.nativeElement.value = "Entrar";
+      this.formLoginSubmit.nativeElement.disabled = true;
+    }
+  }
+
   private loginSuccess() {
     this.userLogged = this.sessionService.getUserLogged();
-    this.modalToggle();
-
-    this.formLoginSubmit.nativeElement.value = "Entrar";
-
+    this.modalClose();
+    this.buttonLogin(true);
     this.login.emit(true); // Emitir evento de login
   }
 
   private loginError(error) {
     console.log(error);
-    this.formLoginSubmit.nativeElement.value = "Entrar";
-    this.modalErrorDiv["hide"] = false;
+    this.buttonLogin(true);
+
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
+    }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(700);
   }
 
+  /*
+   * Formulario del registro
+   */
+  public submitFormSignup(event) {
+    event.stopPropagation();
+
+    this.buttonSignup(false);
+    let name = this.signupName.nativeElement.value;
+    let lastname = this.signupLastname.nativeElement.value;
+    let email = this.signupEmail.nativeElement.value;
+    let password1 = this.signupPassword1.nativeElement.value;
+    let password2 = this.signupPassword2.nativeElement.value;
+    let terms = this.signupTerms.nativeElement.value;
+
+    terms = (terms == 'on' || terms == true);
+
+    this.sessionService.signupStep1(name, lastname, email, password1, password2, terms).subscribe(
+      response => this.signupSuccess(),
+      error => this.signupError(error)
+    );
+  }
+
+  private buttonSignup(enable:boolean) {
+    if(enable) {
+      this.formSignupSubmit.nativeElement.value = "Cargando...";
+      this.formSignupSubmit.nativeElement.disabled = false;
+    } else {
+      this.formSignupSubmit.nativeElement.value = "Entrar";
+      this.formSignupSubmit.nativeElement.disabled = true;
+    }
+  }
+
+  private signupSuccess() {
+    this.router.navigate(["/registro"]);
+  }
+
+  private signupError(error) {
+    console.log(error);
+    this.buttonSignup(true);
+
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
+    }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(701);
+  }
+
+  /*
+   * Logout
+   */
   private logoutSuccess() {
     this.userLogged = null;
     this.logout.emit(true); // Emitir evento de logout
   }
 
-  private onSubmit(){
+  /*
+   * Buscador
+   */
+  private onSearch(){
     this.router.navigate(["/buscar",{'search':this.searchInput}]);
   }
 

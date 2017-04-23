@@ -66,17 +66,20 @@ export class PreferencesFavouritesComponent extends BaseSessionComponent impleme
   }
 
   private submitFormError(error:any) {
-    this.submitButton(true);
-    if(error.code) {
-      this.message = {
-        "code": error.code,
-        "message": error.message,
-        "isError": true
-      };
-    } else {
-      this.message = this.messageService.getMessage(301);
+    if(error._body != "") {
+      error = JSON.parse( error._body );
+      if(error.code) {
+        this.message = {
+          "code": error.code,
+          "message": error.message,
+          "isError": true
+        };
+      }
     }
+    if(this.message == null)
+      this.message = this.messageService.getMessage(301);
 
+    this.submitButton(true);
     this.simplePageScrollService.scrollToElement("#message_favourites", 0);
   }
 
