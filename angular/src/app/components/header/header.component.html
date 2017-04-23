@@ -38,10 +38,12 @@
             <a>Hola {{userLogged.name}}</a>
             <ul class="topbar-dropdown">
               <!--{{#user_role_admin}}-->
-              <li><a [routerLink]="['/administrador']">Administrador</a></li>
+              <li *ngIf="hasRole(['ROLE_ADMIN'])">
+                <a [routerLink]="['/administrador']">Administrador</a>
+              </li>
               <!--{{/user_role_admin}}-->
               <!--{{#user_role_editor}}-->
-              <li class="topbar-submenu">
+              <li class="topbar-submenu" *ngIf="hasRole(['ROLE_EDITOR','ROLE_ADMIN'])">
                 <a>Art&iacute;culos</a>
                 <ul class="topbar-submenu-in">
                   <li><a [routerLink]="['/editor/articulos']">Lista</a></li>
@@ -50,7 +52,7 @@
               </li>
               <!--{{/user_role_editor}}-->
               <!--{{#user_role_publicist}}-->
-              <li class="topbar-submenu">
+              <li class="topbar-submenu" *ngIf="hasRole(['ROLE_PUBLICIST','ROLE_ADMIN'])">
                 <a href="javascript:void(0);">Publicidad</a>
                 <ul class="topbar-submenu-in">
                   <li><a [routerLink]="['/publicista/anuncios']">Lista</a></li>

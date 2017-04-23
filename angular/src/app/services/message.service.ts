@@ -64,7 +64,7 @@ export class MessageService {
     '602': { "code":602, "message":"No se ha podido encontrar el usuario en la base de datos", "isError":true },
 
     // 700-599: Registro y Login
-    '700': { "code":700, "message":"No se ha podido iniciar sesion", "isError":false },
+    '700': { "code":700, "message":"No se ha podido iniciar sesion", "isError":true },
     '701': { "code":701, "message":"Ha ocurrido un error al intentar completar el registro", "isError":true },
     '702': { "code":72, "message":"Ha ocurrido un error al intentar subir la imagen", "isError":true }
   };

@@ -7,6 +7,7 @@ import {MessageObject} from "../../shared/message.object";
 import {SimplePageScrollService} from "ng2-simple-page-scroll";
 import {PreferencesService} from "../../services/preferences.service";
 import {SubscriptionService} from "../../services/subscription.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app',
@@ -27,6 +28,8 @@ export class RegisterComponent extends BaseSessionComponent implements OnInit {
 
 
   constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private simplePageScrollService: SimplePageScrollService,
     private subscriptionService: SubscriptionService,
     private preferencesService: PreferencesService,
@@ -37,6 +40,9 @@ export class RegisterComponent extends BaseSessionComponent implements OnInit {
   ngOnInit() {
     super.ngOnInit();
     console.log("Init RegisterComponent");
+
+    if(!this.hasRole(["ROLE_USER"]))
+      this.router.navigate(['/']);
 
     this.signupFinish = false;
     this.submitButton(true);

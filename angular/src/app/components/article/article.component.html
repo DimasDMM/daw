@@ -9,7 +9,7 @@
       <section class="col-md-9">
         <p *ngIf="articleLoading">Cargando...</p>
 
-        <article *ngIf="!articleLoading">
+        <article *ngIf="!articleLoading && article?.id">
           <!-- Article Header -->
           <div class="blog-grid margin-bottom-30">
             <h1 class="blog-grid-title-lg">{{article.title}}</h1>
@@ -38,10 +38,12 @@
           </ul>
 
           <!-- Blog Grid Tags -->
-          <!--<ul class="blog-grid-tags">
-					   <li class="head">Tags</li>
-						   <li><a href="/buscar?search={{.}}" target="_blank">{{.}}</a></li>
-					</ul>-->
+          <ul class="blog-grid-tags">
+            <li class="head">Tags</li>
+            <li *ngFor="let tag of article.tags">
+              <a [routerLink]="['/buscar',tag]">{{tag}}</a>
+            </li>
+					</ul>
           <!-- End Blog Grid Tagds -->
         </article>
 

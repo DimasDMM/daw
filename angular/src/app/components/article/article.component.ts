@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, DoCheck} from '@angular/core';
 import {Router, ActivatedRoute, Params} from "@angular/router";
 import {Http} from "@angular/http";
 import {SessionService} from "app/services/session.service";
@@ -19,7 +19,7 @@ import {Comment} from "../../entity/comment.entity";
   templateUrl: 'article.component.html',
   styleUrls: []
 })
-export class ArticleComponent extends BaseSessionComponent implements OnInit {
+export class ArticleComponent extends BaseSessionComponent implements OnInit, DoCheck {
 
   private article: Article;
   private articleLoading = false;
@@ -53,7 +53,19 @@ export class ArticleComponent extends BaseSessionComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
+    this.init();
+  }
 
+  ngDoCheck() {
+    let id = this.activatedRoute.snapshot.params['id'];
+
+    if(this.article == null || id != this.article.id) {
+      this.init();
+    }
+  }
+
+  private init() {
+    this.articleLoading = true;
     this.pageComments = 1;
     this.comments = [];
     this.lastPageComments = false;
@@ -65,12 +77,11 @@ export class ArticleComponent extends BaseSessionComponent implements OnInit {
   private sectionArticle() {
     let id = this.activatedRoute.snapshot.params['id'];
 
-    this.articleLoading = true;
     this.articleService.getArticleByID(id).subscribe(
       response => {
         this.article = response;
         this.article.nComments = 0;
-        this.articleLoading = !this.articleLoading;
+        this.articleLoading = false;
         this.sectionComments(this.pageComments);
       },
       error => console.log(error)
@@ -87,7 +98,6 @@ export class ArticleComponent extends BaseSessionComponent implements OnInit {
   private sectionComments(page:number) {
     this.articleService.getCommentsFromArticle( this.article, page ).subscribe(
       response => {
-        console.log(response);
         this.article.nComments = response.totalElements;
         this.comments = this.comments.concat( response.content );
         this.lastPageComments = response.last;
@@ -130,6 +140,7 @@ export class ArticleComponent extends BaseSessionComponent implements OnInit {
     comments.push(comment);
     comments = comments.concat( this.comments );
     this.comments = comments;
+    this.article.nComments++;
 
     this.buttonSubmitEnable();
     //this.message = this.messageService.getMessage(500);
