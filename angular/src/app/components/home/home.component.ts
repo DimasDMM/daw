@@ -86,7 +86,10 @@ export class HomeComponent extends BaseSessionComponent implements OnInit {
   // Carga articulos para seccion de favoritos
   private sectionFavourites() {
     this.articleService.getArticlesFavourites().subscribe(
-      response => this.articlesFavourite = response,
+      response => {
+        this.articlesFavourite = response;
+        for(let i = 0; i < this.articlesFavourite.articles.length; i++) this.loadNumberComments(this.articlesFavourite.articles[i]);
+      },
       error => console.error(error)
     );
   }
@@ -96,6 +99,15 @@ export class HomeComponent extends BaseSessionComponent implements OnInit {
     this.articleService.getPopularLastWeek().subscribe(
       response => this.articlesPopular = response,
       error => console.error(error)
+    );
+  }
+
+  // Numero de comentarios en articulo
+  public loadNumberComments(article:Article) {
+    article.nComments = 0;
+    this.articleService.getNumberComments(article).subscribe(
+      response => article.nComments = response.nComments,
+      error => console.log(error)
     );
   }
 

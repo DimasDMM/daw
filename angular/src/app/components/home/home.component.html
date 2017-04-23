@@ -47,7 +47,7 @@
                       <ul class="blog-grid-info">
                         <li>{{article.author.name}} {{article.author.lastname}}</li>
                         <li>{{ article.dateInsert | date:'d-M-y' }}</li>
-                        <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> 0</a></li>
+                        <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> {{article.nComments}}</a></li>
                       </ul>
                       <p>{{ article.content | toText | slice:0:50}}...</p>
                       <a class="r-more" [routerLink]="['/articulo',article.id]">Leer m&aacute;s</a>
@@ -66,7 +66,7 @@
                         <h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
                         <ul class="blog-thumb-info">
                           <li>{{ article.dateInsert | date:'d-M-y' }}</li>
-                          <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> 0</a></li>
+                          <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> {{article.nComments}}</a></li>
                         </ul>
                       </div>
                     </div>
@@ -106,11 +106,11 @@
                 </div>
                 <div class="col-sm-7">
                   <div class="blog-grid">
-                    <h3><a [routerLink]="['/articulo',lastArticles[0].id]">{{lastArticles[ lastArticlesId ].title}}</a></h3>
+                    <h3><a [routerLink]="['/articulo',lastArticles[ lastArticlesId ].id]">{{lastArticles[ lastArticlesId ].title}}</a></h3>
                     <ul class="blog-grid-info">
                       <li>{{lastArticles[ lastArticlesId ].author.name}} {{lastArticles[ lastArticlesId ].author.lastname}}</li>
                       <li>{{lastArticles[ lastArticlesId ].dateInsert | date:'d-M-y'}}</li>
-                      <li><a [routerLink]="['/articulo',lastArticles[ lastArticlesId ].id]"><i class="fa fa-comments"></i> 0</a></li>
+                      <li><a [routerLink]="['/articulo',lastArticles[ lastArticlesId ].id]"><i class="fa fa-comments"></i> {{lastArticles[ lastArticlesId ].nComments}}</a></li>
                     </ul>
                     <p>{{lastArticles[ lastArticlesId ].content | toText | slice:0:50}}...</p>
                     <a class="r-more" [routerLink]="['/articulo',lastArticles[ lastArticlesId ].id]">Leer m&aacute;s</a>
@@ -138,23 +138,12 @@
                   <ul class="blog-grid-info">
                     <li>{{article.author.name}} {{article.author.lastname}}</li>
                     <li>{{article.dateInsert | date:'d-M-y'}}</li>
-                    <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> 0</a></li>
+                    <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> {{article.nComments}}</a></li>
                   </ul>
                   <p>{{article.content | toText | slice:0:100}}...</p>
                   <a class="r-more" [routerLink]="['/articulo',article.id]">Leer m&aacute;s</a>
                 </div>
                 <!-- End Blog Grid -->
-
-                <div *ngIf="article.comments?.length > 0">
-                  <div *ngFor="let comment of article.comments">
-                    <div class="blog-thumb-v3">
-                      <small><a [routerLink]="['/articulo',article.id]">{{comment.author.name}} {{comment.author.lastname}}</a></small>
-                      <h3><a [routerLink]="['/articulo',article.id]">{{comment.comment}}</a></h3>
-                    </div>
-                    <hr class="hr-xs">
-                  </div>
-                </div>
-
               </div>
 
             </div><!--/end row-->

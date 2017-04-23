@@ -126,6 +126,21 @@ public class ArticleRestController {
 	}
 	
 	/**
+	 * Devuelve el numero de comentario en un articulo
+	 */
+	@RequestMapping(value="/articulo/{id}/comentarios/numero", method=RequestMethod.GET)
+	public ResponseEntity<Object> getNumberComments(@PathVariable long id) {
+		Article a = articleService.get(id, false);
+		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		long number = commentService.countByArticle(a);
+		NumberComments nc = new NumberComments();
+		nc.nComments = number;
+
+		return new ResponseEntity<>(nc, HttpStatus.OK);
+	}
+	
+	/**
 	 * Devuelve los comentarios de un articulo
 	 */
 	@RequestMapping(value="/articulo/{id}/comentarios", method=RequestMethod.GET)
@@ -213,4 +228,9 @@ public class ArticleRestController {
     	
 		return ca;
 	}
+
+	@SuppressWarnings("unused")
+    private class NumberComments {
+		public long nComments;
+    }
 }

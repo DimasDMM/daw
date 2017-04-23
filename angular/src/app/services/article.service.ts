@@ -131,4 +131,12 @@ export class ArticleService {
       response => response.json()
     );
   }
+
+  // Numero de comentarios en un articulo determinado
+  public getNumberComments(article:Article) {
+    let url = URL_API+"/articulo/"+article.id+"/comentarios/numero";
+    return this.http.get(url).map(
+      response => response.json()
+    );
+  }
 }

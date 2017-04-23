@@ -10,6 +10,7 @@ import {Category} from "../../entity/category.entity";
 import {BaseSessionComponent} from "../base/base-session.component";
 import {MessageObject} from "../../shared/message.object";
 import {MessageService} from "../../services/message.service";
+import {Article} from "../../entity/article.entity";
 
 
 @Component({
@@ -75,12 +76,24 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
     this.categories.forEach(function (category) {
       that.last_articles[ category.id ] = {};
       that.articleService.getArticlesFromCategory( category.id, 1, 10 ).subscribe(
-        articles => that.last_articles[ category.id ] = articles.content,
+        articles => {
+          that.last_articles[ category.id ] = articles.content;
+          for(let i = 0; i < articles.content.length; i++) that.loadNumberComments(that.last_articles[ category.id ][i]);
+        },
         error => console.error(error)
       );
     });
 
     this.dateNow = new Date();
+  }
+
+  // Numero de comentarios en articulo
+  public loadNumberComments(article:Article) {
+    article.nComments = 0;
+    this.articleService.getNumberComments(article).subscribe(
+      response => article.nComments = response.nComments,
+      error => console.log(error)
+    );
   }
 
   // Eventos sobre el header
