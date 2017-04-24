@@ -166,11 +166,11 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
 
   private buttonLogin(enable:boolean) {
     if(enable) {
-      this.formLoginSubmit.nativeElement.value = "Cargando...";
-      this.formLoginSubmit.nativeElement.disabled = false;
-    } else {
       this.formLoginSubmit.nativeElement.value = "Entrar";
       this.formLoginSubmit.nativeElement.disabled = true;
+    } else {
+      this.formLoginSubmit.nativeElement.value = "Cargando...";
+      this.formLoginSubmit.nativeElement.disabled = false;
     }
   }
 
@@ -182,7 +182,6 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   }
 
   private loginError(error) {
-    console.log(error);
     this.buttonLogin(true);
 
     if(error._body != "") {
@@ -223,11 +222,11 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
 
   private buttonSignup(enable:boolean) {
     if(enable) {
-      this.formSignupSubmit.nativeElement.value = "Cargando...";
-      this.formSignupSubmit.nativeElement.disabled = false;
-    } else {
       this.formSignupSubmit.nativeElement.value = "Entrar";
       this.formSignupSubmit.nativeElement.disabled = true;
+    } else {
+      this.formSignupSubmit.nativeElement.value = "Cargando...";
+      this.formSignupSubmit.nativeElement.disabled = false;
     }
   }
 
@@ -236,7 +235,6 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   }
 
   private signupError(error) {
-    console.log(error);
     this.buttonSignup(true);
 
     if(error._body != "") {
