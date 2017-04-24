@@ -38,6 +38,7 @@ import {NgbdCarouselBasic} from "./components/home/carrousel.component";
 import {CategoryComponent} from "./components/category/category.component";
 import {PrivacyComponent} from "./components/privacy/privacy.component";
 import {TermsAndConditionsComponent} from "./components/terms-and-conditions/terms-and-conditions.component";
+import {ErrorComponent} from "./components/error/error.component";
 
 /*
  * Servicios, pipes y componentes adicionales
@@ -93,6 +94,7 @@ import {pipeArticleStatus} from "./components/editor/list/article-status.pipe";
     CategoryComponent,
     PrivacyComponent,
     TermsAndConditionsComponent,
+    ErrorComponent,
 
     pipeToText,
     pipeInfinOnEmpty,

@@ -76,8 +76,8 @@
             <h4>Previsualizaci&oacute;n</h4>
 
             <div>
-              <p *ngIf="fArticle.visible">As&iacute; quieres ocultar temporalmente la noticia haz click en el bot&oacute;n "Ocultar"</p>
-              <p *ngIf="!fArticle.visible">Ahora mismo este art&iacute;culo est&eacute; oculto. Cuando la noticia est&eacute; lista haz click en el bot&oacute;n "Publicar"</p>
+              <p *ngIf="fArticle.visible">Ahora mismo el art&iacute;culo est&aacute; visible. Si quieres ocultar temporalmente la noticia haz click en el bot&oacute;n "Ocultar"</p>
+              <p *ngIf="!fArticle.visible">Ahora mismo este art&iacute;culo est&aacute; oculto. Cuando la noticia est&eacute; lista haz click en el bot&oacute;n "Publicar"</p>
               <p>
                 <button class="btn" [class.btn-warning]="fArticle.visible" [class.btn-primary]="!fArticle.visible" #buttonArticleVisible (click)="toggleArticleVisible()" [disabled]="buttonArticleVisibleDisabled" [innerHtml]="buttonArticleVisibleHtml"></button>
               </p>

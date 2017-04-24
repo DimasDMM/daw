@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <!--=== Header ===-->
+  <header class="header-v8 header-sticky" (login)='onLogin()' (logout)='onLogout()'></header>
+  <!--=== End Header ===-->
+
+  <!--=== Container Part ===-->
+  <div class="container content-sm">
+    <h1 class="login-error">Error</h1>
+
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="error">{{message}}</p>
+
+        <p class="error">Int&eacute;ntelo m&aacute;s tarde o p&oacute;ngase en <a href="/mailto:themadridnews@tmn.es?SUBJECT=Not found">contacto</a> con los administradores.</p>
+      </div>
+
+      <img class="error-img img-responsive" src="/assets/img/tbservers.png" alt="Error">
+    </div><!--/end row-->
+  </div>
+  <!--=== End Container Part ===-->
+
+  <!--=== Footer ===-->
+  <app-footer class="footer-v8"></app-footer>
+  <!--=== End Footer ===-->
+</div>

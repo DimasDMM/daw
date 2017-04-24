@@ -15,6 +15,7 @@ import {EditorListComponent} from "./components/editor/list/list.component";
 import {EditorFormComponent} from "./components/editor/form/form.component";
 import {PreferencesComponent} from "./components/preferences/preferences.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {ErrorComponent} from "./components/error/error.component";
 
 const appRoutes = [
   { path: 'portada', component: HomeComponent },
@@ -40,7 +41,11 @@ const appRoutes = [
 
   { path: 'ajustes', component: PreferencesComponent },
 
-  { path: '', redirectTo: 'portada', pathMatch: 'full' }
+  { path: '', redirectTo: 'portada', pathMatch: 'full' },
+
+  {path: 'error', component: ErrorComponent},
+  {path: 'error/:error', component: ErrorComponent},
+  {path: '**', redirectTo: '/error/404'}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

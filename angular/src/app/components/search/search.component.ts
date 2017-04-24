@@ -40,7 +40,6 @@ export class SearchComponent extends BaseSessionComponent implements OnInit {
       this.page = 1;
       this.search = params["search"];
       this.sectionSearch();
-      console.log("search es:", this.search);
     });
   }
 
@@ -48,16 +47,22 @@ export class SearchComponent extends BaseSessionComponent implements OnInit {
     this.searchLoading = true;
     this.searchService.getSearch(this.search, this.page).subscribe(
       response => this.searchSuccess(response),
-      error => console.log(error)
+      error => {
+        this.searchLoading = false;
+        console.log(error)
+      }
     );
   }
 
   private searchSuccess(response: any) {
+    this.searchLoading = false;
+
+    if(!response.content) return;
+
     let articlesResponse = response.content;
 
     this.results = this.results.concat(articlesResponse);
     this.lastPage = response.last;
-    this.searchLoading = !this.searchLoading;
 
     for(let i = 0; i < articlesResponse.length; i++)
       this.loadNumberComments(articlesResponse[i]);

@@ -13,6 +13,10 @@
           <img src="/assets/img/spinner.gif" />
         </div>
 
+        <div class="alert alert-danger" *ngIf="!searchLoading && results?.length == 0">
+          <p>La b&uacute;squeda no ha dado resultados :(</p>
+        </div>
+
         <!-- Blog Grid -->
 				<div class="ms-slide-loading"></div>
 

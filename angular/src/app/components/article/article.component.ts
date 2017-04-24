@@ -86,7 +86,10 @@ export class ArticleComponent extends BaseSessionComponent implements OnInit, Do
         this.comments = [];
         this.sectionComments(this.pageComments);
       },
-      error => console.log(error)
+      error => {
+        console.log(error);
+        this.router.navigate(['/error/404']);
+      }
     );
   }
 

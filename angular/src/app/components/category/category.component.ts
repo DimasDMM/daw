@@ -39,10 +39,15 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
     this.activatedRoute.params.subscribe(res => {
       this.page = 1;
       this.category = this.articleService.getCategoryById(res['categoryId']);
-      this.articleService.getArticlesFromCategory(res['categoryId'], 1,10).subscribe(
-        articles => {this.articles = articles.content,
-                    this.lastPage = articles.last},
-        error => console.error(error)
+      this.articleService.getArticlesFromCategory(res['categoryId'], 1, 10).subscribe(
+        articles => {
+          this.articles = articles.content;
+          this.lastPage = articles.last
+        },
+        error => {
+          console.error(error);
+          this.router.navigate(['/error/404']);
+        }
     );
     });
     console.log("Init Category"+this.category);
