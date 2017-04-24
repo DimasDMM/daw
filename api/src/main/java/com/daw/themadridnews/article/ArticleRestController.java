@@ -120,7 +120,7 @@ public class ArticleRestController {
 	public ResponseEntity<Object> get(@PathVariable long id) {
 		Article a = articleService.get(id, true);
 		
-		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(a == null || !a.visible) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return new ResponseEntity<>(a, HttpStatus.OK);
 	}
@@ -131,7 +131,7 @@ public class ArticleRestController {
 	@RequestMapping(value="/articulo/{id}/comentarios/numero", method=RequestMethod.GET)
 	public ResponseEntity<Object> getNumberComments(@PathVariable long id) {
 		Article a = articleService.get(id, false);
-		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(a == null || !a.visible) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		long number = commentService.countByArticle(a);
 		NumberComments nc = new NumberComments();
@@ -150,7 +150,7 @@ public class ArticleRestController {
 			page = 1;
 		
 		Article a = articleService.get(id, false);
-		if(a == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(a == null || !a.visible) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 		Page<Comment> p = commentService.getByArticle(a, page-1);
 
@@ -168,7 +168,7 @@ public class ArticleRestController {
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		
 		Article article = articleService.get(id, false);
-		if(article == null)
+		if(article == null || !article.visible)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 		// Crear objeto comentario

@@ -183,7 +183,6 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
 
     console.log("Submit Form");
 
-    this.fArticle.visible = false;
     this.buttonSubmitDisable();
     this.editorService.saveArticle(this.fArticle).subscribe(
       response => this.submitFormSuccess(response),
