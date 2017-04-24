@@ -80,7 +80,13 @@ public class ApiSignupStep1 implements ApiBase {
 			message.setCode(100);
 			message.setMessage("Es necesario que aceptes los términos de uso antes.");
 			
-		} else if(name.isEmpty() || lastname.isEmpty() || email.isEmpty() || password1.isEmpty() || password2.isEmpty()) {
+		} else if(
+				name == null || name.isEmpty() ||
+				lastname == null || lastname.isEmpty() ||
+				email == null || email.isEmpty() ||
+				password1 == null || password1.isEmpty() ||
+				password2 == null || password2.isEmpty()
+		) {
 			message.setCode(101);
 			message.setMessage("Hay campos obligatorios sin rellenar.");
 			

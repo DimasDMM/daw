@@ -120,14 +120,14 @@ public class ApiAd implements ApiBase {
 		
 		System.out.println(toString());
 		
-		if(title.isEmpty() || url.isEmpty()) {
+		if(title == null || title.isEmpty() || url == null || url.isEmpty()) {
 			message.setCode(100);
 			message.setMessage("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
 			
 		} else if(
 				!Validator.intValidMin(this.getWeight(), 1) ||
-				!Validator.intValidMin(this.getLimClicks(), 0) ||
-				!Validator.intValidMin(this.getLimViews(), 0)
+				this.getLimClicks() != null && !Validator.intValidMin(this.getLimClicks(), 0) ||
+				this.getLimViews() != null && !Validator.intValidMin(this.getLimViews(), 0)
 		) {
 			message.setCode(101);
 			message.setMessage("Hay campos con informacion no valida. Por favor, reviselos antes de continuar");

@@ -29,7 +29,7 @@ public class ApiComment implements ApiBase {
 	public Message validation() {
 		Message message = new Message();
 		
-		if(comment.isEmpty()) {
+		if(comment == null || comment.isEmpty()) {
 			message.setCode(100);
 			message.setMessage("Te has dejado el comentario en blanco. Por favor, escriba.");
 			

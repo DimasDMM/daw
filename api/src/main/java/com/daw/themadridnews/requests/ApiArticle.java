@@ -93,7 +93,13 @@ public class ApiArticle implements ApiBase {
 	public Message validation() {
 		Message message = new Message();
 		
-		if(category.isEmpty() || title.isEmpty() || content.isEmpty() || source.isEmpty() || tags.isEmpty()) {
+		if(
+				category == null || category.isEmpty() ||
+				title == null || title.isEmpty() ||
+				content == null || content.isEmpty() ||
+				source == null || source.isEmpty() ||
+				tags == null || tags.isEmpty()
+		) {
 			message.setCode(100);
 			message.setMessage("Se ha dejado campos en blanco. Por favor, revise todo antes de continuar.");
 			
