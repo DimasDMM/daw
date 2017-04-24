@@ -9,17 +9,17 @@
       <app-aside-options #appAsideOptions [optionActiveStr]="optionActiveStr" (logout)='onLogout()' class="col-md-3 md-margin-bottom-50"></app-aside-options>
 
       <section class="col-md-9">
-        <h1 class="blog-grid-title-lg">Listado de anuncios</h1>
-
-        <!--
-        {{#message}}
-        <div class="alert alert-{{type}} fade in text-center">
-          <p>
-            {{{message}}}
-          </p>
+        <div id="message">
+          <div *ngIf="message" class="alert fade in text-center" [class.alert-danger]="message.isError" [class.alert-success]="!message.isError">
+            <p>
+              <b *ngIf="message.isError">Error: </b>
+              <b *ngIf="!message.isError">Ok: </b>
+              {{message.message}}
+            </p>
+          </div>
         </div>
-        {{/message}}
-        -->
+
+        <h1 class="blog-grid-title-lg">Listado de anuncios</h1>
 
         <table class="table">
           <thead>

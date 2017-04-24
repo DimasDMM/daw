@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter} from "@angular/core";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute, Params} from "@angular/router";
 
 import {PaginationComponent} from "../../pagination/pagination.component";
 import {AsideOptionsComponent} from "../../aside-options/aside-options.component";
@@ -8,6 +8,8 @@ import {PublicistService} from "../../../services/publicist.service";
 
 import {BaseSessionComponent} from "../../base/base-session.component";
 import {Ad} from "../../../entity/ad.entity";
+import {MessageObject} from "../../../shared/message.object";
+import {MessageService} from "../../../services/message.service";
 
 @Component({
   selector: 'app',
@@ -22,6 +24,7 @@ export class PublicistListComponent extends BaseSessionComponent implements OnIn
   // Variables
   private optionActiveStr = "publicist-list";
   private adsList:Ad[] = [];
+  private message:MessageObject;
 
   // Paginacion
   private currentPage = 1;
@@ -35,6 +38,7 @@ export class PublicistListComponent extends BaseSessionComponent implements OnIn
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private publicistService: PublicistService,
+    private messageService: MessageService,
     sessionService: SessionService
   ) { super(sessionService) }
 
@@ -45,6 +49,15 @@ export class PublicistListComponent extends BaseSessionComponent implements OnIn
 
     console.log("Init PublicistListComponent");
     this.sectionAdsList();
+    this.sectionMessage();
+  }
+
+  // Cargar mensaje
+  private sectionMessage() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      if(params['msg'])
+        this.message = this.messageService.getMessage( params['msg'] );
+    });
   }
 
   // Cargar lista de anuncios

@@ -17,7 +17,8 @@
             <div class="blog-grid" >
               <h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
               <ul class="blog-grid-info">
-                <li>{{article.author.name}} {{article.author.lastname}}</li>
+                <li *ngIf="article.author.alias">{{article.author.alias}}</li>
+                <li *ngIf="!article.author.alias">{{article.author.name}} {{article.author.lastname}}</li>
                 <li>{{article.dateInsert | date:'d-M-y'}}</li>
                 <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> {{article.nComments}}</a></li>
               </ul>

@@ -45,7 +45,8 @@
                       <img class="img-responsive" src="{{urlImages}}/imagen/articulo/{{article.id}}">
                       <h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
                       <ul class="blog-grid-info">
-                        <li>{{article.author.name}} {{article.author.lastname}}</li>
+                        <li *ngIf="article.author.alias">{{article.author.alias}}</li>
+                        <li *ngIf="!article.author.alias">{{article.author.name}} {{article.author.lastname}}</li>
                         <li>{{ article.dateInsert | date:'d-M-y' }}</li>
                         <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> {{article.nComments}}</a></li>
                       </ul>
@@ -108,7 +109,8 @@
                   <div class="blog-grid">
                     <h3><a [routerLink]="['/articulo',lastArticles[ lastArticlesId ].id]">{{lastArticles[ lastArticlesId ].title}}</a></h3>
                     <ul class="blog-grid-info">
-                      <li>{{lastArticles[ lastArticlesId ].author.name}} {{lastArticles[ lastArticlesId ].author.lastname}}</li>
+                      <li *ngIf="lastArticles[ lastArticlesId ].author.alias">{{lastArticles[ lastArticlesId ].author.alias}}</li>
+                      <li *ngIf="!lastArticles[ lastArticlesId ].author.alias">{{lastArticles[ lastArticlesId ].author.name}} {{lastArticles[ lastArticlesId ].author.lastname}}</li>
                       <li>{{lastArticles[ lastArticlesId ].dateInsert | date:'d-M-y'}}</li>
                       <li><a [routerLink]="['/articulo',lastArticles[ lastArticlesId ].id]"><i class="fa fa-comments"></i> {{lastArticles[ lastArticlesId ].nComments}}</a></li>
                     </ul>
@@ -136,7 +138,8 @@
                   <img class="img-responsive" src="{{urlImages}}/imagen/articulo/{{article.id}}" title="{{article.title}}">
                   <h3><a [routerLink]="['/articulo',article.id]">{{article.title}}</a></h3>
                   <ul class="blog-grid-info">
-                    <li>{{article.author.name}} {{article.author.lastname}}</li>
+                    <li *ngIf="article.author.alias">{{article.author.alias}}</li>
+                    <li *ngIf="!article.author.alias">{{article.author.name}} {{article.author.lastname}}</li>
                     <li>{{article.dateInsert | date:'d-M-y'}}</li>
                     <li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> {{article.nComments}}</a></li>
                   </ul>

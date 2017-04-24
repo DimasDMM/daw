@@ -15,7 +15,8 @@
             <h1 class="blog-grid-title-lg">{{article.title}}</h1>
             <div class="overflow-h margin-bottom-10">
               <ul class="blog-grid-info pull-left">
-                <li>{{article.author.name}} {{article.author.lastname}}</li>
+                <li *ngIf="article.author.alias">{{article.author.alias}}</li>
+                <li *ngIf="!article.author.alias">{{article.author.name}} {{article.author.lastname}}</li>
                 <li>{{article.dateInsert | date:'d-M-y'}}</li>
               </ul>
               <div class="pull-right">
@@ -34,7 +35,8 @@
 
           <ul class="source-list">
             <li><strong>Fuente:</strong> <a href="{{article.source}}" target="_blank">{{article.source}}</a></li>
-            <li><strong>Autor:</strong> <a>{{article.author.name}} {{article.author.lastname}}</a></li>
+            <li *ngIf="article.author.alias"><strong>Autor:</strong> <a>{{article.author.alias}}</a></li>
+            <li *ngIf="!article.author.alias"><strong>Autor:</strong> <a>{{article.author.name}} {{article.author.lastname}}</a></li>
           </ul>
 
           <!-- Blog Grid Tags -->
@@ -123,7 +125,9 @@
               </div>
               <div class="comments-itself">
                 <h4>
-                  #{{comment.number}} {{comment.author.name}}
+                  #{{comment.number}}
+                  <template [ngIf]="comment.author.alias">{{comment.author.alias}}</template>
+                  <template [ngIf]="!comment.author.alias">{{comment.author.name}}</template>
                   <span>{{comment.dateInsert | date:'d-M-y'}}</span>
                 </h4>
                 <p>{{comment.comment}}</p>

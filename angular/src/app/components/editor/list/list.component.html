@@ -37,7 +37,8 @@
             <template ngFor let-article [ngForOf]="articlesList">
               <tr *ngIf="article != null">
                 <td>{{article.title}}</td>
-                <td>{{article.author.name}} {{article.author.lastname}}</td>
+                <td *ngIf="article.author.alias">{{article.author.alias}}</td>
+                <td *ngIf="!article.author.alias">{{article.author.name}} {{article.author.lastname}}</td>
                 <td>{{articleService.getCategoryById(article.category).name}}</td>
                 <td>{{article.views}}</td>
                 <td>{{article.dateInsert | date:'d-M-y'}}</td>
