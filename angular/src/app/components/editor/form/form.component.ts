@@ -38,6 +38,8 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
   private message:MessageObject;
   private showModal = false;
 
+  private timestamp:number;
+
 
   constructor(
     private router: Router,
@@ -57,6 +59,8 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
     console.log("Init EditorFormComponent");
 
     this.categories = this.articleService.getCategories();
+    this.timestamp = new Date().getTime();
+
     this.sectionAsideOption();
     this.sectionPreview();
     this.sectionForm();
@@ -189,15 +193,20 @@ export class EditorFormComponent extends BaseSessionComponent implements OnInit 
 
   // Resultado de guardar formulario
   private submitFormSuccess(article:Article) {
-    this.editorService.saveImage(article, this.formImage).subscribe(
-      response => this.submitImageFormSuccess(article),
-      error => this.submitImageFormError(error, article)
-    );
+    if(this.formImage == null) {
+      this.submitImageFormSuccess(article);
+    } else {
+      this.editorService.saveImage(article, this.formImage).subscribe(
+        response => this.submitImageFormSuccess(article),
+        error => this.submitImageFormError(error, article)
+      );
+    }
   }
 
   private submitImageFormSuccess(article:Article) {
     this.fArticlePreview = article;
     this.fArticle.id = this.fArticlePreview.id;
+    this.timestamp = new Date().getTime();
 
     this.buttonArticleVisibleEnable(this.fArticle.visible);
 
