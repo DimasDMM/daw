@@ -126,6 +126,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   }
 
   public modalSelectTabLogin() {
+    this.message = null;
     this.modalBtnLogin["selected"] = true;
     this.modalTabLogin["is-selected"] = true;
     this.modalBtnSignup["selected"] = false;
@@ -133,6 +134,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   }
 
   public modalSelectTabSignup() {
+    this.message = null;
     this.modalBtnLogin["selected"] = false;
     this.modalTabLogin["is-selected"] = false;
     this.modalBtnSignup["selected"] = true;
@@ -145,6 +147,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   }
 
   public modalClose() {
+    this.message = null;
     this.modalLogReg["is-visible"] = false;
   }
 
@@ -154,6 +157,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   public submitFormLogin(event) {
     event.stopPropagation();
 
+    this.message = null;
     this.buttonLogin(false);
     let email = this.loginEmail.nativeElement.value;
     let password = this.loginPassword.nativeElement.value;
@@ -167,10 +171,10 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   private buttonLogin(enable:boolean) {
     if(enable) {
       this.formLoginSubmit.nativeElement.value = "Entrar";
-      this.formLoginSubmit.nativeElement.disabled = true;
+      this.formLoginSubmit.nativeElement.disabled = false;
     } else {
       this.formLoginSubmit.nativeElement.value = "Cargando...";
-      this.formLoginSubmit.nativeElement.disabled = false;
+      this.formLoginSubmit.nativeElement.disabled = true;
     }
   }
 
@@ -203,6 +207,7 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
    */
   public submitFormSignup(event) {
     event.stopPropagation();
+    this.message = null;
 
     this.buttonSignup(false);
     let name = this.signupName.nativeElement.value;
@@ -223,10 +228,10 @@ export class HeaderComponent extends BaseSessionComponent implements OnInit {
   private buttonSignup(enable:boolean) {
     if(enable) {
       this.formSignupSubmit.nativeElement.value = "Entrar";
-      this.formSignupSubmit.nativeElement.disabled = true;
+      this.formSignupSubmit.nativeElement.disabled = false;
     } else {
       this.formSignupSubmit.nativeElement.value = "Cargando...";
-      this.formSignupSubmit.nativeElement.disabled = false;
+      this.formSignupSubmit.nativeElement.disabled = true;
     }
   }
 
