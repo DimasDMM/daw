@@ -101,6 +101,22 @@ public class Ad {
 
 		this.dateInsert = new Date();
 	}
+	
+	public Ad(User author, String title, String url, int weight) {
+		this.author = author;
+		this.title = title;
+		this.url = url;
+		this.weight = weight;
+		this.clicks = 0;
+		this.views = 0;
+		
+		this.limDateStart = new Date();
+		this.limDateEnd = null;
+		this.limClicks = 999999999;
+		this.limViews = 999999999;
+
+		this.dateInsert = new Date();
+	}
 
 	public long getId() {
 		return id;
