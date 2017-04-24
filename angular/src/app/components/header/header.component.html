@@ -35,7 +35,8 @@
           <!--{{/user_logged}}-->
           <!--{{#user_logged}}-->
           <li *ngIf="userLogged != null">
-            <a>Hola {{userLogged.name}}</a>
+            <a *ngIf="userLogged.alias">Hola {{userLogged.alias}}</a>
+            <a *ngIf="!userLogged.alias">Hola {{userLogged.name}}</a>
             <ul class="topbar-dropdown">
               <!--{{#user_role_admin}}-->
               <li *ngIf="hasRole(['ROLE_ADMIN'])">
