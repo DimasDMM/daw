@@ -27,7 +27,7 @@ public class SearchService {
 	// Devuelve una pagina de articulos para una categoria determinada
 	// Recordar que las paginas empiezan en 0
 	public Page<Article> getArticlesContaining(String item, int nPage) {
-		Page<Article> p = articleRepository.findByTitleContaining(item, new PageRequest(nPage, N_RESULTS));
+		Page<Article> p = articleRepository.findByTitleContainingAndVisible(item, true, new PageRequest(nPage, N_RESULTS));
 		return p;
 	}
 }

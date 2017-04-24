@@ -35,22 +35,27 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
+    console.log("Init Category");
 
-    this.activatedRoute.params.subscribe(res => {
-      this.page = 1;
-      this.category = this.articleService.getCategoryById(res['categoryId']);
-      this.articleService.getArticlesFromCategory(res['categoryId'], 1, 10).subscribe(
-        articles => {
-          this.articles = articles.content;
-          this.lastPage = articles.last
-        },
-        error => {
-          console.error(error);
-          this.router.navigate(['/error/404']);
-        }
+    this.activatedRoute.params.subscribe(
+      res => {
+        this.page = 1;
+        this.category = this.articleService.getCategoryById(res['categoryId']);
+        this.articleService.getArticlesFromCategory(res['categoryId'], 1, 10).subscribe(
+          articles => {
+            this.articles = articles.content;
+            this.lastPage = articles.last;
+
+            for(let i = 0; i < this.articles.length; i++)
+              this.loadNumberComments(this.articles[i]);
+          },
+          error => {
+            console.error(error);
+            this.router.navigate(['/error/404']);
+          }
+        );
+      }
     );
-    });
-    console.log("Init Category"+this.category);
   }
 
   private loadMoreArticles(){
@@ -61,7 +66,7 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
           for(let i = 0; i < articlesResponse.length; i++)
             this.loadNumberComments(articlesResponse[i]);
 
-          this.articles = this.articles.concat(articlesResponse),
+          this.articles = this.articles.concat(articlesResponse);
           this.lastPage = response.last;
         },
         error => console.error(error)

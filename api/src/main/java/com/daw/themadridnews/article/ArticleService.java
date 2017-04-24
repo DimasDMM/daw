@@ -50,7 +50,7 @@ public class ArticleService {
 	// Devuelve una pagina de articulos para una categoria determinada
 	// Recordar que las paginas empiezan en 0
 	public Page<Article> getArticlesByCategory(String categoryId, int page, int number) {
-		Page<Article> p = articleRepository.findByCategory(categoryId, new PageRequest(page, number));
+		Page<Article> p = articleRepository.findByCategoryAndVisible(categoryId, true, new PageRequest(page, number));
 		return p;
 	}
 
@@ -94,7 +94,7 @@ public class ArticleService {
 	}
 	
 	public List<Article> findFirstNumber(int number, boolean contentHtml) {
-		List<Article> l = articleRepository.findFirstNumber(number);
+		List<Article> l = articleRepository.findFirstNumberAndVisible(number);
 		if(contentHtml) this.MarkdownFormatedHtml(l);
 		return l;
 	}
@@ -103,13 +103,13 @@ public class ArticleService {
 	 * Obtener X articulos aleatorios
 	 */
 	public List<Article> findRandom(int number, boolean contentHtml) {
-		List<Article> l = articleRepository.findRandom(number);
+		List<Article> l = articleRepository.findRandomAndVisible(number);
 		if(contentHtml) this.MarkdownFormatedHtml(l);
 		return l;
 	}
 
 	public List<Article> findRandom4ThisWeek(boolean contentHtml) {
-		List<Article> l = articleRepository.findRandom4ThisWeek();
+		List<Article> l = articleRepository.findRandom4ThisWeekAndVisible();
 		if(contentHtml) this.MarkdownFormatedHtml(l);
 		return l;
 	}
@@ -118,7 +118,7 @@ public class ArticleService {
 	 * Obtener el ultimo articulo publicado de cada categoria
 	 */
 	public List<Article> findFirstEachCategory(boolean contentHtml) {
-		List<Article> l = articleRepository.findFirstEachCategory();
+		List<Article> l = articleRepository.findFirstEachCategoryAndVisible();
 		if(contentHtml) this.MarkdownFormatedHtml(l);
 		return l;
 	}
@@ -127,7 +127,7 @@ public class ArticleService {
 	 * Obtener los 2 articulos mas vistos durante la ultima semana
 	 */
 	public List<Article> find2PopularLastWeek(boolean contentHtml) {
-		List<Article> l = articleRepository.find2PopularLastWeek();
+		List<Article> l = articleRepository.find2PopularLastWeekAndVisible();
 		if(contentHtml) this.MarkdownFormatedHtml(l);
 		return l;
 	}
