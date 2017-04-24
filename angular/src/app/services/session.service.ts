@@ -151,7 +151,7 @@ export class SessionService {
   }
 
   // Generar cabecera Auth-basic a partir de un usuario y contraseña
-  private generateAuthHeader(user:string, password:string) {
+  public generateAuthHeader(user:string, password:string) {
     let session = user + ':' + password;
     session = "Basic " + btoa(session);
     return session;

@@ -51,15 +51,24 @@ export class PreferencesPasswordComponent extends BaseSessionComponent implement
 
     this.submitButton(false);
     this.preferencesService.savePassword(this.oldPassword, this.newPassword1, this.newPassword2).subscribe(
-      response => this.submitFormSuccess(response),
+      response => this.submitFormSuccess(response, this.oldPassword, this.newPassword1),
       error => this.submitFormError(error)
     );
   }
 
-  private submitFormSuccess(user:User) {
+  private submitFormSuccess(user:User, oldPassword:string, newPassword:string) {
     this.submitButton(true);
     this.message = this.messageService.getMessage(304);
     this.simplePageScrollService.scrollToElement("#message_password", 0);
+
+    this.sessionService.setAuthHeader( this.sessionService.generateAuthHeader(user.email, newPassword) );
+    this.sessionService.relogin().subscribe(
+      respone => this.relogin.emit(true),
+      error => {
+        console.log(error);
+        this.sessionService.setAuthHeader( this.sessionService.generateAuthHeader(user.email, oldPassword) );
+      }
+    );
   }
 
   private submitFormError(error:any) {
