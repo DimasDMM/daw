@@ -4,19 +4,19 @@
 
   <h1 class="title-v4">Opciones</h1>
 
-  <h3>Administrador</h3>
-  <ul class="list-group sidebar-nav-v1">
+  <h3 *ngIf="hasRole(['ROLE_ADMIN'])">Administrador</h3>
+  <ul class="list-group sidebar-nav-v1" *ngIf="hasRole(['ROLE_ADMIN'])">
     <li [ngClass]="optionActiveList['administrator']"><a [routerLink]="['/administrador/usuarios']">Listado</a></li>
   </ul>
 
-  <h3>Art&iacute;culos</h3>
-  <ul class="list-group sidebar-nav-v1">
+  <h3 *ngIf="hasRole(['ROLE_EDITOR','ROLE_ADMIN'])">Art&iacute;culos</h3>
+  <ul class="list-group sidebar-nav-v1" *ngIf="hasRole(['ROLE_EDITOR','ROLE_ADMIN'])">
     <li [ngClass]="optionActiveList['editor-list']"><a [routerLink]="['/editor/articulos']">Publicados</a></li>
     <li [ngClass]="optionActiveList['editor-form']"><a [routerLink]="['/editor/articulos/nuevo']">Redactar</a></li>
   </ul>
 
-  <h3>Anuncios</h3>
-  <ul class="list-group sidebar-nav-v1">
+  <h3 *ngIf="hasRole(['ROLE_PUBLICIST','ROLE_ADMIN'])">Anuncios</h3>
+  <ul class="list-group sidebar-nav-v1" *ngIf="hasRole(['ROLE_PUBLICIST','ROLE_ADMIN'])">
     <li [ngClass]="optionActiveList['publicist-list']"><a [routerLink]="['/publicista/anuncios']">Listado</a></li>
     <li [ngClass]="optionActiveList['publicist-form']"><a [routerLink]="['/publicista/anuncios/nuevo']">Nuevo</a></li>
   </ul>
