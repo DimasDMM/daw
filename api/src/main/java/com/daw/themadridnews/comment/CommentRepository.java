@@ -15,7 +15,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
 	public Page<Comment> findByArticle(Article article, Pageable page);
 
-	@Query(nativeQuery=true, value="SELECT * FROM comments ORDER BY date_insert ASC LIMIT ?1")
+	@Query(nativeQuery=true, value="SELECT * FROM comments ORDER BY date_insert DESC LIMIT ?1")
 	public List<Comment> findFirstComments(int number);
 
 }
