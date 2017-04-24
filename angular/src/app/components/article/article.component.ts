@@ -21,6 +21,7 @@ import {Comment} from "../../entity/comment.entity";
 })
 export class ArticleComponent extends BaseSessionComponent implements OnInit, DoCheck {
 
+  private articleId:number = -1;
   private article: Article;
   private articleLoading = false;
 
@@ -53,13 +54,13 @@ export class ArticleComponent extends BaseSessionComponent implements OnInit, Do
 
   ngOnInit() {
     super.ngOnInit();
-    this.init();
   }
 
   ngDoCheck() {
     let id = this.activatedRoute.snapshot.params['id'];
 
-    if(this.article == null || id != this.article.id) {
+    if(id > 0 && this.article == null && this.articleId == -1 || id > 0 && id != this.articleId) {
+      this.articleId = id;
       this.init();
     }
   }
@@ -82,6 +83,7 @@ export class ArticleComponent extends BaseSessionComponent implements OnInit, Do
         this.article = response;
         this.article.nComments = 0;
         this.articleLoading = false;
+        this.comments = [];
         this.sectionComments(this.pageComments);
       },
       error => console.log(error)
