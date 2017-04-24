@@ -27,7 +27,7 @@
 								<ul class="blog-grid-info">
 									<li>{{article.author.name}} {{article.author.lastname}}</li>
 									<li>{{article.dateInsert | date:'d-M-y'}}</li>
-									<li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> 0</a></li>
+									<li><a [routerLink]="['/articulo',article.id]"><i class="fa fa-comments"></i> {{article.nComments}}</a></li>
 								</ul>
 								<p>{{content | slice:0:50}}</p>
 								<a class="r-more" [routerLink]="['/articulo',article.id]">Leer m&aacute;s</a>

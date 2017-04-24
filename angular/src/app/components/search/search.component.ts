@@ -6,6 +6,7 @@ import {SessionService} from "../../services/session.service";
 import {Article} from "app/entity/article.entity";
 import {SearchService} from "app/services/search.service";
 import {URL_IMAGES} from "app/shared/config.object";
+import {ArticleService} from "../../services/article.service";
 
 @Component({
   selector: 'app',
@@ -25,6 +26,7 @@ export class SearchComponent extends BaseSessionComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private searchService: SearchService,
+    private articleService: ArticleService,
     sessionService: SessionService
   ) {
     super(sessionService)
@@ -51,16 +53,28 @@ export class SearchComponent extends BaseSessionComponent implements OnInit {
   }
 
   private searchSuccess(response: any) {
-    this.results = this.results.concat(response.content);
+    let articlesResponse = response.content;
+
+    this.results = this.results.concat(articlesResponse);
     this.lastPage = response.last;
     this.searchLoading = !this.searchLoading;
-    console.log(this.results);
-    console.log(this.page);
+
+    for(let i = 0; i < articlesResponse.length; i++)
+      this.loadNumberComments(articlesResponse[i]);
   }
 
   private moreResults() {
     this.page = this.page + 1;
     this.sectionSearch();
+  }
+
+  // Numero de comentarios en articulo
+  public loadNumberComments(article:Article) {
+    article.nComments = 0;
+    this.articleService.getNumberComments(article).subscribe(
+      response => article.nComments = response.nComments,
+      error => console.log(error)
+    );
   }
 
   /*

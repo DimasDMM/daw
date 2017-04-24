@@ -50,8 +50,15 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
 
   private loadMoreArticles(){
     this.articleService.getArticlesFromCategory(this.category.id, this.page,10).subscribe(
-        articles => {this.articles = this.articles.concat(articles.content),
-                    this.lastPage=articles.last},
+      response => {
+          let articlesResponse = response.content;
+
+          for(let i = 0; i < articlesResponse.length; i++)
+            this.loadNumberComments(articlesResponse[i]);
+
+          this.articles = this.articles.concat(articlesResponse),
+          this.lastPage = response.last;
+        },
         error => console.error(error)
     );
   }
@@ -60,6 +67,15 @@ export class CategoryComponent extends BaseSessionComponent implements OnInit {
     this.page=this.page+1;
     this.loadMoreArticles();
     console.log("lastPage",this.lastPage);
+  }
+
+  // Numero de comentarios en articulo
+  public loadNumberComments(article:Article) {
+    article.nComments = 0;
+    this.articleService.getNumberComments(article).subscribe(
+      response => article.nComments = response.nComments,
+      error => console.log(error)
+    );
   }
 
   /*
