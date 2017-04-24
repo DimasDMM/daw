@@ -41,7 +41,7 @@
           <ul class="blog-grid-tags">
             <li class="head">Tags</li>
             <li *ngFor="let tag of article.tags">
-              <a [routerLink]="['/buscar',tag]">{{tag}}</a>
+              <a [routerLink]="['/buscar',{'search':tag}]">{{tag}}</a>
             </li>
 					</ul>
           <!-- End Blog Grid Tagds -->
