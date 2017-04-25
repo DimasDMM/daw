@@ -4,6 +4,8 @@ docker rm -f $(docker ps -a -q)
 # Comando conjunto
 docker rm -f $(docker ps -a -q); docker-compose up --build
 
+#Login into Docker Machine
+ssh docker@(tuIP) [password:tcuser]
 
 ############ ANGULAR ##############
 # Compilar la aplicacion Angular con: ng build --prod --aot=false
@@ -22,4 +24,11 @@ docker rm -f $(docker ps -a -q)
 docker build -t api .
 docker run -it --rm --name api_spring api
 
+############## MYSQL ################
+#Installar: docker pull mysql
 
+docker run --name daw_mysql -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=daw -p 3306:3306 -d mysql
+
+docker ps
+
+docker logs daw_mysql
