@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  mysql:
+    build: ./mysql
+    container_name: mysql_server
+    environment:
+      MYSQL_ROOT_PASSWORD: "pass"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "33060:3306"

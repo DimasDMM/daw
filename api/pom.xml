@@ -21,7 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-                <start-class>com.daw.themadridnews.App</start-class>
+        <start-class>com.daw.themadridnews.App</start-class>
 	</properties>
 
 	<dependencies>
