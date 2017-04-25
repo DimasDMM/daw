@@ -66,7 +66,7 @@ export class AdministratorFormComponent extends BaseSessionComponent implements 
     this.router.navigate(['/administrador/usuarios', {'msg':msg}]);
   }
 
-  // Verificar si role esta activo
+  // Verificar si rol esta activo
   private hasRoleForm(role:string):boolean {
     return this.sessionService.hasRole([role], this.fUser);
   }
