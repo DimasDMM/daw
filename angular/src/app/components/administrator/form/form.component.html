@@ -57,7 +57,7 @@
             <div class="col col-4">
               <label class="checkbox"><input type="checkbox" name="role_editor" [ngModel]="hasRoleForm('ROLE_EDITOR')" (change)="toggleRole('ROLE_EDITOR')" /><i></i>Editor</label>
               <label class="checkbox"><input type="checkbox" name="role_publicist" [ngModel]="hasRoleForm('ROLE_PUBLICIST')" (change)="toggleRole('ROLE_PUBLICIST')" /><i></i>Publicista</label>
-              <label class="checkbox"><input type="checkbox" name="role_admin" [ngModel]="hasRoleForm('ROLE_ADMIN')" (change)="toggleRole('ROLE_ADMIN')" /><i></i>Administrador</label>
+              <label class="checkbox"><input type="checkbox" name="role_admin" [ngModel]="hasRoleForm('ROLE_ADMIN')" (change)="toggleRole('ROLE_ADMIN')" [disabled]="userLogged.id==fUser.id"/><i></i>Administrador</label>
             </div>
           </section>
 
