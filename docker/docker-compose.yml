@@ -6,6 +6,6 @@ services:
     container_name: mysql_server
     environment:
       MYSQL_ROOT_PASSWORD: "pass"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "daw"
     ports:
       - "33060:3306"
