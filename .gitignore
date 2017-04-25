@@ -4,11 +4,14 @@
 /.project
 /.classpath
 /.metadata
+
 /api/.idea/
 /api/target
 /api/.settings/
 /api/.classpath
 /api/.project
+/api/themadridnews.iml
+
 /web/target/
 /web/.settings/
 /web/.metadata
@@ -18,4 +21,9 @@
 /web/themadridnews.iml
 /web/.idea/
 /web/files/
+
 /angular/src/node_modules
+/angular/dist
+
+/docker/angular/dist
+/docker/.idea/
