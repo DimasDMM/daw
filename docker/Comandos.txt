@@ -1,11 +1,13 @@
 # Borrar todos los contenedores
 docker rm -f $(docker ps -a -q)
 
-# Comando conjunto
-docker rm -f $(docker ps -a -q); docker-compose up --build
-
-#Login into Docker Machine
+# Login into Docker Machine
 ssh docker@(tuIP) [password:tcuser]
+
+########## DOCKER COMPOSE #########
+docker rm -f $(docker ps -a -q)
+docker-compose up --build
+
 
 ############ ANGULAR ##############
 # Compilar la aplicacion Angular con: ng build --prod --aot=false
@@ -16,6 +18,7 @@ docker rm -f $(docker ps -a -q)
 docker build -t apache2 .
 docker run -dit -p 4200:80 --rm --name angular apache2
 
+
 ############## API ################
 # Al mover el JAR a la carpeta /docker/api recordar que el JAR no debe generar la base de datos
 # La base de datos ya estara previamente cargada en otro contenedor a traves de un archivo SQL
@@ -24,11 +27,19 @@ docker rm -f $(docker ps -a -q)
 docker build -t api .
 docker run -it --rm --name api_spring api
 
+
 ############## MYSQL ################
-#Installar: docker pull mysql
+# Cosas de Alma:
+# Instalar: docker pull mysql
 
 docker run --name daw_mysql -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=daw -p 3306:3306 -d mysql
 
 docker ps
 
 docker logs daw_mysql
+
+# Ejecutar Dockerfile
+
+docker rm -f $(docker ps -a -q)
+docker build -t mysql .
+docker run -it --name mysql_server mysql
