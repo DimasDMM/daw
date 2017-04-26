@@ -14,11 +14,8 @@ public class UserService {
 
 	public static interface UserDetails extends User.Basic, User.Details, Favourite.Basic, Config.Responses {}
 
-	@Autowired
-	protected UserRepository userRepository;
-
-	@Autowired
-	protected UserComponent userComponent;
+	@Autowired protected UserRepository userRepository;
+	@Autowired protected UserComponent userComponent;
 	
 	protected static final int ITEMS_LIST = 10;
 	

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class UserRepositoryAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepository userService;
 
 	@Autowired
 	private UserComponent userComponent;
@@ -26,17 +26,20 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 
-		User user = userRepository.findByEmail(auth.getName());
+		User user = userService.findByEmail(auth.getName());
 
 		if (user == null) {
+			System.out.println("Login Error: User not found: "+ auth.getName());
 			throw new BadCredentialsException("User not found");
 		}
 
 		String password = (String) auth.getCredentials();
 		if (!new BCryptPasswordEncoder().matches(password, user.getPasswordHash())) {
+			System.out.println("Login Error: Wrong password for: "+ user.getEmail());
 			throw new BadCredentialsException("Wrong password");
 		}
 
+		System.out.println("Login Ok: "+ user.getName());
 		userComponent.setLoggedUser(user);
 
 		List<GrantedAuthority> roles = new ArrayList<>();

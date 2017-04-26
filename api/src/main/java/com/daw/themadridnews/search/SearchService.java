@@ -1,14 +1,18 @@
 package com.daw.themadridnews.search;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import com.daw.themadridnews.article.Article;
 import com.daw.themadridnews.article.ArticleRepository;
+import com.daw.themadridnews.article.ArticleView;
 import com.daw.themadridnews.comment.CommentRepository;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.webconfig.Config;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Service
 public class SearchService {
@@ -29,5 +33,13 @@ public class SearchService {
 	public Page<Article> getArticlesContaining(String item, int nPage) {
 		Page<Article> p = articleRepository.findByTitleContainingAndVisible(item, true, new PageRequest(nPage, N_RESULTS));
 		return p;
+	}
+	
+	
+	/*************/
+	
+	public class PageArticlesView {
+		@JsonView(SearchService.SearchBasic.class) public List<ArticleView> content;
+		@JsonView(SearchService.SearchBasic.class) public boolean isLast;
 	}
 }

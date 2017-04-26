@@ -9,19 +9,26 @@ import com.fasterxml.jackson.annotation.JsonView;
  */
 public class Message {
 	public static interface Basic {}
-	
+
+	@JsonView(Basic.class) protected boolean isError;
 	@JsonView(Basic.class) protected int code;
 	@JsonView(Basic.class) protected String message;
 	
 	
 	public Message() {
 		this.code = 0;
+		this.isError = false;
 		this.message = "";
 	}
 	
 	public Message(int code, String message, String type) {
 		this.code = code;
+		this.isError = (this.code != 0);
 		setMessage(message);
+	}
+	
+	public boolean isError() {
+		return isError;
 	}
 	
 	public int getCode() {
@@ -30,6 +37,7 @@ public class Message {
 	
 	public void setCode(int code) {
 		this.code = code;
+		this.isError = (this.code != 0);
 	}
 	
 	public String getMessage() {

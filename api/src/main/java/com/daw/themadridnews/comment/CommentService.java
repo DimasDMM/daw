@@ -34,6 +34,7 @@ public class CommentService {
 		return commentRepository.findOne(id);
 	}
 
+	// La pagina empieza en 0
 	public Page<Comment> getByArticle(Article a, int nPage) {
 		return commentRepository.findByArticle(a, new PageRequest(nPage, ITEMS_LIST, Sort.Direction.DESC, "id"));
 	}

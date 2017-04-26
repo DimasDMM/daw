@@ -21,11 +21,13 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll();
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE).permitAll();
-		http.authorizeRequests().antMatchers(HttpMethod.POST).permitAll();
-		http.authorizeRequests().antMatchers(HttpMethod.PUT).permitAll();
-		http.authorizeRequests().antMatchers(HttpMethod.GET).permitAll();
+		http.antMatcher("/api/**");
+
+		http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/**").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/**").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/**").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/**").permitAll();
 
 		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/registro/paso_2").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/articulo/{id}/comentario").hasAnyRole("USER");
@@ -34,9 +36,6 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/api/publicista/**").hasAnyRole("PUBLICIST", "ADMIN");
 		http.authorizeRequests().antMatchers("/api/editor/**").hasAnyRole("EDITOR", "ADMIN");
 		http.authorizeRequests().antMatchers("/api/administrador/**").hasAnyRole("ADMIN");
-		
-		// Other URLs can be accessed without authentication
-		http.authorizeRequests().anyRequest().permitAll();
 
 		// CSRF protection
 		http.csrf().disable();

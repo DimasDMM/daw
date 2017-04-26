@@ -1,8 +1,6 @@
 package com.daw.themadridnews;
 
-import com.daw.themadridnews.favourite.Favourite;
 import com.daw.themadridnews.requests.ApiSignupStep1;
-import com.daw.themadridnews.requests.ApiSignupStep2;
 import com.daw.themadridnews.user.User;
 import com.daw.themadridnews.user.UserService;
 import com.daw.themadridnews.utils.Message;
