@@ -1,5 +1,9 @@
 version: '2.1'
 
+networks:
+  backend:
+  frontend:
+
 services:
   mysql:
     build: ./mysql
@@ -8,22 +12,9 @@ services:
       MYSQL_ROOT_PASSWORD: "pass"
       MYSQL_DATABASE: "daw"
     ports:
-      - "3306:3306"
+      - "33060:3306"
     networks:
       - backend
-
-  docker-wait:
-    build: ./docker-wait
-    container_name: docker-wait
-    depends_on:
-      - mysql
-    networks:
-      - backend
-    healthcheck:
-      test: ["CMD", "sh /wait.sh"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
 
   api:
     build: ./api
@@ -37,6 +28,13 @@ services:
       - backend
       - frontend
 
-networks:
-  backend:
-  frontend:
+  docker-wait:
+    build: ./docker-wait
+    container_name: docker-wait
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "sh", "/wait.sh"]
+      interval: 5s
+      timeout: 5s
+      retries: 10

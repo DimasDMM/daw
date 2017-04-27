@@ -9,6 +9,23 @@ docker rm -f $(docker ps -a -q)
 docker-compose up --build
 
 
+############## MYSQL ################
+# Cosas de Alma:
+# Instalar: docker pull mysql
+
+docker run --name daw_mysql -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=daw -p 3306:3306 -d mysql
+
+docker ps
+
+docker logs daw_mysql
+
+# Ejecutar Dockerfile
+
+docker rm -f $(docker ps -a -q)
+docker build -t mysql .
+docker run -d -e MYSQL_ROOT_PASSWORD=pass -p 33060:3306 --name mysql_server mysql
+
+
 ############ ANGULAR ##############
 # Compilar la aplicacion Angular con: ng build --prod --aot=false
 # El resultado estara en la carpeta /angular/dist y lo deberemos copiar a /docker/angular/app
@@ -26,20 +43,3 @@ docker run -dit -p 4200:80 --rm --name angular apache2
 docker rm -f $(docker ps -a -q)
 docker build -t api .
 docker run -it --rm --name api_spring api
-
-
-############## MYSQL ################
-# Cosas de Alma:
-# Instalar: docker pull mysql
-
-docker run --name daw_mysql -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=daw -p 3306:3306 -d mysql
-
-docker ps
-
-docker logs daw_mysql
-
-# Ejecutar Dockerfile
-
-docker rm -f $(docker ps -a -q)
-docker build -t mysql .
-docker run -it --name mysql_server mysql

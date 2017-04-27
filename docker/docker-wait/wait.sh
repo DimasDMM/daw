@@ -1,11 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
-echo "Waiting for MySQL connection"
+echo "Waiting for MySQL";
 
-while ! mysql -u root -p pass -h mysql_server -e 'SELECT * FROM daw.articles';
+while ! mysql -u root -p'pass' -h mysql_server -P 33060 -e 'SELECT * FROM daw.articles';
 do
-    sleep 1
-    echo "Waiting..."
+  echo "Waiting..."
+  sleep 1
 done
 
-echo "Ok"
+echo "Done"
+exit 0
