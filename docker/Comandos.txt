@@ -1,8 +1,16 @@
-# Borrar todos los contenedores
-docker rm -f $(docker ps -a -q)
+# Como ejecutar los contenedores por separado, es decir, sin Docker Compose:
+# Abrir 2 terminales en la carpeta "docker"
+# En la primera terminal ejecutar:
 
-# Login into Docker Machine
-ssh docker@(tuIP) [password:tcuser]
+docker rm -f $(docker ps -a -q)
+docker build -t mysql ./mysql
+docker run --name mysql_server mysql
+
+# Esperar a que ponga "MySQL ready" (o algo asi) y ejecutar sobre la segunda terminal:
+
+docker build -t api_server ./api
+docker run --rm -p 8080:8080 --link mysql_server:mysql_server --name api_server api_server
+
 
 ########## DOCKER COMPOSE #########
 docker rm -f $(docker ps -a -q)
@@ -15,8 +23,8 @@ docker-compose up --build
 # Ojo, no se puede usar el modificador '--aot' porque hay algunas librerias que no son compatibles
 
 docker rm -f $(docker ps -a -q)
-docker build -t apache2 .
-docker run -dit -p 4200:80 --rm --name angular apache2
+docker build -t angular ./angular
+docker run -dit -p 4200:80 --rm --name angular_frontend angular
 
 
 ############## API ################
@@ -24,8 +32,8 @@ docker run -dit -p 4200:80 --rm --name angular apache2
 # La base de datos ya estara previamente cargada en otro contenedor a traves de un archivo SQL
 
 docker rm -f $(docker ps -a -q)
-docker build -t api .
-docker run -it --rm --name api_spring api
+docker build -t api_server ./api
+docker run --rm --name api_server api
 
 
 ############## MYSQL ################
@@ -41,5 +49,5 @@ docker logs daw_mysql
 # Ejecutar Dockerfile
 
 docker rm -f $(docker ps -a -q)
-docker build -t mysql .
-docker run -it --name mysql_server mysql
+docker build -t mysql ./mysql
+docker run --name mysql_server mysql
