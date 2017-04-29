@@ -8,8 +8,8 @@ docker run --name mysql_server mysql
 
 # Esperar a que ponga "MySQL ready" (o algo asi) y ejecutar sobre la segunda terminal:
 
-docker build -t api_server ./api
-docker run --rm -p 8080:8080 --link mysql_server:mysql_server --name api_server api_server
+docker build -t web_server ./web
+docker run --rm -p 8080:8080 --link mysql_server:mysql_server --name web_server web_server
 
 
 ########## DOCKER COMPOSE #########
@@ -37,15 +37,6 @@ docker run --rm --name api_server api
 
 
 ############## MYSQL ################
-# Cosas de Alma:
-# Instalar: docker pull mysql
-
-docker run --name daw_mysql -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=daw -p 3306:3306 -d mysql
-
-docker ps
-
-docker logs daw_mysql
-
 # Ejecutar Dockerfile
 
 docker rm -f $(docker ps -a -q)

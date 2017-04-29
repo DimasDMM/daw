@@ -2,19 +2,16 @@ version: '2.1'
 
 services:
   mysql:
-    container_name: mysql_server
     build: ./mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: "pass"
-      MYSQL_DATABASE: "daw"
+    container_name: mysql_server
     ports:
-      - "33060:3306"
+      - "3306:3306"
     networks:
       - backend
 
-  api:
-    container_name: api_server
-    build: ./api
+  web:
+    build: ./web
+    container_name: web_server
     ports:
       - "8080:8080"
     networks:

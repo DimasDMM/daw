@@ -1,0 +1,29 @@
+## COMPILAR APLICACION SPA
+
+# Modificar el <meta> del archivo ./angular/src/index.html
+<base href="/new/">
+
+# Situarnos en la carpeta de ./angular y compilarlo
+ng build --prod --aot=false
+
+# Copiar el resultado de ./angular/dist a la carpeta
+# del jar en ./web/src/main/resources/templates/new
+
+# Abrimos el archivo ./web/src/main/resources/application.properties y verificamos
+# que contiene los siguientes valores:
+spring.datasource.url=jdbc:mysql://mysql_server/daw
+spring.datasource.username=root
+spring.datasource.password=pass
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=none
+
+# Compilamos el JAR y copiamos el resultado en la carpeta ./docker/web
+# Tambien debemos copiar la carpeta ./web/images a ./docker/web/images
+
+
+## DOCKER
+
+# Ir a la carpeta de ./docker y ejecutar el docker-compose
+
+docker rm -f $(docker ps -a -q)
+docker-compose up --build
