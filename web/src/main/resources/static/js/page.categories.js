@@ -9,7 +9,7 @@ $(function () {
         $('#spinner').removeClass('hidden');
 
         $.ajax({
-            url: "/api/categoria/" + categoryId + "?page=" + page
+            url: "/api/articulos/" + categoryId + "?page=" + page +"&view=true"
         }).done(function (data) {
 
             page++;
@@ -21,7 +21,7 @@ $(function () {
                 $('#category_news').append(
                 		"<div class=\"row margin-bottom-50\">"+
                 			"<div class=\"col-sm-4 sm-margin-bottom-20\">"+
-                				"<img class=\"img-responsive\" src=\"/imagen/articulo/{{id}}\" alt=\"\">"+
+                				"<img class=\"img-responsive\" src=\"/imagen/articulo/"+article.id+"\" alt=\"\">"+
                 			"</div>" +
                 			"<div class=\"col-sm-8\">" +
                 				"<div class=\"blog-grid\">" +

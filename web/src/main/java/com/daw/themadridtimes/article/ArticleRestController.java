@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.daw.themadridtimes.comment.Comment;
+import com.daw.themadridtimes.comment.CommentRepository;
 import com.daw.themadridtimes.comment.CommentService;
 import com.daw.themadridtimes.favourite.Favourite;
 import com.daw.themadridtimes.requests.ApiComment;
@@ -22,10 +23,12 @@ import com.daw.themadridtimes.user.UserService;
 import com.daw.themadridtimes.utils.Message;
 import com.fasterxml.jackson.annotation.JsonView;
 
+
 @RestController
 @RequestMapping("/api")
 public class ArticleRestController {
 	
+	@Autowired protected CommentRepository commentRepository;
 	@Autowired protected ArticleService articleService;
 	@Autowired protected CommentService commentService;
 	@Autowired protected UserService userService;
@@ -101,15 +104,29 @@ public class ArticleRestController {
 	 */
 	@JsonView(ArticleService.View.class) 
 	@RequestMapping("/articulos/{categoryId}")
-	public ResponseEntity<Object> categories(@PathVariable String categoryId, @RequestParam(required=false) Integer page, @RequestParam(required=false) Integer number) {
+	public ResponseEntity<Object> categories(
+			@PathVariable String categoryId,
+			@RequestParam(required=false) Integer page,
+			@RequestParam(required=false) Integer number,
+			@RequestParam(required=false) boolean view
+	) {
 		if(!CategoryCommons.existsCategory(categoryId))
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 		number =  (number != null) ? number.intValue() : N_RESULTS;
 		page =  (page != null) ? page.intValue() - 1 : 0;
-		
+
 		Page<Article> p = articleService.getArticlesByCategory(categoryId, page, number);
-		return new ResponseEntity<>(p, HttpStatus.OK);
+		
+		if(!view) {
+			return new ResponseEntity<>(p, HttpStatus.OK);
+		} else {
+			PageArticleView pav = new PageArticleView();
+			pav.content = ArticleView.castList( p.getContent(), commentRepository );
+			pav.isLast = p.isLast();
+			
+			return new ResponseEntity<>(pav, HttpStatus.OK);
+		}
 	}
 
 	/**
@@ -233,4 +250,9 @@ public class ArticleRestController {
     private class NumberComments {
 		public long nComments;
     }
+	
+	public class PageArticleView {
+		@JsonView(ArticleService.View.class) public List<ArticleView> content;
+		@JsonView(ArticleService.View.class) public boolean isLast;
+	}
 }

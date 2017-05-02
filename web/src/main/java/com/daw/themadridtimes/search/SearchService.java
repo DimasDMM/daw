@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Service
 public class SearchService {
 	
-	public static interface SearchBasic extends Article.Basic, User.Basic, Config.Responses {}
+	public static interface SearchBasic extends Article.Basic, ArticleView.Basic, User.Basic, Config.Responses {}
 	
 	public static final int N_RESULTS = 10;
 	

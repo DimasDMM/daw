@@ -9,7 +9,7 @@ $(function () {
         $('#spinner').removeClass('hidden');
 
         $.ajax({
-            url: "/api/buscar?search="+ encodeURIComponent(search) +"&page="+nPage
+            url: "/api/buscar?search="+ encodeURIComponent(search) +"&page="+nPage+"&view=true"
         }).done(function (data) {
             
             nPage++;
@@ -21,7 +21,7 @@ $(function () {
                 $('#search_result').append(
                 		"<div class=\"row margin-bottom-50\">" +
 	                		"<div class=\"col-sm-4 sm-margin-bottom-20\">" +
-	                			"<img class=\"img-responsive\" src=\"/articles/1/main.jpg\" alt=\"\">" +
+	                			"<img class=\"img-responsive\" src=\"/imagen/articulo/"+article.id+"\" alt=\"\">" +
 	                		"</div>" +
 	                		"<div class=\"col-sm-8\">" +
 		                		"<div class=\"blog-grid\">" +

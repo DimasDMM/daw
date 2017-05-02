@@ -15,7 +15,7 @@ import com.daw.themadridtimes.webconfig.Config;
 @Service
 public class ArticleService {
 
-	public static interface View extends Article.Basic, User.Basic, Config.Responses {}
+	public static interface View extends Article.Basic, ArticleView.Basic, User.Basic, Config.Responses {}
 	public static interface Popular extends Article.Basic, User.Basic, Config.Responses {}
 	public static interface Editor extends Article.Basic, Article.Details, User.Basic, Config.Responses {}
 	public static interface ArticlesFavs extends CategoryFavourites.Basic, Article.Basic, User.Basic, Config.Responses {}

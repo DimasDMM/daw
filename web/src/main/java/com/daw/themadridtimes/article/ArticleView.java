@@ -172,13 +172,17 @@ public class ArticleView {
 	public String getDateInsertStrShort() {
 		return dateInsertStrShort;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "ArticleView [id=" + id + ", category=" + category + ", title=" + title + ", content=" + content
-				+ ", author=" + author + ", source=" + source + ", tags=" + tags + "]";
+		return "ArticleView [id=" + id + ", category=" + category + ", title=" + title + ", titleShort=" + titleShort
+				+ ", titleMid=" + titleMid + ", content=" + content + ", contentTxt=" + contentTxt + ", contentShort="
+				+ contentShort + ", contentLong=" + contentLong + ", author=" + author + ", source=" + source
+				+ ", tags=" + tags + ", visible=" + visible + ", nComments=" + nComments + ", views=" + views
+				+ ", commentsSummary=" + commentsSummary + ", dateInsertStrLong=" + dateInsertStrLong
+				+ ", dateInsertStrShort=" + dateInsertStrShort + ", dateInsert=" + dateInsert + "]";
 	}
-	
+
 	public static List<ArticleView> castList(List<Article> l) {
 		List<ArticleView> c = new ArrayList<ArticleView>();
 		Iterator<Article> it = l.iterator();
@@ -197,13 +201,19 @@ public class ArticleView {
 		
 		while(it.hasNext()) {
 			Article a = it.next();
-			long nComments = rep.countByArticle(a);
 			
-			ArticleView av = new ArticleView(a, nComments);
+			ArticleView av = ArticleView.castArticle(a, rep);
 			
 			c.add( av );
 		}
 		
 		return c;
+	}
+	
+	public static ArticleView castArticle(Article a, CommentRepository rep) {
+		long nComments = rep.countByArticle(a);
+		ArticleView av = new ArticleView(a, nComments);
+		
+		return av;
 	}
 }
