@@ -1,10 +1,16 @@
 package com.daw.themadridtimes.files;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -16,8 +22,7 @@ import com.daw.themadridtimes.webconfig.Config;
 @Controller
 public class FileUploadController {
 	
-	@Autowired
-	private Config config;
+	@Autowired private Config config;
 
 
 	@RequestMapping(value="/imagen/articulo/{filename}")
@@ -38,9 +43,34 @@ public class FileUploadController {
 		showImage(file, res);
 	}
 	
+	@SuppressWarnings("null")
 	protected void showImage(File file, HttpServletResponse res) {
 		try {
-			if (file.exists()) {
+			if (file != null && file.exists()) {
+				res.setContentLength(new Long(file.length()).intValue());
+				res.setContentType(MediaType.IMAGE_JPEG_VALUE);
+				FileCopyUtils.copy( new FileInputStream(file), res.getOutputStream() );
+				
+			} else {
+				InputStream inpFile = FileUploadController.class.getResourceAsStream("/static/img/no-image.jpg");
+	            
+				file = null;
+
+				res.setContentType("image/jpeg");
+				FileCopyUtils.copy(inpFile, res.getOutputStream());
+			}
+	
+			res.flushBuffer();
+
+		} catch(Exception e) {
+			System.err.println("FileUploadController Error: "+ e.getMessage());
+			if(file != null) this.showImage(null, res);
+		}
+	}
+	/*
+	protected void showImage(File file, HttpServletResponse res) {
+		try {
+			if (file != null && file.exists()) {
 				res.setContentLength(new Long(file.length()).intValue());
 				res.setContentType(MediaType.IMAGE_JPEG_VALUE);
 				FileCopyUtils.copy( new FileInputStream(file), res.getOutputStream() );
@@ -55,7 +85,9 @@ public class FileUploadController {
 			res.flushBuffer();
 
 		} catch(Exception e) {
+			System.err.println("FileUploadController Error: "+ e.getMessage());
+			if(file != null) this.showImage(null, res);
 		}
 	}
-
+	 */
 }

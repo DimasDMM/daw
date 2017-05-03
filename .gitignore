@@ -19,5 +19,4 @@
 /angular/src/node_modules
 /angular/dist
 
-/docker/web/images
 /docker/.idea/
