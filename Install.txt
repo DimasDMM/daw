@@ -17,6 +17,16 @@ spring.datasource.password=pass
 spring.datasource.driverClassName=com.mysql.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=none
 
+# Configurar el archivo de ruta de imagenes ./web/src/main/resources/config.properties
+# En Docker:
+path.img.absolute=/home/images/
+path.img.isRelative=false
+
+# En Windows:
+path.img.absolute=images/
+path.img.isRelative=true
+
+
 # Compilamos el JAR y copiamos el resultado en la carpeta ./docker/web
 # Tambien debemos copiar la carpeta ./web/images a ./docker/web/images
 
