@@ -2,26 +2,15 @@ package com.daw.themadridtimes.files;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URI;
-import java.net.URL;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.daw.themadridtimes.App;
 import com.daw.themadridtimes.webconfig.Config;
 
 
@@ -29,7 +18,6 @@ import com.daw.themadridtimes.webconfig.Config;
 public class FileUploadController {
 	
 	@Autowired private Config config;
-	@Autowired private ResourceLoader resourceLoader;
 
 
 	@RequestMapping(value="/imagen/articulo/{filename}")
@@ -50,8 +38,6 @@ public class FileUploadController {
 	protected void showImage(String filePath, HttpServletResponse res) {
 		try {
 			if (filePath != null) {
-		        System.out.println("FileUploadController path: "+ filePath);
-		        
 		        File file = new File( filePath );
 		        
 		        if(!file.exists())
@@ -71,8 +57,6 @@ public class FileUploadController {
 			res.flushBuffer();
 
 		} catch(Exception e) {
-			System.err.println("FileUploadController Error: "+ e.getMessage());
-			System.err.println(e.toString());
 			if(filePath != null) this.showImage(null, res);
 		}
 	}

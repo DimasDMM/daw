@@ -1,5 +1,4 @@
 /.idea/
-/pruebaIgnorar
 /.settings/
 /.project
 /.classpath
@@ -14,7 +13,6 @@
 /web/themadridtimes.iml
 /web/.idea/
 /web/files/
-/web/src/main/resources/templates/new
 
 /angular/src/node_modules
 /angular/dist

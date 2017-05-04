@@ -3,19 +3,20 @@
 # Modificar el <meta> del archivo ./angular/src/index.html
 <base href="/new/">
 
+# Modificar el archivo shared/config.object.ts
+export const URL_IMAGES = "";
+export const URL_API = "/api";
+
 # Situarnos en la carpeta de ./angular y compilarlo
 ng build --prod --aot=false
 
 # Copiar el resultado de ./angular/dist a la carpeta
-# del jar en ./web/src/main/resources/templates/new
+# del jar en ./web/src/main/resources/static/new excepto
+# el archivo index.html que debera ir en ./web/src/main/resources/templates/new
 
 # Abrimos el archivo ./web/src/main/resources/application.properties y verificamos
-# que contiene los siguientes valores:
+# que contiene la siguiente linea:
 spring.datasource.url=jdbc:mysql://mysql_server/daw
-spring.datasource.username=root
-spring.datasource.password=pass
-spring.datasource.driverClassName=com.mysql.jdbc.Driver
-spring.jpa.hibernate.ddl-auto=none
 
 # Configurar el archivo de ruta de imagenes ./web/src/main/resources/config.properties
 # En Docker:
@@ -28,7 +29,7 @@ path.img.isRelative=true
 
 
 # Compilamos el JAR y copiamos el resultado en la carpeta ./docker/web
-# Tambien debemos copiar la carpeta ./web/images a ./docker/web/images
+# Tambien debemos copiar la carpeta ./web/images a ./docker/web
 
 
 ## DOCKER

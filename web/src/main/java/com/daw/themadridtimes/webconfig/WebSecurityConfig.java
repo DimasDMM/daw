@@ -17,6 +17,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	
+    	// Angular
+        http.authorizeRequests().antMatchers("/new").permitAll();
+        http.authorizeRequests().antMatchers("/new/**").permitAll();
 
     	// Public pages
         http.authorizeRequests().antMatchers("/").permitAll();

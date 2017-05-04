@@ -96,6 +96,11 @@ public class WebController {
 		return new ModelAndView("index");
     }
 
+	@RequestMapping(value= {"/new"})
+    public ModelAndView angular(Model model) {
+		return new ModelAndView("new/index");
+    }
+
 	@RequestMapping(value= {"/privacidad"})
     public ModelAndView privacy(Model model) {
 		return new ModelAndView("privacy");
