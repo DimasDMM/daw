@@ -17,16 +17,6 @@ docker rm -f $(docker ps -a -q)
 docker-compose up --build
 
 
-############ ANGULAR ##############
-# Compilar la aplicacion Angular con: ng build --prod --aot=false
-# El resultado estara en la carpeta /angular/dist y lo deberemos copiar a /docker/angular/app
-# Ojo, no se puede usar el modificador '--aot' porque hay algunas librerias que no son compatibles
-
-docker rm -f $(docker ps -a -q)
-docker build -t angular ./angular
-docker run -dit -p 4200:80 --rm --name angular_frontend angular
-
-
 ############## API ################
 # Al mover el JAR a la carpeta /docker/api recordar que el JAR no debe generar la base de datos
 # La base de datos ya estara previamente cargada en otro contenedor a traves de un archivo SQL
@@ -41,4 +31,4 @@ docker run --rm --name api_server api
 
 docker rm -f $(docker ps -a -q)
 docker build -t mysql ./mysql
-docker run --name mysql_server mysql
+docker run -p 33060:3306 --name mysql_server mysql
