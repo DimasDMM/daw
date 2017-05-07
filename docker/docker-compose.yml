@@ -4,8 +4,6 @@ services:
   mysql:
     build: ./mysql
     container_name: mysql_server
-    ports:
-      - "3306:33060"
     networks:
       - backend
 
