@@ -130,6 +130,12 @@ Estas son las clases que componen la aplicación. Hemos utilizado los colores pa
  
 ![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/Classes.png)
 
+## SPA Angular
+
+A continuación, se muestras los componentes y las correspondientes relaciones.
+
+![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/SPA_Angular.png)
+
 ## Cambios respecto a la plantilla
 
  - index.html
