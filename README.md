@@ -1,7 +1,7 @@
 # Desarrollo de Aplicaciones Web
 
 
-##Nombre de la aplicación: The Madrid Times
+## Nombre de la aplicación: The Madrid Times
 
 ## Demo
 
