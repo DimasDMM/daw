@@ -140,10 +140,47 @@ A continuación, se muestras los componentes con las correspondientes relaciones
 
 ## DOCKER
 
-# Ir a la carpeta de ./docker y ejecutar el docker-compose
+Como ejecutar los contenedores por separado, es decir, sin Docker Compose:
+ - Abrir 2 terminales en la carpeta "docker"
+ - En la primera terminal ejecutar:
 
+~~~
+docker rm -f $(docker ps -a -q)
+docker build -t mysql ./mysql
+docker run --name mysql_server mysql
+~~~
+
+Esperar a que ponga "MySQL ready" (o algo asi) y ejecutar sobre la segunda terminal:
+
+~~~
+docker build -t web_server ./web
+docker run --rm -p 8080:8080 --link mysql_server:mysql_server --name web_server web_server
+~~~
+
+### DOCKER COMPOSE 
+~~~
 docker rm -f $(docker ps -a -q)
 docker-compose up --build
+~~~
+
+### API 
+Al mover el JAR a la carpeta /docker/api recordar que el JAR no debe generar la base de datos.
+La base de datos ya estara previamente cargada en otro contenedor a traves de un archivo SQL
+
+~~~
+docker rm -f $(docker ps -a -q)
+docker build -t api_server ./api
+docker run --rm --name api_server api
+~~~
+
+### MYSQL
+Ejecutar Dockerfile
+
+~~~
+docker rm -f $(docker ps -a -q)
+docker build -t mysql ./mysql
+docker run -p 33060:3306 --name mysql_server mysql
+~~~
 
 ## Cambios respecto a la plantilla
 
