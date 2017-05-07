@@ -132,9 +132,18 @@ Estas son las clases que componen la aplicación. Hemos utilizado los colores pa
 
 ## SPA Angular
 
-A continuación, se muestras los componentes y las correspondientes relaciones.
+A continuación, se muestras los componentes con las correspondientes relaciones y los servicios.
+ - Naranja -> Component
+ - Gris    -> Service
 
 ![alt tag](https://github.com/DimasDMM/daw/blob/master/screenshots/SPA_Angular.png)
+
+## DOCKER
+
+# Ir a la carpeta de ./docker y ejecutar el docker-compose
+
+docker rm -f $(docker ps -a -q)
+docker-compose up --build
 
 ## Cambios respecto a la plantilla
 
